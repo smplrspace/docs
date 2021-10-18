@@ -3,17 +3,79 @@
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
+ @font-face {
+  font-family: "RNSSanz-Normal";
+  src: url("/static/fonts/RNSSanz-Normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "RNSSanz-Medium";
+  src: url("/static/fonts/RNSSanz-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "RNSSanz-Bold";
+  src: url("/static/fonts/RNSSanz-Bold.woff2") format("woff2");
+}
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: rgb(33, 175, 144);
-  --ifm-color-primary-darker: rgb(31, 165, 136);
-  --ifm-color-primary-darkest: rgb(26, 136, 112);
-  --ifm-color-primary-light: rgb(70, 203, 174);
-  --ifm-color-primary-lighter: rgb(102, 212, 189);
-  --ifm-color-primary-lightest: rgb(146, 224, 208);
-  --ifm-code-font-size: 95%;
+  --ifm-font-family-base: "RNSSanz-Normal", Helvetica, sans-serif;
+  --ifm-heading-font-family: "RNSSanz-Bold", Helvetica, sans-serif;
+  --ifm-font-color-base: #3a3c3c;
+  --ifm-heading-color: #3a3c3c;
+  --ifm-smplr-offwhite: #f7f9fb;
+  --ifm-color-primary: #339AF0;
+  --ifm-color-primary-dark: #1c7ed6;
+  --ifm-color-primary-darker: #1971C2;
+  --ifm-color-primary-darkest: #1864AB;
+  --ifm-color-primary-light: #4DABF7;
+  --ifm-color-primary-lighter: #74C0FC;
+  --ifm-color-primary-lightest: #A5D8FF;
+  --ifm-code-font-size: 13px;
+  --ifm-footer-background-color: var(--ifm-smplr-offwhite);
+}
+:root[data-theme='dark'] {
+  --ifm-background-color: #2a2c2c;
+  --ifm-footer-background-color: var(--ifm-navbar-background-color);
+  --ifm-font-color-base: var(--ifm-smplr-offwhite);
+  --ifm-heading-color: var(--ifm-smplr-offwhite);
+}
+
+strong {
+  font-family: "RNSSanz-Bold", Helvetica, sans-serif;
+}
+
+.navbar__logo {
+  margin-right: 1rem;
+}
+.navbar__title {
+  font-weight: 100;
+  border-left: solid 1px;
+  padding-left: 1rem;
+  font-size: 1.2rem;
+}
+.navbar__brand:hover {
+  color: var(--ifm-heading-color);
+  text-decoration: none;
+}
+
+html[data-theme='dark'] .menu {
+  background-color: var(--ifm-navbar-background-color);
+}
+.menu__link--active:not(.menu__link--sublist) {
+  font-family: "RNSSanz-Medium", Helvetica, sans-serif;
+}
+.menu__link--sublist:after {
+  background: url('data:image/svg+xml;utf8,<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.13523 8.84197C3.3241 9.04343 3.64052 9.05363 3.84197 8.86477L7.5 5.43536L11.158 8.86477C11.3595 9.05363 11.6759 9.04343 11.8648 8.84197C12.0536 8.64051 12.0434 8.32409 11.842 8.13523L7.84197 4.38523C7.64964 4.20492 7.35036 4.20492 7.15803 4.38523L3.15803 8.13523C2.95657 8.32409 2.94637 8.64051 3.13523 8.84197Z" fill="%23606770" fill-rule="evenodd" clip-rule="evenodd"></path></svg>') 50% / 1.3rem 1.3rem;
+}
+
+.iconExternalLink_node_modules-\@docusaurus-theme-classic-lib-next-theme-IconExternalLink-styles-module {
+  display: none;
+}
+
+.toggle_node_modules-\@docusaurus-theme-classic-lib-next-theme-Toggle-styles-module {
+  margin-left: var(--ifm-navbar-item-padding-horizontal);
 }
 
 .docusaurus-highlight-code-line {
@@ -25,4 +87,8 @@
 
 html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.footer__copyright {
+  font-size: .8rem;
 }
