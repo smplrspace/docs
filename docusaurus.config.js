@@ -70,6 +70,10 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      fathomAnalytics: {
+        siteId: 'EYOYVBOL',
+        customDomain: 'https://llama.smplrspace.com',
+      },
     }),
 
     plugins: [
@@ -84,6 +88,7 @@ const config = {
           highlightSearchTermsOnTargetPage: true,
         },
       ],
+      require.resolve('docusaurus-plugin-fathom'),
     ],
 };
 
