@@ -48,6 +48,7 @@ strong {
 
 .navbar__logo {
   margin-right: 1rem;
+  height: 1.7rem;
 }
 .navbar__title {
   font-weight: 100;
@@ -87,6 +88,16 @@ html[data-theme='dark'] .menu {
 
 html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* search highlights */
+mark {
+  color: #3a3c3c;
+  background-color: #fdf482;
+}
+html[data-theme='dark'] mark {
+  color: #2a2c2c;
+  background-color: #d9cc61;
 }
 
 .footer__copyright {
