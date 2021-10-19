@@ -16,7 +16,7 @@ export const helloWorld = {
 
 export default function() {
   return (
-    <Project project={project}>
+    <Project project={helloWorld}>
       <HelloWorld />
     </Project>
   )

@@ -12,7 +12,7 @@ export const comingSoon = {
 
 export default function() {
   return (
-    <Project>
+    <Project project={comingSoon}>
       Coming soon
     </Project>
   )
