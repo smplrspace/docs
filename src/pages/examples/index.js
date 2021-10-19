@@ -3,10 +3,13 @@ import { compose, includes, map, filter, propEq } from 'ramda'
 import { SimpleGrid, TextInput, Group } from '@mantine/core'
 import { IoSearchOutline } from 'react-icons/io5'
 
-import projects from './_projects'
 import Page from '../../components/Page'
 import ProjectCard from '../../components/ProjectCard'
 import Button from '../../components/Button'
+
+import { helloWorld } from './hello-world'
+import { comingSoon } from './coming-soon'
+const projects = [ helloWorld, comingSoon ]
 
 const ProjectList = () => {
   const [search, setSearch] = useState('')
@@ -30,7 +33,7 @@ const ProjectList = () => {
               Math.random() * publishedProjects.length
             )
             const slug = publishedProjects[randomIndex].slug
-            window.location.href = `/p/${slug}`
+            window.location.href = `/examples/${slug}`
           }}
         >
           Russian roulette

@@ -10,15 +10,10 @@ import {
 import { IoInformation, IoLogoGithub, IoReturnUpBack } from 'react-icons/io5'
 import CodeBlock from '@theme/CodeBlock'
 
-import projects from '../pages/examples/_projects'
 import Page from './Page'
 import Button from './Button'
 
-export default function({ children }) {
-  const slug = compose(last, split('/'))(document.location.pathname)
-
-  const project = find(propEq('slug', slug))(projects)
-
+export default function({ project, children }) {
   if (!project.published) {
     return (
       <Page title='Coming soon'>
