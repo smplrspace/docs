@@ -5,16 +5,17 @@ import { Button as MantineButton, createStyles } from '@mantine/core'
 const useStyles = createStyles((theme, props) => ({
   root: props.disabled
     ? {
-      cursor: 'default',
-      border: 0,
-      backgroundColor: '#f7f9fb',
+      cursor: 'not-allowed',
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
       color: theme.colors.dark[2],
-      border: `solid 1px ${theme.colors.dark[0]}`
+      borderColor: theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.dark[0]
     }
     : {
+      color: theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.black,
+      borderColor: theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.black,
       '&:hover': {
-        backgroundColor: theme.colors.dark[5],
-        color: theme.white,
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.black,
+        color: theme.colorScheme === 'dark' ? theme.black : theme.colors.gray[0],
         textDecoration: 'none'
       }
     },

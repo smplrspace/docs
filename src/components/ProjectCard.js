@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Card } from '@mantine/core'
+import { Card, useMantineTheme } from '@mantine/core'
 
 import Button from './Button'
 
@@ -10,11 +10,13 @@ const ProjectCard = ({
   description,
   published
 }) => {
+  const theme = useMantineTheme()
+
   return (
     <Card
       shadow='sm'
       padding='lg'
-      style={{ display: 'flex', flexDirection: 'column' }}
+      style={{ display: 'flex', flexDirection: 'column', color: theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.black }}
     >
       <Card.Section>
         <img
