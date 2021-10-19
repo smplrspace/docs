@@ -37,6 +37,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      image: 'img/og-image.jpg',
       navbar: {
         title: 'Docs',
         logo: {
