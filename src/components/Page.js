@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Layout from '@theme/Layout'
 import { MantineProvider } from '@mantine/core'
 import useThemeContext from '@theme/hooks/useThemeContext'
@@ -6,10 +6,16 @@ import useThemeContext from '@theme/hooks/useThemeContext'
 function Page({ children }) {
   const { isDarkTheme } = useThemeContext();
 
+  // ugly fix mantine SSR issue
+  const [forceLightTheme, setForceLightTheme] = useState(isDarkTheme)
+  useEffect(() => {
+    setForceLightTheme(false)
+  }, [])
+
   return (
     <MantineProvider
       theme={{
-        colorScheme: isDarkTheme ? 'dark' : 'light', // sync docusaurus and mantine themes
+        colorScheme: (!forceLightTheme && isDarkTheme) ? 'dark' : 'light', // sync docusaurus and mantine themes
         fontFamily: '"RNSSanz-Normal", Helvetica, sans-serif',
         primaryColor: 'dark',
         black: '#3a3c3c',
