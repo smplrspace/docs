@@ -1,17 +1,15 @@
 import React from 'react'
-import { propEq, find, compose, last, split } from 'ramda'
 import {
   Divider,
   Group,
-  Space,
-  Tabs,
-  Tab
+  Space
 } from '@mantine/core'
 import { IoInformation, IoLogoGithub, IoReturnUpBack } from 'react-icons/io5'
 import CodeBlock from '@theme/CodeBlock'
 
 import Page from './Page'
 import Button from './Button'
+import {Tabs, Tab} from './Tabs'
 
 export default function({ project, children }) {
   if (!project.published) {

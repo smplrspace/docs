@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { compose, includes, map, filter, propEq } from 'ramda'
-import { SimpleGrid, TextInput, Group } from '@mantine/core'
+import { SimpleGrid, Group } from '@mantine/core'
 import { IoSearchOutline } from 'react-icons/io5'
 
 import Page from '../../components/Page'
 import ProjectCard from '../../components/ProjectCard'
 import Button from '../../components/Button'
+import TextInput from '../../components/TextInput'
 
 import { helloWorld } from './hello-world'
 import { comingSoon } from './coming-soon'
