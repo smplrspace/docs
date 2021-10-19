@@ -47,13 +47,13 @@ const config = {
         },
         items: [
           {
-            href: 'https://www.smplrspace.com',
-            label: 'Homepage',
+            href: '/examples',
+            label: 'Examples',
             position: 'right',
           },
           {
-            href: 'https://examples.smplrspace.com',
-            label: 'Examples',
+            href: 'https://www.smplrspace.com',
+            label: 'Homepage',
             position: 'right',
           },
           {

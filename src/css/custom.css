@@ -40,6 +40,10 @@
   --ifm-footer-background-color: var(--ifm-navbar-background-color);
   --ifm-font-color-base: var(--ifm-smplr-offwhite);
   --ifm-heading-color: var(--ifm-smplr-offwhite);
+  --ifm-code-background: #1e1e1e;
+}
+html[data-theme='dark'] code {
+  border-color:rgba(255, 255, 255, 0.2)
 }
 
 strong {
