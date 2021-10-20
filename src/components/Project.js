@@ -34,7 +34,7 @@ export default function({ project, children }) {
           component='a'
           target='_blank'
           rel='noopener noreferrer'
-          href={`https://github.com/smplrspace/examples/tree/main/src/projects/${project.slug}`}
+          href={`https://github.com/smplrspace/docs/tree/main/src/pages/examples/${project.slug}`}
           leftIcon={
             <IoLogoGithub
               style={{
