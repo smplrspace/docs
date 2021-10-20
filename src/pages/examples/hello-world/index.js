@@ -1,9 +1,10 @@
+/* eslint-disable import/no-webpack-loader-syntax */
 import React from 'react'
 
 import Project from '../../../components/Project'
 import HelloWorld from './HelloWorld'
 
-import HelloWorldCode from '!!raw-loader!./HelloWorld';
+import HelloWorldCode from '!!raw-loader!./HelloWorld'
 
 export const helloWorld = {
   slug: 'hello-world',
@@ -14,7 +15,7 @@ export const helloWorld = {
   code: [{ filename: 'HelloWorld.js', lang: 'jsx', content: HelloWorldCode }]
 }
 
-export default function() {
+export default function () {
   return (
     <Project project={helloWorld}>
       <HelloWorld />

@@ -10,7 +10,7 @@ import TextInput from '../../components/TextInput'
 
 import { helloWorld } from './hello-world'
 import { comingSoon } from './coming-soon'
-const projects = [ helloWorld, comingSoon ]
+const projects = [helloWorld, comingSoon]
 
 const ProjectList = () => {
   const [search, setSearch] = useState('')

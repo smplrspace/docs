@@ -6,16 +6,26 @@ const useStyles = createStyles((theme, props) => ({
   root: props.disabled
     ? {
       cursor: 'not-allowed',
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
+      backgroundColor:
+          theme.colorScheme === 'dark'
+            ? theme.colors.dark[5]
+            : theme.colors.gray[0],
       color: theme.colors.dark[2],
-      borderColor: theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.dark[0]
+      borderColor:
+          theme.colorScheme === 'dark'
+            ? theme.colors.dark[3]
+            : theme.colors.dark[0]
     }
     : {
-      color: theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.black,
-      borderColor: theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.black,
+      color:
+          theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.black,
+      borderColor:
+          theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.black,
       '&:hover': {
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.black,
-        color: theme.colorScheme === 'dark' ? theme.black : theme.colors.gray[0],
+        backgroundColor:
+            theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.black,
+        color:
+            theme.colorScheme === 'dark' ? theme.black : theme.colors.gray[0],
         textDecoration: 'none'
       }
     },

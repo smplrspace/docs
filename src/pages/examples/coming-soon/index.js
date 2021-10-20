@@ -10,10 +10,6 @@ export const comingSoon = {
   code: []
 }
 
-export default function() {
-  return (
-    <Project project={comingSoon}>
-      Coming soon
-    </Project>
-  )
+export default function () {
+  return <Project project={comingSoon}>Coming soon</Project>
 }

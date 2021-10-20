@@ -1,6 +1,6 @@
 {
   "name": "smplrspace-docs",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "BROWSER='Google Chrome Dev' docusaurus start",
@@ -10,7 +10,16 @@
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "format": "prettier-eslint --write \"src/**/*.{js,json,css}\""
+  },
+  "lint-staged": {
+    "linters": {
+      "*.{js,json,css}": [
+        "prettier-eslint --write",
+        "git add"
+      ]
+    }
   },
   "dependencies": {
     "@docusaurus/core": "2.0.0-beta.7",
@@ -30,6 +39,22 @@
     "react-dom": "^17.0.1",
     "react-icons": "^4.3.1",
     "url-loader": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-config-standard-react": "^7.0.2",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-node": "^9.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^1.6.0",
+    "eslint-plugin-standard": "^4.0.0",
+    "husky": "^2.3.0",
+    "lint-staged": "^8.1.7",
+    "prettier-eslint": "^9.0.0",
+    "prettier-eslint-cli": "^4.7.1"
   },
   "browserslist": {
     "production": [

@@ -1,17 +1,14 @@
 import React from 'react'
-import {
-  Divider,
-  Group,
-  Space
-} from '@mantine/core'
+import PropTypes from 'prop-types'
+import { Divider, Group, Space } from '@mantine/core'
 import { IoInformation, IoLogoGithub, IoReturnUpBack } from 'react-icons/io5'
 import CodeBlock from '@theme/CodeBlock'
 
 import Page from './Page'
 import Button from './Button'
-import {Tabs, Tab} from './Tabs'
+import { Tabs, Tab } from './Tabs'
 
-export default function({ project, children }) {
+function Project ({ project, children }) {
   if (!project.published) {
     return (
       <Page title='Coming soon'>
@@ -90,3 +87,22 @@ export default function({ project, children }) {
     </Page>
   )
 }
+
+Project.propTypes = {
+  project: PropTypes.shape({
+    slug: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    published: PropTypes.bool,
+    code: PropTypes.arrayOf(
+      PropTypes.shape({
+        filename: PropTypes.string.isRequired,
+        lang: PropTypes.string.isRequired,
+        content: PropTypes.string.isRequired
+      })
+    )
+  }).isRequired,
+  children: PropTypes.any
+}
+
+export default Project

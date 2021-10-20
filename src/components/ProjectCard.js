@@ -4,19 +4,18 @@ import { Card, useMantineTheme } from '@mantine/core'
 
 import Button from './Button'
 
-const ProjectCard = ({
-  slug,
-  title,
-  description,
-  published
-}) => {
+const ProjectCard = ({ slug, title, description, published }) => {
   const theme = useMantineTheme()
 
   return (
     <Card
       shadow='sm'
       padding='lg'
-      style={{ display: 'flex', flexDirection: 'column', color: theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.black }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        color: theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.black
+      }}
     >
       <Card.Section>
         <img
@@ -25,12 +24,8 @@ const ProjectCard = ({
           style={{ marginBottom: 30 }}
         />
       </Card.Section>
-      <h3>
-        {title}
-      </h3>
-      <p style={{ fontSize: '.9rem', flexGrow: 1 }}>
-        {description}
-      </p>
+      <h3>{title}</h3>
+      <p style={{ fontSize: '.9rem', flexGrow: 1 }}>{description}</p>
       <Button
         component='a'
         href={`/examples/${slug}`}
