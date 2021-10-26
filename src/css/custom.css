@@ -80,7 +80,7 @@ html[data-theme='dark'] .menu {
   display: none;
 }
 
-.navbar__items--right > :nth-child(4) {
+.navbar__items--right > :nth-child(5) {
   margin-left: var(--ifm-navbar-item-padding-horizontal);
 }
 

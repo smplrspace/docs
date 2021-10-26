@@ -51,6 +51,11 @@ const config = {
         },
         items: [
           {
+            href: '/',
+            label: 'Docs',
+            position: 'right'
+          },
+          {
             href: '/examples',
             label: 'Examples',
             position: 'right'
