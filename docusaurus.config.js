@@ -1,13 +1,14 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
+const lightCodeTheme = require('prism-react-renderer/themes/github')
+const darkCodeTheme = require('prism-react-renderer/themes/vsDark')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Smplrspace docs',
-  tagline: 'Learn how to embed our viewer with smplr.js and access the API reference',
+  tagline:
+    'Learn how to embed our viewer with smplr.js and access the API reference',
   url: 'https://docs.smplrspace.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -24,14 +25,14 @@ const config = {
         docs: {
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/smplrspace/docs/edit/main/',
+          editUrl: 'https://github.com/smplrspace/docs/edit/main/'
         },
         blog: false,
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
-        },
-      }),
-    ],
+          customCss: require.resolve('./src/css/custom.css')
+        }
+      })
+    ]
   ],
 
   themeConfig:
@@ -39,7 +40,7 @@ const config = {
     ({
       image: 'img/og-image.jpg',
       colorMode: {
-        respectPrefersColorScheme: true,
+        respectPrefersColorScheme: true
       },
       navbar: {
         title: 'Docs',
@@ -52,48 +53,48 @@ const config = {
           {
             href: '/examples',
             label: 'Examples',
-            position: 'right',
+            position: 'right'
           },
           {
             href: 'https://www.smplrspace.com',
             label: 'Homepage',
-            position: 'right',
+            position: 'right'
           },
           {
             href: 'https://github.com/smplrspace/docs',
             label: 'GitHub',
-            position: 'right',
-          },
-        ],
+            position: 'right'
+          }
+        ]
       },
       footer: {
         links: [],
-        copyright: `© 2019-${new Date().getFullYear()} Smplrspace Pte Ltd. All rights reserved.`,
+        copyright: `© 2019-${new Date().getFullYear()} Smplrspace Pte Ltd. All rights reserved.`
       },
       prism: {
         theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
+        darkTheme: darkCodeTheme
       },
       fathomAnalytics: {
         siteId: 'EYOYVBOL',
-        customDomain: 'https://llama.smplrspace.com',
-      },
+        customDomain: 'https://llama.smplrspace.com'
+      }
     }),
 
-    plugins: [
-      [
-        require.resolve('@easyops-cn/docusaurus-search-local'),
-        {
-          hashed: true,
-          indexDocs: true,
-          indexBlog: false,
-          indexPages: false,
-          docsRouteBasePath: '/',
-          highlightSearchTermsOnTargetPage: true,
-        },
-      ],
-      require.resolve('docusaurus-plugin-fathom'),
+  plugins: [
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        indexDocs: true,
+        indexBlog: false,
+        indexPages: false,
+        docsRouteBasePath: '/',
+        highlightSearchTermsOnTargetPage: true
+      }
     ],
-};
+    require.resolve('docusaurus-plugin-fathom')
+  ]
+}
 
-module.exports = config;
+module.exports = config
