@@ -62,7 +62,7 @@ To start the viewer for a space, you should append the following script at the e
 </script>
 ```
 
-If you use a frontend framework like React, you can refer to the [embedding spaces](./guides/embedding.md) guide to learn more about loading smplr.js.
+If you use a frontend framework like React, you can refer to the [embedding spaces](/guides/embedding.md) guide to learn more about loading smplr.js.
 
 ## Preview images
 
