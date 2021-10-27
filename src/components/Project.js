@@ -70,11 +70,11 @@ function Project ({ project, children }) {
               vanilla Javascript, you would load the script and stylesheet like
               any other in your HTML <code>{`<head>`}</code> and add a{' '}
               <code>{`<script>`}</code> to the body that corresponds to the code
-              found in the <code>onLoad</code> function. Refer to{' '}
-              <a href='https://docs.smplrspace.com' color='blue'>
-                the docs
+              found in the <code>onLoad</code> function. Refer to the{' '}
+              <a href='/guides/embedding' color='blue'>
+                embedding spaces
               </a>{' '}
-              for more details.
+              guide for more details.
             </p>
           </Tab>
           {project.code.map(({ filename, lang, content }) => (

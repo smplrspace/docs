@@ -8,11 +8,12 @@ const HelloWorld = () => {
 
   function onLoad () {
     const space = new smplr.Space({
-      spaceId: '96eae952-ef60-4058-aba1-6ace322506e7',
+      spaceId: 'e4cbc25e-1550-444f-8ac9-35c7c29ff243',
       spaceToken: 'X',
       containerId: 'smplr-container'
     })
     space.preview({
+      onViewerReady: () => console.log('Viewer is ready'),
       onError: error => console.error('Could not start viewer', error)
     })
   }
