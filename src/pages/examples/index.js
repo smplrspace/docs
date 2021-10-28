@@ -9,8 +9,8 @@ import Button from '../../components/Button'
 import TextInput from '../../components/TextInput'
 
 import { helloWorld } from './hello-world'
-import { comingSoon } from './coming-soon'
-const projects = [helloWorld, comingSoon]
+import { temperatureSensors } from './temperature-sensors'
+const projects = [helloWorld, temperatureSensors]
 
 const ProjectList = () => {
   const [search, setSearch] = useState('')

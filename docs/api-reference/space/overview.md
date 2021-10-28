@@ -10,7 +10,7 @@ Smplr.js makes a `smplr` object available on the global scope. The main class pr
 
 To create a Space instance, initialise it as follow.
 
-```js
+```ts
 const space = new smplr.Space({
   spaceId: string,
   spaceToken: string,
@@ -26,7 +26,7 @@ const space = new smplr.Space({
 
 To initiate the static preview (preview image with play button similar to YouTube embed), use the following code.
 
-```js
+```ts
 space.preview({
   onViewerReady?: () => void,
   onError?: (error: string | Error) => void
@@ -40,7 +40,7 @@ space.preview({
 
 To initiate an interactive viewer session, use the following code.
 
-```js
+```ts
 space.startViewer({
   onReady?: () => void,
   onError?: (error: string | Error) => void
@@ -58,7 +58,7 @@ Although not a rule not to break, we generally _recommend_ to use `preview` inst
 
 In order to know where a user clicks or taps in the floor plan, you can enable picking mode. For example, this is useful if you have an admin interface to configure floor plans and position sensors on it, or if you want to let users point to the location of an issue they are reporting. Enabling picking mode is done as follows.
 
-```js
+```ts
 // call this after `onReady` or `onViewerReady` has fired
 space.enablePickingMode({
   onPick: ({
@@ -76,9 +76,11 @@ space.enablePickingMode({
 
 Disabling picking mode is done as follow. You could call `disablePickingMode` inside the `onPick` handler to limit the number of times a pick event should be processed.
 
-```js
+```ts
 space.disablePickingMode()
 ```
+
+You may refer to the [temperature sensors](/examples/temperature-sensors) example for a simple implementation using picking mode.
 
 ### Data layers
 
@@ -86,19 +88,27 @@ space.disablePickingMode()
 
 The viewer lets you add data layers that are rendered on the floor plan. Each layer holds one type of information with one or more data elements and shared parameters for rendering. To add a layer, proceed as follow.
 
-```js
+```ts
 // call this after `onReady` or `onViewerReady` has fired
 space.addDataLayer({
   id: string,
   type: "point" | "icon",
-  data: object[],
+  data: [{
+    position: {
+      levelIndex: number,
+      x: number,
+      z: number,
+      elevation: number
+    },
+    ...customData: object
+  }],
   ...rest: object
 })
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
 - `type` defines how the data should be rendered. _More types are coming soon._
-- `data` is an array of objects (refered to as data elements) to be rendered.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each object **must** have a `position` element and can contain any additional custom data used for rendering options.
 - `...rest` represents other parameters that are specific to the type of the layer.
 
 **For more details on the layer types and their specific options and data attributes, refer to the [data layers](/api-reference/space/data-layers.md) page.**
@@ -107,7 +117,7 @@ space.addDataLayer({
 
 To update a layer with new data or options, proceed as follow.
 
-```js
+```ts
 space.updateDataLayer({
   id: string,
   data: object[],
@@ -122,8 +132,8 @@ space.updateDataLayer({
 
 Removing a data layer completely is done as follow.
 
-```js
-space.removeDataLayer((id: string))
+```ts
+space.removeDataLayer(id: string)
 ```
 
 - `id` is the identifier of the layer to remove.
