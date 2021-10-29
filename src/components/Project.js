@@ -76,6 +76,15 @@ function Project ({ project, children }) {
               </a>{' '}
               guide for more details.
             </p>
+            <p>
+              You should also pay attention to the various calls to{' '}
+              <code>space.___</code> which are how we build interactive
+              experiences on top of smplr.js. Note that <code>useEffect</code>{' '}
+              is just React's lingo for executing some code after some
+              application state has changed. <code>useState</code> and{' '}
+              <code>useReducer</code> are mechanisms to hold application state
+              in React.
+            </p>
           </Tab>
           {project.code.map(({ filename, lang, content }) => (
             <Tab key={filename} label={filename}>
