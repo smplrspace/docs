@@ -15,7 +15,7 @@ function Project ({ project, children }) {
         <h1>Coming soon</h1>
         <p>This project is not live yet, come again soon ;)</p>
         <Button component='a' href='/examples'>
-          Go back
+          All examples
         </Button>
       </Page>
     )
@@ -56,7 +56,7 @@ function Project ({ project, children }) {
             />
           }
         >
-          Go back
+          All examples
         </Button>
       </Group>
       <Divider my='lg' />

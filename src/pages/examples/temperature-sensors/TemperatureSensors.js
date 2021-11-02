@@ -62,6 +62,7 @@ const TemperatureSensors = () => {
         id: 'sensors',
         type: 'point',
         diameter: 0.5,
+        anchor: 'bottom',
         data: sensors,
         tooltip: d => d.name
       })
@@ -71,6 +72,7 @@ const TemperatureSensors = () => {
         id: 'sensors',
         type: 'point',
         diameter: 0.8,
+        anchor: 'bottom',
         data: sensors,
         tooltip: d => `${d.name} - ${numeral(d.temp).format('0.0')}°C`,
         color: d => temperatureScale(d.temp).hex()
@@ -114,8 +116,8 @@ const TemperatureSensors = () => {
           <h3>Sensors</h3>
           {sensors.length === 0 && <p>No sensor yet.</p>}
           <List>
-            {sensors.map(sensor => (
-              <ListItem>
+            {sensors.map((sensor, index) => (
+              <ListItem key={index}>
                 {sensor.name} - (L{sensor.position.levelIndex},{' '}
                 {numeral(sensor.position.x).format('0.0')}m,{' '}
                 {numeral(sensor.position.z).format('0.0')}m ,{' '}

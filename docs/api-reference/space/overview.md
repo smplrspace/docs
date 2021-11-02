@@ -92,23 +92,15 @@ The viewer lets you add data layers that are rendered on the floor plan. Each la
 // call this after `onReady` or `onViewerReady` has fired
 space.addDataLayer({
   id: string,
-  type: "point" | "icon",
-  data: [{
-    position: {
-      levelIndex: number,
-      x: number,
-      z: number,
-      elevation: number
-    },
-    ...customData: object
-  }],
+  type: 'point' | 'icon' | 'polygon',
+  data: object[],
   ...rest: object
 })
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
 - `type` defines how the data should be rendered. _More types are coming soon._
-- `data` is an array of objects (refered to as data elements) to be rendered. Each object **must** have a `position` element and can contain any additional custom data used for rendering options.
+- `data` is an array of objects (refered to as data elements) to be rendered.
 - `...rest` represents other parameters that are specific to the type of the layer.
 
 **For more details on the layer types and their specific options and data attributes, refer to the [data layers](/api-reference/space/data-layers.md) page.**
