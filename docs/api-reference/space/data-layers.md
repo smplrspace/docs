@@ -36,13 +36,15 @@ A point layer has each data element rendered as a sphere.
 space.addDataLayer({
   // ...genericOptions,
   diameter?: number | (dataElement: object) => number,
-  color?: string | (dataElement: object) => string
+  color?: string | (dataElement: object) => string,
+  alpha?: number
 })
 ```
 
 - `...genericOptions` - refer to the [previous section](#generic-options).
 - `diameter` - _optional_ - defines the diameter of the sphere to render in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the diameter for that element. _Default value: 1m._
 - `color` - _optional_ - defines the color of the sphere to render. It can be defined as a hexadecimal string like "#3a3c3c" for all elements or per element with a function that takes each element as argument and returns the hexadecimal color string for that element. _Default value: "#2393d4"_
+- `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1_
 
 The [temperature sensors](/examples/temperature-sensors) example provides a simple implementation of a point data layer.
 
