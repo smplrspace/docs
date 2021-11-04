@@ -82,12 +82,10 @@ const RoomAvailability = () => {
     if (openRoom) {
       space.addDataLayer({
         id: 'open-room',
-        type: 'point',
-        data: openRoom.coordinates.map(c => ({
-          position: c
-        })),
-        diameter: 0.3,
-        anchor: 'bottom'
+        type: 'polygon',
+        data: [openRoom],
+        height: 3.05,
+        alpha: 0.5
       })
     } else {
       space.removeDataLayer('open-room')
