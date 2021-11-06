@@ -11,8 +11,14 @@ import TextInput from '../../components/TextInput'
 import { helloWorld } from './hello-world'
 import { temperatureSensors } from './temperature-sensors'
 import { roomAvailability } from './room-availability'
+import { stackingPlan } from './stacking-plan'
 
-const projects = [helloWorld, temperatureSensors, roomAvailability]
+const projects = [
+  helloWorld,
+  temperatureSensors,
+  roomAvailability,
+  stackingPlan
+]
 
 const ProjectList = () => {
   const [search, setSearch] = useState('')

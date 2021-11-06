@@ -92,7 +92,7 @@ The viewer lets you add data layers that are rendered on the floor plan. Each la
 // call this after `onReady` or `onViewerReady` has fired
 space.addDataLayer({
   id: string,
-  type: 'point' | 'icon' | 'polygon',
+  type: 'point' | 'icon' | 'polygon' | 'polyline',
   data: object[],
   ...rest: object
 })
