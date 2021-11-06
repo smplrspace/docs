@@ -126,12 +126,12 @@ const centerOnly = [
 
 const status = {
   '1': 'paid',
-  '2': 'payment due',
+  '2': 'paid',
   '3-A': 'paid',
   '3-B': 'payment due',
   '3-C': 'paid',
   '4': 'for rent',
-  '5': 'payment due',
+  '5': 'paid',
   '6': 'payment due',
   '7': 'paid',
   '8-A': 'payment due',
