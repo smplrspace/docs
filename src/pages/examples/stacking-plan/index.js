@@ -6,7 +6,7 @@ import StackingPlan from './StackingPlan'
 
 import StackingPlanCode from '!!raw-loader!./StackingPlan'
 import ViewerCode from '!!raw-loader!./Viewer'
-import unitsCode from '!!raw-loader!./units'
+import unitsCode from '!!raw-loader!./_units'
 
 export const stackingPlan = {
   slug: 'stacking-plan',
