@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react'
 
 import Viewer from './Viewer'
-import { units } from './units'
+import { units } from './_units'
 
 const StackingPlan = () => {
   const [space, setSpace] = useState()
