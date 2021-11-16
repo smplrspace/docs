@@ -48,7 +48,9 @@ space.addDataLayer({
   diameter?: number | (dataElement: object) => number,
   anchor?: 'bottom' | 'center' | 'top',
   color?: string | (dataElement: object) => string,
-  alpha?: number
+  alpha?: number,
+  onDrag?: ({ data: object }) => void,
+  onDrop?: ({ data: object, newPosition: object }) => void
 })
 ```
 
@@ -58,6 +60,7 @@ space.addDataLayer({
 - `anchor` - _optional_ - defines if the position provided for each data element corresponds to the bottom, center or top of the sphere. _Default value: center._
 - `color` - _optional_ - defines the color of the sphere to render. It can be defined as a hexadecimal string like "#3a3c3c" for all elements or per element with a function that takes each element as argument and returns the hexadecimal color string for that element. _Default value: "#2393d4"_
 - `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1_
+- `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable. Each handler takes the dragged data element as argument. `onDrop` also receives the new position of the element so it can be updated in your app state and database. It is recommended to update the data layer upon receiving the `onDrop` event.
 
 The [temperature sensors](/examples/temperature-sensors) example provides a simple implementation of a point data layer.
 
@@ -163,4 +166,4 @@ space.addDataLayer({
 - `stepSize` - _optional_ - you should only use this parameter alongside a scale function. It adds additional steps at regular interval on each segment of the line. The step size will not necessarily be exact as the algorithm will prioritize to get full steps over keeping to the step size.
 - `color` - _optional_ - defines the color of the sphere to render. It can be defined as a hexadecimal string like "#3a3c3c" for all elements or per element with a function that takes each element as argument and returns the hexadecimal color string for that element. _Default value: "#2393d4"_
 - `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1_
-- `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable. Each handler takes the dragged data element as argument. `onDrop` also receives the new coordinates of the element so they can be updated in your app state and database. It is recommended to update the data layer upon receiving the `onDrop` event.
+- `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable. Each handler takes the dragged data element as argument. `onDrop` also receives the new coordinates of the element so it can be updated in your app state and database. It is recommended to update the data layer upon receiving the `onDrop` event.
