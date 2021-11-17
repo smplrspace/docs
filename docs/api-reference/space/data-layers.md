@@ -86,7 +86,9 @@ space.addDataLayer({
     width: number,
     height: number
   },
-  width?: number | (dataElement: object) => number
+  width?: number | (dataElement: object) => number,
+  onDrag?: ({ data: object }) => void,
+  onDrop?: ({ data: object, newPosition: object }) => void
 })
 ```
 
@@ -94,6 +96,7 @@ space.addDataLayer({
 - `data` is an array of objects (refered to as data elements) to be rendered. Each object **must** have a `position` element and can contain any additional custom data used for rendering options.
 - `icon` provides information about the icon file to use. Icons must be self-hosted, `width` and `height` indicate the dimensions of the icon available at `url`. Only PNG and JPEG files are supported.
 - `width` - _optional_ - defines the width of the icon to render in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the width for that element. _Default value: 1m._
+- `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable. Each handler takes the dragged data element as argument. `onDrop` also receives the new position of the element so it can be updated in your app state and database. It is recommended to update the data layer upon receiving the `onDrop` event.
 
 ## Polygon layer
 
