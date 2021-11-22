@@ -28,6 +28,7 @@ const RoomAvailability = () => {
           // new room
           return append(
             {
+              id: chance.guid(),
               name:
                 chance.letter({ casing: 'upper' }) +
                 chance.integer({ min: 1, max: 9 }),
@@ -44,6 +45,10 @@ const RoomAvailability = () => {
             coordinates: append(action.coordinate)
           })(last(rooms))
         ]
+      case 'updateCoordinates':
+        return rooms.map(r =>
+          r.id === action.id ? { ...r, coordinates: action.coordinates } : r
+        )
       case 'closeRoom':
         return [...init(rooms), mergeRight(last(rooms), { closed: true })]
       default:
@@ -85,7 +90,13 @@ const RoomAvailability = () => {
         type: 'polygon',
         data: [openRoom],
         height: 3.05,
-        alpha: 0.5
+        alpha: 0.5,
+        onDrop: ({ data, coordinates }) =>
+          dispatchRoom({
+            type: 'updateCoordinates',
+            id: data.id,
+            coordinates
+          })
       })
     } else {
       space.removeDataLayer('open-room')
