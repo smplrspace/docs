@@ -161,8 +161,8 @@ const RoomAvailability = () => {
           <h3>Rooms</h3>
           {rooms.length === 0 && <p>No room yet.</p>}
           <List>
-            {rooms.map((room, index) => (
-              <ListItem key={index}>
+            {rooms.map(room => (
+              <ListItem key={room.id}>
                 {room.name} - {room.available ? 'free' : 'occupied'}
               </ListItem>
             ))}

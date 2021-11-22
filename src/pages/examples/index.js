@@ -11,12 +11,14 @@ import TextInput from '../../components/TextInput'
 import { helloWorld } from './hello-world'
 import { temperatureSensors } from './temperature-sensors'
 import { roomAvailability } from './room-availability'
+import { addDataElements } from './add-data-elements'
 import { stackingPlan } from './stacking-plan'
 
 const projects = [
   helloWorld,
   temperatureSensors,
   roomAvailability,
+  addDataElements,
   stackingPlan
 ]
 

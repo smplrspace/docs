@@ -127,8 +127,8 @@ const TemperatureSensors = () => {
           <h3>Sensors</h3>
           {sensors.length === 0 && <p>No sensor yet.</p>}
           <List>
-            {sensors.map((sensor, index) => (
-              <ListItem key={index}>
+            {sensors.map(sensor => (
+              <ListItem key={sensor.id}>
                 {sensor.name} - (L{sensor.position.levelIndex},{' '}
                 {numeral(sensor.position.x).format('0.0')}m,{' '}
                 {numeral(sensor.position.z).format('0.0')}m ,{' '}

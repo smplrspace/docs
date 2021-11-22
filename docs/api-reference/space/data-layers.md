@@ -62,7 +62,7 @@ space.addDataLayer({
 - `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1_
 - `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable. Each handler takes the dragged data element as argument. `onDrop` also receives the new position of the element so it can be updated in your app state and database.
 
-The [temperature sensors](/examples/temperature-sensors) example provides a simple implementation of a point data layer.
+The [temperature sensors](/examples/temperature-sensors) example provides a simple implementation of a point data layer. The [Add data elements](/examples/add-data-elements) example gives a full overview of draggable layers.
 
 ## Icon layer
 
@@ -98,6 +98,8 @@ space.addDataLayer({
 - `width` - _optional_ - defines the width of the icon to render in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the width for that element. _Default value: 1m._
 - `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable. Each handler takes the dragged data element as argument. `onDrop` also receives the new position of the element so it can be updated in your app state and database.
 
+The [Add data elements](/examples/add-data-elements) example gives a full overview of draggable layers, including an icon layer.
+
 ## Polygon layer
 
 A polygon layer has each data element rendered as an extruded polygon. It is useful to highlight rooms or specific zones in the floor plan.
@@ -131,11 +133,11 @@ space.addDataLayer({
 - `height` - _optional_ - defines the height of the polygon in meters from its base to its top. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the height for that element. _Default value: 3m._
 - `color` - _optional_ - defines the color of the sphere to render. It can be defined as a hexadecimal string like "#3a3c3c" for all elements or per element with a function that takes each element as argument and returns the hexadecimal color string for that element. _Default value: "#2393d4"_
 - `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1_
-- `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable. Each handler takes the dragged data element as argument. `onDrop` also receives the new coordinates of the element so they can be updated in your app state and database.
+- `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable & reshapable. Each handler takes the dragged data element as argument. `onDrop` also receives the new coordinates of the element so they can be updated in your app state and database.
 - `disableReshape` - _optional_ - set this to false when using onDrag or onDrop if you want the polygons to be draggable but not modifiable in shape. _Default value: true_
 - `reshapeBoxColor` - _optional_ - hexadecimal string defining the color of the boxes used to reshape the polygons. Used in conjunction with onDrag or onDrop. _Default value: "#086bb7"_
 
-The [room availability](/examples/room-availability) example provides a simple implementation of a polygon data layer.
+The [room availability](/examples/room-availability) example provides a simple implementation of a polygon data layer. The [Add data elements](/examples/add-data-elements) example gives a full overview of draggable & reshapable layers.
 
 ## Polyline layer
 
@@ -175,6 +177,8 @@ space.addDataLayer({
 - `stepSize` - _optional_ - you should only use this parameter alongside a scale function. It adds additional steps at regular interval on each segment of the line. The step size will not necessarily be exact as the algorithm will prioritize to get full steps over keeping to the step size.
 - `color` - _optional_ - defines the color of the sphere to render. It can be defined as a hexadecimal string like "#3a3c3c" for all elements or per element with a function that takes each element as argument and returns the hexadecimal color string for that element. _Default value: "#2393d4"_
 - `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1_
-- `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable. Each handler takes the dragged data element as argument. `onDrop` also receives the new coordinates of the element so it can be updated in your app state and database.
+- `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable & reshapable. Each handler takes the dragged data element as argument. `onDrop` also receives the new coordinates of the element so it can be updated in your app state and database.
 - `disableReshape` - _optional_ - set this to false when using onDrag or onDrop if you want the polygons to be draggable but not modifiable in shape. _Default value: true_
 - `reshapeBoxColor` - _optional_ - hexadecimal string defining the color of the boxes used to reshape the polygons. Used in conjunction with onDrag or onDrop. _Default value: "#086bb7"_
+
+The [Add data elements](/examples/add-data-elements) example gives a full overview of draggable & reshapable layers, including a polyline layer.
