@@ -80,7 +80,7 @@ Disabling picking mode is done as follow. You could call `disablePickingMode` in
 space.disablePickingMode()
 ```
 
-You may refer to the [temperature sensors](/examples/temperature-sensors) example for a simple implementation using picking mode.
+You may refer to the [Add data elements](/examples/add-data-elements) example to see picking mode in action and understand the API.
 
 ### Data layers
 
