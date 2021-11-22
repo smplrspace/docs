@@ -5,12 +5,13 @@ import React, {
   useEffect,
   Fragment
 } from 'react'
-import { Group, UnstyledButton } from '@mantine/core'
+import { Group } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 import Chance from 'chance'
 import { append, compose, isEmpty, map, reject, intersperse } from 'ramda'
 
 import Viewer from './Viewer'
+import MiniButton from '../../../components/MiniButton'
 
 const chance = new Chance()
 
@@ -279,34 +280,31 @@ const AddDataElements = () => {
               map(p => (
                 <Fragment key={p.id}>
                   {p.name}{' '}
-                  <UnstyledButton
-                    style={{ textDecoration: 'underline' }}
+                  <MiniButton
                     onClick={() => dispatchPoint({ type: 'remove', id: p.id })}
                   >
-                    [x]
-                  </UnstyledButton>
+                    x
+                  </MiniButton>
                 </Fragment>
               ))
             )(points)}
             {' - '}
             {mode !== 'drawPoint' ? (
-              <UnstyledButton
-                style={{ textDecoration: 'underline' }}
+              <MiniButton
                 onClick={() => {
                   setMode('drawPoint')
                 }}
               >
-                [Add]
-              </UnstyledButton>
+                Add
+              </MiniButton>
             ) : (
-              <UnstyledButton
-                style={{ textDecoration: 'underline' }}
+              <MiniButton
                 onClick={() => {
                   setMode('idle')
                 }}
               >
-                [Done]
-              </UnstyledButton>
+                Done
+              </MiniButton>
             )}
           </span>
 
@@ -317,34 +315,31 @@ const AddDataElements = () => {
               map(p => (
                 <Fragment key={p.id}>
                   {p.name}{' '}
-                  <UnstyledButton
-                    style={{ textDecoration: 'underline' }}
+                  <MiniButton
                     onClick={() => dispatchIcon({ type: 'remove', id: p.id })}
                   >
-                    [x]
-                  </UnstyledButton>
+                    x
+                  </MiniButton>
                 </Fragment>
               ))
             )(icons)}
             {' - '}
             {mode !== 'drawIcon' ? (
-              <UnstyledButton
-                style={{ textDecoration: 'underline' }}
+              <MiniButton
                 onClick={() => {
                   setMode('drawIcon')
                 }}
               >
-                [Add]
-              </UnstyledButton>
+                Add
+              </MiniButton>
             ) : (
-              <UnstyledButton
-                style={{ textDecoration: 'underline' }}
+              <MiniButton
                 onClick={() => {
                   setMode('idle')
                 }}
               >
-                [Done]
-              </UnstyledButton>
+                Done
+              </MiniButton>
             )}
           </span>
 
@@ -355,20 +350,18 @@ const AddDataElements = () => {
               map(p => (
                 <Fragment key={p.id}>
                   {p.name}{' '}
-                  <UnstyledButton
-                    style={{ textDecoration: 'underline' }}
+                  <MiniButton
                     onClick={() =>
                       dispatchPolygon({ type: 'removePolygon', id: p.id })
                     }
                   >
-                    [x]
-                  </UnstyledButton>
+                    x
+                  </MiniButton>
                 </Fragment>
               ))
             )(polygons)}
             {' - '}
-            <UnstyledButton
-              style={{ textDecoration: 'underline' }}
+            <MiniButton
               onClick={() => {
                 const id = chance.guid()
                 dispatchPolygon({ type: 'addPolygon', id })
@@ -376,20 +369,19 @@ const AddDataElements = () => {
                 setMode('drawPolygon')
               }}
             >
-              [Add]
-            </UnstyledButton>
+              Add
+            </MiniButton>
             {mode === 'drawPolygon' && (
               <Fragment>
                 {' '}
-                <UnstyledButton
-                  style={{ textDecoration: 'underline' }}
+                <MiniButton
                   onClick={() => {
                     setEditingId()
                     setMode('idle')
                   }}
                 >
-                  [Done]
-                </UnstyledButton>
+                  Done
+                </MiniButton>
               </Fragment>
             )}
           </span>
@@ -401,20 +393,18 @@ const AddDataElements = () => {
               map(p => (
                 <Fragment key={p.id}>
                   {p.name}{' '}
-                  <UnstyledButton
-                    style={{ textDecoration: 'underline' }}
+                  <MiniButton
                     onClick={() =>
                       dispatchPolyline({ type: 'removePolyline', id: p.id })
                     }
                   >
-                    [x]
-                  </UnstyledButton>
+                    x
+                  </MiniButton>
                 </Fragment>
               ))
             )(polylines)}
             {' - '}
-            <UnstyledButton
-              style={{ textDecoration: 'underline' }}
+            <MiniButton
               onClick={() => {
                 const id = chance.guid()
                 dispatchPolyline({ type: 'addPolyline', id })
@@ -422,20 +412,19 @@ const AddDataElements = () => {
                 setMode('drawPolyline')
               }}
             >
-              [Add]
-            </UnstyledButton>
+              Add
+            </MiniButton>
             {mode === 'drawPolyline' && (
               <Fragment>
                 {' '}
-                <UnstyledButton
-                  style={{ textDecoration: 'underline' }}
+                <MiniButton
                   onClick={() => {
                     setEditingId()
                     setMode('idle')
                   }}
                 >
-                  [Done]
-                </UnstyledButton>
+                  Done
+                </MiniButton>
               </Fragment>
             )}
           </span>
