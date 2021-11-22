@@ -19,6 +19,10 @@ const TemperatureSensors = () => {
     switch (action.type) {
       case 'add':
         return [...sensors, action.sensor]
+      case 'update':
+        return sensors.map(s =>
+          s.id === action.id ? { ...s, ...action.updates } : s
+        )
       default:
         console.error(`Unknown action type ${action.type}`)
     }
@@ -38,6 +42,7 @@ const TemperatureSensors = () => {
           dispatchSensor({
             type: 'add',
             sensor: {
+              id: chance.guid(),
               name:
                 chance.letter({ casing: 'upper' }) +
                 chance.integer({ min: 1, max: 9 }),
@@ -64,7 +69,13 @@ const TemperatureSensors = () => {
         diameter: 0.5,
         anchor: 'bottom',
         data: sensors,
-        tooltip: d => d.name
+        tooltip: d => d.name,
+        onDrop: ({ data, position }) =>
+          dispatchSensor({
+            type: 'update',
+            id: data.id,
+            updates: { position }
+          })
       })
     } else {
       const temperatureScale = chroma.scale('RdYlBu').domain([28, 0])
