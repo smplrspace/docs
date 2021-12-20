@@ -13,13 +13,15 @@ import { temperatureSensors } from './temperature-sensors'
 import { roomAvailability } from './room-availability'
 import { addDataElements } from './add-data-elements'
 import { stackingPlan } from './stacking-plan'
+import { warehouseBins } from './warehouse'
 
 const projects = [
   helloWorld,
   temperatureSensors,
   roomAvailability,
   addDataElements,
-  stackingPlan
+  stackingPlan,
+  warehouseBins
 ]
 
 const ProjectList = () => {
