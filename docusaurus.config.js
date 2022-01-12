@@ -76,6 +76,11 @@ const config = {
         links: [],
         copyright: `© 2019-${new Date().getFullYear()} Smplrspace Pte Ltd. All rights reserved.`
       },
+      announcementBar: {
+        content:
+          'Warning! The next version of Chrome (Dev or Canary) has a WebGL bug that breaks our shaders, you may need to use stable Chrome for now.',
+        backgroundColor: '#96e899'
+      },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme
