@@ -28,11 +28,13 @@ To initiate the static preview (preview image with play button similar to YouTub
 
 ```ts
 space.preview({
+  mode ?: '2d' | '3d',
   onViewerReady?: () => void,
   onError?: (error: string | Error) => void
 })
 ```
 
+- `mode` - _optional_ - lets you choose between 2D and 3D rendering. _Default value: 3d._
 - `onViewerReady` - _optional_ - is called once the viewer is ready after a user has clicked on the play button.
 - `onError` - _optional_ - is called if an error occur while initiating the preview or while starting the viewer after the user clicked the play button.
 
@@ -42,11 +44,13 @@ To initiate an interactive viewer session, use the following code.
 
 ```ts
 space.startViewer({
+  mode ?: '2d' | '3d',
   onReady?: () => void,
   onError?: (error: string | Error) => void
 })
 ```
 
+- `mode` - _optional_ - lets you choose between 2D and 3D rendering. _Default value: 3d._
 - `onReady` - _optional_ - is called once the viewer's initial render is done.
 - `onError` - _optional_ - is called if an error occur while starting the viewer.
 
