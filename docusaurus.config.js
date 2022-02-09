@@ -79,26 +79,15 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme
-      },
-      fathomAnalytics: {
-        siteId: 'EYOYVBOL',
-        customDomain: 'https://llama.smplrspace.com'
       }
     }),
 
-  plugins: [
-    [
-      require.resolve('@easyops-cn/docusaurus-search-local'),
-      {
-        hashed: true,
-        indexDocs: true,
-        indexBlog: false,
-        indexPages: false,
-        docsRouteBasePath: '/',
-        highlightSearchTermsOnTargetPage: true
-      }
-    ],
-    require.resolve('docusaurus-plugin-fathom')
+  scripts: [
+    {
+      src: 'https://deep-positive.smplrspace.com/script.js',
+      'data-site': 'EYOYVBOL',
+      defer: true
+    }
   ]
 }
 
