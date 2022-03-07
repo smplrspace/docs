@@ -15,11 +15,13 @@ import { addDataElements } from './add-data-elements'
 import { stackingPlan } from './stacking-plan'
 import { warehouseBins } from './warehouse'
 import { officeBooking } from './office-booking'
+import { mallLeasing } from './mall-leasing'
 
 const projects = [
   helloWorld,
   temperatureSensors,
   officeBooking,
+  mallLeasing,
   roomAvailability,
   addDataElements,
   stackingPlan,
