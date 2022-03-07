@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react'
 import numeral from 'numeral'
 
 import Viewer from './Viewer'
-import { units } from './data'
+import { units } from './_data'
 
 const colorScale = rental =>
   rental < 3000

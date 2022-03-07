@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react'
 
 import Viewer from './Viewer'
-import { rooms } from './data'
+import { rooms } from './_data'
 
 const OfficeBooking = () => {
   const [space, setSpace] = useState()
