@@ -14,10 +14,12 @@ import { roomAvailability } from './room-availability'
 import { addDataElements } from './add-data-elements'
 import { stackingPlan } from './stacking-plan'
 import { warehouseBins } from './warehouse'
+import { officeBooking } from './office-booking'
 
 const projects = [
   helloWorld,
   temperatureSensors,
+  officeBooking,
   roomAvailability,
   addDataElements,
   stackingPlan,
