@@ -83,12 +83,14 @@ const config = {
     }),
 
   scripts: [
-    {
-      src: 'https://deep-positive.smplrspace.com/script.js',
-      'data-site': 'EYOYVBOL',
-      defer: true
-    }
-  ]
+    process.env.NODE_ENV === 'production'
+      ? {
+        src: 'https://deep-positive.smplrspace.com/script.js',
+        'data-site': 'EYOYVBOL',
+        defer: true
+      }
+      : null
+  ].filter(Boolean)
 }
 
 module.exports = config
