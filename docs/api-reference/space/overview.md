@@ -51,7 +51,7 @@ Although not a rule not to break, we generally _recommend_ to use `preview: true
 In order to know where a user clicks or taps in the floor plan, you can enable picking mode. For example, this is useful if you have an admin interface to configure floor plans and position sensors on it, or if you want to let users point to the location of an issue they are reporting. Enabling picking mode is done as follows.
 
 ```ts
-// call this after `onReady` or `onViewerReady` has fired
+// call this after `onReady` has fired
 space.enablePickingMode({
   onPick: ({
     coordinates: {
@@ -81,7 +81,7 @@ You may refer to the [Add data elements](/examples/add-data-elements) example to
 The viewer lets you add data layers that are rendered on the floor plan. Each layer holds one type of information with one or more data elements and shared parameters for rendering. To add a layer, proceed as follow.
 
 ```ts
-// call this after `onReady` or `onViewerReady` has fired
+// call this after `onReady` has fired
 space.addDataLayer({
   id: string,
   type: 'point' | 'icon' | 'polygon' | 'polyline',

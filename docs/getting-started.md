@@ -57,7 +57,7 @@ To start the viewer for a space, you should append the following script at the e
   })
   space.startViewer({
     preview: true,
-    onViewerReady: () => console.log('Viewer is ready'),
+    onReady: () => console.log('Viewer is ready'),
     onError: error => console.error('Could not start viewer', error)
   })
 </script>

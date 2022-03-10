@@ -30,7 +30,7 @@ For vanilla Javascript deploys, the previous 2 lines can be added to the `<head>
   })
   space.startViewer({
     preview: true,
-    onViewerReady: () => console.log('Viewer is ready'),
+    onReady: () => console.log('Viewer is ready'),
     onError: error => console.error('Could not start viewer', error)
   })
 </script>
