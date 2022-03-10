@@ -55,7 +55,8 @@ To start the viewer for a space, you should append the following script at the e
     spaceToken: 'X',
     containerId: 'test'
   })
-  space.preview({
+  space.startViewer({
+    preview: true,
     onViewerReady: () => console.log('Viewer is ready'),
     onError: error => console.error('Could not start viewer', error)
   })
