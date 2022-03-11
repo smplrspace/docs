@@ -182,3 +182,23 @@ space.addDataLayer({
 - `reshapeBoxColor` - _optional_ - hexadecimal string defining the color of the boxes used to reshape the polygons. Used in conjunction with onDrag or onDrop. _Default value: "#086bb7"_
 
 The [Add data elements](/examples/add-data-elements) example gives a full overview of draggable & reshapable layers, including a polyline layer.
+
+## Furniture layer
+
+A furniture layer has each data element mapped to one or more pieces of furniture from the floor plan.
+
+```ts
+space.addDataLayer({
+  id: string,
+  type: 'furniture',
+  data: [{
+    furnitureId: string | [string],
+    ...customData: object
+  }],
+  color?: string | (dataElement: object) => string
+})
+```
+
+- `id` is a unique identifier for this layer which is used for updates.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each object **must** have a `furnitureId` value mapping to the unique identifier(s) of one or more furniture in the floor plan and can contain any additional custom data used for rendering options.
+- `color` - _optional_ - defines the displayed color of the furniture. It can be defined as a hexadecimal string like "#3a3c3c" for all elements or per element with a function that takes each element as argument and returns the hexadecimal color string for that element. _Default value: "#2393d4"_
