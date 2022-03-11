@@ -12,9 +12,10 @@ const HelloWorld = () => {
       spaceToken: 'X',
       containerId: 'smplr-container'
     })
-    space.preview({
+    space.startViewer({
+      preview: true,
       mode: '3d',
-      onViewerReady: () => console.log('Viewer is ready'),
+      onReady: () => console.log('Viewer is ready'),
       onError: error => console.error('Could not start viewer', error)
     })
   }
