@@ -28,8 +28,9 @@ For vanilla Javascript deploys, the previous 2 lines can be added to the `<head>
     spaceToken: 'X',
     containerId: 'test'
   })
-  space.preview({
-    onViewerReady: () => console.log('Viewer is ready'),
+  space.startViewer({
+    preview: true,
+    onReady: () => console.log('Viewer is ready'),
     onError: error => console.error('Could not start viewer', error)
   })
 </script>
