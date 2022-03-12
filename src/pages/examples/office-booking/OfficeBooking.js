@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react'
 
 import Viewer from './Viewer'
-import { rooms } from './_data'
+import { rooms, desks } from './_data'
 
 const OfficeBooking = () => {
   const [space, setSpace] = useState()
@@ -22,6 +22,13 @@ const OfficeBooking = () => {
       color: d => (d.available ? '#3aa655' : '#ff3f34'),
       alpha: 0.7,
       height: 2.9
+    })
+    space.addDataLayer({
+      id: 'desks',
+      type: 'furniture',
+      data: desks,
+      tooltip: d => `${d.name} - ${d.available ? 'free' : 'occupied'}`,
+      color: d => (d.available ? '#3aa655' : '#ff3f34')
     })
     return () => {
       space.removeDataLayer('rooms')

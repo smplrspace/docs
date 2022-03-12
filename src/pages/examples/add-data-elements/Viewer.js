@@ -13,8 +13,9 @@ const Viewer = memo(({ onReady }) => {
       spaceToken: 'X',
       containerId: 'smplr-container'
     })
-    space.preview({
-      onViewerReady: () => onReady(space),
+    space.startViewer({
+      preview: true,
+      onReady: () => onReady(space),
       onError: error => console.error('Could not start viewer', error)
     })
   }

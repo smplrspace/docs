@@ -9,12 +9,14 @@ const Viewer = memo(({ onReady }) => {
 
   function onLoad () {
     const space = new smplr.Space({
-      spaceId: 'f3ec0aab-d665-4a92-b25b-e77b91617030',
+      // spaceId: '7c765cb5-15c3-4876-a496-4141adc6bd99', // dev
+      spaceId: 'f3ec0aab-d665-4a92-b25b-e77b91617030', // prod
       spaceToken: 'X',
       containerId: 'smplr-container'
     })
-    space.preview({
-      onViewerReady: () => onReady(space),
+    space.startViewer({
+      preview: false,
+      onReady: () => onReady(space),
       onError: error => console.error('Could not start viewer', error)
     })
   }
