@@ -32,6 +32,7 @@ const OfficeBooking = () => {
     })
     return () => {
       space.removeDataLayer('rooms')
+      space.removeDataLayer('desks')
     }
   }, [space])
 

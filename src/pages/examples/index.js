@@ -16,12 +16,14 @@ import { stackingPlan } from './stacking-plan'
 import { warehouseBins } from './warehouse'
 import { officeBooking } from './office-booking'
 import { mallLeasing } from './mall-leasing'
+import { iot } from './iot'
 
 const projects = [
   helloWorld,
-  temperatureSensors,
   officeBooking,
   mallLeasing,
+  iot,
+  temperatureSensors,
   roomAvailability,
   addDataElements,
   stackingPlan,
