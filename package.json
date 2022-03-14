@@ -33,6 +33,7 @@
     "chroma-js": "^2.1.2",
     "clsx": "^1.1.1",
     "file-loader": "^6.2.0",
+    "moment": "^2.29.1",
     "numeral": "^2.0.6",
     "prism-react-renderer": "^1.2.1",
     "ramda": "^0.27.1",

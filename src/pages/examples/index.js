@@ -17,12 +17,14 @@ import { warehouseBins } from './warehouse'
 import { officeBooking } from './office-booking'
 import { mallLeasing } from './mall-leasing'
 import { iot } from './iot'
+import { propertyManagement } from './property-management'
 
 const projects = [
   helloWorld,
   officeBooking,
   mallLeasing,
   iot,
+  propertyManagement,
   temperatureSensors,
   roomAvailability,
   addDataElements,
