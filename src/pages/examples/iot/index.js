@@ -2,20 +2,20 @@
 import React from 'react'
 
 import Project from '../../../components/Project'
-import OfficeBooking from './OfficeBooking'
+import IoT from './IoT'
 
-import OfficeBookingCode from '!!raw-loader!./OfficeBooking'
+import OfficeBookingCode from '!!raw-loader!./IoT'
 import ViewerCode from '!!raw-loader!./Viewer'
 import data from '!!raw-loader!./_data'
 
-export const officeBooking = {
-  slug: 'office-booking',
-  title: 'Office booking',
-  description: 'Demonstrate a simple room / desk booking app experience.',
+export const iot = {
+  slug: 'iot',
+  title: 'Internet of Things',
+  description: 'Demonstrate a simple IoT dashboard experience.',
   published: true,
   code: [
     {
-      filename: 'OfficeBooking.js',
+      filename: 'IoT.js',
       lang: 'jsx',
       content: OfficeBookingCode
     },
@@ -26,8 +26,8 @@ export const officeBooking = {
 
 export default function () {
   return (
-    <Project project={officeBooking}>
-      <OfficeBooking />
+    <Project project={iot}>
+      <IoT />
     </Project>
   )
 }

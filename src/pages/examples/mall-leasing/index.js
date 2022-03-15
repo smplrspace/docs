@@ -6,6 +6,7 @@ import MallLeasing from './MallLeasing'
 
 import MallLeasingCode from '!!raw-loader!./MallLeasing'
 import ViewerCode from '!!raw-loader!./Viewer'
+import data from '!!raw-loader!./_data'
 
 export const mallLeasing = {
   slug: 'mall-leasing',
@@ -18,7 +19,8 @@ export const mallLeasing = {
       lang: 'jsx',
       content: MallLeasingCode
     },
-    { filename: 'Viewer.js', lang: 'jsx', content: ViewerCode }
+    { filename: 'Viewer.js', lang: 'jsx', content: ViewerCode },
+    { filename: 'data.js', lang: 'jsx', content: data }
   ]
 }
 

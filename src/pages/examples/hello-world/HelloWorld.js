@@ -15,13 +15,14 @@ const HelloWorld = () => {
     space.startViewer({
       preview: true,
       mode: '3d',
+      allowModeChange: true,
       onReady: () => console.log('Viewer is ready'),
       onError: error => console.error('Could not start viewer', error)
     })
   }
 
   return (
-    <div style={{ width: '100%', maxWidth: 600, margin: '0 auto' }}>
+    <div style={{ width: '100%', maxWidth: 800, margin: '0 auto' }}>
       <div
         style={{
           position: 'relative',

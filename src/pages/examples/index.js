@@ -9,20 +9,20 @@ import Button from '../../components/Button'
 import TextInput from '../../components/TextInput'
 
 import { helloWorld } from './hello-world'
-import { temperatureSensors } from './temperature-sensors'
-import { roomAvailability } from './room-availability'
 import { addDataElements } from './add-data-elements'
 import { stackingPlan } from './stacking-plan'
 import { warehouseBins } from './warehouse'
 import { officeBooking } from './office-booking'
 import { mallLeasing } from './mall-leasing'
+import { iot } from './iot'
+import { propertyManagement } from './property-management'
 
 const projects = [
   helloWorld,
-  temperatureSensors,
   officeBooking,
   mallLeasing,
-  roomAvailability,
+  iot,
+  propertyManagement,
   addDataElements,
   stackingPlan,
   warehouseBins
