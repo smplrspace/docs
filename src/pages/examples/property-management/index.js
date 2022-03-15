@@ -6,6 +6,7 @@ import PropertyManagement from './PropertyManagement'
 
 import PropertyManagementCode from '!!raw-loader!./PropertyManagement'
 import ViewerCode from '!!raw-loader!./Viewer'
+import data from '!!raw-loader!./_data'
 
 export const propertyManagement = {
   slug: 'property-management',
@@ -18,7 +19,8 @@ export const propertyManagement = {
       lang: 'jsx',
       content: PropertyManagementCode
     },
-    { filename: 'Viewer.js', lang: 'jsx', content: ViewerCode }
+    { filename: 'Viewer.js', lang: 'jsx', content: ViewerCode },
+    { filename: 'data.js', lang: 'jsx', content: data }
   ]
 }
 

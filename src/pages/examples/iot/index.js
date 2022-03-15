@@ -6,6 +6,7 @@ import IoT from './IoT'
 
 import OfficeBookingCode from '!!raw-loader!./IoT'
 import ViewerCode from '!!raw-loader!./Viewer'
+import data from '!!raw-loader!./_data'
 
 export const iot = {
   slug: 'iot',
@@ -18,7 +19,8 @@ export const iot = {
       lang: 'jsx',
       content: OfficeBookingCode
     },
-    { filename: 'Viewer.js', lang: 'jsx', content: ViewerCode }
+    { filename: 'Viewer.js', lang: 'jsx', content: ViewerCode },
+    { filename: 'data.js', lang: 'jsx', content: data }
   ]
 }
 
