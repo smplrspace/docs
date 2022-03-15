@@ -8,10 +8,21 @@ import React, {
 import { Group } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
 import Chance from 'chance'
-import { append, compose, isEmpty, map, reject, intersperse } from 'ramda'
+import {
+  append,
+  compose,
+  isEmpty,
+  map,
+  reject,
+  intersperse,
+  evolve,
+  max
+} from 'ramda'
 
 import Viewer from './Viewer'
 import MiniButton from '../../../components/MiniButton'
+
+const INITIAL_MODE = '3d'
 
 const chance = new Chance()
 
@@ -19,7 +30,8 @@ const AddDataElements = () => {
   const isMobile = useMediaQuery('(max-width: 600px)')
 
   const [space, setSpace] = useState()
-  const [mode, setMode] = useState('idle')
+  const [task, setTask] = useState('idle')
+  const [mode, setMode] = useState(INITIAL_MODE)
   const [editingId, setEditingId] = useState()
 
   const [points, dispatchPoint] = useReducer((points, action) => {
@@ -115,12 +127,21 @@ const AddDataElements = () => {
   // memoize so Viewer render once only (wrapped in memo)
   const onReady = useCallback(space => setSpace(space), [])
 
+  const onModeChange = useCallback(setMode, [])
+
+  const noElevationIn2D = useCallback(value => (mode === '3d' ? value : 0), [
+    mode
+  ])
+  const autoElevation = map(
+    evolve({ position: { elevation: noElevationIn2D } })
+  )
+
   // switch picking mode
   useEffect(() => {
     if (!space) {
       return
     }
-    if (mode === 'drawPoint') {
+    if (task === 'drawPoint') {
       space.enablePickingMode({
         onPick: ({ coordinates }) => {
           dispatchPoint({
@@ -135,7 +156,7 @@ const AddDataElements = () => {
           })
         }
       })
-    } else if (mode === 'drawIcon') {
+    } else if (task === 'drawIcon') {
       space.enablePickingMode({
         onPick: ({ coordinates }) => {
           dispatchIcon({
@@ -150,7 +171,7 @@ const AddDataElements = () => {
           })
         }
       })
-    } else if (mode === 'drawPolygon') {
+    } else if (task === 'drawPolygon') {
       space.enablePickingMode({
         onPick: ({ coordinates }) => {
           dispatchPolygon({
@@ -160,7 +181,7 @@ const AddDataElements = () => {
           })
         }
       })
-    } else if (mode === 'drawPolyline') {
+    } else if (task === 'drawPolyline') {
       space.enablePickingMode({
         onPick: ({ coordinates }) => {
           dispatchPolyline({
@@ -173,7 +194,7 @@ const AddDataElements = () => {
     } else {
       space.disablePickingMode()
     }
-  }, [space, editingId, mode])
+  }, [space, editingId, task])
 
   // render elements
   useEffect(() => {
@@ -183,7 +204,7 @@ const AddDataElements = () => {
     space.addDataLayer({
       id: 'points',
       type: 'point',
-      data: points,
+      data: autoElevation(points),
       diameter: 0.5,
       anchor: 'bottom',
       tooltip: d => d.name,
@@ -194,7 +215,7 @@ const AddDataElements = () => {
           updates: { position }
         })
     })
-  }, [space, points])
+  }, [space, points, autoElevation])
 
   useEffect(() => {
     if (!space) {
@@ -203,7 +224,9 @@ const AddDataElements = () => {
     space.addDataLayer({
       id: 'icons',
       type: 'icon',
-      data: icons,
+      data: map(evolve({ position: { elevation: max(0.25) } }))(
+        autoElevation(icons)
+      ),
       icon: {
         url: '/img/logo.png',
         width: 180,
@@ -218,7 +241,7 @@ const AddDataElements = () => {
           updates: { position }
         })
     })
-  }, [space, icons])
+  }, [space, icons, autoElevation])
 
   useEffect(() => {
     if (!space) {
@@ -228,7 +251,8 @@ const AddDataElements = () => {
       id: 'polygons',
       type: 'polygon',
       data: reject(p => isEmpty(p.coordinates))(polygons),
-      height: 3.05,
+      height: mode === '3d' ? 3.05 : 0.1045,
+      baseHeight: mode === '3d' ? 0 : -0.1,
       alpha: 0.5,
       tooltip: d => d.name,
       onDrop: ({ data, coordinates }) =>
@@ -238,7 +262,7 @@ const AddDataElements = () => {
           coordinates
         })
     })
-  }, [space, polygons])
+  }, [space, polygons, mode])
 
   useEffect(() => {
     if (!space) {
@@ -247,7 +271,12 @@ const AddDataElements = () => {
     space.addDataLayer({
       id: 'polylines',
       type: 'polyline',
-      data: reject(p => isEmpty(p.coordinates))(polylines),
+      data: compose(
+        map(
+          evolve({ coordinates: map(evolve({ elevation: noElevationIn2D })) })
+        ),
+        reject(p => isEmpty(p.coordinates))
+      )(polylines),
       scale: 0.2,
       tooltip: d => d.name,
       onDrop: ({ data, coordinates }) =>
@@ -257,12 +286,16 @@ const AddDataElements = () => {
           coordinates
         })
     })
-  }, [space, polylines])
+  }, [space, polylines, noElevationIn2D])
 
   return (
     <Group align='flex-start'>
       <div style={{ width: isMobile ? '100%' : 'calc(50% - 16px)' }}>
-        <Viewer onReady={onReady} />
+        <Viewer
+          mode={INITIAL_MODE}
+          onReady={onReady}
+          onModeChange={onModeChange}
+        />
       </div>
       {!space ? (
         <p>Please start the viewer</p>
@@ -289,10 +322,10 @@ const AddDataElements = () => {
               ))
             )(points)}
             {' - '}
-            {mode !== 'drawPoint' ? (
+            {task !== 'drawPoint' ? (
               <MiniButton
                 onClick={() => {
-                  setMode('drawPoint')
+                  setTask('drawPoint')
                 }}
               >
                 Add
@@ -300,7 +333,7 @@ const AddDataElements = () => {
             ) : (
               <MiniButton
                 onClick={() => {
-                  setMode('idle')
+                  setTask('idle')
                 }}
               >
                 Done
@@ -324,10 +357,10 @@ const AddDataElements = () => {
               ))
             )(icons)}
             {' - '}
-            {mode !== 'drawIcon' ? (
+            {task !== 'drawIcon' ? (
               <MiniButton
                 onClick={() => {
-                  setMode('drawIcon')
+                  setTask('drawIcon')
                 }}
               >
                 Add
@@ -335,7 +368,7 @@ const AddDataElements = () => {
             ) : (
               <MiniButton
                 onClick={() => {
-                  setMode('idle')
+                  setTask('idle')
                 }}
               >
                 Done
@@ -366,18 +399,18 @@ const AddDataElements = () => {
                 const id = chance.guid()
                 dispatchPolygon({ type: 'addPolygon', id })
                 setEditingId(id)
-                setMode('drawPolygon')
+                setTask('drawPolygon')
               }}
             >
               Add
             </MiniButton>
-            {mode === 'drawPolygon' && (
+            {task === 'drawPolygon' && (
               <Fragment>
                 {' '}
                 <MiniButton
                   onClick={() => {
                     setEditingId()
-                    setMode('idle')
+                    setTask('idle')
                   }}
                 >
                   Done
@@ -409,18 +442,18 @@ const AddDataElements = () => {
                 const id = chance.guid()
                 dispatchPolyline({ type: 'addPolyline', id })
                 setEditingId(id)
-                setMode('drawPolyline')
+                setTask('drawPolyline')
               }}
             >
               Add
             </MiniButton>
-            {mode === 'drawPolyline' && (
+            {task === 'drawPolyline' && (
               <Fragment>
                 {' '}
                 <MiniButton
                   onClick={() => {
                     setEditingId()
-                    setMode('idle')
+                    setTask('idle')
                   }}
                 >
                   Done

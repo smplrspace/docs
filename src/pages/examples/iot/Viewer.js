@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import useSmplrJs from '../../../hooks/useSmplrJs'
 
-const Viewer = memo(({ onReady }) => {
+const Viewer = memo(({ mode, onReady, onModeChange }) => {
   useSmplrJs({ onLoad })
 
   function onLoad () {
@@ -15,6 +15,9 @@ const Viewer = memo(({ onReady }) => {
     })
     space.startViewer({
       preview: true,
+      mode,
+      allowModeChange: true,
+      onModeChange,
       onReady: () => onReady(space),
       onError: error => console.error('Could not start viewer', error)
     })
@@ -41,7 +44,9 @@ const Viewer = memo(({ onReady }) => {
 })
 
 Viewer.propTypes = {
-  onReady: PropTypes.func.isRequired
+  mode: PropTypes.string.isRequired,
+  onReady: PropTypes.func.isRequired,
+  onModeChange: PropTypes.func
 }
 
 export default Viewer

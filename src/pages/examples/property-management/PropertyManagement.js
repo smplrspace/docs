@@ -6,7 +6,7 @@ import React, {
   useEffect
 } from 'react'
 import { Group, List, ListItem, Text, Modal, Image } from '@mantine/core'
-import { compose, concat, propEq, find, filter } from 'ramda'
+import { compose, concat, propEq, find, filter, map, evolve } from 'ramda'
 import { useMediaQuery } from '@mantine/hooks'
 import numeral from 'numeral'
 import moment from 'moment'
@@ -17,12 +17,15 @@ import Button from '../../../components/Button'
 import TextInput from '../../../components/TextInput'
 import { reports as savedReports } from './_data'
 
+const INITIAL_MODE = '3d'
+
 const chance = new Chance()
 
 const PropertyManagement = () => {
   const isMobile = useMediaQuery('(max-width: 600px)')
 
   const [space, setSpace] = useState()
+  const [mode, setMode] = useState(INITIAL_MODE)
 
   const [reports, dispatchReport] = useReducer((reports, action) => {
     switch (action.type) {
@@ -82,6 +85,12 @@ const PropertyManagement = () => {
   // memoize so Viewer render once only (wrapped in memo)
   const onReady = useCallback(space => setSpace(space), [])
 
+  const onModeChange = useCallback(setMode, [])
+
+  const autoElevation = map(
+    evolve({ position: { elevation: value => (mode === '3d' ? value : 0) } })
+  )
+
   // render reports
   useEffect(() => {
     if (!space) {
@@ -95,7 +104,7 @@ const PropertyManagement = () => {
       id: 'reports',
       type: 'point',
       diameter: 0.6,
-      data: allReports,
+      data: autoElevation(allReports),
       tooltip: d => d.title,
       color: d => (d.status === 'repair planned' ? '#3aa655' : '#1e7bd3'),
       onClick: d => setModalId(d.id)
@@ -103,12 +112,16 @@ const PropertyManagement = () => {
     return () => {
       space.removeDataLayer('reports')
     }
-  }, [space, reports, newReport])
+  }, [space, reports, newReport, autoElevation])
 
   return (
     <Group align='flex-start'>
       <div style={{ width: isMobile ? '100%' : 'calc(50% - 16px)' }}>
-        <Viewer onReady={onReady} />
+        <Viewer
+          mode={INITIAL_MODE}
+          onReady={onReady}
+          onModeChange={onModeChange}
+        />
       </div>
       <Group
         direction='column'

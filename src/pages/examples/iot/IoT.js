@@ -1,13 +1,23 @@
 import React, { useState, useCallback, useEffect } from 'react'
+import { evolve, map } from 'ramda'
 
 import Viewer from './Viewer'
 import { stalls, sensors, beacons } from './_data'
 
+const INITIAL_MODE = '3d'
+
 const IoT = () => {
   const [space, setSpace] = useState()
+  const [mode, setMode] = useState(INITIAL_MODE)
 
   // memoize so Viewer render once only (wrapped in memo)
   const onReady = useCallback(space => setSpace(space), [])
+
+  const onModeChange = useCallback(setMode, [])
+
+  const autoElevation = map(
+    evolve({ position: { elevation: value => (mode === '3d' ? value : 0) } })
+  )
 
   // render data layers
   useEffect(() => {
@@ -22,12 +32,13 @@ const IoT = () => {
       color: d =>
         d.hits < 8 ? '#3aa655' : d.hits < 16 ? '#c08727' : '#ff3f34',
       alpha: 0.7,
-      height: 1.9
+      height: mode === '3d' ? 1.9 : 0.1045,
+      baseHeight: mode === '3d' ? 0 : -0.1
     })
     space.addDataLayer({
       id: 'sensors',
       type: 'point',
-      data: sensors,
+      data: autoElevation(sensors),
       tooltip: d => `Sensor ${d.id}`,
       color: '#357afc',
       diameter: 0.4
@@ -35,7 +46,7 @@ const IoT = () => {
     space.addDataLayer({
       id: 'beacons',
       type: 'point',
-      data: beacons,
+      data: autoElevation(beacons),
       tooltip: d => `${d.id} - range: ${d.range}m`,
       color: '#3a3c3c',
       diameter: 0.25
@@ -43,7 +54,7 @@ const IoT = () => {
     space.addDataLayer({
       id: 'beacons-range',
       type: 'point',
-      data: beacons,
+      data: autoElevation(beacons),
       color: '#727676',
       alpha: 0.3,
       diameter: d => d.range
@@ -54,11 +65,15 @@ const IoT = () => {
       space.removeDataLayer('beacons')
       space.removeDataLayer('beacons-range')
     }
-  }, [space])
+  }, [space, mode, autoElevation])
 
   return (
     <div style={{ width: '100%', maxWidth: 800, margin: '0 auto' }}>
-      <Viewer onReady={onReady} />
+      <Viewer
+        mode={INITIAL_MODE}
+        onReady={onReady}
+        onModeChange={onModeChange}
+      />
     </div>
   )
 }
