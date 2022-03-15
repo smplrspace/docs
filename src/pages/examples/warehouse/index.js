@@ -12,7 +12,7 @@ export const warehouseBins = {
   slug: 'warehouse',
   title: 'Warehouse',
   description:
-    'Demonstrate how to create data only layouts for warehousing bins or containers layouts.',
+    'Demonstrate how to visualize capacity and stored items information in a storage space.',
   published: true,
   code: [
     {
