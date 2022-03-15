@@ -9,7 +9,7 @@ const IoT = () => {
   // memoize so Viewer render once only (wrapped in memo)
   const onReady = useCallback(space => setSpace(space), [])
 
-  // render rooms
+  // render data layers
   useEffect(() => {
     if (!space) {
       return

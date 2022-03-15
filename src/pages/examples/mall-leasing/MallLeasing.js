@@ -34,7 +34,7 @@ const MallLeasing = () => {
       height: 2.9
     })
     return () => {
-      space.removeDataLayer('rooms')
+      space.removeDataLayer('units')
     }
   }, [space])
 

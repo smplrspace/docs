@@ -1,0 +1,9 @@
+[[redirects]]
+  from = "/examples/temperature-sensors"
+  to = "/examples/iot"
+  status = 302
+  
+[[redirects]]
+  from = "/examples/room-availability"
+  to = "/examples/office-booking"
+  status = 302
