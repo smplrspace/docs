@@ -36,8 +36,7 @@ const MallLeasing = () => {
       tooltip: d => `${d.name} - $${numeral(d.rental).format('0,0')}/mo`,
       color: d => colorScale(d.rental),
       alpha: 0.7,
-      height: mode === '3d' ? 2.9 : 0.1045,
-      baseHeight: mode === '3d' ? 0 : -0.1
+      height: mode === '3d' ? 2.9 : 0.0045
     })
     return () => {
       space.removeDataLayer('units')

@@ -32,8 +32,7 @@ const IoT = () => {
       color: d =>
         d.hits < 8 ? '#3aa655' : d.hits < 16 ? '#c08727' : '#ff3f34',
       alpha: 0.7,
-      height: mode === '3d' ? 1.9 : 0.1045,
-      baseHeight: mode === '3d' ? 0 : -0.1
+      height: mode === '3d' ? 1.9 : 0.0045
     })
     space.addDataLayer({
       id: 'sensors',

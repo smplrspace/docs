@@ -251,8 +251,7 @@ const AddDataElements = () => {
       id: 'polygons',
       type: 'polygon',
       data: reject(p => isEmpty(p.coordinates))(polygons),
-      height: mode === '3d' ? 3.05 : 0.1045,
-      baseHeight: mode === '3d' ? 0 : -0.1,
+      height: mode === '3d' ? 3.05 : 0.0045,
       alpha: 0.5,
       tooltip: d => d.name,
       onDrop: ({ data, coordinates }) =>
