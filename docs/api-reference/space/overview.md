@@ -28,19 +28,33 @@ To initiate an interactive viewer session, use the following code.
 
 ```ts
 space.startViewer({
-  mode?: '2d' | '3d',
   preview?: boolean,
+  // 2D or 3D
+  mode?: '2d' | '3d',
   allowModeChange?: boolean,
   onModeChange?: (mode: '2d' | '3d') => void,
+  // custom UX
+  cameraPlacement?: {
+    alpha: number,
+    beta: number,
+    radius: number,
+    target: {
+      x: number,
+      y: number,
+      z: number
+    }
+  },
+  // event handlers
   onReady?: () => void,
   onError?: (error: string | Error) => void
-})
+}) => void
 ```
 
-- `mode` - _optional_ - lets you choose between 2D and 3D rendering. _Default value: 3d._
 - `preview` - _optional_ - starts by a preview image with a play button similar to YouTube embed. _Default value: false._
+- `mode` - _optional_ - lets you choose between 2D and 3D rendering. _Default value: 3d._
 - `allowModeChange` - _optional_ - set this to true to allow users to switch between 2D and 3D. _Default value: false._
 - `onModeChange` - _optional_ - is called whenever the user changes the mode. Requires allowModeChange to be set to true.
+- `cameraPlacement` - _optional_ - set the initial position and direction of the camera. See [camera controls](/api-reference/space/custom-ux#camera-controls) for more details.
 - `onReady` - _optional_ - is called once the viewer's initial render is done.
 - `onError` - _optional_ - is called if an error occur while starting the viewer.
 
@@ -62,7 +76,7 @@ space.enablePickingMode({
     },
     furnitureId?: string
   }) => void
-})
+}) => void
 ```
 
 - `onPick` is called each time a click/tap event fires. The `coordinates` object provides the location that was picked in 3D. The `furnitureId` value is set when the user picked a furniture and contains its unique identifier. These pieces of information should be stored in your database and reused anytime you need to display data at this location.
@@ -70,7 +84,7 @@ space.enablePickingMode({
 Disabling picking mode is done as follow. You could call `disablePickingMode` inside the `onPick` handler to limit the number of times a pick event should be processed.
 
 ```ts
-space.disablePickingMode()
+space.disablePickingMode() => void
 ```
 
 You may refer to the [Add data elements](/examples/add-data-elements) example to see picking mode in action and understand the API.
@@ -88,7 +102,7 @@ space.addDataLayer({
   type: 'point' | 'icon' | 'polygon' | 'polyline',
   data: object[],
   ...rest: object
-})
+}) => void
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
@@ -107,7 +121,7 @@ space.updateDataLayer({
   id: string,
   data: object[],
   ...rest: object
-})
+}) => void
 ```
 
 - `id` is the identifier of the layer to update.
@@ -118,7 +132,7 @@ space.updateDataLayer({
 Removing a data layer completely is done as follow.
 
 ```ts
-space.removeDataLayer(id: string)
+space.removeDataLayer(id: string) => void
 ```
 
 - `id` is the identifier of the layer to remove.

@@ -17,7 +17,7 @@ space.addDataLayer({
   onClick?: (dataElement: object) => void,
   onHover?: (dataElement: object) => void,
   onHoverOut?: (dataElement: object) => void
-})
+}) => void
 ```
 
 - `...layerDefinition` - refer to the [overview](/api-reference/space/overview.md#data-layers) page.
@@ -51,7 +51,7 @@ space.addDataLayer({
   alpha?: number,
   onDrag?: ({ data: object }) => void,
   onDrop?: ({ data: object, position: object }) => void
-})
+}) => void
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
@@ -89,7 +89,7 @@ space.addDataLayer({
   width?: number | (dataElement: object) => number,
   onDrag?: ({ data: object }) => void,
   onDrop?: ({ data: object, position: object }) => void
-})
+}) => void
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
@@ -124,7 +124,7 @@ space.addDataLayer({
   onDrop?: ({ data: object, coordinates: object[] }) => void,
   disableReshape?: boolean,
   reshapeBoxColor?: string
-})
+}) => void
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
@@ -166,7 +166,7 @@ space.addDataLayer({
   onDrop?: ({ data: object, coordinates: object[] }) => void,
   disableReshape?: boolean,
   reshapeBoxColor?: string
-})
+}) => void
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
@@ -196,7 +196,7 @@ space.addDataLayer({
     ...customData: object
   }],
   color?: string | (dataElement: object) => string
-})
+}) => void
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
