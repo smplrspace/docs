@@ -16,6 +16,7 @@ import { officeBooking } from './office-booking'
 import { mallLeasing } from './mall-leasing'
 import { iot } from './iot'
 import { propertyManagement } from './property-management'
+import { controlledCamera } from './controlled-camera'
 
 const projects = [
   helloWorld,
@@ -25,7 +26,8 @@ const projects = [
   propertyManagement,
   addDataElements,
   stackingPlan,
-  warehouseBins
+  warehouseBins,
+  controlledCamera
 ]
 
 const ProjectList = () => {

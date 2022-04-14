@@ -30,6 +30,7 @@
     "@mdx-js/react": "^1.6.21",
     "@svgr/webpack": "^5.5.0",
     "chance": "^1.1.8",
+    "change-case": "^4.1.2",
     "chroma-js": "^2.1.2",
     "clsx": "^1.1.1",
     "file-loader": "^6.2.0",
