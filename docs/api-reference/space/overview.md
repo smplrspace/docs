@@ -44,6 +44,7 @@ space.startViewer({
       z: number
     }
   },
+  disableCameraControls?: boolean,
   // event handlers
   onReady?: () => void,
   onError?: (error: string | Error) => void
@@ -55,6 +56,7 @@ space.startViewer({
 - `allowModeChange` - _optional_ - set this to true to allow users to switch between 2D and 3D. _Default value: false._
 - `onModeChange` - _optional_ - is called whenever the user changes the mode. Requires allowModeChange to be set to true.
 - `cameraPlacement` - _optional_ - set the initial position and direction of the camera. See [camera controls](/api-reference/space/custom-ux#camera-controls) for more details.
+- `disableCameraControls` - _optional_ - set this to true so the camera placement cannot be changed by the user. This disables mouse, touch and keyboard inputs as well as removes the zoom control buttons. _Default value: false_
 - `onReady` - _optional_ - is called once the viewer's initial render is done.
 - `onError` - _optional_ - is called if an error occur while starting the viewer.
 

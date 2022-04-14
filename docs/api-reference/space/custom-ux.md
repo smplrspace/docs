@@ -26,3 +26,31 @@ space.getCameraPlacement() => ({
 ```
 
 The "placement" is a Javascript object that includes the position and direction of the camera. It is defined as an orbit position (alpha, beta, radius) around a target point which the camera points towards.
+
+- `alpha` is the angle given in radians of the camera's position in the horizontal plane. `-Math.PI/2` corresponds to position of the 2D editor.
+- `beta` is the angle given in radians of the camera's position in the vertical plane. `0` corresponds to a top down view, while `Math.PI/2` corresponds to a view from the ground.
+- `radius` is the distance in meters between the camera and the target point.
+- `target` is an object providing the `(x,y,z)` coordinates of the target point, which is the point where the camera is pointed towards.
+
+### Set the camera placement
+
+You can move the camera to a specific position and have it target a specific point as well by calling the following function:
+
+```ts
+space.setCameraPlacement({
+  alpha?: number | (currentValue: number) => number,
+  beta?: number | (currentValue: number) => number,
+  radius?: number | (currentValue: number) => number,
+  target?: {
+    x?: number | (currentValue: number) => number,
+    y?: number | (currentValue: number) => number,
+    z?: number | (currentValue: number) => number
+  },
+  animate?: boolean,
+  animationDuration?: number
+}) => void
+```
+
+- placement parameters (see description above) can be provided as the new desired value, or a function taking the current value as sole argument and returning the desired value. All parameters are _optional_ and the ones that are not provided will keep their current value.
+- `animate` - _optional_ - should be set to false to jump to the new placement and true to animate the camera to the new placement. _Default value: false_
+- `animationDuration` - _optional_ - defines the duration of the camera animation in seconds and should be used with animate set to true. _Default value: 0.6_
