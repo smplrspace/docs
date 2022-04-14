@@ -8,7 +8,8 @@ const HelloWorld = () => {
 
   function onLoad () {
     const space = new smplr.Space({
-      spaceId: 'edb2ebaa-47ea-4e54-af0d-cf543328bdb0',
+      spaceId: 'edb2ebaa-47ea-4e54-af0d-cf543328bdb0', // prod
+      // spaceId: '96eae952-ef60-4058-aba1-6ace322506e7', // dev
       spaceToken: 'X',
       containerId: 'smplr-container'
     })
