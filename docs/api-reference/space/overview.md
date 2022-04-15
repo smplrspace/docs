@@ -24,6 +24,8 @@ const space = new smplr.Space({
 
 ## Interactive viewer session
 
+### Start the viewer
+
 To initiate an interactive viewer session, use the following code.
 
 ```ts
@@ -65,6 +67,14 @@ space.startViewer({
 - `onError` - _optional_ - is called if an error occur while starting the viewer.
 
 Although not a rule not to break, we generally _recommend_ to use `preview: true` as this avoids loading the space if the user do not intend to interact with it. It also helps with reducing the number of views counted on your spaces.
+
+### Stop the viewer
+
+To stop the viewer, dispose of resources it allocated, and clear the container in which it is rendered back to its original state, call the following function.
+
+```ts
+space.remove() => void
+```
 
 ## Picking mode
 
