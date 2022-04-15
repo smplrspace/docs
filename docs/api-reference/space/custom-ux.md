@@ -54,3 +54,5 @@ space.setCameraPlacement({
 - placement parameters (see description above) can be provided as the new desired value, or a function taking the current value as sole argument and returning the desired value. All parameters are _optional_ and the ones that are not provided will keep their current value.
 - `animate` - _optional_ - should be set to false to jump to the new placement and true to animate the camera to the new placement. _Default value: false_
 - `animationDuration` - _optional_ - defines the duration of the camera animation in seconds and should be used with animate set to true. _Default value: 0.6_
+
+See the [controlled camera](/examples/controlled-camera) example to see this used in action.
