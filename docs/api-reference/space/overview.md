@@ -36,6 +36,7 @@ space.startViewer({
   allowModeChange?: boolean,
   onModeChange?: (mode: '2d' | '3d') => void,
   // custom UX
+  backgroundColor?: string,
   cameraPlacement?: {
     alpha: number,
     beta: number,
@@ -59,6 +60,7 @@ space.startViewer({
 - `mode` - _optional_ - lets you choose between 2D and 3D rendering. _Default value: 3d._
 - `allowModeChange` - _optional_ - set this to true to allow users to switch between 2D and 3D. _Default value: false._
 - `onModeChange` - _optional_ - is called whenever the user changes the mode. Requires allowModeChange to be set to true.
+- `backgroundColor` - _optional_ - lets you change the background color used by the viewer. You can pass any valid CSS color string, such as 'pink' or '#81b1b3'. We advise to set the same background color on the container element to keep the load screen consistent. As for the preview image, you can change its background color to match in the editor: go to the 'Services' tab and click 'Create preview image'.
 - `cameraPlacement` - _optional_ - set the initial position and direction of the camera. See [camera controls](/api-reference/space/custom-ux#camera-controls) for more details.
 - `disableCameraControls` - _optional_ - set this to true so the camera placement cannot be changed by the user. This disables mouse, touch and keyboard inputs as well as removes the zoom control buttons. _Default value: false_
 - `annotations` - _optional_ - set this value to control whether the annotations (if any) are rendered or not. This also removes the show/hide annotations button from the viewer.
