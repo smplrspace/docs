@@ -24,6 +24,8 @@ const space = new smplr.Space({
 
 ## Interactive viewer session
 
+### Start the viewer
+
 To initiate an interactive viewer session, use the following code.
 
 ```ts
@@ -34,6 +36,8 @@ space.startViewer({
   allowModeChange?: boolean,
   onModeChange?: (mode: '2d' | '3d') => void,
   // custom UX
+  backgroundColor?: string,
+  loadingMessage?: string,
   cameraPlacement?: {
     alpha: number,
     beta: number,
@@ -45,22 +49,36 @@ space.startViewer({
     }
   },
   disableCameraControls?: boolean,
+  annotations?: boolean,
+  compass?: boolean,
   // event handlers
   onReady?: () => void,
   onError?: (error: string | Error) => void
 }) => void
 ```
 
-- `preview` - _optional_ - starts by a preview image with a play button similar to YouTube embed. _Default value: false._
-- `mode` - _optional_ - lets you choose between 2D and 3D rendering. _Default value: 3d._
-- `allowModeChange` - _optional_ - set this to true to allow users to switch between 2D and 3D. _Default value: false._
+- `preview` - _optional_ - starts by a preview image with a play button similar to YouTube embed. _Default value: false_.
+- `mode` - _optional_ - lets you choose between 2D and 3D rendering. _Default value: 3d_.
+- `allowModeChange` - _optional_ - set this to true to allow users to switch between 2D and 3D. _Default value: false_.
 - `onModeChange` - _optional_ - is called whenever the user changes the mode. Requires allowModeChange to be set to true.
+- `backgroundColor` - _optional_ - lets you change the background color used by the viewer. You can pass any valid CSS color string, such as 'pink' or '#81b1b3'. We advise to set the same background color on the container element to keep the load screen consistent. As for the preview image, you can change its background color to match in the editor: go to the 'Services' tab and click 'Create preview image'.
+- `loadingMessage` - _optional_ - lets you override the text displayed while the space is loading. _Default value: "Loading your space"_.
 - `cameraPlacement` - _optional_ - set the initial position and direction of the camera. See [camera controls](/api-reference/space/custom-ux#camera-controls) for more details.
 - `disableCameraControls` - _optional_ - set this to true so the camera placement cannot be changed by the user. This disables mouse, touch and keyboard inputs as well as removes the zoom control buttons. _Default value: false_
+- `annotations` - _optional_ - set this value to control whether the annotations (if any) are rendered or not. This also removes the show/hide annotations button from the viewer.
+- `compass` - _optional_ - set this value to control whether the compass (if any) is rendered or not. This also removes the show/hide compass button from the viewer.
 - `onReady` - _optional_ - is called once the viewer's initial render is done.
 - `onError` - _optional_ - is called if an error occur while starting the viewer.
 
 Although not a rule not to break, we generally _recommend_ to use `preview: true` as this avoids loading the space if the user do not intend to interact with it. It also helps with reducing the number of views counted on your spaces.
+
+### Stop the viewer
+
+To stop the viewer, dispose of resources it allocated, and clear the container in which it is rendered back to its original state, call the following function.
+
+```ts
+space.remove() => void
+```
 
 ## Picking mode
 
@@ -108,7 +126,7 @@ space.addDataLayer({
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
-- `type` defines how the data should be rendered. _More types are coming soon._
+- `type` defines how the data should be rendered. _More types are coming soon_.
 - `data` is an array of objects (refered to as data elements) to be rendered.
 - `...rest` represents other parameters that are specific to the type of the layer.
 
