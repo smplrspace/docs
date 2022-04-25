@@ -35,11 +35,12 @@ const useStyles = createStyles((theme, props) => ({
   }
 }))
 
-const Button = ({ disabled, ...props }) => {
+const Button = ({ disabled, onClick, ...props }) => {
   const { classes } = useStyles({ disabled })
   return (
     <MantineButton
       variant='outline'
+      onClick={disabled ? () => {} : onClick}
       {...props}
       component={disabled ? undefined : props.component}
       classNames={classes}
@@ -49,6 +50,7 @@ const Button = ({ disabled, ...props }) => {
 
 Button.propTypes = {
   disabled: PropTypes.bool,
+  onClick: PropTypes.func,
   component: PropTypes.any
 }
 
