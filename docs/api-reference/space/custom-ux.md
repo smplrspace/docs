@@ -6,6 +6,47 @@ sidebar_position: 3
 
 Smplr.js provides a few options that help you customize the floor plan experience to your requirements. We're regularly adding new options, so [reach out](https://www.smplrspace.com/support) and share what you'd like to do with it.
 
+## Viewer options
+
+You can set a number of options when starting the viewer. They are listed below in addition to the basic viewer controls documented in the [overview](/api-reference/space/overview#start-the-viewer) page.
+
+```ts
+space.startViewer({
+  // ...basicControls
+  renderOptions?: {
+    backgroundColor?: string,
+    walls?: {
+      alpha?: number,
+      maxHeightCm?: number
+    }
+  },
+  cameraPlacement?: {
+    alpha: number,
+    beta: number,
+    radius: number,
+    target: {
+      x: number,
+      y: number,
+      z: number
+    }
+  },
+  disableCameraControls?: boolean,
+  hideNavigationButtons?: boolean,
+  annotations?: boolean,
+  compass?: boolean
+}) => void
+```
+
+- `...basicControls` - refer to the [overview](/api-reference/space/overview#start-the-viewer) page.
+- `renderOptions.backgroundColor` - _optional_ - lets you change the background color used by the viewer. You can pass any valid CSS color string, such as 'pink' or '#81b1b3'. We advise to set the same background color on the container element to keep the load screen consistent. As for the preview image, you can change its background color to match in the editor: go to the 'Services' tab and click 'Create preview image'.
+- `renderOptions.walls.alpha` - _optional_ - is a number between 0 and 1 setting the opacity of the walls, 0 being transparent and 1 opaque. _Default value: 1_
+- `renderOptions.walls.maxHeightCm` - _optional_ - will cap the rendering of walls to the height provided in centimeter, ignoring the actual height of walls.
+- `cameraPlacement` - _optional_ - set the initial position and direction of the camera. See [camera controls](/api-reference/space/custom-ux#camera-controls) for more details.
+- `disableCameraControls` - _optional_ - set this to true so the camera placement cannot be changed by the user. This disables mouse, touch and keyboard inputs as well as removes the zoom control buttons. _Default value: false_
+- `hideNavigationButtons` - _optional_ - set this to true if you want the user to control the camera but want to remove the navigation buttons. Mouse, touch and keyboard inputs will work while the buttons are hidden. _Default value: false_
+- `annotations` - _optional_ - set this value to control whether the annotations (if any) are rendered or not. This also removes the show/hide annotations button from the viewer.
+- `compass` - _optional_ - set this value to control whether the compass (if any) is rendered or not. This also removes the show/hide compass button from the viewer.
+
 ## Camera controls
 
 ### Get the camera placement

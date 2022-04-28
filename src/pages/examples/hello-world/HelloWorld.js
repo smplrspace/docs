@@ -4,7 +4,7 @@ import React from 'react'
 import useSmplrJs from '../../../hooks/useSmplrJs'
 
 const HelloWorld = () => {
-  useSmplrJs({ onLoad })
+  useSmplrJs({ onLoad, dev: false })
 
   function onLoad () {
     const space = new smplr.Space({
