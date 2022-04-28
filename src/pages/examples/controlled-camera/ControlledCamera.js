@@ -7,7 +7,7 @@ import Viewer from './Viewer'
 import Button from '../../../components/Button'
 import { cameraPlacements } from './_data'
 
-const OfficeBooking = () => {
+const ControlledCamera = () => {
   const [space, setSpace] = useState()
 
   // memoize so Viewer render once only (wrapped in memo)
@@ -41,4 +41,4 @@ const OfficeBooking = () => {
   )
 }
 
-export default OfficeBooking
+export default ControlledCamera

@@ -17,6 +17,7 @@ import { mallLeasing } from './mall-leasing'
 import { iot } from './iot'
 import { propertyManagement } from './property-management'
 import { controlledCamera } from './controlled-camera'
+import { seeThroughWalls } from './see-through-walls'
 
 const projects = [
   helloWorld,
@@ -27,7 +28,8 @@ const projects = [
   addDataElements,
   stackingPlan,
   warehouseBins,
-  controlledCamera
+  controlledCamera,
+  seeThroughWalls
 ]
 
 const ProjectList = () => {
