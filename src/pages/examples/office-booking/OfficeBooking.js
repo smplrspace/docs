@@ -28,7 +28,7 @@ const OfficeBooking = () => {
       type: 'furniture',
       data: desks,
       tooltip: d => `${d.name} - ${d.available ? 'free' : 'occupied'}`,
-      color: d => (d.available ? '#3aa655' : '#ff3f34')
+      color: d => (d.available ? '#50b268' : '#f75e56')
     })
     return () => {
       space.removeDataLayer('rooms')

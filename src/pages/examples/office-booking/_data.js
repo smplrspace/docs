@@ -252,247 +252,312 @@ export const rooms = [
 export const desks = [
   {
     name: 'Desk 01',
-    furnitureId: 'b0b1d83b-2429-4b3d-abc2-6a3b77abe8ed',
+    furnitureId: 'afd95f5f-8f27-4f3a-be0a-15bddbbe0b8f',
     available: false
   },
   {
     name: 'Desk 02',
-    furnitureId: '1cc946fd-cfe0-4dc7-9dae-5881012b2ba6',
+    furnitureId: 'c7ddd9a4-afbe-4aa7-bbba-b1e503e6b153',
     available: false
   },
   {
     name: 'Desk 03',
-    furnitureId: 'cd17af1f-2930-42c1-8fbc-aaa883c717af',
+    furnitureId: 'fada9da5-0504-46ea-bad7-29c3ab62366b',
     available: true
   },
   {
     name: 'Desk 04',
-    furnitureId: '9ac8348c-e58f-4cae-bc7a-cad71ff2836e',
+    furnitureId: '0b714fbf-316f-4d52-ac31-9752796d0496',
     available: true
   },
   {
     name: 'Desk 05',
-    furnitureId: '540b6dcf-4423-4ee8-9a16-2a91e2586b1b',
+    furnitureId: '7d6a3805-b191-49ff-b680-a43518dba629',
     available: true
   },
   {
     name: 'Desk 06',
-    furnitureId: 'c2206de0-8e3f-4225-ad0b-9f2ce51dd763',
+    furnitureId: '05e3242f-0571-456a-9dc0-2cc653f8730e',
     available: false
   },
   {
     name: 'Desk 07',
-    furnitureId: '1603d615-e1b4-4f51-8969-0f698b98585c',
+    furnitureId: '6fe98474-e40e-4d28-9c0e-14c14770067e',
     available: true
   },
   {
     name: 'Desk 08',
-    furnitureId: '6d46f953-b293-4f97-83cb-2bb2f2d07ae8',
+    furnitureId: '86e4dedd-de2b-40f7-916c-b4129ef83729',
     available: true
   },
   {
     name: 'Desk 09',
-    furnitureId: '4eb0fb9c-4ca6-49df-ad4c-6896f52220e5',
+    furnitureId: '57d955f1-5cb9-4e65-a42f-9d0032fab387',
     available: true
   },
   {
     name: 'Desk 10',
-    furnitureId: 'bfbdbe93-3e3b-4639-8ea1-aa704f4a893c',
+    furnitureId: '4cd6679a-b01a-4cd6-aa65-ab848bb8ac8a',
     available: true
   },
   {
     name: 'Desk 11',
-    furnitureId: 'eb11b661-c6b3-4df0-9359-64ac71c9528f',
+    furnitureId: '0623fe98-02f6-4866-9eb6-00d8e43357d2',
     available: false
   },
   {
     name: 'Desk 12',
-    furnitureId: 'f76c9efc-efea-4f11-a760-1cd97b1380e8',
+    furnitureId: 'd30b501f-c31a-4d61-9da2-bf90d0e9af66',
     available: true
   },
   {
     name: 'Desk 13',
-    furnitureId: 'af7be1e6-4dc9-49a6-8f7f-18d2acfb588e',
+    furnitureId: 'ebdc0bd1-5cea-4e13-a6ef-f88497ebdead',
     available: true
   },
   {
     name: 'Desk 14',
-    furnitureId: '3d9a5b4d-ba6d-40f0-914e-de3016896fcd',
+    furnitureId: 'e05c1c62-97bb-4115-b768-f09137d3e03d',
     available: false
   },
   {
     name: 'Desk 15',
-    furnitureId: '26ca5986-9a23-4d1c-8543-76a4e2a7878c',
+    furnitureId: '0e41c108-dd62-485a-8384-563addbc83c9',
     available: true
   },
   {
     name: 'Desk 16',
-    furnitureId: 'c3d1d0ba-ccb8-4a3f-bdb4-598ed1751de3',
+    furnitureId: 'bacb3d88-fe86-4ed7-ba0b-9004d6274827',
     available: false
   },
   {
     name: 'Desk 17',
-    furnitureId: 'f3bb2189-494f-4573-9906-bd8b64942e23',
+    furnitureId: 'f9c0ed08-449a-4b41-a15a-2c73fe646315',
     available: false
   },
   {
     name: 'Desk 18',
-    furnitureId: '128d6920-603f-465a-b49b-a0cf3e1d4108',
+    furnitureId: '74ae4f73-7ed0-43e3-adf5-e0d8752da257',
     available: false
   },
   {
     name: 'Desk 19',
-    furnitureId: '1c9f5f97-2fa3-42e0-99e4-8f57ab931ec4',
+    furnitureId: '5b12e89c-6753-40ea-acc5-7afe398428d6',
     available: true
   },
   {
     name: 'Desk 20',
-    furnitureId: '46838541-d00e-439f-8b4c-afe3826644e6',
+    furnitureId: '5a609c2a-5097-4b89-a570-7e4d72503438',
     available: false
   },
   {
     name: 'Desk 21',
-    furnitureId: '757e9d0a-5025-443c-817b-976fcfcd4b0f',
+    furnitureId: '39bd5ad1-e81e-48c7-8f48-ee224bd217ca',
     available: false
   },
   {
     name: 'Desk 22',
-    furnitureId: '72bbe85b-6629-49b1-9bc7-d023aa7d1c49',
+    furnitureId: 'bf0eb517-0979-48dd-91eb-684281aaf655',
     available: true
   },
   {
     name: 'Desk 23',
-    furnitureId: 'e9bc9e25-320e-4b8b-b2a6-e65ee7596e1c',
+    furnitureId: '7eff079b-a1d8-4b49-889c-1458f24fa888',
     available: true
   },
   {
     name: 'Desk 24',
-    furnitureId: 'e6d0691a-7adf-475a-9ea5-1e1d52871437',
+    furnitureId: 'b6431c83-f717-4c1f-81d3-b84f07ac5ce9',
     available: false
   },
   {
     name: 'Desk 25',
-    furnitureId: '594b4a49-2c66-4ebb-a40a-742609083fe1',
+    furnitureId: '350ef86c-0740-485b-8f23-e16c73c7d98a',
     available: false
   },
   {
     name: 'Desk 26',
-    furnitureId: '536aa47c-c33f-4f2a-b051-7423e4e1dd0d',
+    furnitureId: '74d5fb69-1852-4690-872c-dd60dae787f4',
     available: true
   },
   {
     name: 'Desk 27',
-    furnitureId: '00f6e4bd-a4b7-4998-87d5-d1677bbb05bb',
+    furnitureId: 'f4258427-efea-44d6-bcde-cb5d9e266780',
     available: true
   },
   {
     name: 'Desk 28',
-    furnitureId: 'a3d39cc6-3a55-41d6-acc0-e97a1abfebea',
+    furnitureId: 'dfb7cd61-7677-4cdd-aef8-773b4597ee45',
     available: true
   },
   {
     name: 'Desk 29',
-    furnitureId: '0289a68f-0878-4c62-a038-a2f024b10cb2',
+    furnitureId: '6f0bd9f1-d83f-4294-a7b2-73daf8b8f820',
     available: false
   },
   {
     name: 'Desk 30',
-    furnitureId: '938e9140-1560-4b8c-80dc-76c8db0099ac',
+    furnitureId: 'f5a32e8b-090d-4187-8fde-b4da64aba065',
     available: true
   },
   {
     name: 'Desk 31',
-    furnitureId: '938e9140-1560-4b8c-80dc-76c8db0099ac',
+    furnitureId: '6d762b05-f69d-4246-94e2-7ee712f42637',
     available: false
   },
   {
     name: 'Desk 32',
-    furnitureId: '61662997-d8c3-4835-bcb0-81459e6228a7',
+    furnitureId: '3a3065d8-49f9-4fc7-823b-723a49071fbf',
     available: false
   },
   {
     name: 'Desk 33',
-    furnitureId: '3a0b0f55-d116-4e40-b856-a5b2f504bb74',
+    furnitureId: 'a5a4d718-5df9-49a9-aac3-a897c287275f',
     available: false
   },
   {
     name: 'Desk 34',
-    furnitureId: 'be3e5403-ab90-4190-9000-5803707148c4',
+    furnitureId: 'fc4b3b67-532e-4278-bbab-a2f607da4b8b',
     available: true
   },
   {
     name: 'Desk 35',
-    furnitureId: 'b3161e62-2fac-4b7c-a4c3-82ad6981bc71',
+    furnitureId: 'bbb13212-b33c-4870-bf97-0d05cdcc1eb7',
     available: true
   },
   {
     name: 'Desk 36',
-    furnitureId: 'b8754da4-e708-4994-8e78-d4f1ddb77a56',
+    furnitureId: '65d03169-8ebf-4481-a614-701cfdf32bc0',
     available: true
   },
   {
     name: 'Desk 37',
-    furnitureId: '9a6c379e-6713-4475-a35a-88450f981412',
+    furnitureId: 'efc72015-d491-4e3b-ac7c-599b48402465',
     available: true
   },
   {
     name: 'Desk 38',
-    furnitureId: 'd804344b-7fd8-4fd1-bdf4-15aeb4324349',
+    furnitureId: '35367538-3391-4973-9639-5d8116bfc502',
     available: false
   },
   {
     name: 'Desk 39',
-    furnitureId: 'aefc6477-a3b0-4160-b9c4-ab1677cadaf3',
+    furnitureId: '4409af5a-ce88-4c29-88f3-90af2374b818',
     available: true
   },
   {
     name: 'Desk 40',
-    furnitureId: '7672236a-d778-463f-984e-ccb367e9eb97',
+    furnitureId: 'd9238dd0-a4b4-446b-b2b1-822d68a1717d',
     available: true
   },
   {
     name: 'Desk 41',
-    furnitureId: '55726f2f-bb0f-4529-8adb-563ef5e54696',
+    furnitureId: '2919b73d-8c7e-41a7-a594-876beb1f3ebc',
     available: true
   },
   {
     name: 'Desk 42',
-    furnitureId: '667dfde5-8836-48e4-9755-be2242506efb',
+    furnitureId: 'd7e74365-3f05-44ff-81ab-64b1e766f953',
     available: true
   },
   {
     name: 'Desk 43',
-    furnitureId: 'fce57f14-e1a5-4102-94b6-c96f0c006fd1',
+    furnitureId: 'edaf3b4b-55e3-426f-be00-acaacdc815c1',
     available: false
   },
   {
     name: 'Desk 44',
-    furnitureId: '2eff29a1-0cd5-429b-a332-7c8aa901abfa',
+    furnitureId: 'c0ce4660-db3c-4536-a582-a3fa21fb837b',
     available: true
   },
   {
     name: 'Desk 45',
-    furnitureId: '6fb497ec-16cd-432c-a872-11407fad5ac9',
+    furnitureId: '726188e9-871f-4055-b06f-b1b313347a54',
     available: false
   },
   {
     name: 'Desk 46',
-    furnitureId: '13e0be0a-6106-458e-9334-85db02b114a8',
+    furnitureId: '19bbf74f-7a45-4d1e-9dfc-73df0591e8cd',
     available: false
   },
   {
     name: 'Desk 47',
-    furnitureId: 'c587208d-f00c-4907-b71f-fcde58976ca7',
+    furnitureId: '1ad658c2-fa3e-4304-98de-806b738eb865',
     available: false
   },
   {
     name: 'Desk 48',
-    furnitureId: '0a9ea518-5133-4bcb-a81e-a301ebd889d1',
+    furnitureId: 'c4599091-037c-4e56-a3e0-88e65e07725e',
     available: false
   },
   {
     name: 'Desk 49',
-    furnitureId: 'c956ad13-d8e0-40f3-924e-1ff1346fdd91',
+    furnitureId: 'f3ad45b6-8948-455b-84f7-bceb105c1ad3',
+    available: false
+  },
+  {
+    name: 'Desk 50',
+    furnitureId: '0ee7f143-9789-4a37-8c26-bd0aae932c67',
+    available: false
+  },
+  {
+    name: 'Desk 51',
+    furnitureId: '3adf620a-1170-4626-bcda-f14dc441d62f',
+    available: true
+  },
+  {
+    name: 'Desk 52',
+    furnitureId: '65f0fec7-bb22-4774-a904-c82cfb595e88',
+    available: false
+  },
+  {
+    name: 'Desk 53',
+    furnitureId: '387df2bd-9cec-4b90-ace6-ce5c393e1f0f',
+    available: true
+  },
+  {
+    name: 'Desk 54',
+    furnitureId: '23d3d412-1026-4603-871a-3868a47d4c5c',
+    available: false
+  },
+  {
+    name: 'Desk 55',
+    furnitureId: '5cfbc2d6-927e-4940-b1e6-585ef0c00237',
+    available: false
+  },
+  {
+    name: 'Desk 56',
+    furnitureId: 'efbd1844-8c7d-4cd5-acfb-acf68182e7a7',
+    available: true
+  },
+  {
+    name: 'Desk 57',
+    furnitureId: '6736bd29-e5d5-416e-84c9-b2afd9710f3c',
+    available: false
+  },
+  {
+    name: 'Desk 58',
+    furnitureId: 'f56d1735-926b-4abe-be75-2b2070496e13',
+    available: false
+  },
+  {
+    name: 'Desk 59',
+    furnitureId: '37f7422c-d161-4390-9a2d-38dccecc32ac',
+    available: true
+  },
+  {
+    name: 'Desk 60',
+    furnitureId: '5ffc1ade-7a6f-4b0f-aed2-82a407a4bc71',
+    available: false
+  },
+  {
+    name: 'Desk 61',
+    furnitureId: '844ce1f2-a16d-4d90-bc0a-8c0ce561e469',
+    available: false
+  },
+  {
+    name: 'Desk 62',
+    furnitureId: 'd3de0890-52d1-455a-ba21-8d3a44b2f5d4',
     available: false
   }
 ]
