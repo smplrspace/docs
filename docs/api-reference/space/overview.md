@@ -13,13 +13,13 @@ To create a Space instance, initialise it as follow.
 ```ts
 const space = new smplr.Space({
   spaceId: string,
-  spaceToken: string,
+  clientToken: string,
   containerId: string
 })
 ```
 
 - `spaceId` is the unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
-- `spaceToken` is not used at the moment and the API might change, for the time being please use any value, for example "X".
+- ⚠️ **BREAKING CHANGE** ⚠️ — `clientToken` is an API token that is used to authenticate client-side requests. It is safe to have it exposed in your client code. You can manage your organisation's tokens in the Smplrspace dashboard, under <a href='https://app.smplrspace.com/account' target='_blank'>Account Settings</a>. Client tokens are being rolled out and currently not enforced, starting October 1st 2022, request with no token or an invalid token will be rejected.
 - `containerId` is the "id" of the html "div" container where smplr.js should render the viewer, something like "smplr-container" that can be found in your html. Only ids are supported, not classes.
 
 ## Interactive viewer session

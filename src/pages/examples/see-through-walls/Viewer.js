@@ -32,7 +32,7 @@ const Viewer = memo(({ renderOptions = {} }) => {
     const space = new smplr.Space({
       spaceId: '808c73b5-36e3-4305-bcf4-1049d8e0665b', // prod
       // spaceId: '736b3294-751a-4af2-b8eb-b62a6f7f86ad', // dev
-      spaceToken: 'X',
+      clientToken: 'pub_834fae5c46404eafb887a89c45f2a34c',
       containerId: 'smplr-container'
     })
     spaceRef.current = space

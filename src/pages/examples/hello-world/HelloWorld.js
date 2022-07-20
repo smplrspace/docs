@@ -10,7 +10,7 @@ const HelloWorld = () => {
     const space = new smplr.Space({
       spaceId: 'edb2ebaa-47ea-4e54-af0d-cf543328bdb0', // prod
       // spaceId: '96eae952-ef60-4058-aba1-6ace322506e7', // dev
-      spaceToken: 'X',
+      clientToken: 'pub_834fae5c46404eafb887a89c45f2a34c',
       containerId: 'smplr-container'
     })
     space.startViewer({
