@@ -52,7 +52,7 @@ To start the viewer for a space, you should append the following script at the e
 <script>
   const space = new smplr.Space({
     spaceId: 'fbc5617e-5a27-4138-851e-839446121b2e',
-    clientToken: 'pub_834fae5c46404eafb887a89c45f2a34c',
+    clientToken: 'pub_eb760fee77634cdab2fe31146fc371c2',
     containerId: 'test'
   })
   space.startViewer({

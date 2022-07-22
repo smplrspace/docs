@@ -10,7 +10,7 @@ const Viewer = memo(({ onReady }) => {
   function onLoad () {
     const space = new smplr.Space({
       spaceId: 'd7f80b32-069f-4ff3-84ea-fc5398e41406',
-      clientToken: 'pub_834fae5c46404eafb887a89c45f2a34c',
+      clientToken: 'pub_eb760fee77634cdab2fe31146fc371c2',
       containerId: 'smplr-container'
     })
     space.startViewer({
