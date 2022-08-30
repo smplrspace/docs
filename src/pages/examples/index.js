@@ -46,14 +46,23 @@ const projects = [
   seeThroughWalls
 ]
 
-const projectsByCategory = groupBy(prop('category'))(projects)
-const orderedCategory = compose(
-  sortBy(flip(indexOf)(categoriesOrder)),
-  keys
-)(projectsByCategory)
-
 const ProjectList = () => {
   const [search, setSearch] = useState('')
+
+  // apply filter
+  const filteredProjects = filter(p =>
+    search
+      ? includes(
+        search.toLowerCase(),
+        `${p.title}+${p.description}`.toLowerCase()
+      )
+      : true
+  )(projects)
+  const projectsByCategory = groupBy(prop('category'))(filteredProjects)
+  const orderedCategory = compose(
+    sortBy(flip(indexOf)(categoriesOrder)),
+    keys
+  )(projectsByCategory)
 
   return (
     <Page title='Examples'>
@@ -91,17 +100,9 @@ const ProjectList = () => {
             ]}
             mt='sm'
           >
-            {compose(
-              map(p => <ProjectCard key={p.slug} {...p} />),
-              filter(p =>
-                search
-                  ? includes(
-                    search.toLowerCase(),
-                    `${p.title}+${p.description}`.toLowerCase()
-                  )
-                  : true
-              )
-            )(projectsByCategory[category])}
+            {map(p => <ProjectCard key={p.slug} {...p} />)(
+              projectsByCategory[category]
+            )}
           </SimpleGrid>
         </Group>
       ))(orderedCategory)}
