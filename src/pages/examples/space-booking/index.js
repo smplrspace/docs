@@ -2,22 +2,22 @@
 import React from 'react'
 
 import Project from '../../../components/Project'
-import MallLeasing from './MallLeasing'
+import SpaceBooking from './SpaceBooking'
 
-import MallLeasingCode from '!!raw-loader!./MallLeasing'
+import SpaceBookingCode from '!!raw-loader!./SpaceBooking'
 import ViewerCode from '!!raw-loader!./Viewer'
 import data from '!!raw-loader!./_data'
 
-export const mallLeasing = {
-  slug: 'mall-leasing',
-  title: 'Mall leasing',
-  description: 'Demonstrate a simple commercial leasing experience.',
+export const spaceBooking = {
+  slug: 'space-booking',
+  title: 'Space booking',
+  description: `Showcase real time availability of assets, from entire event spaces to meeting rooms and down to single chairs.`,
   published: true,
   code: [
     {
-      filename: 'MallLeasing.js',
+      filename: 'SpaceBooking.js',
       lang: 'jsx',
-      content: MallLeasingCode
+      content: SpaceBookingCode
     },
     { filename: 'Viewer.js', lang: 'jsx', content: ViewerCode },
     { filename: 'data.js', lang: 'jsx', content: data }
@@ -26,8 +26,8 @@ export const mallLeasing = {
 
 export default function () {
   return (
-    <Project project={mallLeasing}>
-      <MallLeasing />
+    <Project project={spaceBooking}>
+      <SpaceBooking />
     </Project>
   )
 }

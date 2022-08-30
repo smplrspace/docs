@@ -11,8 +11,7 @@ import data from '!!raw-loader!./_data'
 export const controlledCamera = {
   slug: 'controlled-camera',
   title: 'Controlled camera',
-  description:
-    'Demonstrate how to use pre-recorded camera placements to navigate between points of interest.',
+  description: `Because some areas are out of bound, restrict user's viewing access with pre-recorded camera placements that navigate between points of interests.`,
   published: true,
   code: [
     {

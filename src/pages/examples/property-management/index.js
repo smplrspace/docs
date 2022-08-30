@@ -11,7 +11,7 @@ import data from '!!raw-loader!./_data'
 export const propertyManagement = {
   slug: 'property-management',
   title: 'Property management',
-  description: 'Demonstrate how to report and visualise defects in a property.',
+  description: `Receive annotated visual reports of defects and maintenance requirements in specific locations. Especially useful for when spaces get large.`,
   published: true,
   code: [
     {

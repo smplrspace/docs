@@ -11,8 +11,7 @@ import unitsCode from '!!raw-loader!./_units'
 export const stackingPlan = {
   slug: 'stacking-plan',
   title: 'Stacking plan',
-  description:
-    'Showcases a building "stacking plan" with empty floors and a polygon data layer. This can be used to provide storey-wide information at a glance.',
+  description: `Visualise floor plate level data through entire buildings via stacking plans. Provide users with storey-wide information at a glance.`,
   published: true,
   code: [
     {

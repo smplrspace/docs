@@ -11,8 +11,7 @@ import data from './data.json.raw!=!raw-loader!./data.json'
 export const warehouseBins = {
   slug: 'warehouse',
   title: 'Warehouse',
-  description:
-    'Demonstrate how to visualize capacity and stored items information in a storage space.',
+  description: `Go vertical and visualise capacity, stored item information, and simulate operations and logistics routes.`,
   published: true,
   code: [
     {

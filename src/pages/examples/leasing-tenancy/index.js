@@ -2,22 +2,22 @@
 import React from 'react'
 
 import Project from '../../../components/Project'
-import OfficeBooking from './OfficeBooking'
+import LeasingTenancy from './LeasingTenancy'
 
-import OfficeBookingCode from '!!raw-loader!./OfficeBooking'
+import LeasingTenancyCode from '!!raw-loader!./LeasingTenancy'
 import ViewerCode from '!!raw-loader!./Viewer'
 import data from '!!raw-loader!./_data'
 
-export const officeBooking = {
-  slug: 'office-booking',
-  title: 'Office booking',
-  description: 'Demonstrate a simple room / desk booking app experience.',
+export const leasingTenancy = {
+  slug: 'leasing-tenancy',
+  title: 'Leasing & tenancy',
+  description: `Let users have a quick overview of vacant units with clarity on location, position and availability.`,
   published: true,
   code: [
     {
-      filename: 'OfficeBooking.js',
+      filename: 'LeasingTenancy.js',
       lang: 'jsx',
-      content: OfficeBookingCode
+      content: LeasingTenancyCode
     },
     { filename: 'Viewer.js', lang: 'jsx', content: ViewerCode },
     { filename: 'data.js', lang: 'jsx', content: data }
@@ -26,8 +26,8 @@ export const officeBooking = {
 
 export default function () {
   return (
-    <Project project={officeBooking}>
-      <OfficeBooking />
+    <Project project={leasingTenancy}>
+      <LeasingTenancy />
     </Project>
   )
 }

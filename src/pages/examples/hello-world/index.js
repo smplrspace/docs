@@ -9,8 +9,7 @@ import HelloWorldCode from '!!raw-loader!./HelloWorld'
 export const helloWorld = {
   slug: 'hello-world',
   title: 'Hello world',
-  description:
-    'A basic example showing how to integrate the viewer into your app.',
+  description: `Let's get started with the basics — integrating the viewer into your app. It takes only a couple of minutes.`,
   published: true,
   code: [{ filename: 'HelloWorld.js', lang: 'jsx', content: HelloWorldCode }]
 }

@@ -10,8 +10,7 @@ import ViewerCode from '!!raw-loader!./Viewer'
 export const addDataElements = {
   slug: 'add-data-elements',
   title: 'Add data elements',
-  description:
-    'A master example on using the picking mode in your admin interface to add data elements.',
+  description: `A quick tutorial on how to use the picking mode in your admin interface to add data elements such as sensor locations, rooms and areas, or desks.`,
   published: true,
   code: [
     {

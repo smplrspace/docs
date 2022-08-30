@@ -15,7 +15,7 @@ const colorScale = rental =>
         ? '#c77a15'
         : '#ff3f34'
 
-const MallLeasing = () => {
+const LeasingTenancy = () => {
   const [space, setSpace] = useState()
   const [mode, setMode] = useState(INITIAL_MODE)
 
@@ -54,4 +54,4 @@ const MallLeasing = () => {
   )
 }
 
-export default MallLeasing
+export default LeasingTenancy

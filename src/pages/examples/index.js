@@ -12,8 +12,8 @@ import { helloWorld } from './hello-world'
 import { addDataElements } from './add-data-elements'
 import { stackingPlan } from './stacking-plan'
 import { warehouseBins } from './warehouse'
-import { officeBooking } from './office-booking'
-import { mallLeasing } from './mall-leasing'
+import { spaceBooking } from './space-booking'
+import { leasingTenancy } from './leasing-tenancy'
 import { iot } from './iot'
 import { propertyManagement } from './property-management'
 import { controlledCamera } from './controlled-camera'
@@ -21,8 +21,8 @@ import { seeThroughWalls } from './see-through-walls'
 
 const projects = [
   helloWorld,
-  officeBooking,
-  mallLeasing,
+  spaceBooking,
+  leasingTenancy,
   iot,
   propertyManagement,
   addDataElements,
