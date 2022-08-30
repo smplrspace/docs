@@ -2,24 +2,24 @@
 import React from 'react'
 
 import Project from '../../../components/Project'
-import IoT from './IoT'
+import LeasingTenancy from './LeasingTenancy'
 
-import IoTCode from '!!raw-loader!./IoT'
+import LeasingTenancyCode from '!!raw-loader!./LeasingTenancy'
 import ViewerCode from '!!raw-loader!./Viewer'
 import data from '!!raw-loader!./_data'
 import { USE_CASES } from '../_categories'
 
-export const iot = {
-  slug: 'iot',
-  title: 'Internet of Things',
+export const leasingTenancy = {
+  slug: 'leasing-tenancy',
+  title: 'Leasing & tenancy',
   category: USE_CASES,
-  description: `Complement your existing dashboards with actual display of sensor locations and ranges. Not only do users love this, your sales teams will thank you as well.`,
+  description: `Let users have a quick overview of vacant units with clarity on location, position and availability.`,
   published: true,
   code: [
     {
-      filename: 'IoT.js',
+      filename: 'LeasingTenancy.js',
       lang: 'jsx',
-      content: IoTCode
+      content: LeasingTenancyCode
     },
     { filename: 'Viewer.js', lang: 'jsx', content: ViewerCode },
     { filename: 'data.js', lang: 'jsx', content: data }
@@ -28,8 +28,8 @@ export const iot = {
 
 export default function () {
   return (
-    <Project project={iot}>
-      <IoT />
+    <Project project={leasingTenancy}>
+      <LeasingTenancy />
     </Project>
   )
 }

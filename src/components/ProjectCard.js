@@ -14,15 +14,27 @@ const ProjectCard = ({ slug, title, description, published }) => {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        color: theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.black
+        color:
+          theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.black,
+        opacity: published ? 1 : 0.75
       }}
     >
       <Card.Section>
-        <img
-          src={require(`../pages/examples/${slug}/card.png`).default}
-          alt={title}
-          style={{ marginBottom: 30 }}
-        />
+        {published ? (
+          <a href={`/examples/${slug}`}>
+            <img
+              src={require(`../pages/examples/${slug}/card.png`).default}
+              alt={title}
+              style={{ marginBottom: 30 }}
+            />
+          </a>
+        ) : (
+          <img
+            src={require(`../pages/examples/${slug}/card.png`).default}
+            alt={title}
+            style={{ marginBottom: 30 }}
+          />
+        )}
       </Card.Section>
       <h3>{title}</h3>
       <p style={{ fontSize: '.9rem', flexGrow: 1 }}>{description}</p>

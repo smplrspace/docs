@@ -3,7 +3,7 @@ import React, { useState, useCallback, useEffect } from 'react'
 import Viewer from './Viewer'
 import { rooms, desks } from './_data'
 
-const OfficeBooking = () => {
+const SpaceBooking = () => {
   const [space, setSpace] = useState()
 
   // memoize so Viewer render once only (wrapped in memo)
@@ -43,4 +43,4 @@ const OfficeBooking = () => {
   )
 }
 
-export default OfficeBooking
+export default SpaceBooking

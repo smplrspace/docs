@@ -2,24 +2,24 @@
 import React from 'react'
 
 import Project from '../../../components/Project'
-import IoT from './IoT'
+import SpaceBooking from './SpaceBooking'
 
-import IoTCode from '!!raw-loader!./IoT'
+import SpaceBookingCode from '!!raw-loader!./SpaceBooking'
 import ViewerCode from '!!raw-loader!./Viewer'
 import data from '!!raw-loader!./_data'
 import { USE_CASES } from '../_categories'
 
-export const iot = {
-  slug: 'iot',
-  title: 'Internet of Things',
+export const spaceBooking = {
+  slug: 'space-booking',
+  title: 'Space booking',
   category: USE_CASES,
-  description: `Complement your existing dashboards with actual display of sensor locations and ranges. Not only do users love this, your sales teams will thank you as well.`,
+  description: `Showcase real time availability of assets, from entire event spaces to meeting rooms and down to single chairs.`,
   published: true,
   code: [
     {
-      filename: 'IoT.js',
+      filename: 'SpaceBooking.js',
       lang: 'jsx',
-      content: IoTCode
+      content: SpaceBookingCode
     },
     { filename: 'Viewer.js', lang: 'jsx', content: ViewerCode },
     { filename: 'data.js', lang: 'jsx', content: data }
@@ -28,8 +28,8 @@ export const iot = {
 
 export default function () {
   return (
-    <Project project={iot}>
-      <IoT />
+    <Project project={spaceBooking}>
+      <SpaceBooking />
     </Project>
   )
 }

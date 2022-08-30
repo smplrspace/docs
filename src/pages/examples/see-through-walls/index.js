@@ -6,12 +6,13 @@ import SeeThroughWalls from './SeeThroughWalls'
 
 import SeeThroughWallsCode from '!!raw-loader!./SeeThroughWalls'
 import ViewerCode from '!!raw-loader!./Viewer'
+import { FEATURES } from '../_categories'
 
 export const seeThroughWalls = {
   slug: 'see-through-walls',
   title: 'See through walls',
-  description:
-    'Demonstrate render options that can be used to focus on internal data rather than the space layout.',
+  category: FEATURES,
+  description: `Toggle between opaque and see-through walls, and allow users to visualise furnishings and internal data without being blocked by layout structures.`,
   published: true,
   code: [
     {

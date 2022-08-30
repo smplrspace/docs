@@ -1,5 +1,17 @@
 import React, { useState } from 'react'
-import { compose, includes, map, filter, propEq } from 'ramda'
+import {
+  compose,
+  includes,
+  map,
+  filter,
+  propEq,
+  groupBy,
+  keys,
+  prop,
+  sortBy,
+  indexOf,
+  flip
+} from 'ramda'
 import { SimpleGrid, Group } from '@mantine/core'
 import { IoSearchOutline } from 'react-icons/io5'
 
@@ -7,13 +19,15 @@ import Page from '../../components/Page'
 import ProjectCard from '../../components/ProjectCard'
 import Button from '../../components/Button'
 import TextInput from '../../components/TextInput'
+import CategoryTitle from '../../components/CategoryTitle'
+import { categoriesOrder } from './_categories'
 
 import { helloWorld } from './hello-world'
 import { addDataElements } from './add-data-elements'
 import { stackingPlan } from './stacking-plan'
 import { warehouseBins } from './warehouse'
-import { officeBooking } from './office-booking'
-import { mallLeasing } from './mall-leasing'
+import { spaceBooking } from './space-booking'
+import { leasingTenancy } from './leasing-tenancy'
 import { iot } from './iot'
 import { propertyManagement } from './property-management'
 import { controlledCamera } from './controlled-camera'
@@ -21,8 +35,8 @@ import { seeThroughWalls } from './see-through-walls'
 
 const projects = [
   helloWorld,
-  officeBooking,
-  mallLeasing,
+  spaceBooking,
+  leasingTenancy,
   iot,
   propertyManagement,
   addDataElements,
@@ -34,6 +48,21 @@ const projects = [
 
 const ProjectList = () => {
   const [search, setSearch] = useState('')
+
+  // apply filter
+  const filteredProjects = filter(p =>
+    search
+      ? includes(
+        search.toLowerCase(),
+        `${p.title}+${p.description}`.toLowerCase()
+      )
+      : true
+  )(projects)
+  const projectsByCategory = groupBy(prop('category'))(filteredProjects)
+  const orderedCategory = compose(
+    sortBy(flip(indexOf)(categoriesOrder)),
+    keys
+  )(projectsByCategory)
 
   return (
     <Page title='Examples'>
@@ -60,26 +89,23 @@ const ProjectList = () => {
           Russian roulette
         </Button>
       </Group>
-      <SimpleGrid
-        cols={3}
-        breakpoints={[
-          { maxWidth: 'sm', cols: 2, spacing: 'sm' },
-          { maxWidth: 'xs', cols: 1, spacing: 'sm' }
-        ]}
-        mt='sm'
-      >
-        {compose(
-          map(p => <ProjectCard key={p.slug} {...p} />),
-          filter(p =>
-            search
-              ? includes(
-                search.toLowerCase(),
-                `${p.title}+${p.description}`.toLowerCase()
-              )
-              : true
-          )
-        )(projects)}
-      </SimpleGrid>
+      {map(category => (
+        <Group key={category} direction='column'>
+          <CategoryTitle>{category}</CategoryTitle>
+          <SimpleGrid
+            cols={3}
+            breakpoints={[
+              { maxWidth: 'sm', cols: 2, spacing: 'sm' },
+              { maxWidth: 'xs', cols: 1, spacing: 'sm' }
+            ]}
+            mt='sm'
+          >
+            {map(p => <ProjectCard key={p.slug} {...p} />)(
+              projectsByCategory[category]
+            )}
+          </SimpleGrid>
+        </Group>
+      ))(orderedCategory)}
     </Page>
   )
 }

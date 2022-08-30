@@ -5,5 +5,15 @@
   
 [[redirects]]
   from = "/examples/room-availability"
-  to = "/examples/office-booking"
+  to = "/examples/space-booking"
+  status = 302
+  
+[[redirects]]
+  from = "/examples/office-booking"
+  to = "/examples/space-booking"
+  status = 302
+
+[[redirects]]
+  from = "/examples/mall-leasing"
+  to = "/examples/leasing-tenancy"
   status = 302
