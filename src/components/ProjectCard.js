@@ -16,7 +16,7 @@ const ProjectCard = ({ slug, title, description, published }) => {
         flexDirection: 'column',
         color:
           theme.colorScheme === 'dark' ? theme.colors.gray[0] : theme.black,
-        opacity: 0.75
+        opacity: published ? 1 : 0.75
       }}
     >
       <Card.Section>
