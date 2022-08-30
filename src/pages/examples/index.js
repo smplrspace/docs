@@ -1,5 +1,17 @@
 import React, { useState } from 'react'
-import { compose, includes, map, filter, propEq } from 'ramda'
+import {
+  compose,
+  includes,
+  map,
+  filter,
+  propEq,
+  groupBy,
+  keys,
+  prop,
+  sortBy,
+  indexOf,
+  flip
+} from 'ramda'
 import { SimpleGrid, Group } from '@mantine/core'
 import { IoSearchOutline } from 'react-icons/io5'
 
@@ -7,6 +19,8 @@ import Page from '../../components/Page'
 import ProjectCard from '../../components/ProjectCard'
 import Button from '../../components/Button'
 import TextInput from '../../components/TextInput'
+import CategoryTitle from '../../components/CategoryTitle'
+import { categoriesOrder } from './_categories'
 
 import { helloWorld } from './hello-world'
 import { addDataElements } from './add-data-elements'
@@ -31,6 +45,12 @@ const projects = [
   controlledCamera,
   seeThroughWalls
 ]
+
+const projectsByCategory = groupBy(prop('category'))(projects)
+const orderedCategory = compose(
+  sortBy(flip(indexOf)(categoriesOrder)),
+  keys
+)(projectsByCategory)
 
 const ProjectList = () => {
   const [search, setSearch] = useState('')
@@ -60,26 +80,31 @@ const ProjectList = () => {
           Russian roulette
         </Button>
       </Group>
-      <SimpleGrid
-        cols={3}
-        breakpoints={[
-          { maxWidth: 'sm', cols: 2, spacing: 'sm' },
-          { maxWidth: 'xs', cols: 1, spacing: 'sm' }
-        ]}
-        mt='sm'
-      >
-        {compose(
-          map(p => <ProjectCard key={p.slug} {...p} />),
-          filter(p =>
-            search
-              ? includes(
-                search.toLowerCase(),
-                `${p.title}+${p.description}`.toLowerCase()
+      {map(category => (
+        <Group key={category} direction='column'>
+          <CategoryTitle>{category}</CategoryTitle>
+          <SimpleGrid
+            cols={3}
+            breakpoints={[
+              { maxWidth: 'sm', cols: 2, spacing: 'sm' },
+              { maxWidth: 'xs', cols: 1, spacing: 'sm' }
+            ]}
+            mt='sm'
+          >
+            {compose(
+              map(p => <ProjectCard key={p.slug} {...p} />),
+              filter(p =>
+                search
+                  ? includes(
+                    search.toLowerCase(),
+                    `${p.title}+${p.description}`.toLowerCase()
+                  )
+                  : true
               )
-              : true
-          )
-        )(projects)}
-      </SimpleGrid>
+            )(projectsByCategory[category])}
+          </SimpleGrid>
+        </Group>
+      ))(orderedCategory)}
     </Page>
   )
 }

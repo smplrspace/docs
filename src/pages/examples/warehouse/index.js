@@ -7,10 +7,12 @@ import Warehouse from './Warehouse'
 import WarehouseCode from '!!raw-loader!./Warehouse'
 import ViewerCode from '!!raw-loader!./Viewer'
 import data from './data.json.raw!=!raw-loader!./data.json'
+import { USE_CASES } from '../_categories'
 
 export const warehouseBins = {
   slug: 'warehouse',
   title: 'Warehouse',
+  category: USE_CASES,
   description: `Go vertical and visualise capacity, stored item information, and simulate operations and logistics routes.`,
   published: true,
   code: [

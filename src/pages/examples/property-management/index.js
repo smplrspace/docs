@@ -7,10 +7,12 @@ import PropertyManagement from './PropertyManagement'
 import PropertyManagementCode from '!!raw-loader!./PropertyManagement'
 import ViewerCode from '!!raw-loader!./Viewer'
 import data from '!!raw-loader!./_data'
+import { USE_CASES } from '../_categories'
 
 export const propertyManagement = {
   slug: 'property-management',
   title: 'Property management',
+  category: USE_CASES,
   description: `Receive annotated visual reports of defects and maintenance requirements in specific locations. Especially useful for when spaces get large.`,
   published: true,
   code: [
