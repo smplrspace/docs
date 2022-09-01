@@ -22,7 +22,7 @@ You can find the code snippet for iframe embeds from the editor. Click on the na
 ```html
 <iframe
   title="Space name - Smplrspace"
-  src="https://smplr.me/e/xxxxxxx"
+  src="https://smplr.me/xxxxxxx"
   style="border: 0px none; width: 100%; height: 100%;"
   scrolling="no"
   allowfullscreen=""
@@ -51,15 +51,15 @@ To start the viewer for a space, you should append the following script at the e
 ```html
 <script>
   const space = new smplr.Space({
-    spaceId: 'fbc5617e-5a27-4138-851e-839446121b2e',
-    clientToken: 'pub_eb760fee77634cdab2fe31146fc371c2',
-    containerId: 'test'
-  })
+    spaceId: "fbc5617e-5a27-4138-851e-839446121b2e",
+    clientToken: "pub_eb760fee77634cdab2fe31146fc371c2",
+    containerId: "test",
+  });
   space.startViewer({
     preview: true,
-    onReady: () => console.log('Viewer is ready'),
-    onError: error => console.error('Could not start viewer', error)
-  })
+    onReady: () => console.log("Viewer is ready"),
+    onError: (error) => console.error("Could not start viewer", error),
+  });
 </script>
 ```
 
