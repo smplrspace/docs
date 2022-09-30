@@ -1,25 +1,16 @@
+/* global smplr */
 import React from 'react'
-import { useSmplrJsESM } from '../../../hooks/useSmplrJs'
 
-const ENV = 'dev'
-const CONFIG = {
-  spaceId: {
-    dev: '96eae952-ef60-4058-aba1-6ace322506e7',
-    prod: 'edb2ebaa-47ea-4e54-af0d-cf543328bdb0'
-  },
-  clientToken: {
-    dev: 'pub_x',
-    prod: 'pub_eb760fee77634cdab2fe31146fc371c2'
-  }
-}
+import useSmplrJs from '../../../hooks/useSmplrJs'
 
 const HelloWorld = () => {
-  useSmplrJsESM({ onLoad, dev: ENV === 'dev' })
+  useSmplrJs({ onLoad, dev: false })
 
-  function onLoad (smplr) {
+  function onLoad () {
     const space = new smplr.Space({
-      spaceId: CONFIG.spaceId[ENV],
-      clientToken: CONFIG.clientToken[ENV],
+      spaceId: 'edb2ebaa-47ea-4e54-af0d-cf543328bdb0', // prod
+      // spaceId: '96eae952-ef60-4058-aba1-6ace322506e7', // dev
+      clientToken: 'pub_eb760fee77634cdab2fe31146fc371c2',
       containerId: 'smplr-container'
     })
     space.startViewer({
