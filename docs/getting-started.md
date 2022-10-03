@@ -7,7 +7,7 @@ slug: /
 
 ## Intro
 
-Smplrspace lets developers add digital and interactive floor plans to their apps easily. Floor plans can be viewed in 2D _(coming soon)_ or 3D. Data layers can be added on the floor plans.
+Smplrspace lets developers add digital and interactive floor plans to their apps easily. Floor plans can be viewed in 2D or 3D. Data layers can be added on the floor plans.
 
 To get started with Smplrspace, you will need an account. You can sign up from [the website](https://www.smplrspace.com). All features come with a free tier so you can test things out and start building without friction (no credit card required).
 
@@ -37,14 +37,20 @@ You can also add `position: absolute;` in your iframe's style and then set `posi
 
 ### Smplr.js embeds
 
-To embed floor plans using our Javascript library, first load it from our CDN. You will need the JS script itself and the CSS stylesheets. Add these 2 lines to the `<head>` section of your app.
+To embed floor plans using our Javascript library, first load it from our CDN. You will need the JS script itself and the CSS stylesheets.
+
+You **should not try to use a copy** of these files that you self host. Our frontend and backend resources need to be synced at the commit level to avoid data corruption, loading a copy might break your integration as you might not be using the latest version if we deploy a new version of the platform.
+
+An **npm package** is on our roadmap but not ready yet due to blockers on the versioning side of things in our database. This remains a priority for us as we understand most engineering team prefer to include pinned versions of their dependencies in their own bundles. We will update our clients once this is available.
+
+#### UMD bundle (single JS file)
+
+The simplest way to get started is to use our Universal Module Definition (UMD) bundle which loads all the required frontend code at once. The disadvantage is a longer loading time on the first visit, subsequent visits will usually be cached. To use the UMD bundle, add these 2 lines to the `<head>` section of your app.
 
 ```html
 <script src="https://app.smplrspace.com/lib/smplr.js"></script>
 <link href="https://app.smplrspace.com/lib/smplr.css" rel="stylesheet" />
 ```
-
-The script provides the minimal code required to get started. It pulls additional resources from our CDN depending on the features you use. We code-split, bundle, and lazy-load to ensure your application loads as fast as possible.
 
 To start the viewer for a space, you should append the following script at the end of the `<body>` section of your app.
 
@@ -62,6 +68,35 @@ To start the viewer for a space, you should append the following script at the e
   });
 </script>
 ```
+
+#### ESM bundle (supports runtime tree shaking)
+
+In many cases, it is advisable to lazy load third party code to ensure a faster initial load time. Smplr.js supports "tree shaking" at runtime through our ES Modules (ESM) bundle. The ESM bundle provides an entry point with the minimal code required to get started. It pulls additional resources from our CDN depending on the features you use. We code-split, bundle, and lazy-load to ensure your application loads as fast as possible. To use the ESM bundle, add our stylesheet in the `<head>` section of your app.
+
+```html
+<link href="https://app.smplrspace.com/lib/smplr.css" rel="stylesheet" />
+```
+
+And then load the ESM bundle through a dynamic import in your code. Below is the equivalent to the example above.
+
+```html
+<script>
+  import("https://app.smplrspace.com/lib/smplr.mjs").then((smplr) => {
+    const space = new smplr.Space({
+      spaceId: "fbc5617e-5a27-4138-851e-839446121b2e",
+      clientToken: "pub_eb760fee77634cdab2fe31146fc371c2",
+      containerId: "test",
+    });
+    space.startViewer({
+      preview: true,
+      onReady: () => console.log("Viewer is ready"),
+      onError: (error) => console.error("Could not start viewer", error),
+    });
+  });
+</script>
+```
+
+#### Advanced usage
 
 If you use a frontend framework like React, you can refer to the [embedding spaces](/guides/embedding.md) guide to learn more about loading smplr.js.
 
