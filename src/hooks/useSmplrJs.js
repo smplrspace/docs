@@ -3,13 +3,26 @@ import { useEffect, useRef } from 'react'
 import useScript from './useScript'
 import useStylesheet from './useStylesheet'
 
-export default function useSmplrJs ({ onLoad, dev = false }) {
+const SMPLR = {
+  umd: {
+    dev: 'https://dev.smplrspace.com/lib/smplr.js',
+    prod: 'https://app.smplrspace.com/lib/smplr.js'
+  },
+  esm: {
+    dev: 'https://dev.smplrspace.com/lib/smplr.mjs',
+    prod: 'https://app.smplrspace.com/lib/smplr.mjs'
+  },
+  css: {
+    dev: 'https://dev.smplrspace.com/lib/smplr.css',
+    prod: 'https://app.smplrspace.com/lib/smplr.css'
+  }
+}
+
+export function useSmplrJsUMD ({ onLoad, dev = false }) {
   const loaded = useRef(false)
 
-  const smplrjsStatus = useScript(
-    `https://${dev ? 'dev' : 'app'}.smplrspace.com/lib/smplr.js`
-  )
-  useStylesheet(`https://${dev ? 'dev' : 'app'}.smplrspace.com/lib/smplr.css`)
+  const smplrjsStatus = useScript(SMPLR.umd[dev ? 'dev' : 'prod'])
+  useStylesheet(SMPLR.css[dev ? 'dev' : 'prod'])
 
   useEffect(() => {
     if (smplrjsStatus === 'ready' && !loaded.current) {
@@ -18,3 +31,12 @@ export default function useSmplrJs ({ onLoad, dev = false }) {
     }
   }, [onLoad, smplrjsStatus])
 }
+
+export function useSmplrJsESM ({ onLoad, dev = false }) {
+  useStylesheet(SMPLR.css[dev ? 'dev' : 'prod'])
+  useEffect(() => {
+    import(SMPLR.esm[dev ? 'dev' : 'prod']).then(onLoad)
+  }, [onLoad, dev])
+}
+
+export default useSmplrJsUMD
