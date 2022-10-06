@@ -22,6 +22,7 @@ space.startViewer({
     objects?: boolean,
     annotations?: boolean,
     compass?: boolean
+    skybox?: boolean
   },
   cameraPlacement?: {
     alpha: number,
@@ -45,6 +46,7 @@ space.startViewer({
 - `renderOptions.objects` - _optional_ - set this value to control whether the furniture and objects (if any) are rendered or not.
 - `renderOptions.annotations` - _optional_ - set this value to control whether the annotations (if any) are rendered or not. This also removes the show/hide annotations button from the viewer.
 - `renderOptions.compass` - _optional_ - set this value to control whether the compass (if any) is rendered or not. This also removes the show/hide compass button from the viewer.
+- `renderOptions.skybox` - _optional_ - set this value to control whether the skybox is rendered or not. _Default value: false_
 - `cameraPlacement` - _optional_ - set the initial position and direction of the camera. See [camera controls](/api-reference/space/custom-ux#camera-controls) for more details.
 - `disableCameraControls` - _optional_ - set this to true so the camera placement cannot be changed by the user. This disables mouse, touch and keyboard inputs as well as removes the zoom control buttons. _Default value: false_
 - `hideNavigationButtons` - _optional_ - set this to true if you want the user to control the camera but want to remove the navigation buttons. Mouse, touch and keyboard inputs will work while the buttons are hidden. _Default value: false_
