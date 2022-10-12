@@ -49,7 +49,7 @@ Adding a CSP directive to your app is an added layer of security that helps to d
 ```html
 <meta
   http-equiv="Content-Security-Policy"
-  content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' 'unsafe-eval' *.smplrspace.com; style-src 'self' 'unsafe-inline'; font-src 'self' *.smplrspace.com; img-src * data:; media-src * data:; connect-src * data:; worker-src 'self' blob:;"
+  content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' 'unsafe-eval' *.smplrspace.com; style-src 'self' 'unsafe-inline'; font-src 'self' *.smplrspace.com; img-src * data:; media-src * data:; connect-src *; worker-src 'self' blob:;"
 />
 ```
 
@@ -59,7 +59,6 @@ Here is a breakdown of the directive:
 - `unsafe-inline` for scripts and styles is commonly used for React app, our viewer is React based.
 - `img-src * data:` and `media-src * data:` are needed to load assets from storage locations.
 - `connect-src *` is needed to load other assets and supports error reporting.
-- `connect-src data:` is needed to load SVG icons bundled in the lib.
 - `wasm-unsafe-eval` allows the usage of the draco decoder [over WASM](https://github.com/WebAssembly/content-security-policy/issues/7). _It can be omitted if your floor plans do not use non-parametric 3D furniture models_.
 - `unsafe-eval` allows the usage of the draco decoder [over WASM in iOS Safari](https://bugs.webkit.org/show_bug.cgi?id=235408). _It can be omitted if your floor plans do not use non-parametric 3D furniture models or do not target iOS Safari as a browser_.
 - `worker-src 'self' blob:` is required by the draco decoder as well. _It can be omitted if your floor plans do not use non-parametric 3D furniture models_.
