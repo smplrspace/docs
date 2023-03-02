@@ -1,4 +1,8 @@
 /examples/temperature-sensors /examples/iot 302
+/examples/temperature-sensors/ /examples/iot/ 302
 /examples/room-availability /examples/space-booking 302
+/examples/room-availability/ /examples/space-booking/ 302
 /examples/office-booking /examples/space-booking 302
+/examples/office-booking/ /examples/space-booking/ 302
 /examples/mall-leasing /examples/leasing-tenancy 302
+/examples/mall-leasing/ /examples/leasing-tenancy/ 302
