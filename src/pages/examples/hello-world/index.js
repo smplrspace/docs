@@ -11,9 +11,20 @@ export const helloWorld = {
   description: `Let's get started with the basics — integrating the viewer into your app. It takes only a few lines of code.`,
   stackblitzProjects: [
     {
-      lang: 'TS',
+      lang: 'Javascript',
+      id: 'smplr-hello-world-js',
+      openFile: 'index.js'
+    },
+    {
+      lang: 'Typescript',
       id: 'smplr-hello-world-ts',
-      openFile: 'index.ts'
+      openFile: 'index.ts',
+      default: true
+    },
+    {
+      lang: 'React',
+      id: 'smplr-hello-world-react',
+      openFile: 'index.tsx'
     }
   ],
   published: true

@@ -1,9 +1,10 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Divider } from '@mantine/core'
+import { Divider, SegmentedControl } from '@mantine/core'
 import { IoReturnUpBack } from 'react-icons/io5'
 import sdk from '@stackblitz/sdk'
 import useThemeContext from '@theme/hooks/useThemeContext'
+import { propEq } from 'ramda'
 
 import Page from './Page'
 import Button from './Button'
@@ -11,17 +12,21 @@ import Button from './Button'
 function Project ({ project }) {
   const { isDarkTheme } = useThemeContext()
 
+  // TODO - persist in localstorage and use as priority
+  const [lang, setLang] = useState(
+    project.stackblitzProjects.find(propEq('default', true)).lang
+  )
+
   useEffect(() => {
-    sdk.embedProjectId(
-      'stackblitz-container',
-      project.stackblitzProjects[0].id,
-      {
-        openFile: project.stackblitzProjects[0].openFile,
-        theme: isDarkTheme ? 'dark' : 'light',
-        hideNavigation: true
-      }
+    const stackblitzProject = project.stackblitzProjects.find(
+      propEq('lang', lang)
     )
-  }, [isDarkTheme, project.stackblitzProjects])
+    sdk.embedProjectId('stackblitz-container', stackblitzProject.id, {
+      openFile: stackblitzProject.openFile,
+      theme: isDarkTheme ? 'dark' : 'light',
+      hideNavigation: true
+    })
+  }, [isDarkTheme, project, lang])
 
   if (!project.published) {
     return (
@@ -61,7 +66,24 @@ function Project ({ project }) {
           All examples
         </Button>
       </div>
-      <p style={{ marginBottom: 0 }}>{project.description}</p>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'baseline'
+        }}
+      >
+        <p style={{ marginBottom: 0 }}>{project.description}</p>
+        <SegmentedControl
+          size='xs'
+          data={project.stackblitzProjects.map(project => ({
+            label: project.lang,
+            value: project.lang
+          }))}
+          value={lang}
+          onChange={setLang}
+        />
+      </div>
       <Divider my='lg' />
       <div id='stackblitz-container' className='stackblitz-embed' />
     </Fragment>
