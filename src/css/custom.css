@@ -109,6 +109,7 @@ main {
 
 .stackblitz-embed {
   flex: 1 0 auto;
+  min-height: 480px;
 }
 
 /* search highlights */
