@@ -34,6 +34,7 @@
   --ifm-color-primary-lightest: #a5d8ff;
   --ifm-code-font-size: 13px;
   --ifm-footer-background-color: var(--ifm-smplr-offwhite);
+  --ifm-footer-padding-vertical: calc(var(--ifm-spacing-vertical) * 1.2);
 }
 :root[data-theme='dark'] {
   --ifm-background-color: #2a2c2c;
@@ -93,6 +94,21 @@ html[data-theme='dark'] .menu {
 
 html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* flex to allow stackblitz embeds to go full height */
+.main-wrapper {
+  display: flex;
+}
+
+main {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.stackblitz-embed {
+  flex: 1 0 auto;
 }
 
 /* search highlights */
