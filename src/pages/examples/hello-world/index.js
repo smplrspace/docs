@@ -24,7 +24,7 @@ export const helloWorld = {
     {
       lang: 'React',
       id: 'smplr-hello-world-react',
-      openFile: 'index.tsx'
+      openFile: 'SpaceViewer.tsx'
     }
   ],
   published: true
