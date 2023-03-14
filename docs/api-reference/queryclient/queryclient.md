@@ -8,7 +8,7 @@ slug: overview
 
 Smplr.js makes a `smplr` object available on the global scope. One of the classes provided under this object is `QueryClient`, which exposes selected API endpoints allowing programmatic queries to retrieve or mutate your Smplrspace hosted data.
 
-[SOON] All queries will be typed end-to-end, reducing runtime errors and improving developer experience with auto-completion.
+All queries are typed end-to-end, reducing runtime errors and improving developer experience with auto-completion.
 
 ## Constructor
 
@@ -61,10 +61,6 @@ smplrClient
     // handle the error
   });
 ```
-
-### Handling errors
-
-We're finalizing a rework of our error handling on the API side to always throw structured errors. Please do not rely too much on the shape of the errors you are currently receiving, it will be improved and documented soon.
 
 ## Queries
 

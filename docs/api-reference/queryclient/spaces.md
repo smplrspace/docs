@@ -6,9 +6,7 @@ sidebar_position: 3
 
 ## getSpace
 
-To query all details about a given space, you can call the following query.
-
-⚠️ **UPCOMING BREAKING CHANGE** ⚠️ — This API is considered beta and will change very soon. Please avoid to rely on it in production. Contact support to know more.
+To query details about a given space, you can call the following query.
 
 ```ts
 smplrClient.getSpace(id: string): Promise<{
