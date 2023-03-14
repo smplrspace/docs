@@ -10,21 +10,65 @@ sidebar_position: 2
 
 The simplest and least powerful way to embed a Smplrspace floor plan is to use our iframe embeds. If all you require is to showcase the floor plan, with no particular option or custom data / UI, this might be what you need. Head to the [getting started section](/#iframe-embeds) to learn how.
 
-### Custom embeds via smplr.js
+### Loading smplr.js using our loader NPM package 🥇
 
-In order to customize the experience of the floor plans or layer on your own data on top of them, you should be using our Javascript library, smplr.js. Head to the [getting started section](/#smplrjs-embeds) to learn how.
+💡 This is the **best and recommended** way to use smplr.js. It provides a typed library which will autocomplete in your editor and help you avoid some mistakes. It is also in line with all our examples.
 
-### Loading smplr.js in React
+👉 To learn how to use the smplr-loader NPM package, please refer to the [getting started section](/#use-our-npm-package).
 
-For React users, you're in luck! Smplrspace is a React house as well so you can use our home made hooks to load smplr.js. The hooks source code is available on the docs repo in the [hooks folder](https://github.com/smplrspace/docs/tree/main/src/hooks). We suggest you copy these hooks in your source code directly.
+### Loading smplr.js (UMD) from our CDN
 
-You can use the default export or the named one `useSmplrJsUMD` which relies on `useScript` to load the UMD bundle and `useStylesheet` to load the CSS file. You can also use the named export `useSmplrJsESM` to load the ESM bundle (recommended) as well as the CSS file.
+This loads a single JS file (bundle) containing all the required frontend code at once. Learn more in the [getting started section](/#umd-vs-esm-packages--tree-shaking).
 
-You can refer to the [hello world example](/examples/hello-world) to see a minimal page using this approach. All [examples](/examples) provided in this docs are using the `useSmplrJs` hook.
+Smplr.js will not be typed using this method.
 
-### Other frameworks
+```html
+<!-- in the <head> section of your HTML -->
+<script src="https://app.smplrspace.com/lib/smplr.js"></script>
+<link href="https://app.smplrspace.com/lib/smplr.css" rel="stylesheet" />
 
-We imagine that you should be able to adapt the instructions for vanilla JS and React above to adapt tp your framework of choice. Of course we welcome any contributions to add guides for other frontend frameworks – click "Edit this page" below and open a PR anytime!
+<!-- at the end of the <body> section of your HTML -->
+<script>
+  const space = new smplr.Space({
+    spaceId: "fbc5617e-5a27-4138-851e-839446121b2e",
+    clientToken: "pub_eb760fee77634cdab2fe31146fc371c2",
+    containerId: "test",
+  });
+  space.startViewer({
+    preview: true,
+    onReady: () => console.log("Viewer is ready"),
+    onError: (error) => console.error("Could not start viewer", error),
+  });
+</script>
+```
+
+### Loading smplr.js (ESM) from our CDN
+
+This lazy loads our code at runtime as ES Modules (ESM) and supports tree shaking for faster load times. Learn more in the [getting started section](/#umd-vs-esm-packages--tree-shaking).
+
+Smplr.js will not be typed using this method.
+
+```html
+<!-- in the <head> section of your HTML -->
+<link href="https://app.smplrspace.com/lib/smplr.css" rel="stylesheet" />
+
+<!-- at the end of the <body> section of your HTML -->
+<!-- this technique uses dynamic imports -->
+<script>
+  import("https://app.smplrspace.com/lib/smplr.mjs").then((smplr) => {
+    const space = new smplr.Space({
+      spaceId: "fbc5617e-5a27-4138-851e-839446121b2e",
+      clientToken: "pub_eb760fee77634cdab2fe31146fc371c2",
+      containerId: "test",
+    });
+    space.startViewer({
+      preview: true,
+      onReady: () => console.log("Viewer is ready"),
+      onError: (error) => console.error("Could not start viewer", error),
+    });
+  });
+</script>
+```
 
 ## Securing your data
 
