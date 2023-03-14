@@ -50,9 +50,9 @@ Add the following in the `<head>` section of your HTML file.
 
 Learn more in the [embedding spaces guide](/guides/embedding#loading-smplrjs-umd-from-our-cdn).
 
-#### Use our NPM package 🥇
+#### Use our NPM package
 
-This is the **recommended way** to use Smplr.js as it provides a better DX with a fully-typed API and code editor auto-completion. Firstly install our loader package with your preferred package manager:
+🥇 This is the **recommended way** to use Smplr.js as it provides a better DX with a fully-typed API and code editor auto-completion. Firstly install our loader package with your preferred package manager:
 
 ```sh
 npm install @smplrspace/smplr-loader
