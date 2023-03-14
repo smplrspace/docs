@@ -50,9 +50,9 @@ Add the following in the `<head>` section of your HTML file.
 
 Learn more in the [embedding spaces guide](/guides/embedding#loading-smplrjs-umd-from-our-cdn).
 
-#### Use our NPM package
+#### Use our NPM package 🥇
 
-Firstly install our loader package with your preferred package manager:
+This is the **recommended way** to use Smplr.js as it provides a better DX with a fully-typed API and code editor auto-completion. Firstly install our loader package with your preferred package manager:
 
 ```sh
 npm install @smplrspace/smplr-loader
@@ -69,7 +69,7 @@ import { loadSmplrJs } from "@smplrspace/smplr-loader";
 
 loadSmplrJs()
   .then((smplr) => {
-    /* enjoy a fully typed API */
+    /* enjoy a fully typed API and auto-completion */
     const space = new smplr.Space({
       spaceId: "...",
       clientToken: "pub_...",
@@ -113,10 +113,6 @@ loadSmplrJs("umd").then(...);
 You **should not try to use a copy** of the library files that you self host. Our frontend and backend resources need to be synced at the commit level to avoid data corruption, loading a copy might break your integration as you might not be using the latest version if we deploy a new version of the platform.
 
 A `smplr.js` **npm package** is on our roadmap but not ready yet due to blockers on the versioning side of things in our database. This remains a priority for us as we understand most engineering team prefer to include pinned versions of their dependencies in their own bundles. We will update our users once this is available.
-
-#### Advanced usage
-
-If you use a frontend framework like React, you can refer to the [embedding spaces](/guides/embedding.md) guide to learn more about loading smplr.js.
 
 ## Preview images
 

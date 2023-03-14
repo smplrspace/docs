@@ -18,7 +18,7 @@ The simplest and least powerful way to embed a Smplrspace floor plan is to use o
 
 ### Loading smplr.js (UMD) from our CDN
 
-This loads a single JS file (bundle) containing all the required frontend code at once. Learn more in the [getting started section](/#umd-vs-esm-packages--tree-shaking).
+This loads a single JS file (bundle) containing all the required frontend code at once. Learn more in the [getting started section](/#umd-vs-esm-bundles--tree-shaking).
 
 Smplr.js will not be typed using this method.
 
@@ -44,7 +44,7 @@ Smplr.js will not be typed using this method.
 
 ### Loading smplr.js (ESM) from our CDN
 
-This lazy loads our code at runtime as ES Modules (ESM) and supports tree shaking for faster load times. Learn more in the [getting started section](/#umd-vs-esm-packages--tree-shaking).
+This lazy loads our code at runtime as ES Modules (ESM) and supports tree shaking for faster load times. Learn more in the [getting started section](/#umd-vs-esm-bundles--tree-shaking).
 
 Smplr.js will not be typed using this method.
 
