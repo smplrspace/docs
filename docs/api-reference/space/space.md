@@ -1,8 +1,10 @@
 ---
 sidebar_position: 1
+sidebar_label: Overview
+slug: overview
 ---
 
-# Overview
+# Embedding spaces
 
 Smplr.js makes a `smplr` object available on the global scope. The main class provided under this object is the `Space` class. It provides the API necessary to preview a space, start an interactive viewer session, add data layers, and more.
 
@@ -19,7 +21,7 @@ const space = new smplr.Space({
 ```
 
 - `spaceId` is the unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
-- ⚠️ **BREAKING CHANGE** ⚠️ — `clientToken` is an API token that is used to authenticate client-side requests. It is safe to have it exposed in your client code. You can manage your organisation's tokens in the Smplrspace dashboard, under <a href='https://app.smplrspace.com/account' target='_blank'>Account Settings</a>. Client tokens are being rolled out and currently not enforced, starting October 1st 2022, request with no token or an invalid token will be rejected. [More info](/guides/embedding#client-tokens).
+- ⚠️ **BREAKING CHANGE** ⚠️ — `clientToken` is an API token that is used to authenticate client-side requests. It is safe to have it exposed in your client code. You can manage your organisation's tokens in the Smplrspace app, by heading to the Developers page from the main menu. Client tokens are being rolled out and currently not enforced, starting October 1st 2022, request with no token or an invalid token will be rejected. [More info](/guides/embedding#client-tokens).
 - `containerId` is the "id" of the html "div" container where smplr.js should render the viewer, something like "smplr-container" that can be found in your html. Only ids are supported, not classes.
 
 ## Interactive viewer session
@@ -48,7 +50,7 @@ space.startViewer({
 - `onModeChange` - _optional_ - is called whenever the user changes the mode. Requires allowModeChange to be set to true.
 - `onReady` - _optional_ - is called once the viewer's initial render is done.
 - `onError` - _optional_ - is called if an error occur while starting the viewer.
-- `...customUX` represents additional options that let you customise the user experience as documented in the [custom UX](/api-reference/space/custom-ux#viewer-options) page.
+- `...customUX` represents additional options that let you customise the user experience as documented in the [custom UX](./custom-ux#viewer-options) page.
 
 Although not a rule not to break, we generally _recommend_ to use `preview: true` as this avoids loading the space if the user do not intend to interact with it. It also helps with reducing the number of views counted on your spaces.
 
@@ -110,7 +112,7 @@ space.addDataLayer({
 - `data` is an array of objects (refered to as data elements) to be rendered.
 - `...rest` represents other parameters that are specific to the type of the layer.
 
-**For more details on the layer types and their specific options and data attributes, refer to the [data layers](/api-reference/space/data-layers.md) page.**
+**For more details on the layer types and their specific options and data attributes, refer to the [data layers](./data-layers.md) page.**
 
 ### Update a layer
 
