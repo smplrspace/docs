@@ -4,7 +4,7 @@ import Layout from '@theme/Layout'
 import { MantineProvider } from '@mantine/core'
 import useThemeContext from '@theme/hooks/useThemeContext'
 
-function Page ({ children }) {
+function Page ({ largeContainer, children }) {
   const { isDarkTheme } = useThemeContext()
 
   // ugly fix mantine SSR issue
@@ -48,7 +48,11 @@ function Page ({ children }) {
         }
       }}
     >
-      <main className='container container--fluid margin-vert--lg'>
+      <main
+        className={`container container--fluid margin-vert--lg ${
+          largeContainer ? 'container-large' : ''
+        }`}
+      >
         {children}
       </main>
     </MantineProvider>
@@ -56,20 +60,22 @@ function Page ({ children }) {
 }
 
 Page.propTypes = {
+  largeContainer: PropTypes.bool,
   children: PropTypes.any
 }
 
 // separate in 2 components because useThemeContext must be under <Layout />
-function Wrapper ({ title, children }) {
+function Wrapper ({ title, largeContainer, children }) {
   return (
     <Layout title={title}>
-      <Page>{children}</Page>
+      <Page largeContainer={largeContainer}>{children}</Page>
     </Layout>
   )
 }
 
 Wrapper.propTypes = {
   title: PropTypes.string,
+  largeContainer: PropTypes.bool,
   children: PropTypes.any
 }
 

@@ -108,7 +108,7 @@ Project.propTypes = {
 // need to wrap in Layout to access theme context
 function LayoutWrapper ({ project }) {
   return (
-    <Page title={project.title}>
+    <Page title={project.title} largeContainer>
       <Project project={project} />
     </Page>
   )

@@ -112,6 +112,12 @@ main {
   min-height: 480px;
 }
 
+@media (min-width: 1440px) {
+  .container-large {
+    max-width: 1780px;
+  }
+}
+
 /* search highlights */
 mark {
   color: #3a3c3c;
