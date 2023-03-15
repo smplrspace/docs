@@ -108,7 +108,7 @@ main {
 }
 
 .stackblitz-embed {
-  flex: 1 0 auto;
+  height: calc(100vh - 110px);
   min-height: 480px;
 }
 
