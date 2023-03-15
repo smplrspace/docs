@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Data layers
 
-The introduction to data layers and how to add, update and remove them is in the [overview](./overview.md#data-layers) page. Below, we describe the different layer types and their respective options.
+The introduction to data layers and how to add, update and remove them is in the [overview](./overview#data-layers) page. Below, we describe the different layer types and their respective options.
 
 ## Generic options
 
@@ -20,7 +20,7 @@ space.addDataLayer({
 }) => void
 ```
 
-- `...layerDefinition` - refer to the [overview](./overview.md#data-layers) page.
+- `...layerDefinition` - refer to the [overview](./overview#data-layers) page.
 - `tooltip` - _optional_ - is taking the newly hovered data element as argument and should return the content of the tooltip to render. It is called once when the pointer starts to hover a data element.
 - `onClick` - _optional_ - is taking the data element that was clicked as argument. It is called each time a click or tap event happens.
 - `onHover` - _optional_ - is taking the newly hovered data element as argument. It is called once when the pointer starts to hover a data element.

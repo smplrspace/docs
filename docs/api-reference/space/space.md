@@ -112,7 +112,7 @@ space.addDataLayer({
 - `data` is an array of objects (refered to as data elements) to be rendered.
 - `...rest` represents other parameters that are specific to the type of the layer.
 
-**For more details on the layer types and their specific options and data attributes, refer to the [data layers](./data-layers.md) page.**
+**For more details on the layer types and their specific options and data attributes, refer to the [data layers](./data-layers) page.**
 
 ### Update a layer
 
