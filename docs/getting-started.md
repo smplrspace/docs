@@ -13,11 +13,11 @@ To get started with Smplrspace, you will need an account. You can sign up from [
 
 ## Embed options
 
-To embed our floor plans in your app, you can either use an **iframe** or our **Javascript library, smplr.js**. The iframe option is the easiest to use but provides limited features — you can only display a floor plan. The Javascript library provides a full API that lets you control the rendering of the floor plans with custom color, behaviours and data layers.
+To embed our floor plans in your app, you can either use an **iframe** or our **Javascript library, smplr.js**. The iframe option is the easiest to use but provides limited features — you can only display a floor plan. The Javascript library provides a fully typed API that lets you control the rendering of the floor plans with custom colors, behaviours and data layers.
 
 ### Iframe embeds
 
-You can find the code snippet for iframe embeds from the editor. Click on the name of the space (top left), then head to the "Services" tab in the right pane, and click "Get embed snippet". It will look something like this:
+You can find the code snippet for iframe embeds from the app. Click on the "..." menu of the space of your choice, then "View details", and on the pane that opens click "Get embed snippet". It will look something like this:
 
 ```html
 <iframe
@@ -33,72 +33,86 @@ You can find the code snippet for iframe embeds from the editor. Click on the na
 
 To control the size of the embed, put it inside a `div` element, the iframe will fill up the div over which you have full control.
 
-You can also add `position: absolute;` in your iframe's style and then set `position: relative; padding-bottom: 66%;` on the parent div to get a responsive embed with a fixed ratio. Replace 66% by your preferred ratio.
+You can also add `position: absolute;` in your iframe's style and then set `position: relative; aspect-ratio: 16/9;` on the parent div to get a responsive embed with a fixed ratio. Replace 16/9 by your preferred ratio.
 
 ### Smplr.js embeds
 
-To embed floor plans using our Javascript library, first load it from our CDN. You will need the JS script itself and the CSS stylesheets.
+To embed floor plans using our Javascript library, first load it from our CDN. You will need the JS script itself and the CSS stylesheets. You could either load them yourself, or more simply use [our NPM package](https://www.npmjs.com/package/@smplrspace/smplr-loader) to load the library.
 
-You **should not try to use a copy** of these files that you self host. Our frontend and backend resources need to be synced at the commit level to avoid data corruption, loading a copy might break your integration as you might not be using the latest version if we deploy a new version of the platform.
+#### Loading from CDN
 
-An **npm package** is on our roadmap but not ready yet due to blockers on the versioning side of things in our database. This remains a priority for us as we understand most engineering team prefer to include pinned versions of their dependencies in their own bundles. We will update our clients once this is available.
-
-#### UMD bundle (single JS file)
-
-The simplest way to get started is to use our Universal Module Definition (UMD) bundle which loads all the required frontend code at once. The disadvantage is a longer loading time on the first visit, subsequent visits will usually be cached. To use the UMD bundle, add these 2 lines to the `<head>` section of your app.
+Add the following in the `<head>` section of your HTML file.
 
 ```html
 <script src="https://app.smplrspace.com/lib/smplr.js"></script>
 <link href="https://app.smplrspace.com/lib/smplr.css" rel="stylesheet" />
 ```
 
-To start the viewer for a space, you should append the following script at the end of the `<body>` section of your app.
+Learn more in the [embedding spaces guide](/guides/embedding#loading-smplrjs-umd-from-our-cdn).
 
-```html
-<script>
-  const space = new smplr.Space({
-    spaceId: "fbc5617e-5a27-4138-851e-839446121b2e",
-    clientToken: "pub_eb760fee77634cdab2fe31146fc371c2",
-    containerId: "test",
-  });
-  space.startViewer({
-    preview: true,
-    onReady: () => console.log("Viewer is ready"),
-    onError: (error) => console.error("Could not start viewer", error),
-  });
-</script>
+#### Use our NPM package
+
+🥇 This is the **recommended way** to use Smplr.js as it provides a better DX with a fully-typed API and code editor auto-completion. Firstly install our loader package with your preferred package manager:
+
+```sh
+npm install @smplrspace/smplr-loader
 ```
 
-#### ESM bundle (supports runtime tree shaking)
-
-In many cases, it is advisable to lazy load third party code to ensure a faster initial load time. Smplr.js supports "tree shaking" at runtime through our ES Modules (ESM) bundle. The ESM bundle provides an entry point with the minimal code required to get started. It pulls additional resources from our CDN depending on the features you use. We code-split, bundle, and lazy-load to ensure your application loads as fast as possible. To use the ESM bundle, add our stylesheet in the `<head>` section of your app.
-
-```html
-<link href="https://app.smplrspace.com/lib/smplr.css" rel="stylesheet" />
+```sh
+yarn add @smplrspace/smplr-loader
 ```
 
-And then load the ESM bundle through a dynamic import in your code. Below is the equivalent to the example above.
+then import it in your code and load as follow:
 
-```html
-<script>
-  import("https://app.smplrspace.com/lib/smplr.mjs").then((smplr) => {
+```js
+import { loadSmplrJs } from "@smplrspace/smplr-loader";
+
+loadSmplrJs()
+  .then((smplr) => {
+    /* enjoy a fully typed API and auto-completion */
     const space = new smplr.Space({
-      spaceId: "fbc5617e-5a27-4138-851e-839446121b2e",
-      clientToken: "pub_eb760fee77634cdab2fe31146fc371c2",
-      containerId: "test",
+      spaceId: "...",
+      clientToken: "pub_...",
+      containerId: "...",
     });
     space.startViewer({
       preview: true,
       onReady: () => console.log("Viewer is ready"),
       onError: (error) => console.error("Could not start viewer", error),
     });
-  });
-</script>
+  })
+  .catch((error) => console.error(error));
 ```
 
-#### Advanced usage
+💡 Try it yourself in our [interactive hello world example](/examples/hello-world), which provides vanilla Javascript, vanilla Typescript and React starting points.
 
-If you use a frontend framework like React, you can refer to the [embedding spaces](/guides/embedding.md) guide to learn more about loading smplr.js.
+Note: `smplr-loader` is not the library itself, but a tiny package that loads the library from our CDN and applies types to the loaded module. We have plans to publish the `smplr.js` library itself to NPM in the future but our backend is not ready for it. See [below](/#warning-against-self-hosting-smplrjs) for details.
+
+### UMD vs ESM bundles & tree shaking
+
+The simplest way to get started is to use our **Universal Module Definition (UMD)** bundle which loads all the required frontend code at once. The disadvantage is a longer loading time on the first visit, subsequent visits will usually be cached.
+
+In many cases, it is advisable to lazy load third party code to ensure a faster initial load time. Smplr.js supports "tree shaking" at runtime through our **ES Modules (ESM)** bundle. The ESM bundle provides an entry point with the minimal code required to get started. It pulls additional resources from our CDN depending on the features you use. We code-split, bundle, and lazy-load to ensure your application loads as fast as possible.
+
+To understand how to load the UMD/ESM bundles from our CDN, refer to the [embedding spaces guide](/guides/embedding#loading-smplrjs-umd-from-our-cdn).
+
+To choose between UMD and ESM using smplr-loader, simply provide your preferred bundle type as the first argument to `loadSmplrJs`. The default is `'esm'`.
+
+```js
+// default is 'esm'
+loadSmplrJs();
+loadSmplrJs("esm").then(...);
+
+// or opt in to 'umd'
+// e.g. if your environment doesn't support ESM
+loadSmplrJs("umd").then(...);
+```
+
+## Warning against self-hosting smplr.js
+
+You **should not try to use a copy** of the library files that you self host. Our frontend and backend resources need to be synced at the commit level to avoid data corruption, loading a copy might break your integration as you might not be using the latest version if we deploy a new version of the platform.
+
+A `smplr.js` **npm package** is on our roadmap but not ready yet due to blockers on the versioning side of things in our database. This remains a priority for us as we understand most engineering team prefer to include pinned versions of their dependencies in their own bundles. We will update our users once this is available.
 
 ## Preview images
 
