@@ -61,6 +61,18 @@ space.startViewer({
 - `disableCameraControls` - _optional_ - set this to true so the camera placement cannot be changed by the user. This disables mouse, touch and keyboard inputs as well as removes the zoom control buttons. _Default value: false_
 - `hideNavigationButtons` - _optional_ - set this to true if you want the user to control the camera but want to remove the navigation buttons. Mouse, touch and keyboard inputs will work while the buttons are hidden. _Default value: false_
 
+## Viewer controls
+
+### Control which levels are visible
+
+This is the programmatic equivalent to pressing the level buttons in the bottom-left controls:
+
+```ts
+space.showUpToLevel(levelIndex: number) => void
+```
+
+- `levelIndex` - zero-based index of the top level you want to see. For example, setting `levelIndex` to `2` is equivalent to pressing the `L3` button.
+
 ## Camera controls
 
 ### Get the camera placement
@@ -111,3 +123,20 @@ space.setCameraPlacement({
 - `animationDuration` - _optional_ - defines the duration of the camera animation in seconds and should be used with animate set to true. _Default value: 0.6_
 
 See the [controlled camera](/examples/controlled-camera) example to see this used in action.
+
+### Center the camera on the space
+
+This is the programmatic equivalent to pressing the center camera button in the bottom-left controls:
+
+```ts
+space.centerCamera() => void
+```
+
+### Zoom in/out
+
+This is the programmatic equivalent to pressing the zoom buttons in the bottom-left controls:
+
+```ts
+space.zoomIn() => void
+space.zoomOut() => void
+```
