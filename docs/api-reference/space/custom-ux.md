@@ -140,3 +140,49 @@ This is the programmatic equivalent to pressing the zoom buttons in the bottom-l
 space.zoomIn() => void
 space.zoomOut() => void
 ```
+
+## Reacting to events from the viewer
+
+You can add event listeners on the viewer to react to interactions happenning in it. The list of event types that can be observed is limited at the moment, and we'll be adding more based on users needs and demand.
+
+### Event types available
+
+The event types currently available are as follow:
+
+- `CameraStartedMoving` - emitted once when the camera starts moving (rotate, pan, zoom)
+- `CameraStoppedMoving` - emitted once when the camera stops moving
+
+Event types can be specified as `string` value or via the `EventType` Typescript enum. Both methods are type checked if you use Typescript.
+
+### Add a listener
+
+```ts
+space.addEventListener(event: EventType | string, handler: () => void): number
+```
+
+- `event` - one of the event type listed above.
+- `handler` - a function that will be called each time the event of the provided type is emitted.
+
+The function returns a unique `listenerId` that can be used to remove the listener.
+
+### Remove a listener
+
+```ts
+space.removeEventListener(listenerId: number): void
+```
+
+- `listenerId` - unique id of the listener to remove, it is provided as return value when calling `addEventListener`.
+
+### Clear listeners for a given event type
+
+```ts
+space.clearEventListeners(event: EventType | string): void
+```
+
+- `event` - one of the event type listed above.
+
+### Clear all listeners
+
+```ts
+space.clearAllEventListeners(): void
+```
