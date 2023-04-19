@@ -104,7 +104,7 @@ space.addDataLayer({
   type: 'point' | 'icon' | 'polygon' | 'polyline',
   data: object[],
   ...rest: object
-}) => void
+}) => DataLayerController
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
@@ -112,7 +112,21 @@ space.addDataLayer({
 - `data` is an array of objects (refered to as data elements) to be rendered.
 - `...rest` represents other parameters that are specific to the type of the layer.
 
+The method returns a `DataLayerController` which provides an API to manipulate the layer. See [the data layer controller section](./data-layers#data-layer-controller) for details.
+
 **For more details on the layer types and their specific options and data attributes, refer to the [data layers](./data-layers) page.**
+
+### Get a layer's controller
+
+To retrieve the controller of a data layer, you can call the following method:
+
+```ts
+space.getDataLayer(id: string) => DataLayerController | undefined
+```
+
+- `id` is the identifier of the layer.
+
+The function will return the [controller](./data-layers#data-layer-controller) if the layer exists, or `undefined` if it doesn't.
 
 ### Update a layer
 
@@ -129,6 +143,8 @@ space.updateDataLayer({
 - `id` is the identifier of the layer to update.
 - `data` & `...rest` definitions are matching the ones provided for `addDataLayer`.
 
+An equivalent method is `update` on a [data layer controller](./data-layers#data-layer-controller).
+
 ### Remove a layer
 
 Removing a data layer completely is done as follow.
@@ -138,3 +154,5 @@ space.removeDataLayer(id: string) => void
 ```
 
 - `id` is the identifier of the layer to remove.
+
+An equivalent method is `remove` on a [data layer controller](./data-layers#data-layer-controller).

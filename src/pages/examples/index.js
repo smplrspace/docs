@@ -32,6 +32,7 @@ import { iot } from './iot'
 import { propertyManagement } from './property-management'
 import { controlledCamera } from './controlled-camera'
 import { seeThroughWalls } from './see-through-walls'
+import { customTooltips } from './custom-tooltips'
 
 const projects = [
   helloWorld,
@@ -42,6 +43,7 @@ const projects = [
   addDataElements,
   stackingPlan,
   warehouseBins,
+  customTooltips,
   controlledCamera,
   seeThroughWalls
 ]
