@@ -66,8 +66,8 @@ const config = {
             position: 'right'
           },
           {
-            href: 'https://github.com/smplrspace/docs',
-            label: 'GitHub',
+            href: 'https://changelog.smplrspace.com',
+            label: 'Changelog',
             position: 'right'
           }
         ]
