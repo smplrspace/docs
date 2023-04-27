@@ -1,12 +1,8 @@
 /* eslint-disable import/no-webpack-loader-syntax */
 import React from 'react'
 
-import Project from '../../../components/Project'
-import IoT from './IoT'
+import StackblitzProject from '../../../components/StackblitzProject'
 
-import IoTCode from '!!raw-loader!./IoT'
-import ViewerCode from '!!raw-loader!./Viewer'
-import data from '!!raw-loader!./_data'
 import { USE_CASES } from '../_categories'
 
 export const iot = {
@@ -15,21 +11,26 @@ export const iot = {
   category: USE_CASES,
   description: `Complement your existing dashboards with actual display of sensor locations and ranges. Not only do users love this, your sales teams will thank you as well.`,
   published: true,
-  code: [
+  stackblitzProjects: [
     {
-      filename: 'IoT.js',
-      lang: 'jsx',
-      content: IoTCode
+      lang: 'Javascript',
+      id: 'smplr-iot-js',
+      openFile: 'index.js'
     },
-    { filename: 'Viewer.js', lang: 'jsx', content: ViewerCode },
-    { filename: 'data.js', lang: 'jsx', content: data }
+    {
+      lang: 'Typescript',
+      id: 'smplr-iot-ts',
+      openFile: 'index.ts',
+      default: true
+    },
+    {
+      lang: 'React',
+      id: 'smplr-iot-react',
+      openFile: 'SpaceViewer.tsx'
+    }
   ]
 }
 
 export default function () {
-  return (
-    <Project project={iot}>
-      <IoT />
-    </Project>
-  )
+  return <StackblitzProject project={iot} />
 }
