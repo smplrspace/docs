@@ -12,22 +12,21 @@ export const spaceBooking = {
   description: `Showcase real time availability of assets, from entire event spaces to meeting rooms and down to single chairs.`,
   published: true,
   stackblitzProjects: [
-    // {
-    //   lang: 'Javascript',
-    //   id: 'smplr-booking-js',
-    //   openFile: 'index.js'
-    // },
-    // {
-    //   lang: 'Typescript',
-    //   id: 'smplr-booking-ts',
-    //   openFile: 'index.ts',
-    //   default: true
-    // },
+    {
+      lang: 'Javascript',
+      id: 'smplr-booking-js',
+      openFile: 'index.js'
+    },
+    {
+      lang: 'Typescript',
+      id: 'smplr-booking-ts',
+      openFile: 'index.ts',
+      default: true
+    },
     {
       lang: 'React',
       id: 'smplr-booking-react',
-      openFile: 'SpaceViewer.tsx',
-      default: true
+      openFile: 'SpaceViewer.tsx'
     }
   ]
 }
