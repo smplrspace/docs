@@ -21,7 +21,7 @@ space.addDataLayer({
 ```
 
 - `...layerDefinition` - refer to the [overview](./overview#data-layers) page.
-- `tooltip` - _optional_ - is taking the newly hovered data element as argument and should return the content of the tooltip to render. It is called once when the pointer starts to hover a data element.
+- `tooltip` - _optional_ - is taking the newly hovered data element as argument and should return the content of the tooltip to render. It is called once when the pointer starts to hover a data element. Built-in tooltips are text only, newlines are supported by using [multi-line template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#multi-line_strings). If you need HTML/CSS in your tooltips, check the [custom tooltips example](/examples/custom-tooltips/).
 - `onClick` - _optional_ - is taking the data element that was clicked as argument. It is called each time a click or tap event happens.
 - `onHover` - _optional_ - is taking the newly hovered data element as argument. It is called once when the pointer starts to hover a data element.
 - `onHoverOut` - _optional_ - is taking the previously hovered data element as argument. It is called once when the pointer stops hovering a data element.
