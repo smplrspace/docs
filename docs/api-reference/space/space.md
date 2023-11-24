@@ -40,7 +40,8 @@ space.startViewer({
   allowModeChange?: boolean,
   onModeChange?: (mode: '2d' | '3d') => void,
   onReady?: () => void,
-  onError?: (error: string | Error) => void,
+  onError?: (errorMessage: string) => void,
+  onResize?: (containerRect: DOMRect) => void,
   ...customUX: object
 }) => void
 ```
@@ -52,6 +53,7 @@ space.startViewer({
 - `onModeChange` - _optional_ - is called whenever the user changes the mode. Requires allowModeChange to be set to true.
 - `onReady` - _optional_ - is called once the viewer's initial render is done.
 - `onError` - _optional_ - is called if an error occur while starting the viewer.
+- `onResize` - _optional_ - is called whenever the viewer is resized, including after the initial render, when the window is resized, or on mobile when the device is rotated between vertical to horizontal positions. This can be used to reposition custom tooltips (e.g.).
 - `...customUX` represents additional options that let you customise the user experience as documented in the [custom UX](./custom-ux#viewer-options) page.
 
 Although not a rule not to break, we generally _recommend_ to use `preview: true` as this avoids loading the space if the user do not intend to interact with it. It also helps with reducing the number of views counted on your spaces.
