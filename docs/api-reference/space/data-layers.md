@@ -21,7 +21,7 @@ space.addDataLayer({
 ```
 
 - `...layerDefinition` - refer to the [overview](./overview#data-layers) page.
-- `tooltip` - _optional_ - is taking the newly hovered data element as argument and should return the content of the tooltip to render. It is called once when the pointer starts to hover a data element.
+- `tooltip` - _optional_ - is taking the newly hovered data element as argument and should return the content of the tooltip to render. It is called once when the pointer starts to hover a data element. Built-in tooltips are text only, newlines are supported by using [multi-line template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#multi-line_strings). If you need HTML/CSS in your tooltips, check the [custom tooltips example](/examples/custom-tooltips/).
 - `onClick` - _optional_ - is taking the data element that was clicked as argument. It is called each time a click or tap event happens.
 - `onHover` - _optional_ - is taking the newly hovered data element as argument. It is called once when the pointer starts to hover a data element.
 - `onHoverOut` - _optional_ - is taking the previously hovered data element as argument. It is called once when the pointer stops hovering a data element.
@@ -188,6 +188,50 @@ space.addDataLayer({
 - `reshapeBoxColor` - _optional_ - hexadecimal string defining the color of the boxes used to reshape the polygons. Used in conjunction with onDrag or onDrop. _Default value: "#086bb7"_
 
 The [Add data elements](/examples/add-data-elements) example gives a full overview of draggable & reshapable layers, including a polyline layer.
+
+### Dotted polyline layer
+
+A dotted polyline layer is similar to a polyline layer but has each data element rendered as a line of spheres. Also lines can be animated with a few styles.
+
+```ts
+space.addDataLayer({
+  id: string,
+  type: 'dotted-polyline',
+  data: [{
+    id: string | number,
+    coordinates: [{
+      levelIndex: number,
+      x: number,
+      z: number,
+      elevation: number
+    }],
+    ...customData: object
+  }],
+  diameter?: number | (dataElement: object) => number,
+  gap?: number,
+  anchor?: 'bottom' | 'center' | 'top',
+  color?: string | (dataElement: object) => string,
+  alpha?: number,
+  animation?: false | 'railway' | 'waves',
+  speed?: number,
+  amplitude?: number,
+  waves?: number
+}) => DataLayerController
+```
+
+- `id` is a unique identifier for this layer which is used for updates.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `coordinates` array. Elements can also contain any additional custom data used for rendering options.
+- `diameter` - _optional_ - defines the diameter of the sphere to render in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the diameter for that element. _Default value: 1m._
+- `gap` - _optional_ - defines the distance between each sphere in the line as a fraction of the diameter. E.g. 0.3 means the gap is 30% of the diameter. _Default value: 0.3._
+- `anchor` - _optional_ - defines if the position provided for each data element corresponds to the bottom, center or top of the sphere. _Default value: center._
+- `color` - _optional_ - defines the color of the sphere to render. It can be defined as a hexadecimal string like "#3a3c3c" for all elements or per element with a function that takes each element as argument and returns the hexadecimal color string for that element. _Default value: "#2393d4"._
+- `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1._
+- `animation` - _optional_ - use `false` to disable animation, `'railway'` to move spheres in a queue like wagons, or `'waves'` to scale spheres like a wave. _Default value: false._
+- `speed` - _optional_ - defines the speed of the animation. In 'railway' mode, speed 1 means each sphere gets to next one in 1 second. In 'waves' mode, speed 1 means it takes 1 second for a wave to go up and down for each sphere. _Default value: 1._
+- `amplitude` - _optional, 'waves' mode only_ - defines the scaling factor of the waves, so 0.4 means each sphere will grow 40% of its diameter. _Default value: 0.4._
+- `waves` - _optional, 'waves' mode only_ - defines the number of waves visible on each line at a single point of time. _Default value: 1._
+
+Live example coming soon.
 
 ### Furniture layer
 
