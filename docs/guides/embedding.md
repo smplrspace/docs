@@ -91,7 +91,7 @@ Adding a CSP directive to your app is an added layer of security that helps to d
 ```html
 <meta
   http-equiv="Content-Security-Policy"
-  content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' 'unsafe-eval' *.smplrspace.com; style-src 'self' 'unsafe-inline'; font-src 'self' *.smplrspace.com; img-src * data:; media-src * data:; connect-src *; worker-src 'self' blob:;"
+  content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' 'unsafe-eval' *.smplrspace.com; style-src 'self' 'unsafe-inline'; font-src 'self' *.smplrspace.com; img-src * data: blob:; media-src * data:; connect-src *; worker-src 'self' blob:;"
 />
 ```
 
