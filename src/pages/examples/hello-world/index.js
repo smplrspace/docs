@@ -11,6 +11,11 @@ export const helloWorld = {
   description: `Let's get started with the basics — integrating the viewer into your app. It takes only a few lines of code.`,
   stackblitzProjects: [
     {
+      lang: 'Static (CDN)',
+      id: 'smplr-hello-world-cdn',
+      openFile: 'index.html'
+    },
+    {
       lang: 'Javascript',
       id: 'smplr-hello-world-js',
       openFile: 'index.js'
