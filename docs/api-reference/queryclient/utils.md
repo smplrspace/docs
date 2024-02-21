@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Utils
+# Utility
 
 ## checkApiConnection
 
@@ -22,4 +22,4 @@ smplrClient.getApiVersion() => Promise<string>
 
 ## Need anything else?
 
-Get in touch with any use-case that would require new queries to be exposed.
+[Get in touch](mailto:support@smplrspace.com) with any use-case that would require new queries to be exposed.
