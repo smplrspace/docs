@@ -6,9 +6,16 @@ slug: overview
 
 # Querying your data
 
-Smplr.js makes a `smplr` object available on the global scope. One of the classes provided under this object is `QueryClient`, which exposes selected API endpoints allowing programmatic queries to retrieve or mutate your Smplrspace hosted data.
+Smplr.js provides a `smplr` object. One of the classes provided under this object is `QueryClient`, which exposes capabilities generally related to the extraction of information out of your floor plans and spatial data. Here are a few examples:
 
-All queries are typed end-to-end, reducing runtime errors and improving developer experience with auto-completion.
+- call selected backend API endpoints allowing programmatic queries to retrieve or mutate your Smplrspace hosted data,
+- extract furniture listings or information from the floor plans,
+- compute distances, areas, and the like from mapped data,
+- compute centers, bounding boxes, concave hulls,
+- ask if a point or a piece of furniture is located within a given boundary,
+- and we're adding queries based on demand, so [get in touch](mailto:support@smplrspace.com) and share your use-case.
+
+Most queries are typed end-to-end, reducing runtime errors and improving developer experience with auto-completion.
 
 ## Constructor
 
@@ -26,7 +33,7 @@ const smplrClient = new smplr.QueryClient({
 
 ## How to use it
 
-Each query exposed via `QueryClient` return a `Promise` ([MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)) to the resulting data, and throws structured errors if any. You can consume them and handle errors as per your preference using `Promise.then().catch()` or `async/await` with a `try/catch` block.
+Some queries exposed via `QueryClient` are synchronous, while others return a `Promise` ([MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)) to the resulting data, and throw structured errors if any. You can consume such queries and handle errors as per your preference using `Promise.then().catch()` or `async/await` with a `try/catch` block.
 
 ### Using async/await
 
@@ -64,11 +71,11 @@ smplrClient
 
 ## Queries
 
-The query client has just been released and will be expanded on over the coming months based on user requests. For now, we support `utils` queries to check the connection and version of the API, as well as `spaces` queries to retrieve details about spaces.
+The query client is pretty recent and will fast evolving based on user requests. Below are the type of queries currently supported. Get more details in the dedicated page.
 
-Get more details in the dedicated page:
+- [Utility queries](./utils): check the connection and version of the API.
+- [Spaces queries](./spaces): retrieve details about your spaces.
+- [Furniture queries](./furniture): extract furniture from your spaces.
+- [Geometry queries](./geometry): compute dimensions and perform geometrical simplifications of your data.
 
-- [Utils queries](./utils)
-- [Spaces queries](./spaces)
-
-Get in touch with any use-case that would require new queries to be exposed.
+[Get in touch](mailto:support@smplrspace.com) with any use-case that would require new queries to be exposed.
