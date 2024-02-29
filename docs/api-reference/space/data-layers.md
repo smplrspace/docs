@@ -232,10 +232,13 @@ space.addDataLayer({
   anchor?: 'bottom' | 'center' | 'top',
   color?: string | (dataElement: object) => string,
   alpha?: number,
-  animation?: false | 'railway' | 'waves',
+  animation?: false | 'waves' | 'railway',
+  // waves animation options
   speed?: number,
   amplitude?: number,
-  waves?: number
+  waves?: number,
+  // railway animation options
+  speed?: number,
 }) => DataLayerController
 ```
 
@@ -247,11 +250,18 @@ space.addDataLayer({
 - `color` - _optional_ - defines the color of the sphere to render. It can be defined as a hexadecimal string like "#3a3c3c" for all elements or per element with a function that takes each element as argument and returns the hexadecimal color string for that element. _Default value: "#2393d4"._
 - `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1._
 - `animation` - _optional_ - use `false` to disable animation, `'railway'` to move spheres in a queue like wagons, or `'waves'` to scale spheres like a wave. _Default value: false._
-- `speed` - _optional_ - defines the speed of the animation. In 'railway' mode, speed 1 means each sphere gets to next one in 1 second. In 'waves' mode, speed 1 means it takes 1 second for a wave to go up and down for each sphere. _Default value: 1._
-- `amplitude` - _optional, 'waves' mode only_ - defines the scaling factor of the waves, so 0.4 means each sphere will grow 40% of its diameter. _Default value: 0.4._
-- `waves` - _optional, 'waves' mode only_ - defines the number of waves visible on each line at a single point of time. _Default value: 1._
 
-Live example coming soon.
+##### Waves animation options
+
+- `speed` - _optional_ - defines the speed of the animation. Speed 1 means it takes 1 second for a wave to go up and down for each sphere. _Default value: 1._
+- `amplitude` - _optional_ - defines the scaling factor of the waves, so 0.4 means each sphere will grow 40% of its diameter. _Default value: 0.4._
+- `waves` - _optional_ - defines the number of waves visible on each line at a single point of time. _Default value: 1._
+
+##### Railway animation options
+
+- `speed` - _optional_ - defines the speed of the animation. Speed 1 means each sphere gets to next one in 1 second. _Default value: 1._
+
+Live code example coming soon.
 
 ### Furniture layer
 
