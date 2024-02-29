@@ -38,6 +38,7 @@ A point layer has each data element rendered as a sphere.
 space.addDataLayer({
   id: string,
   type: 'point',
+  shape: 'sphere' | 'cube',
   data: [{
     id: string | number,
     position: {
@@ -48,22 +49,41 @@ space.addDataLayer({
     },
     ...customData: object
   }],
-  diameter?: number | (dataElement: object) => number,
-  anchor?: 'bottom' | 'center' | 'top',
   color?: string | (dataElement: object) => string,
+  anchor?: 'bottom' | 'center' | 'top',
   alpha?: number,
   onDrag?: ({ data: object }) => void,
   onDrop?: ({ data: object, position: object }) => void
+  // for shape as sphere only
+  diameter?: number | (dataElement: object) => number | { x: number; y: number; z: number },
+  // for shape as cube only
+  size?: number
+  width?: number
+  height?: number
+  depth?: number
+  scale?: (dataElement: object) => number | { x: number; y: number; z: number },
 }) => DataLayerController
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
+- `shape` is the the 3D shape used to render each data element. Each shape comes with its own options defined below.
 - `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `position`. Elements can also contain any additional custom data used for rendering options.
-- `diameter` - _optional_ - defines the diameter of the sphere to render in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the diameter for that element. _Default value: 1m._
-- `anchor` - _optional_ - defines if the position provided for each data element corresponds to the bottom, center or top of the sphere. _Default value: center._
 - `color` - _optional_ - defines the color of the sphere to render. It can be defined as a hexadecimal string like "#3a3c3c" for all elements or per element with a function that takes each element as argument and returns the hexadecimal color string for that element. _Default value: "#2393d4"_
+- `anchor` - _optional_ - defines if the position provided for each data element corresponds to the bottom, center or top of the sphere. _Default value: center._
 - `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1_
 - `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable. Each handler takes the dragged data element as argument. `onDrop` also receives the new position of the element so it can be updated in your app state and database.
+
+##### Sphere shape options
+
+- `diameter` - _optional_ - defines the diameter of the sphere to render in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the diameter for that element. The diameter can be a number to render a perfectly round sphere, or an object providing the "diameter" per axis to render ellipsoids. _Default value: 1m._
+
+##### Cube shape options
+
+- `size` - _optional_ - defines the default size of each side of the cube in meters. _Default value: 1m._
+- `width` - _optional_ - defines the width of the cube in meters. _Default value: same as size._
+- `height` - _optional_ - defines the height of the cube in meters. _Default value: same as size._
+- `depth` - _optional_ - defines the depth of the cube in meters. _Default value: same as size._
+- `scale` - _optional_ - defines the per-data-element multiplication factor to the size of the cubes. It is a function that takes each element as argument and returns the scale factor for that element. The scale factor can be a number for uniform scaling in all directions, or an object providing one factor per axis.
 
 The [internet of things](/examples/iot) example provides code implementation of point data layers. The [add data elements](/examples/add-data-elements) example gives a full overview of draggable layers.
 
