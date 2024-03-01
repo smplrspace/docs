@@ -315,7 +315,11 @@ space.addDataLayer({
     levelIndex: number,
     x: number,
     z: number,
-  }],
+  }] | Record<number, [{
+    levelIndex: number,
+    x: number,
+    z: number,
+  }]>,
   confidenceRadius?: number,
   // spheres style options
   elevation?: number,
@@ -336,7 +340,7 @@ space.addDataLayer({
 - `gridSize` - _optional_ - defines the size in meters of each "cell" of the heat map grid. _Default value: 1m._
 - `gridFill` - _optional_ - defines the size of each grid "element" relatively to its "cell". A value of 1 means the element fills up the cell, 0.9 would add a 10% padding, while 1.1 would add a 10% overflow. _Default value: 1._
 - `alpha` - _optional_ - defines the transparency of the rendered grid "elements". The value should be between 0 (invisible) and 1 (opaque). _Default value: 1._
-- `mask` - _optional_ - a 2D polygon coordinates array that lets you define the area where the heat map should be interpolated and rendered. By default, the space's footprint on the active level will be used as mask.
+- `mask` - _optional_ - a 2D polygon coordinates array that lets you define the area where the heat map should be interpolated and rendered. By default, the space's footprint on the active level will be used as mask. You can also pass an object with a mask for each level, with the key being the levelIndex, and for levels with no mask, it will use the level's footprint.
 - `confidenceRadius` - _optional_ - defines the distance in meters from the provided data points where interpolation makes sense. Grid "elements" are rendered at their nominal size (see `gridSize` and `gridFill`) when they are in close proximity to a datapoint. As they get further, their rendered size decreases (linearly to the distance to the nearest data point) as a way to communicate the confidence in the interpolated value. When a grid "element"'s distance to the nearest datapoint reaches the confidenceRadius value, it's rendered size reaches 0. By default, the confidenceRadius value is equal to the median of the distance between each data point and its 2 nearest datapoints.
 
 ##### Spheres style options
