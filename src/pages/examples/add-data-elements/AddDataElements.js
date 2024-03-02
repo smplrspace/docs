@@ -204,6 +204,7 @@ const AddDataElements = () => {
     space.addDataLayer({
       id: 'points',
       type: 'point',
+      shape: 'sphere',
       data: autoElevation(points),
       diameter: 0.5,
       anchor: 'bottom',
