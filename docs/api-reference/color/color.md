@@ -16,15 +16,21 @@ Another aspect of color utilization with Smplrspace, is that you're manipulating
 
 ## Color tools we provide
 
+### Scales and legend
+
 The `Color` class in smplr.js provides a few color tools to help you get going quickly. The main part is color scales. We provide numerical scales based of [ColorBrewer](https://colorbrewer2.org), including sequential single hue, sequential multi-hue, and diverging scales. We also provide a categorical scale that helps you quickly map categories to colors, and a RAG (red/amber/green) scale.
 
 We also have a `Legend` component suitable for numerical scale, which works with our scales and your custom scales as well. This component is available for React, as well as vanilla Javascript.
+
+### Color mapping
 
 Finally, as the Smplrspace viewer is a 3D scene, colors are affected by a number of parameters like lighting, materials, shadows, etc. So colors in the viewer do not behave like clean CSS colors. You can actually see how a single sphere does not have the same color on its whole surface.
 
 ![sphere color](/img/api-reference/sphere-color.png)
 
 To make colors more predictable, we provide two utility methods to convert colors between their CSS value and their **approximate perceived** value in the viewer. As explained, their is no clear one to one mapping, but we generally found that this works quite well. You could for example use this to render a custom legend for categorical scales.
+
+### Next pages
 
 Explore these tools on their respective API reference pages:
 
