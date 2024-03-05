@@ -27,7 +27,7 @@ interface LegendProps {
 <div width={200}>
   <smplr.Color.Legend
     colorScale={Color.numericScale({
-      name: Color.NumericScale.Blues,
+      name: Color.NumericScale.RdYlBu,
       domain: [10, 30],
     })}
     domain={[10, 30]}
@@ -63,7 +63,7 @@ smplr.Color.drawLegend({
 smplr.Color.drawLegend({
   containerId: 'smplr-legend',
   colorScale: Color.numericScale({
-    name: Color.NumericScale.Blues,
+    name: Color.NumericScale.RdYlBu,
     domain: [10, 30],
   }),
   domain: [10, 30],
