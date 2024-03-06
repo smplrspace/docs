@@ -103,6 +103,7 @@ const PropertyManagement = () => {
     space.addDataLayer({
       id: 'reports',
       type: 'point',
+      shape: 'sphere',
       diameter: 0.6,
       data: autoElevation(allReports),
       tooltip: d => d.title,

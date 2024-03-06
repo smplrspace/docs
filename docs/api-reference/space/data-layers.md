@@ -8,7 +8,7 @@ The introduction to data layers and how to add, update and remove them is in the
 
 ## Generic options
 
-Some options correspond to generic behaviours that are shared by all data layer types, making it easy to swap between similar layer types (e.g. "point" and "icon").
+Some options correspond to generic behaviours that are shared by all interactive data layers, making it easy to swap between similar layer types (e.g. "point" and "icon").
 
 ```ts
 space.addDataLayer({
@@ -38,6 +38,7 @@ A point layer has each data element rendered as a sphere.
 space.addDataLayer({
   id: string,
   type: 'point',
+  shape: 'sphere' | 'cube',
   data: [{
     id: string | number,
     position: {
@@ -48,22 +49,41 @@ space.addDataLayer({
     },
     ...customData: object
   }],
-  diameter?: number | (dataElement: object) => number,
-  anchor?: 'bottom' | 'center' | 'top',
   color?: string | (dataElement: object) => string,
+  anchor?: 'bottom' | 'center' | 'top',
   alpha?: number,
   onDrag?: ({ data: object }) => void,
   onDrop?: ({ data: object, position: object }) => void
+  // sphere shape options
+  diameter?: number | (dataElement: object) => number | { x: number; y: number; z: number },
+  // cube shape options
+  size?: number
+  width?: number
+  height?: number
+  depth?: number
+  scale?: (dataElement: object) => number | { x: number; y: number; z: number },
 }) => DataLayerController
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
+- `shape` is the the 3D shape used to render each data element. Each shape comes with its own options defined below.
 - `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `position`. Elements can also contain any additional custom data used for rendering options.
-- `diameter` - _optional_ - defines the diameter of the sphere to render in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the diameter for that element. _Default value: 1m._
-- `anchor` - _optional_ - defines if the position provided for each data element corresponds to the bottom, center or top of the sphere. _Default value: center._
 - `color` - _optional_ - defines the color of the sphere to render. It can be defined as a hexadecimal string like "#3a3c3c" for all elements or per element with a function that takes each element as argument and returns the hexadecimal color string for that element. _Default value: "#2393d4"_
+- `anchor` - _optional_ - defines if the position provided for each data element corresponds to the bottom, center or top of the sphere. _Default value: center._
 - `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1_
 - `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable. Each handler takes the dragged data element as argument. `onDrop` also receives the new position of the element so it can be updated in your app state and database.
+
+##### Sphere shape options
+
+- `diameter` - _optional_ - defines the diameter of the sphere to render in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the diameter for that element. The diameter can be a number to render a perfectly round sphere, or an object providing the "diameter" per axis to render ellipsoids. _Default value: 1m._
+
+##### Cube shape options
+
+- `size` - _optional_ - defines the default size of each side of the cube in meters. _Default value: 1m._
+- `width` - _optional_ - defines the width of the cube in meters. _Default value: same as size._
+- `height` - _optional_ - defines the height of the cube in meters. _Default value: same as size._
+- `depth` - _optional_ - defines the depth of the cube in meters. _Default value: same as size._
+- `scale` - _optional_ - defines the per-data-element multiplication factor to the size of the cubes. It is a function that takes each element as argument and returns the scale factor for that element. The scale factor can be a number for uniform scaling in all directions, or an object providing one factor per axis.
 
 The [internet of things](/examples/iot) example provides code implementation of point data layers. The [add data elements](/examples/add-data-elements) example gives a full overview of draggable layers.
 
@@ -212,10 +232,13 @@ space.addDataLayer({
   anchor?: 'bottom' | 'center' | 'top',
   color?: string | (dataElement: object) => string,
   alpha?: number,
-  animation?: false | 'railway' | 'waves',
+  animation?: false | 'waves' | 'railway',
+  // waves animation options
   speed?: number,
   amplitude?: number,
-  waves?: number
+  waves?: number,
+  // railway animation options
+  speed?: number,
 }) => DataLayerController
 ```
 
@@ -227,11 +250,18 @@ space.addDataLayer({
 - `color` - _optional_ - defines the color of the sphere to render. It can be defined as a hexadecimal string like "#3a3c3c" for all elements or per element with a function that takes each element as argument and returns the hexadecimal color string for that element. _Default value: "#2393d4"._
 - `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1._
 - `animation` - _optional_ - use `false` to disable animation, `'railway'` to move spheres in a queue like wagons, or `'waves'` to scale spheres like a wave. _Default value: false._
-- `speed` - _optional_ - defines the speed of the animation. In 'railway' mode, speed 1 means each sphere gets to next one in 1 second. In 'waves' mode, speed 1 means it takes 1 second for a wave to go up and down for each sphere. _Default value: 1._
-- `amplitude` - _optional, 'waves' mode only_ - defines the scaling factor of the waves, so 0.4 means each sphere will grow 40% of its diameter. _Default value: 0.4._
-- `waves` - _optional, 'waves' mode only_ - defines the number of waves visible on each line at a single point of time. _Default value: 1._
 
-Live example coming soon.
+##### Waves animation options
+
+- `speed` - _optional_ - defines the speed of the animation. Speed 1 means it takes 1 second for a wave to go up and down for each sphere. _Default value: 1._
+- `amplitude` - _optional_ - defines the scaling factor of the waves, so 0.4 means each sphere will grow 40% of its diameter. _Default value: 0.4._
+- `waves` - _optional_ - defines the number of waves visible on each line at a single point of time. _Default value: 1._
+
+##### Railway animation options
+
+- `speed` - _optional_ - defines the speed of the animation. Speed 1 means each sphere gets to next one in 1 second. _Default value: 1._
+
+Live code example coming soon.
 
 ### Furniture layer
 
@@ -255,6 +285,81 @@ space.addDataLayer({
 - `color` - _optional_ - defines the displayed color of the furniture. It can be defined as a hexadecimal string like "#3a3c3c" for all elements or per element with a function that takes each element as argument and returns the hexadecimal color string for that element. _Default value: "#2393d4"_
 
 The [space booking](/examples/space-booking) example provides a simple implementation of a furniture data layer.
+
+### Heat map layer
+
+A heat map layer renders a grid of colored "elements" representing the interpolated value of a given metric across the space, based on a few data points for that metric located in the space. The rendered size of each grid "element" communicates the confidence in the interpolated value. It is typically used to display environmental data that has some level of spatial continuity like temperature, air quality, or to a certain extent crowd density.
+
+**Please take note:** Heat map layers are non-interactive layers. [Generic options](#generic-options) do not apply.
+
+```ts
+space.addDataLayer({
+  id: string,
+  type: 'heatmap',
+  style: 'spheres' | 'grid' | 'bar-chart',
+  data: [{
+    id: string | number,
+    position: {
+      levelIndex: number,
+      x: number,
+      z: number,
+    },
+    ...customData: object
+  }],
+  value: (dataElement: object) => number,
+  color: (interpolatedValue: number) => string,
+  gridSize?: number,
+  gridFill?: number,
+  alpha?: number,
+  mask?: [{
+    levelIndex: number,
+    x: number,
+    z: number,
+  }] | Record<number, [{
+    levelIndex: number,
+    x: number,
+    z: number,
+  }]>,
+  confidenceRadius?: number,
+  // spheres style options
+  elevation?: number,
+  squishFactor?: number,
+  // grid style options
+  elevation?: number,
+  thickness?: number,
+  // bar-chart style options
+  height: (interpolatedValue: number) => number
+}) => DataLayerController
+```
+
+- `id` is a unique identifier for this layer which is used for updates.
+- `style` lets you choose between multiple rendering styles for the heat map. Each style comes with its own options defined below.
+- `data` is an array of objects (refered to as data points) used as base for the value interpolation. Each data point **must** have an `id` (unique identifier within the data array) and a `position` provided in the 2D plane. Data points must contain the value to be used for interpolation, or the data required to compute that value. They can also contain any additional custom data.
+- `value` is a function that takes each data point as argument and returns the value for that data point to be used in the interpolation of the heat map values.
+- `color` defines the displayed color of the heat map. It is a function that takes an interpolated value as argument and returns the hexadecimal color string used to render the grid "element" with that value.
+- `gridSize` - _optional_ - defines the size in meters of each "cell" of the heat map grid. _Default value: 1m._
+- `gridFill` - _optional_ - defines the size of each grid "element" relatively to its "cell". A value of 1 means the element fills up the cell, 0.9 would add a 10% padding, while 1.1 would add a 10% overflow. _Default value: 1._
+- `alpha` - _optional_ - defines the transparency of the rendered grid "elements". The value should be between 0 (invisible) and 1 (opaque). _Default value: 1._
+- `mask` - _optional_ - a 2D polygon coordinates array that lets you define the area where the heat map should be interpolated and rendered. By default, the space's footprint on the active level will be used as mask. You can also pass an object with a mask for each level, with the key being the levelIndex, and for levels with no mask, it will use the level's footprint.
+- `confidenceRadius` - _optional_ - defines the distance in meters from the provided data points where interpolation makes sense. Grid "elements" are rendered at their nominal size (see `gridSize` and `gridFill`) when they are in close proximity to a datapoint. As they get further, their rendered size decreases (linearly to the distance to the nearest data point) as a way to communicate the confidence in the interpolated value. When a grid "element"'s distance to the nearest datapoint reaches the confidenceRadius value, it's rendered size reaches 0. By default, the confidenceRadius value is equal to the median of the distance between each data point and its 2 nearest datapoints.
+
+##### Spheres style options
+
+- `elevation` - _optional_ - is the height in meters from the active level's ground where the grid "elements" should be rendered. _Default value: 3m._
+- `squishFactor` - _optional_ - lets you deform the spheres in the vertical axis. A value of 0 gives you a perfectly rounded sphere, 0.3 an M&M's type pill, 0.99 a flat sphere, and -2 an elongated ellipsoid. _Default value: 0._
+
+##### Grid style options
+
+- `elevation` - _optional_ - is the height in meters from the active level's ground where the grid "elements" should be rendered. _Default value: 3m._
+- `thickness` - _optional_ - defines the height in meters of each cube making up the grid. _Default value: 0.03m._
+
+You can for example set elevation to 0 and thickness to 3 to get a solid grid from the ground to the ceiling (assuming a 3m wall height).
+
+##### Bar chart style options
+
+- `height` defines the height of each bar from the ground to the top. It is a function that takes an interpolated value as argument and returns the height in meters of the bar representing an element with that value.
+
+The [air quality](/examples/air-quality) example uses a heat map layer and can be used as a code playground to test out the options. The [timeheat demo](https://timeheat.smplrspace.io/) showcases the capabilies of the heat map layer and provides a UI-based playground to test out options.
 
 ## Data layer controller
 

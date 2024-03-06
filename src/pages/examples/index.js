@@ -33,11 +33,13 @@ import { propertyManagement } from './property-management'
 import { controlledCamera } from './controlled-camera'
 import { seeThroughWalls } from './see-through-walls'
 import { customTooltips } from './custom-tooltips'
+import { airQuality } from './air-quality'
 
 const projects = [
   helloWorld,
   spaceBooking,
   leasingTenancy,
+  airQuality,
   iot,
   propertyManagement,
   addDataElements,
