@@ -46,7 +46,7 @@ smplr.Color.numericScale({
 The scales available are:
 
 - single hue sequential scales: Oranges, Reds, Greens, Purples, Greys, Blues - from [ColorBrewer](https://colorbrewer2.org).
-- multi-hue sequential scales: OrRd, PuBu, BuPu, BuGn, YlOrBr, YlGn, RdPu, YlGnBu, GnBu, YlOrRd, PuRd, PuBuGn – from [ColorBrewer](https://colorbrewer2.org), and Viridi initially from [Matplotlib](https://bids.github.io/colormap/).
+- multi-hue sequential scales: OrRd, PuBu, BuPu, BuGn, YlOrBr, YlGn, RdPu, YlGnBu, GnBu, YlOrRd, PuRd, PuBuGn – from [ColorBrewer](https://colorbrewer2.org), and Viridis initially from [Matplotlib](https://bids.github.io/colormap/).
 - diverging scales: Spectral, RdYlGn, RdBu, PiYG, PRGn, RdYlBu, BrBG, RdGy, PuOr - from [ColorBrewer](https://colorbrewer2.org).
 
 The [air quality](/examples/air-quality) example uses `numericScale` and can be used as a code playground to test out the options. You can also chose and configure a color scale using our [colors playground](https://colors.smplrspace.io).
