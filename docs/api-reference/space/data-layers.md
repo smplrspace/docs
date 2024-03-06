@@ -359,7 +359,7 @@ You can for example set elevation to 0 and thickness to 3 to get a solid grid fr
 
 - `height` defines the height of each bar from the ground to the top. It is a function that takes an interpolated value as argument and returns the height in meters of the bar representing an element with that value.
 
-The [timeheat demo](https://timeheat.smplrspace.io/) showcases the capabilies of the heat map layer. Live code example will be added soon to the docs.
+The [air quality](/examples/air-quality) example uses a heat map layer and can be used as a code playground to test out the options. The [timeheat demo](https://timeheat.smplrspace.io/) showcases the capabilies of the heat map layer and provides a UI-based playground to test out options.
 
 ## Data layer controller
 

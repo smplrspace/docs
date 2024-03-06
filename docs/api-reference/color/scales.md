@@ -49,6 +49,8 @@ The scales available are:
 - multi-hue sequential scales: OrRd, PuBu, BuPu, BuGn, YlOrBr, YlGn, RdPu, YlGnBu, GnBu, YlOrRd, PuRd, PuBuGn – from [ColorBrewer](https://colorbrewer2.org), and Viridi initially from [Matplotlib](https://bids.github.io/colormap/).
 - diverging scales: Spectral, RdYlGn, RdBu, PiYG, PRGn, RdYlBu, BrBG, RdGy, PuOr - from [ColorBrewer](https://colorbrewer2.org).
 
+The [air quality](/examples/air-quality) example uses `numericScale` and can be used as a code playground to test out the options.
+
 ## Categorical scales
 
 ### categoryScale
