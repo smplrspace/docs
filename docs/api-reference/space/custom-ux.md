@@ -6,31 +6,59 @@ sidebar_position: 3
 
 Smplr.js provides a few options that help you customize the floor plan experience to your requirements. We're regularly adding new options, so [reach out](https://www.smplrspace.com/support) and share what you'd like to do with it.
 
-## Viewer options
+## Adapting the look & feel and experience
+
+### Render options
+
+To customize how the viewer renders the space, you can pass in a number of options to the rendering engine. Below are the options currently exposed. Render options should be passed through `startViewer` as described [right below](#viewer-options), or updated dynamically as described [further](#update-render-options-dynamically).
+
+```ts
+interface RenderOptions {
+  backgroundColor?: string;
+  grounds?: {
+    render?: boolean;
+  };
+  walls?: {
+    render?: boolean;
+    alpha?: number;
+    maxHeightCm?: number;
+    showStructuralWalls?: boolean;
+  };
+  objects?: boolean;
+  annotations?: boolean;
+  compass?: boolean;
+  skybox?: boolean;
+  floorplan?: {
+    render?: boolean;
+    alpha?: number;
+    elevationInCm?: number;
+  };
+}
+```
+
+- `backgroundColor` - _optional_ - lets you change the background color used by the viewer. You can pass any valid CSS color string, such as 'pink' or '#81b1b3'. We advise to set the same background color on the container element to keep the load screen consistent. As for the preview image, you can change its background color to match in the editor: go to the 'Services' tab and click 'Create preview image'.
+- `walls.render` - _optional_ - set this value to control whether the walls are rendered or not. Note that with `render: false`, doors and windows will not be rendered either. You can use `alpha: 0` instead if you want to render doors and windows but not walls. _Default value: true_
+- `walls.alpha` - _optional_ - is a number between 0 and 1 setting the opacity of the walls, 0 being transparent and 1 opaque. _Default value: 1_
+- `walls.maxHeightCm` - _optional_ - will cap the rendering of walls to the height provided in centimeter, ignoring the actual height of walls.
+- `walls.showStructuralWalls` - _optional_ - set this value to control whether the structural walls (if any) are rendered or not. This also removes the controls from the viewer. _Default value: unset (use button control)_
+- `objects` - _optional_ - set this value to control whether the furniture and objects (if any) are rendered or not. _Default value: true_
+- `annotations` - _optional_ - set this value to control whether the annotations (if any) are rendered or not. This also removes the show/hide annotations button from the viewer. _Default value: unset (use button control)_
+- `compass` - _optional_ - set this value to control whether the compass (if any) is rendered or not. This also removes the show/hide compass button from the viewer. _Default value: unset (use button control)_
+- `skybox` - _optional_ - set this value to control whether the skybox is rendered or not. _Default value: false_
+- `floorplan.render` - _optional_ - set this value to control whether the floor plan image (if any) is rendered or not. Note that for multi-storey spaces, all levels will have their floor plan image rendered. _Default value: false_
+- `floorplan.alpha` - _optional_ - is a number between 0 and 1 setting the opacity of the floor plan image, 0 being transparent and 1 opaque. _Default value: 0.5_
+- `floorplan.elevationInCm` - _optional_ - is a number in centimeter setting the elevation from the ground at which the floor plan image is rendered. _Default value: 2_
+
+[Get in touch](mailto:support@smplrspace.com) if you have thoughts on other parameters we could expose to better support your needs.
+
+### Viewer options
 
 You can set a number of options when starting the viewer. They are listed below in addition to the basic viewer controls documented in the [overview](./overview#start-the-viewer) page.
 
 ```ts
 space.startViewer({
   // ...basicControls
-  renderOptions?: {
-    backgroundColor?: string,
-    walls?: {
-      render?: boolean,
-      alpha?: number,
-      maxHeightCm?: number,
-      showStructuralWalls?: boolean
-    },
-    objects?: boolean,
-    annotations?: boolean,
-    compass?: boolean,
-    skybox?: boolean,
-    floorplan?: {
-      render?: boolean
-      alpha?: number
-      elevationInCm?: number
-    }
-  },
+  renderOptions?: RenderOptions,
   cameraPlacement?: {
     alpha: number,
     beta: number,
@@ -48,24 +76,23 @@ space.startViewer({
 ```
 
 - `...basicControls` - refer to the [overview](./overview#start-the-viewer) page.
-- `renderOptions.backgroundColor` - _optional_ - lets you change the background color used by the viewer. You can pass any valid CSS color string, such as 'pink' or '#81b1b3'. We advise to set the same background color on the container element to keep the load screen consistent. As for the preview image, you can change its background color to match in the editor: go to the 'Services' tab and click 'Create preview image'.
-- `renderOptions.walls.render` - _optional_ - set this value to control whether the walls are rendered or not. Note that with `render: false`, doors and windows will not be rendered either. You can use `alpha: 0` instead if you want to render doors and windows but not walls. _Default value: true_
-- `renderOptions.walls.alpha` - _optional_ - is a number between 0 and 1 setting the opacity of the walls, 0 being transparent and 1 opaque. _Default value: 1_
-- `renderOptions.walls.maxHeightCm` - _optional_ - will cap the rendering of walls to the height provided in centimeter, ignoring the actual height of walls.
-- `renderOptions.walls.showStructuralWalls` - _optional_ - set this value to control whether the structural walls (if any) are rendered or not. This also removes the controls from the viewer. _Default value: unset (use button control)_
-- `renderOptions.objects` - _optional_ - set this value to control whether the furniture and objects (if any) are rendered or not. _Default value: true_
-- `renderOptions.annotations` - _optional_ - set this value to control whether the annotations (if any) are rendered or not. This also removes the show/hide annotations button from the viewer. _Default value: unset (use button control)_
-- `renderOptions.compass` - _optional_ - set this value to control whether the compass (if any) is rendered or not. This also removes the show/hide compass button from the viewer. _Default value: unset (use button control)_
-- `renderOptions.skybox` - _optional_ - set this value to control whether the skybox is rendered or not. _Default value: false_
-- `renderOptions.floorplan.render` - _optional_ - set this value to control whether the floor plan image (if any) is rendered or not. Note that for multi-storey spaces, all levels will have their floor plan image rendered. _Default value: false_
-- `renderOptions.floorplan.alpha` - _optional_ - is a number between 0 and 1 setting the opacity of the floor plan image, 0 being transparent and 1 opaque. _Default value: 0.5_
-- `renderOptions.floorplan.elevationInCm` - _optional_ - is a number in centimeter setting the elevation from the ground at which the floor plan image is rendered. _Default value: 2_
+- `renderOptions` - _optional_ - is described above in [Render options](#render-options). _Default value: `{}`_.
 - `cameraPlacement` - _optional_ - set the initial position and direction of the camera. See [camera controls](./custom-ux#camera-controls) for more details.
 - `disableCameraControls` - _optional_ - set this to true so the camera placement cannot be changed by the user. This disables mouse, touch and keyboard inputs as well as removes the zoom control buttons. _Default value: false_
 - `disableCameraRotation` - _optional_ - set this to true to force a top view of the scene. It essentially gets the interactivity to match the 2D mode, but in 3D mode. _Default value: false_
 - `hideNavigationButtons` - _optional_ - set this to true if you want the user to control the camera but want to remove the navigation buttons. Mouse, touch and keyboard inputs will work while the buttons are hidden. _Default value: false_
 
 ## Viewer controls
+
+### Update render options dynamically
+
+Render options are described in details in [Render options](#render-options). They can be set when the viewer starts, but if you need to update them dynamically, you should use the method below:
+
+```ts
+space.updateRenderOptions(options: RenderOptions) => void
+```
+
+- `options` is an object of the [`RenderOptions`](#render-options) interface, which is deeply merged with the current options used by the viewer. To "unset" an optional value, you can pass `undefined` explicitely.
 
 ### Control which levels are visible
 
@@ -76,6 +103,14 @@ space.showUpToLevel(levelIndex: number) => void
 ```
 
 - `levelIndex` - zero-based index of the top level you want to see. For example, setting `levelIndex` to `2` is equivalent to pressing the `L3` button.
+
+### Show all levels
+
+Building on the previous function, you can also reset the viewer back to showing all the floors with:
+
+```ts
+space.showAllLevels() => void
+```
 
 ## Camera controls
 
