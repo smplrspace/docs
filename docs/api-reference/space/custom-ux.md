@@ -59,6 +59,8 @@ You can set a number of options when starting the viewer. They are listed below 
 space.startViewer({
   // ...basicControls
   renderOptions?: RenderOptions,
+  topShownLevel?: number,
+  includeLevels?: number[],
   cameraPlacement?: {
     alpha: number,
     beta: number,
@@ -77,6 +79,8 @@ space.startViewer({
 
 - `...basicControls` - refer to the [overview](./overview#start-the-viewer) page.
 - `renderOptions` - _optional_ - is described above in [Render options](#render-options). _Default value: `{}`_.
+- `topShownLevel` - _optional_ - lets you set the initial level the viewer should navigate to. See details in [Navigating levels](#navigate-levels).
+- `includeLevels` - _optional_ - list of zero-based indices of the levels to render. See [`includeLevels`](#control-which-levels-are-included-in-the-render) for details.
 - `cameraPlacement` - _optional_ - set the initial position and direction of the camera. See [camera controls](./custom-ux#camera-controls) for more details.
 - `disableCameraControls` - _optional_ - set this to true so the camera placement cannot be changed by the user. This disables mouse, touch and keyboard inputs as well as removes the zoom control buttons. _Default value: false_
 - `disableCameraRotation` - _optional_ - set this to true to force a top view of the scene. It essentially gets the interactivity to match the 2D mode, but in 3D mode. _Default value: false_
@@ -94,7 +98,7 @@ space.updateRenderOptions(options: RenderOptions) => void
 
 - `options` is an object of the [`RenderOptions`](#render-options) interface, which is deeply merged with the current options used by the viewer. To "unset" an optional value, you can pass `undefined` explicitely.
 
-### Control which levels are visible
+### Navigate levels
 
 This is the programmatic equivalent to pressing the level buttons in the bottom-left controls:
 
@@ -104,12 +108,26 @@ space.showUpToLevel(levelIndex: number) => void
 
 - `levelIndex` - zero-based index of the top level you want to see. For example, setting `levelIndex` to `2` is equivalent to pressing the `L3` button.
 
-### Show all levels
-
-Building on the previous function, you can also reset the viewer back to showing all the floors with:
+You can also reset the viewer back to showing all the levels with:
 
 ```ts
 space.showAllLevels() => void
+```
+
+### Control which levels are included in the render
+
+When you have a multi-storey building but would like to only render a few floors, you can call this method:
+
+```ts
+space.includeLevels(levelIndices: number[]) => void
+```
+
+- `levelIndices` - list of zero-based indices of the levels to render. See [Navigating levels](#navigate-levels) to learn more about `levelIndex` or level indices.
+
+You can also reset the viewer back to rendering all levels with:
+
+```ts
+space.includeAllLevels() => void
 ```
 
 ## Camera controls
