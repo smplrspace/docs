@@ -35,7 +35,7 @@ const smplrClient = new smplr.QueryClient({
 
 Some queries exposed via `QueryClient` are synchronous, while others return a `Promise` ([MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)) to the resulting data, and throw structured errors if any. You can consume such queries and handle errors as per your preference using `Promise.then().catch()` or `async/await` with a `try/catch` block.
 
-We also provide a synchronous version for most asynchronous queries, relying on the caching of the space information fetched from the API. So, e.g., if you need to get the location of a bunch of furniture pieces, you can call `getSpace` once and then map over furniture synchronously to extract the location with `getFurnitureById`.
+We also provide a synchronous version for most asynchronous queries, relying on the caching of the space information fetched from the API. So, e.g., if you need to get the location of a bunch of furniture pieces, you can call `getSpace` once and then map over furniture synchronously to extract the location with `getFurnitureByIdFromCache`.
 
 ### Using async/await
 
