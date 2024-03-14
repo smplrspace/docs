@@ -103,6 +103,20 @@ smplrClient.getLevelBoundingBox({
 - `levelIndex` - zero-based index of the level. Refer to the [Furniture interface](/api-reference/queryclient/furniture#furniture-interface) to learn more.
 - `padding` - _optional_ - minimum space between the floor plate's grounds/walls and the bounding box in meters. _Default value: 0_
 
+## getLevelBoundingBoxFromCache
+
+This is the synchronous equivalent of the query right above.
+
+```ts
+smplrClient.getLevelBoundingBoxFromCache({
+  spaceId: string,
+  levelIndex: number,
+  padding?: number
+}): BoundingBox
+```
+
+where `spaceId`, `levelIndex`, `padding`, and `BoundingBox` are as defined in `getLevelBoundingBox`.
+
 ## getPointsConcaveHull
 
 The concave hull of a set of points is the smallest polygon that contains all the points, similar to a contour. To get the concave hull of a set of points, you can call the following query.
