@@ -37,6 +37,7 @@ interface RenderOptions {
 ```
 
 - `backgroundColor` - _optional_ - lets you change the background color used by the viewer. You can pass any valid CSS color string, such as 'pink' or '#81b1b3'. We advise to set the same background color on the container element to keep the load screen consistent. As for the preview image, you can change its background color to match in the editor: go to the 'Services' tab and click 'Create preview image'.
+- `grounds.render` - _optional_ - set this value to control whether the grounds are rendered or not. _Default value: true_
 - `walls.render` - _optional_ - set this value to control whether the walls are rendered or not. Note that with `render: false`, doors and windows will not be rendered either. You can use `alpha: 0` instead if you want to render doors and windows but not walls. _Default value: true_
 - `walls.alpha` - _optional_ - is a number between 0 and 1 setting the opacity of the walls, 0 being transparent and 1 opaque. _Default value: 1_
 - `walls.maxHeightCm` - _optional_ - will cap the rendering of walls to the height provided in centimeter, ignoring the actual height of walls.
