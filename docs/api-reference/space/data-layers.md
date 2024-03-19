@@ -67,7 +67,7 @@ space.addDataLayer({
 
 - `id` is a unique identifier for this layer which is used for updates.
 - `shape` is the the 3D shape used to render each data element. Each shape comes with its own options defined below.
-- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `position`. Elements can also contain any additional custom data used for rendering options.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `position`. Elements can also contain any additional custom data used for rendering options. The elevation is automatically corrected in 2D mode to render the point on the ground. In 3D mode, points with low elevation will automatically be rendered on the ground to avoid being hidden.
 - `color` - _optional_ - defines the color of the sphere to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
 - `anchor` - _optional_ - defines if the position provided for each data element corresponds to the bottom, center or top of the sphere. _Default value: center._
 - `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1_
@@ -117,7 +117,7 @@ space.addDataLayer({
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
-- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `position`. Elements can also contain any additional custom data used for rendering options.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `position`. Elements can also contain any additional custom data used for rendering options. The elevation is automatically corrected in 2D mode to render the icon on the ground. In 3D mode, icon with low elevation will automatically be rendered on the ground to avoid being hidden.
 - `icon` provides information about the icon file to use. Icons must be self-hosted, `width` and `height` indicate the dimensions of the icon available at `url`. Only PNG and JPEG files are supported.
 - `width` - _optional_ - defines the width of the icon to render in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the width for that element. _Default value: 1m._
 - `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable. Each handler takes the dragged data element as argument. `onDrop` also receives the new position of the element so it can be updated in your app state and database.
@@ -155,7 +155,7 @@ space.addDataLayer({
 - `id` is a unique identifier for this layer which is used for updates.
 - `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `coordinates` array. Elements can also contain any additional custom data used for rendering options.
 - `baseHeight` - _optional_ - defines the elevation from the ground at the base of the polygon in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the base height for that element. _Default value: 0m._
-- `height` - _optional_ - defines the height of the polygon in meters from its base to its top. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the height for that element. _Default value: 3m._
+- `height` - _optional_ - defines the height of the polygon in meters from its base to its top. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the height for that element. The height is automatically corrected in 2D mode to render the polygon above the ground and below the walls. In 3D mode, the height will corrected to render at that location if it is lower than the ground, so you can set 0 to have a polygon overlapping the ground. _Default value: 3m._
 - `color` - _optional_ - defines the color of the sphere to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
 - `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1_
 - `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable & reshapable. Each handler takes the dragged data element as argument. `onDrop` also receives the new coordinates of the element so they can be updated in your app state and database.
@@ -196,7 +196,7 @@ space.addDataLayer({
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
-- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `coordinates` array. Elements can also contain any additional custom data used for rendering options.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `coordinates` array. Elements can also contain any additional custom data used for rendering options. The elevation of coordinates is automatically corrected in 2D mode to render the line on the ground. In 3D mode, coordinates with low elevation will automatically be rendered on the ground to avoid being hidden.
 - `shape` - _optional_ - defines the section that is extruded to render the line. A few options are provided, each of them a regular polygon centered on the line path and with its points on a circle of diameter 1m. You can also provide a custom shape with an array of coordinates in meter taking the line path as origin, the first coordinate on the horizontal axis and the second on the vertical axis (e.g. `[[0, -0.2], [0, 0.2], [0.2, 0], [0, -0.2]]` for a triangle pointing right). Custom shapes are not automatically closed, you should repeat the first coordinate at the end of the array to close the shape. _Default value: circle_
 - `cap` - _optional_ - set value to false if you want the line shape to be hollow. _Default value: true_
 - `scale` - _optional_ - defines the scaling factor applied to the shape during the extrusion. This can be a constant (e.g. circle pipe of diamter 0.5m), or a function of the data element, the step index along the line path, and the distance from the start of the line. A function is useful to create patterns along the line. The scale function is computed at each point defining the line path, you can add "steps" to each segment to compute the scale at regular interval with `stepSize` (see below). _Default value: 1_
@@ -243,7 +243,7 @@ space.addDataLayer({
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
-- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `coordinates` array. Elements can also contain any additional custom data used for rendering options.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `coordinates` array. Elements can also contain any additional custom data used for rendering options. The elevation of coordinates is automatically corrected in 2D mode to render the line on the ground. In 3D mode, coordinates with low elevation will automatically be rendered on the ground to avoid being hidden.
 - `diameter` - _optional_ - defines the diameter of the sphere to render in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the diameter for that element. _Default value: 1m._
 - `gap` - _optional_ - defines the distance between each sphere in the line as a fraction of the diameter. E.g. 0.3 means the gap is 30% of the diameter. _Default value: 0.3._
 - `anchor` - _optional_ - defines if the position provided for each data element corresponds to the bottom, center or top of the sphere. _Default value: center._
@@ -358,6 +358,8 @@ You can for example set elevation to 0 and thickness to 3 to get a solid grid fr
 ##### Bar chart style options
 
 - `height` defines the height of each bar from the ground to the top. It is a function that takes an interpolated value as argument and returns the height in meters of the bar representing an element with that value.
+
+**Note:** The height or elevation is automatically corrected in 2D mode to render the heatmap on the ground. In 3D mode, heatmaps with low elevation will automatically be rendered on the ground to avoid being hidden.
 
 The [air quality](/examples/air-quality) example uses a heat map layer and can be used as a code playground to test out the options. The [timeheat demo](https://timeheat.smplrspace.io/) showcases the capabilies of the heat map layer and provides a UI-based playground to test out options.
 
