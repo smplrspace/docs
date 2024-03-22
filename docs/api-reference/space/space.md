@@ -109,7 +109,7 @@ The viewer lets you add data layers that are rendered on the floor plan. Each la
 // call this after `onReady` has fired
 space.addDataLayer({
   id: string,
-  type: 'point' | 'icon' | 'polygon' | 'polyline',
+  type: 'point' | 'icon' | 'polygon' | 'polyline' | 'dotted-polyline' | 'heatmap' | 'furniture',
   data: object[],
   ...rest: object
 }) => DataLayerController

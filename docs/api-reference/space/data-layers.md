@@ -54,6 +54,7 @@ space.addDataLayer({
   alpha?: number,
   onDrag?: ({ data: object }) => void,
   onDrop?: ({ data: object, position: object }) => void
+  disableElevationCorrection?: boolean,
   // sphere shape options
   diameter?: number | (dataElement: object) => number | { x: number; y: number; z: number },
   // cube shape options
@@ -67,11 +68,14 @@ space.addDataLayer({
 
 - `id` is a unique identifier for this layer which is used for updates.
 - `shape` is the the 3D shape used to render each data element. Each shape comes with its own options defined below.
-- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `position`. Elements can also contain any additional custom data used for rendering options. The elevation is automatically corrected in 2D mode to render the point on the ground. In 3D mode, points with low elevation will automatically be rendered on the ground to avoid being hidden.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `position`. Elements can also contain any additional custom data used for rendering options.
 - `color` - _optional_ - defines the color of the sphere to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
 - `anchor` - _optional_ - defines if the position provided for each data element corresponds to the bottom, center or top of the sphere. _Default value: center._
 - `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1_
 - `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable. Each handler takes the dragged data element as argument. `onDrop` also receives the new position of the element so it can be updated in your app state and database.
+- `disableElevationCorrection` - _optional_
+  - In 2D mode, the rendered elevation of points is fully managed and the provided value ignored. Points will be rendered on top of the floor plans.
+  - In 3D mode, points are rendered at their provided elevation but points with low elevation will automatically be rendered above the ground to avoid being hidden. You can set `disableElevationCorrection` to true to disable this behavior. The elevation value of each point will then be used directly.
 
 ##### Sphere shape options
 
@@ -113,14 +117,18 @@ space.addDataLayer({
   width?: number | (dataElement: object) => number,
   onDrag?: ({ data: object }) => void,
   onDrop?: ({ data: object, position: object }) => void
+  disableElevationCorrection?: boolean,
 }) => DataLayerController
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
-- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `position`. Elements can also contain any additional custom data used for rendering options. The elevation is automatically corrected in 2D mode to render the icon on the ground. In 3D mode, icon with low elevation will automatically be rendered on the ground to avoid being hidden.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `position`. Elements can also contain any additional custom data used for rendering options.
 - `icon` provides information about the icon file to use. Icons must be self-hosted, `width` and `height` indicate the dimensions of the icon available at `url`. Only PNG and JPEG files are supported.
 - `width` - _optional_ - defines the width of the icon to render in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the width for that element. _Default value: 1m._
 - `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable. Each handler takes the dragged data element as argument. `onDrop` also receives the new position of the element so it can be updated in your app state and database.
+- `disableElevationCorrection` - _optional_
+  - In 2D mode, the rendered elevation of icons is fully managed and the provided value ignored. Icons will be rendered on top of the floor plans.
+  - In 3D mode, icons are rendered at their provided elevation but icons with low elevation will automatically be rendered above the ground to avoid being hidden. You can set `disableElevationCorrection` to true to disable this behavior. The elevation value of each icon will then be used directly.
 
 The [Add data elements](/examples/add-data-elements) example gives a full overview of draggable layers, including an icon layer.
 
@@ -147,6 +155,7 @@ space.addDataLayer({
   alpha?: number,
   onDrag?: ({ data: object }) => void,
   onDrop?: ({ data: object, coordinates: object[] }) => void,
+  disableElevationCorrection?: boolean,
   disableReshape?: boolean,
   reshapeBoxColor?: string
 }) => DataLayerController
@@ -155,10 +164,13 @@ space.addDataLayer({
 - `id` is a unique identifier for this layer which is used for updates.
 - `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `coordinates` array. Elements can also contain any additional custom data used for rendering options.
 - `baseHeight` - _optional_ - defines the elevation from the ground at the base of the polygon in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the base height for that element. _Default value: 0m._
-- `height` - _optional_ - defines the height of the polygon in meters from its base to its top. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the height for that element. The height is automatically corrected in 2D mode to render the polygon above the ground and below the walls. In 3D mode, the height will corrected to render at that location if it is lower than the ground, so you can set 0 to have a polygon overlapping the ground. _Default value: 3m._
+- `height` - _optional_ - defines the height of the polygon in meters from its base to its top. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the height for that element. _Default value: 3m._
 - `color` - _optional_ - defines the color of the sphere to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
 - `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1_
 - `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable & reshapable. Each handler takes the dragged data element as argument. `onDrop` also receives the new coordinates of the element so they can be updated in your app state and database.
+- `disableElevationCorrection` - _optional_
+  - In 2D mode, the rendered height of polygons is fully managed and the provided value ignored. Polygons will be rendered on top of the grounds and below the walls.
+  - In 3D mode, polygons are rendered at with provided height but polygons with low height will automatically be rendered above between the grounds and the walls, to avoid being hidden. You can set `disableElevationCorrection` to true to disable this behavior. The height value of each polygon will then be used directly.
 - `disableReshape` - _optional_ - set this to false when using onDrag or onDrop if you want the polygons to be draggable but not modifiable in shape. _Default value: true_
 - `reshapeBoxColor` - _optional_ - hexadecimal string defining the color of the boxes used to reshape the polygons. Used in conjunction with onDrag or onDrop. _Default value: "#086bb7"_
 
@@ -190,13 +202,14 @@ space.addDataLayer({
   alpha?: number,
   onDrag?: ({ data: object }) => void,
   onDrop?: ({ data: object, coordinates: object[] }) => void,
+  disableElevationCorrection?: boolean,
   disableReshape?: boolean,
   reshapeBoxColor?: string
 }) => DataLayerController
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
-- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `coordinates` array. Elements can also contain any additional custom data used for rendering options. The elevation of coordinates is automatically corrected in 2D mode to render the line on the ground. In 3D mode, coordinates with low elevation will automatically be rendered on the ground to avoid being hidden.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `coordinates` array. Elements can also contain any additional custom data used for rendering options.
 - `shape` - _optional_ - defines the section that is extruded to render the line. A few options are provided, each of them a regular polygon centered on the line path and with its points on a circle of diameter 1m. You can also provide a custom shape with an array of coordinates in meter taking the line path as origin, the first coordinate on the horizontal axis and the second on the vertical axis (e.g. `[[0, -0.2], [0, 0.2], [0.2, 0], [0, -0.2]]` for a triangle pointing right). Custom shapes are not automatically closed, you should repeat the first coordinate at the end of the array to close the shape. _Default value: circle_
 - `cap` - _optional_ - set value to false if you want the line shape to be hollow. _Default value: true_
 - `scale` - _optional_ - defines the scaling factor applied to the shape during the extrusion. This can be a constant (e.g. circle pipe of diamter 0.5m), or a function of the data element, the step index along the line path, and the distance from the start of the line. A function is useful to create patterns along the line. The scale function is computed at each point defining the line path, you can add "steps" to each segment to compute the scale at regular interval with `stepSize` (see below). _Default value: 1_
@@ -204,6 +217,9 @@ space.addDataLayer({
 - `color` - _optional_ - defines the color of the sphere to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
 - `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1_
 - `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable & reshapable. Each handler takes the dragged data element as argument. `onDrop` also receives the new coordinates of the element so it can be updated in your app state and database.
+- `disableElevationCorrection` - _optional_
+  - In 2D mode, the rendered elevation of polylines is fully managed and the provided value ignored. Polylines will be rendered on top of the floor plans.
+  - In 3D mode, polylines are rendered at their provided elevation but polyline coordinates with low elevation will automatically be rendered above the ground to avoid being hidden. You can set `disableElevationCorrection` to true to disable this behavior. The elevation value of each coordinate will then be used directly.
 - `disableReshape` - _optional_ - set this to false when using onDrag or onDrop if you want the polygons to be draggable but not modifiable in shape. _Default value: true_
 - `reshapeBoxColor` - _optional_ - hexadecimal string defining the color of the boxes used to reshape the polygons. Used in conjunction with onDrag or onDrop. _Default value: "#086bb7"_
 
@@ -232,6 +248,7 @@ space.addDataLayer({
   anchor?: 'bottom' | 'center' | 'top',
   color?: string | (dataElement: object) => string,
   alpha?: number,
+  disableElevationCorrection?: boolean,
   animation?: false | 'waves' | 'railway',
   // waves animation options
   speed?: number,
@@ -243,12 +260,15 @@ space.addDataLayer({
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
-- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `coordinates` array. Elements can also contain any additional custom data used for rendering options. The elevation of coordinates is automatically corrected in 2D mode to render the line on the ground. In 3D mode, coordinates with low elevation will automatically be rendered on the ground to avoid being hidden.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `coordinates` array. Elements can also contain any additional custom data used for rendering options.
 - `diameter` - _optional_ - defines the diameter of the sphere to render in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the diameter for that element. _Default value: 1m._
 - `gap` - _optional_ - defines the distance between each sphere in the line as a fraction of the diameter. E.g. 0.3 means the gap is 30% of the diameter. _Default value: 0.3._
 - `anchor` - _optional_ - defines if the position provided for each data element corresponds to the bottom, center or top of the sphere. _Default value: center._
 - `color` - _optional_ - defines the color of the sphere to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"._
 - `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1._
+- `disableElevationCorrection` - _optional_
+  - In 2D mode, the rendered elevation of dotted polylines is fully managed and the provided value ignored. Dots will be rendered on top of the floor plans.
+  - In 3D mode, dots are rendered at their provided elevation but dots with low elevation will automatically be rendered above the ground to avoid being hidden. You can set `disableElevationCorrection` to true to disable this behavior. The elevation value of each coordinate will then be used directly.
 - `animation` - _optional_ - use `false` to disable animation, `'railway'` to move spheres in a queue like wagons, or `'waves'` to scale spheres like a wave. _Default value: false._
 
 ##### Waves animation options
@@ -265,7 +285,7 @@ Live code example coming soon.
 
 ### Furniture layer
 
-A furniture layer has each data element mapped to one or more pieces of furniture from the floor plan.
+A furniture layer has each data element mapped to one or more pieces of furniture from the floor plan. Furniture are only available in 3D mode at the moment. 2D mode support is on the roadmap.
 
 ```ts
 space.addDataLayer({
@@ -321,6 +341,7 @@ space.addDataLayer({
     z: number,
   }]>,
   confidenceRadius?: number,
+  disableElevationCorrection?: boolean,
   // spheres style options
   elevation?: number,
   squishFactor?: number,
@@ -342,6 +363,9 @@ space.addDataLayer({
 - `alpha` - _optional_ - defines the transparency of the rendered grid "elements". The value should be between 0 (invisible) and 1 (opaque). _Default value: 1._
 - `mask` - _optional_ - a 2D polygon coordinates array that lets you define the area where the heat map should be interpolated and rendered. By default, the space's footprint on the active level will be used as mask. You can also pass an object with a mask for each level, with the key being the levelIndex, and for levels with no mask, it will use the level's footprint.
 - `confidenceRadius` - _optional_ - defines the distance in meters from the provided data points where interpolation makes sense. Grid "elements" are rendered at their nominal size (see `gridSize` and `gridFill`) when they are in close proximity to a datapoint. As they get further, their rendered size decreases (linearly to the distance to the nearest data point) as a way to communicate the confidence in the interpolated value. When a grid "element"'s distance to the nearest datapoint reaches the confidenceRadius value, it's rendered size reaches 0. By default, the confidenceRadius value is equal to the median of the distance between each data point and its 2 nearest datapoints.
+- `disableElevationCorrection` - _optional_
+  - In 2D mode, the rendered elevation of heat maps is fully managed and the provided value ignored. Heat maps will be rendered on top of the floor plans.
+  - In 3D mode, heat maps are rendered at their provided elevation but low elevation values will automatically be rendered above the ground to avoid being hidden. You can set `disableElevationCorrection` to true to disable this behavior. The elevation value will then be used directly.
 
 ##### Spheres style options
 
@@ -355,11 +379,9 @@ space.addDataLayer({
 
 You can for example set elevation to 0 and thickness to 3 to get a solid grid from the ground to the ceiling (assuming a 3m wall height).
 
-##### Bar chart style options
+##### Bar chart style options (3D only)
 
 - `height` defines the height of each bar from the ground to the top. It is a function that takes an interpolated value as argument and returns the height in meters of the bar representing an element with that value.
-
-**Note:** The height or elevation is automatically corrected in 2D mode to render the heatmap on the ground. In 3D mode, heatmaps with low elevation will automatically be rendered on the ground to avoid being hidden.
 
 The [air quality](/examples/air-quality) example uses a heat map layer and can be used as a code playground to test out the options. The [timeheat demo](https://timeheat.smplrspace.io/) showcases the capabilies of the heat map layer and provides a UI-based playground to test out options.
 
