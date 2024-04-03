@@ -101,6 +101,16 @@ space.updateRenderOptions(options: RenderOptions) => void
 
 - `options` is an object of the [`RenderOptions`](#render-options) interface, which is deeply merged with the current options used by the viewer. To "unset" an optional value, you can pass `undefined` explicitely.
 
+### Switch between 2D and 3D
+
+To programatically switch between 2D and 3D modes without restarting the viewer, you can call:
+
+```ts
+space.setMode(mode: '2d' | '3d') => void
+```
+
+- `mode` - the desired rendering mode.
+
 ### Navigate levels
 
 This is the programmatic equivalent to pressing the level buttons in the bottom-left controls:
