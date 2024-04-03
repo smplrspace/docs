@@ -46,7 +46,7 @@ space.startViewer({
   onResize?: (containerRect: DOMRect) => void,
   onVisibleLevelsChanged?: (visibleLevels: number[]) => void
   ...customUX: object
-}) => void
+}) => Promise<void>
 ```
 
 - `preview` - _optional_ - starts by a preview image with a play button similar to YouTube embed. It is advisable to use [our ESM bundle](/#esm-bundle-supports-runtime-tree-shaking) to ensure a quick initial render. _Default value: false_.
@@ -54,11 +54,13 @@ space.startViewer({
 - `mode` - _optional_ - lets you choose between 2D and 3D rendering. _Default value: 3d_.
 - `allowModeChange` - _optional_ - set this to true to allow users to switch between 2D and 3D. _Default value: false_.
 - `onModeChange` - _optional_ - is called whenever the user changes the mode. Requires allowModeChange to be set to true.
-- `onReady` - _optional_ - is called once the viewer's initial render is done.
-- `onError` - _optional_ - is called if an error occur while starting the viewer.
+- `onReady` - _optional_ - is called once the viewer's initial render is done. You may alternatively use the promise returned by startViewer, which resolves when the viewer is ready.
+- `onError` - _optional_ - is called if an error occur while starting the viewer. You may alternatively use the promise returned by startViewer to catch errors.
 - `onResize` - _optional_ - is called whenever the viewer is resized, including after the initial render, when the window is resized, or on mobile when the device is rotated between vertical to horizontal positions. This can be used to reposition custom tooltips (e.g.).
 - `onVisibleLevelsChanged` - _optional_ - is called whenever there is a change in the visible levels. This could be through the user clicking the level picker, or through an API call of [`showUpToLevel`](/api-reference/space/custom-ux#navigate-levels). It is also called when the space first renders. The handler take a single argument `visibleLevels`, which is the ordered list of zero-based level indices currently visible in the viewer. The last element in that list is always the highest visible level.
 - `...customUX` represents additional options that let you customise the user experience as documented in the [custom UX](./custom-ux#viewer-options) page.
+
+Calling `startViewer` returns a `Promise` ([MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)) which resolves when the viewer is ready. This lets you use `Promise.then().catch()` or `async/await` with a `try/catch` block to react when the viewer is ready, or to handle errors that may occur. It is an alternative to providing `onReady` and `onError` callback methods. You may choose the option that suits the most your environment or coding style.
 
 Although not a rule not to break, we generally _recommend_ to use `preview: true` as this avoids loading the space if the user do not intend to interact with it. It also helps with reducing the number of views counted on your spaces.
 
