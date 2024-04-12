@@ -168,3 +168,11 @@ space.removeDataLayer(id: string) => void
 - `id` is the identifier of the layer to remove.
 
 An equivalent method is `remove` on a [data layer controller](./data-layers#data-layer-controller).
+
+### Remove all layers
+
+Removing all data layers at once is done as follow.
+
+```ts
+space.removeAllDataLayers() => void
+```
