@@ -74,6 +74,7 @@ space.startViewer({
   },
   disableCameraControls?: boolean,
   disableCameraRotation?: boolean,
+  autoRotate?: boolean,
   hideNavigationButtons?: boolean
 }) => void
 ```
@@ -85,6 +86,7 @@ space.startViewer({
 - `cameraPlacement` - _optional_ - set the initial position and direction of the camera. See [camera controls](./custom-ux#camera-controls) for more details.
 - `disableCameraControls` - _optional_ - set this to true so the camera placement cannot be changed by the user. This disables mouse, touch and keyboard inputs as well as removes the zoom control buttons. _Default value: false_
 - `disableCameraRotation` - _optional_ - set this to true to force a top view of the scene. It essentially gets the interactivity to match the 2D mode, but in 3D mode. _Default value: false_
+- `autoRotate` - _optional_ - set this to true to have the viewer spin around the space automatically. You can also start, set the rotation speed, and stop the rotation as described [below](#auto-rotate-the-viewer). _Default value: false_
 - `hideNavigationButtons` - _optional_ - set this to true if you want the user to control the camera but want to remove the navigation buttons. Mouse, touch and keyboard inputs will work while the buttons are hidden. _Default value: false_
 
 ## Viewer controls
@@ -98,6 +100,16 @@ space.updateRenderOptions(options: RenderOptions) => void
 ```
 
 - `options` is an object of the [`RenderOptions`](#render-options) interface, which is deeply merged with the current options used by the viewer. To "unset" an optional value, you can pass `undefined` explicitely.
+
+### Switch between 2D and 3D
+
+To programatically switch between 2D and 3D modes without restarting the viewer, you can call:
+
+```ts
+space.setMode(mode: '2d' | '3d') => void
+```
+
+- `mode` - the desired rendering mode.
 
 ### Navigate levels
 
@@ -197,6 +209,22 @@ This is the programmatic equivalent to pressing the zoom buttons in the bottom-l
 ```ts
 space.zoomIn() => void
 space.zoomOut() => void
+```
+
+### Auto-rotate the viewer
+
+You can get the viewer to spin around the building at a certain speed. To start the rotation:
+
+```ts
+space.startAutoRotation(speed?: number) => void
+```
+
+- `speed` - _optional_ - sets how fast the rotation goes. _Default value: 0.8_.
+
+To stop the rotation:
+
+```ts
+space.stopAutoRotation() => void
 ```
 
 ## Reacting to events from the viewer

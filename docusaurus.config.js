@@ -97,6 +97,10 @@ const config = {
   ],
 
   scripts: [
+    {
+      src: '/js/hotkey.js',
+      async: false
+    },
     process.env.NODE_ENV === 'production'
       ? {
         src: 'https://deep-positive.smplrspace.com/script.js',
