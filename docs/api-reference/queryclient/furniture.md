@@ -157,6 +157,43 @@ smplrClient.getFurnitureByIdFromCache({
 
 where `spaceId`, `furnitureId`, and `Furniture` are as defined in `getFurnitureById`.
 
+## getFurnitureGroundFootprintById
+
+To get the ground footprint (as a polygon) of a single piece of furniture, identified by its unique identifier, you can call the following query.
+
+```ts
+smplrClient.getFurnitureGroundFootprintById({
+  spaceId: string,
+  furnitureId: string
+}): Promise<{
+  levelIndex: number
+  x: number
+  z: number
+}[] | null>
+```
+
+- `spaceId` - unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
+- `furnitureId` - unique identifier of the furniture in the space, has a similar format to `spaceId`.
+
+Returns `null` if the furniture is not found in the space.
+
+## getFurnitureGroundFootprintByIdFromCache
+
+This is the synchronous equivalent of the query right above.
+
+```ts
+smplrClient.getFurnitureGroundFootprintByIdFromCache({
+  spaceId: string,
+  furnitureId: string
+}): {
+  levelIndex: number
+  x: number
+  z: number
+}[] | null
+```
+
+where `spaceId` and `furnitureId` are as defined in `getFurnitureGroundFootprintById`.
+
 ## isFurnitureInPolygon
 
 To know whether a piece of furniture is contained within an area defined by a polygon, you can call the following query.
