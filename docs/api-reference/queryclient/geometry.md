@@ -112,10 +112,14 @@ smplrClient.getLevelBoundingBoxFromCache({
   spaceId: string,
   levelIndex: number,
   padding?: number
-}): BoundingBox
+}): {
+  levelIndex: number,
+  x: number,
+  z: number
+}[]
 ```
 
-where `spaceId`, `levelIndex`, `padding`, and `BoundingBox` are as defined in `getLevelBoundingBox`.
+where `spaceId`, `levelIndex`, and `padding` are as defined in `getLevelBoundingBox`.
 
 ## getPointsConcaveHull
 
@@ -168,6 +172,41 @@ smplrClient.getLinesConcaveHull({
 - `lines` - the array of lines you want to compute the bounding box for.
 - `simplify` - _optional_ - whether the returned hull should be simplified, which means consecutive points that are aligned will be removed to keep only the first and the last. _Default value: true_
 - `simplifyTolerance` - _optional_ - authorized distance from the alignment used during the simplification process, given in meters. _Default value: 0.005_
+
+## getLevelAutomaticGround
+
+To get the automatic ground of the entire floor plate of a space, you can call the following query. The automatic ground is the [continuous concave hull](#getlinesconcavehull) of all the walls of the level put together. It may be enabled or disabled in the editor, but the value here will return a valid hull if the level exists and has walls.
+
+```ts
+smplrClient.getLevelAutomaticGround({
+  spaceId: string,
+  levelIndex: number,
+}): Promise<{
+  levelIndex: number,
+  x: number,
+  z: number
+}[] | null>
+```
+
+- `spaceId` - unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
+- `levelIndex` - zero-based index of the level. Refer to the [Furniture interface](/api-reference/queryclient/furniture#furniture-interface) to learn more.
+
+## getLevelAutomaticGroundFromCache
+
+This is the synchronous equivalent of the query right above.
+
+```ts
+smplrClient.getLevelAutomaticGroundFromCache({
+  spaceId: string,
+  levelIndex: number,
+}): {
+  levelIndex: number,
+  x: number,
+  z: number
+}[] | null
+```
+
+where `spaceId`, and `levelIndex` are as defined in `getLevelAutomaticGround`.
 
 ## isPointInPolygon
 
