@@ -24,6 +24,8 @@ interface RenderOptions {
     maxHeightCm?: number;
     showStructuralWalls?: boolean;
   };
+  doors?: boolean;
+  windows?: boolean;
   objects?: boolean;
   annotations?: boolean;
   compass?: boolean;
@@ -42,6 +44,8 @@ interface RenderOptions {
 - `walls.alpha` - _optional_ - is a number between 0 and 1 setting the opacity of the walls, 0 being transparent and 1 opaque. _Default value: 1_
 - `walls.maxHeightCm` - _optional_ - will cap the rendering of walls to the height provided in centimeter, ignoring the actual height of walls.
 - `walls.showStructuralWalls` - _optional_ - set this value to control whether the structural walls (if any) are rendered or not. This also removes the controls from the viewer. _Default value: unset (use button control)_
+- `doors` - _optional_ - set this value to control whether the doors are rendered or not. _Default value: true_
+- `windows` - _optional_ - set this value to control whether the windows are rendered or not. _Default value: true_
 - `objects` - _optional_ - set this value to control whether the furniture and objects (if any) are rendered or not. _Default value: true_
 - `annotations` - _optional_ - set this value to control whether the annotations (if any) are rendered or not. This also removes the show/hide annotations button from the viewer. _Default value: unset (use button control)_
 - `compass` - _optional_ - set this value to control whether the compass (if any) is rendered or not. This also removes the show/hide compass button from the viewer. _Default value: unset (use button control)_
