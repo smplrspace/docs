@@ -14,17 +14,17 @@ Some options correspond to generic behaviours that are shared by all interactive
 space.addDataLayer({
   // ...layerDefinition,
   tooltip?: (dataElement: object) => string,
-  onClick?: (dataElement: object) => void,
-  onHover?: (dataElement: object) => void,
-  onHoverOut?: (dataElement: object) => void
+  onClick?: (dataElement: object, event: PointerEvent) => void,
+  onHover?: (dataElement: object, event: LimitedPointerEvent) => void,
+  onHoverOut?: (dataElement: object, event: LimitedPointerEvent) => void
 }) => DataLayerController
 ```
 
 - `...layerDefinition` - refer to the [overview](./overview#data-layers) page.
 - `tooltip` - _optional_ - is taking the newly hovered data element as argument and should return the content of the tooltip to render. It is called once when the pointer starts to hover a data element. Built-in tooltips are text only, newlines are supported by using [multi-line template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#multi-line_strings). If you need HTML/CSS in your tooltips, check the [custom tooltips example](/examples/custom-tooltips/).
-- `onClick` - _optional_ - is taking the data element that was clicked as argument. It is called each time a click or tap event happens.
-- `onHover` - _optional_ - is taking the newly hovered data element as argument. It is called once when the pointer starts to hover a data element.
-- `onHoverOut` - _optional_ - is taking the previously hovered data element as argument. It is called once when the pointer stops hovering a data element.
+- `onClick` - _optional_ - is taking the data element that was clicked as argument, as well as the Javascript [pointer event](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent) that triggered the click. It is called each time a click or tap event happens.
+- `onHover` - _optional_ - is taking the newly hovered data element as argument, as well as a limited (due to the rendering engine's internals) "pointer event" that triggered the handler. The limited event only includes the coordinates within the viewer of the pointer at the time when the event was triggered. The handler is called once when the pointer starts to hover a data element.
+- `onHoverOut` - _optional_ - is taking the previously hovered data element as argument, as well as the same limited "pointer event" as for `onHover`. The handler is called once when the pointer stops hovering a data element.
 
 You may use the `onClick`, `onHover` and `onHoverOut` handlers to build custom behaviours in your app that respond to interactions happening in the floor plan.
 
