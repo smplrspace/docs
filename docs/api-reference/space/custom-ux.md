@@ -80,6 +80,7 @@ space.startViewer({
   disableCameraRotation?: boolean,
   autoRotate?: boolean,
   hideNavigationButtons?: boolean
+  hideLevelPicker?: boolean
 }) => void
 ```
 
@@ -92,6 +93,7 @@ space.startViewer({
 - `disableCameraRotation` - _optional_ - set this to true to force a top view of the scene. It essentially gets the interactivity to match the 2D mode, but in 3D mode. _Default value: false_
 - `autoRotate` - _optional_ - set this to true to have the viewer spin around the space automatically. You can also start, set the rotation speed, and stop the rotation as described [below](#auto-rotate-the-viewer). _Default value: false_
 - `hideNavigationButtons` - _optional_ - set this to true if you want the user to control the camera but want to remove the navigation buttons. Mouse, touch and keyboard inputs will work while the buttons are hidden. _Default value: false_
+- `hideLevelPicker` - _optional_ - set this to true if you want to remove the level picker from the viewer. Levels can still be controlled programmatically, so you could use your own buttons or logic. _Default value: false_
 
 ## Viewer controls
 
