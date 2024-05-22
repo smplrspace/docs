@@ -24,6 +24,8 @@ interface RenderOptions {
     maxHeightCm?: number;
     showStructuralWalls?: boolean;
   };
+  doors?: boolean;
+  windows?: boolean;
   objects?: boolean;
   annotations?: boolean;
   compass?: boolean;
@@ -42,6 +44,8 @@ interface RenderOptions {
 - `walls.alpha` - _optional_ - is a number between 0 and 1 setting the opacity of the walls, 0 being transparent and 1 opaque. _Default value: 1_
 - `walls.maxHeightCm` - _optional_ - will cap the rendering of walls to the height provided in centimeter, ignoring the actual height of walls.
 - `walls.showStructuralWalls` - _optional_ - set this value to control whether the structural walls (if any) are rendered or not. This also removes the controls from the viewer. _Default value: unset (use button control)_
+- `doors` - _optional_ - set this value to control whether the doors are rendered or not. _Default value: true_
+- `windows` - _optional_ - set this value to control whether the windows are rendered or not. _Default value: true_
 - `objects` - _optional_ - set this value to control whether the furniture and objects (if any) are rendered or not. _Default value: true_
 - `annotations` - _optional_ - set this value to control whether the annotations (if any) are rendered or not. This also removes the show/hide annotations button from the viewer. _Default value: unset (use button control)_
 - `compass` - _optional_ - set this value to control whether the compass (if any) is rendered or not. This also removes the show/hide compass button from the viewer. _Default value: unset (use button control)_
@@ -76,6 +80,7 @@ space.startViewer({
   disableCameraRotation?: boolean,
   autoRotate?: boolean,
   hideNavigationButtons?: boolean
+  hideLevelPicker?: boolean
 }) => void
 ```
 
@@ -88,6 +93,7 @@ space.startViewer({
 - `disableCameraRotation` - _optional_ - set this to true to force a top view of the scene. It essentially gets the interactivity to match the 2D mode, but in 3D mode. _Default value: false_
 - `autoRotate` - _optional_ - set this to true to have the viewer spin around the space automatically. You can also start, set the rotation speed, and stop the rotation as described [below](#auto-rotate-the-viewer). _Default value: false_
 - `hideNavigationButtons` - _optional_ - set this to true if you want the user to control the camera but want to remove the navigation buttons. Mouse, touch and keyboard inputs will work while the buttons are hidden. _Default value: false_
+- `hideLevelPicker` - _optional_ - set this to true if you want to remove the level picker from the viewer. Levels can still be controlled programmatically, so you could use your own buttons or logic. _Default value: false_
 
 ## Viewer controls
 
