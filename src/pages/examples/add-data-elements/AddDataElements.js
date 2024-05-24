@@ -22,8 +22,6 @@ import {
 import Viewer from './Viewer'
 import MiniButton from '../../../components/MiniButton'
 
-const INITIAL_MODE = '3d'
-
 const chance = new Chance()
 
 const AddDataElements = () => {
@@ -31,7 +29,6 @@ const AddDataElements = () => {
 
   const [space, setSpace] = useState()
   const [task, setTask] = useState('idle')
-  const [mode, setMode] = useState(INITIAL_MODE)
   const [editingId, setEditingId] = useState()
 
   const [points, dispatchPoint] = useReducer((points, action) => {
@@ -127,15 +124,6 @@ const AddDataElements = () => {
   // memoize so Viewer render once only (wrapped in memo)
   const onReady = useCallback(space => setSpace(space), [])
 
-  const onModeChange = useCallback(setMode, [])
-
-  const noElevationIn2D = useCallback(value => (mode === '3d' ? value : 0), [
-    mode
-  ])
-  const autoElevation = map(
-    evolve({ position: { elevation: noElevationIn2D } })
-  )
-
   // switch picking mode
   useEffect(() => {
     if (!space) {
@@ -205,7 +193,7 @@ const AddDataElements = () => {
       id: 'points',
       type: 'point',
       shape: 'sphere',
-      data: autoElevation(points),
+      data: points,
       diameter: 0.5,
       anchor: 'bottom',
       tooltip: d => d.name,
@@ -216,7 +204,7 @@ const AddDataElements = () => {
           updates: { position }
         })
     })
-  }, [space, points, autoElevation])
+  }, [space, points])
 
   useEffect(() => {
     if (!space) {
@@ -225,9 +213,7 @@ const AddDataElements = () => {
     space.addDataLayer({
       id: 'icons',
       type: 'icon',
-      data: map(evolve({ position: { elevation: max(0.25) } }))(
-        autoElevation(icons)
-      ),
+      data: map(evolve({ position: { elevation: max(0.25) } }))(icons),
       icon: {
         url: '/img/logo.png',
         width: 180,
@@ -242,7 +228,7 @@ const AddDataElements = () => {
           updates: { position }
         })
     })
-  }, [space, icons, autoElevation])
+  }, [space, icons])
 
   useEffect(() => {
     if (!space) {
@@ -252,7 +238,7 @@ const AddDataElements = () => {
       id: 'polygons',
       type: 'polygon',
       data: reject(p => isEmpty(p.coordinates))(polygons),
-      height: mode === '3d' ? 3.05 : 0.0045,
+      height: 3.05,
       alpha: 0.5,
       tooltip: d => d.name,
       onDrop: ({ data, coordinates }) =>
@@ -262,7 +248,7 @@ const AddDataElements = () => {
           coordinates
         })
     })
-  }, [space, polygons, mode])
+  }, [space, polygons])
 
   useEffect(() => {
     if (!space) {
@@ -271,12 +257,7 @@ const AddDataElements = () => {
     space.addDataLayer({
       id: 'polylines',
       type: 'polyline',
-      data: compose(
-        map(
-          evolve({ coordinates: map(evolve({ elevation: noElevationIn2D })) })
-        ),
-        reject(p => isEmpty(p.coordinates))
-      )(polylines),
+      data: reject(p => isEmpty(p.coordinates))(polylines),
       scale: 0.2,
       tooltip: d => d.name,
       onDrop: ({ data, coordinates }) =>
@@ -286,16 +267,12 @@ const AddDataElements = () => {
           coordinates
         })
     })
-  }, [space, polylines, noElevationIn2D])
+  }, [space, polylines])
 
   return (
     <Group align='flex-start'>
       <div style={{ width: isMobile ? '100%' : 'calc(50% - 16px)' }}>
-        <Viewer
-          mode={INITIAL_MODE}
-          onReady={onReady}
-          onModeChange={onModeChange}
-        />
+        <Viewer onReady={onReady} />
       </div>
       {!space ? (
         <p>Please start the viewer</p>
