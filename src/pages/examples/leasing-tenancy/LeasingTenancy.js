@@ -4,8 +4,6 @@ import numeral from 'numeral'
 import Viewer from './Viewer'
 import { units } from './_data'
 
-const INITIAL_MODE = '2d'
-
 const colorScale = rental =>
   rental < 3000
     ? '#3aa655'
@@ -17,12 +15,9 @@ const colorScale = rental =>
 
 const LeasingTenancy = () => {
   const [space, setSpace] = useState()
-  const [mode, setMode] = useState(INITIAL_MODE)
 
   // memoize so Viewer render once only (wrapped in memo)
   const onReady = useCallback(space => setSpace(space), [])
-
-  const onModeChange = useCallback(setMode, [])
 
   // render units
   useEffect(() => {
@@ -36,20 +31,16 @@ const LeasingTenancy = () => {
       tooltip: d => `${d.name} - $${numeral(d.rental).format('0,0')}/mo`,
       color: d => colorScale(d.rental),
       alpha: 0.7,
-      height: mode === '3d' ? 2.9 : 0.0045
+      height: 2.9
     })
     return () => {
       space.removeDataLayer('units')
     }
-  }, [space, mode])
+  }, [space])
 
   return (
     <div style={{ width: '100%', maxWidth: 800, margin: '0 auto' }}>
-      <Viewer
-        mode={INITIAL_MODE}
-        onReady={onReady}
-        onModeChange={onModeChange}
-      />
+      <Viewer mode='2d' onReady={onReady} />
     </div>
   )
 }
