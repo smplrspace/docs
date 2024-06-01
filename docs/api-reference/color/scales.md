@@ -23,6 +23,7 @@ smplr.Color.numericScale({
   saturate?: number
   nodata?: string
   classes?: number | number[]
+  zeroAsNoData?: boolean
 }) => ((n: number | null | undefined) => string)
 
 // example
@@ -42,6 +43,7 @@ smplr.Color.numericScale({
 - `saturate` - _optional_ - is used to change the saturation of the scale. Positive values saturates it, while negative values desaturates it. _Default value: 0._
 - `nodata` - _optional_ - is the color used when the value passed to the scale is not valid. _Default value: #6a6c6c._
 - `classes` - _optional_ - is used to return a distinct set of colors instead of a continuous scale. A number generates a scale broken into equi-distant classes, while an array lets you choose the "breakpoints" to use for the classes.
+- `zeroAsNoData` - _optional_ - should be set to `true` if you want to consider the value `0` as missing data, thus rendering it using the `nodata` color. _Default value: false._
 
 The scales available are:
 
