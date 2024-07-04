@@ -2051,6 +2051,11 @@
     lodash.unescape "4.0.1"
     semver "5.5.0"
 
+"@untitaker/hyperlink@^0.1.32":
+  version "0.1.32"
+  resolved "https://registry.yarnpkg.com/@untitaker/hyperlink/-/hyperlink-0.1.32.tgz#2aa2978615069d4eccd44377ecccd127e37b2f8e"
+  integrity sha512-SuhIK4DQKP4xQ6419mygUH1pl8yBTOHzRy/x5hWMkstW+2Qkjn46U27pNJZqKtiOy+BumoTsKLs8FeAyE/tUMg==
+
 "@webassemblyjs/ast@1.11.1":
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.11.1.tgz#2bfd767eae1a6996f432ff7e8d7fc75679c0b6a7"

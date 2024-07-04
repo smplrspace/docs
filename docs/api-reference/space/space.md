@@ -50,7 +50,7 @@ space.startViewer({
 }) => Promise<void>
 ```
 
-- `preview` - _optional_ - starts by a preview image with a play button similar to YouTube embed. It is advisable to use [our ESM bundle](/#esm-bundle-supports-runtime-tree-shaking) to ensure a quick initial render. _Default value: false_.
+- `preview` - _optional_ - starts by a preview image with a play button similar to YouTube embed. It is advisable to use [our ESM bundle](/#umd-vs-esm-bundles--tree-shaking) to ensure a quick initial render. _Default value: false_.
 - `loadingMessage` - _optional_ - lets you override the text displayed while the space is loading. _Default value: "Loading your space"_.
 - `renderingMessage` - _optional_ - lets you override the text displayed when the space is loaded but still rendering. _Default value: same as loadingMessage_.
 - `mode` - _optional_ - lets you choose between 2D and 3D rendering. _Default value: 3d_.
