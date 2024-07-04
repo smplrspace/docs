@@ -67,7 +67,7 @@ smplrClient.getDoorsOnLevel({
 ```
 
 - `spaceId` - unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
-- `levelIndex` - zero-based index of the level. Refer to the [Opening interface](#Opening-interface) to learn more.
+- `levelIndex` - zero-based index of the level. Refer to the [Opening interface](#opening-interface) to learn more.
 - `Opening` - this main interface is described [here](#opening-interface).
 
 ## getDoorsOnLevelFromCache
@@ -116,7 +116,7 @@ smplrClient.getWindowsOnLevel({
 ```
 
 - `spaceId` - unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
-- `levelIndex` - zero-based index of the level. Refer to the [Opening interface](#Opening-interface) to learn more.
+- `levelIndex` - zero-based index of the level. Refer to the [Opening interface](#opening-interface) to learn more.
 - `Opening` - this main interface is described [here](#opening-interface).
 
 ## getWindowsOnLevelFromCache
