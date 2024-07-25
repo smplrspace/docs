@@ -146,7 +146,11 @@ space.addDataLayer({
       levelIndex: number,
       x: number,
       z: number
-    }],
+    }] | [[{
+      levelIndex: number,
+      x: number,
+      z: number
+    }]],
     ...customData: object
   }],
   baseHeight?: number | (dataElement: object) => number,
@@ -163,6 +167,7 @@ space.addDataLayer({
 
 - `id` is a unique identifier for this layer which is used for updates.
 - `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `coordinates` array. Elements can also contain any additional custom data used for rendering options.
+  - `coordinates` in its simple form is an array of points in the 2D horizontal space, it can also be an array of "rings" where the first ring is the external perimeter of the polygon, and the others are "holes" cut into the external perimeter.
 - `baseHeight` - _optional_ - defines the elevation from the ground at the base of the polygon in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the base height for that element. _Default value: 0m._
 - `height` - _optional_ - defines the height of the polygon in meters from its base to its top. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the height for that element. _Default value: 3m._
 - `color` - _optional_ - defines the color of the sphere to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
