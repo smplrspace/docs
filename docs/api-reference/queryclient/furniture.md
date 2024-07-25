@@ -165,6 +165,7 @@ To get the ground footprint (as a polygon) of a single piece of furniture, ident
 smplrClient.getFurnitureGroundFootprintById({
   spaceId: string,
   furnitureId: string
+  closed?: boolean
 }): Promise<{
   levelIndex: number
   x: number
@@ -174,6 +175,7 @@ smplrClient.getFurnitureGroundFootprintById({
 
 - `spaceId` - unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
 - `furnitureId` - unique identifier of the furniture in the space, has a similar format to `spaceId`.
+- `closed` - _optional_ - indicates whether the returned array should be "closed", i.e. the last element repeats the first element. _Default value: false._
 
 Returns `null` if the furniture is not found in the space.
 
@@ -185,6 +187,7 @@ This is the synchronous equivalent of the query right above.
 smplrClient.getFurnitureGroundFootprintByIdFromCache({
   spaceId: string,
   furnitureId: string
+  closed?: boolean
 }): {
   levelIndex: number
   x: number
@@ -192,7 +195,7 @@ smplrClient.getFurnitureGroundFootprintByIdFromCache({
 }[] | null
 ```
 
-where `spaceId` and `furnitureId` are as defined in `getFurnitureGroundFootprintById`.
+where `spaceId`, `furnitureId`, and `closed` are as defined in `getFurnitureGroundFootprintById`.
 
 ## isFurnitureInPolygon
 
