@@ -44,7 +44,7 @@ where `spaceId`, `levelIndex`, and `padding` are as defined in `getLevelBounding
 
 ## getLevelAutomaticGround
 
-To get the automatic ground of the entire floor plate of a space, you can call the following query. The automatic ground is the [continuous concave hull](#getlinesconcavehull) of all the walls of the level put together. It may be enabled or disabled in the editor, but the value here will return a valid hull if the level exists and has walls.
+To get the automatic ground of the entire floor plate of a space, you can call the following query. The automatic ground is the [continuous concave hull](/api-reference/queryclient/geometry#getlinesconcavehull) of all the walls of the level put together. It may be enabled or disabled in the editor, but the value here will return a valid hull if the level exists and has walls.
 
 ```ts
 smplrClient.getLevelAutomaticGround({
