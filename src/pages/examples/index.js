@@ -34,6 +34,7 @@ import { controlledCamera } from './controlled-camera'
 import { seeThroughWalls } from './see-through-walls'
 import { customTooltips } from './custom-tooltips'
 import { airQuality } from './air-quality'
+import { embeddedEditor } from './embedded-editor'
 
 const projects = [
   helloWorld,
@@ -47,7 +48,8 @@ const projects = [
   warehouseBins,
   customTooltips,
   controlledCamera,
-  seeThroughWalls
+  seeThroughWalls,
+  embeddedEditor
 ]
 
 const ProjectList = () => {
