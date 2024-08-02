@@ -37,6 +37,8 @@ const editor = new smplr.Editor({
 - `disableErrorReporting` - _optional_ - can be set to "true" to disable the automated reporting of errors to our 3rd party error tracking tool, [Sentry](https://sentry.io/). We have discovered that Sentry's instrumentation could make it seem as if all network requests originated from smplr.js. Unfortunately, there is nothing simple we can do on our side to avoid that. If this is an issue for you, you can disable Sentry altogether. The tradeoff is that we will not automatically detect errors hapenning in your integration, and you may need to be more proactive to report them for us to roll out fixes.
 - `whiteLabel` - _optional_ - can be set to "true" to remove the "Powered by Smplrspace" attribution from the editor. This is a paid add-on. You can check if it is enabled from the Organization settings page. [Get in touch](mailto:hello@smplrspace.com) to learn more. _Note: there is currently no attribution in the editor, but there might be in the future._
 
+See also the [live example](/examples/embedded-editor).
+
 ## Editor sessions
 
 ### Start a session

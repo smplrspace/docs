@@ -9,7 +9,7 @@ export const embeddedEditor = {
   slug: 'embedded-editor',
   title: 'Embedded editor',
   category: GETTING_STARTED,
-  description: `Showcase how to embed the Smplrspace editor inside your own application, so users can edit spaces without it.`,
+  description: `This shows you how to embed the Smplrspace editor inside your own application, so users can edit spaces without it.`,
   published: true,
   stackblitzProjects: [
     {
