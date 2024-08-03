@@ -1,3 +1,14 @@
 {
-  "githubPullRequests.ignoredPullRequestBranches": ["next"]
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "githubPullRequests.ignoredPullRequestBranches": ["next"],
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.formatOnSave": false
 }
