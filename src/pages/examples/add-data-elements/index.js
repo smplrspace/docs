@@ -15,7 +15,7 @@ export const addDataElements = {
     {
       lang: 'React',
       id: 'smplr-data-elements-react',
-      openFile: 'SpaceViewer.tsx',
+      openFile: 'AddDataElements.tsx',
       default: true
     }
   ]
