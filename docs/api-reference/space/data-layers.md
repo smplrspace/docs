@@ -13,7 +13,9 @@ Some options correspond to generic behaviours that are shared by all interactive
 ```ts
 space.addDataLayer({
   // ...layerDefinition,
-  tooltip?: (dataElement: object) => string,
+  tooltip?: (dataElement: object) => string | HTMLString,
+  tooltipTemplate?: string,
+  tooltipContainerStyle?: string,
   onClick?: (dataElement: object, event: PointerEvent) => void,
   onHover?: (dataElement: object, event: LimitedPointerEvent) => void,
   onHoverOut?: (dataElement: object, event: LimitedPointerEvent) => void
@@ -21,7 +23,16 @@ space.addDataLayer({
 ```
 
 - `...layerDefinition` - refer to the [overview](./overview#data-layers) page.
-- `tooltip` - _optional_ - is taking the newly hovered data element as argument and should return the content of the tooltip to render. It is called once when the pointer starts to hover a data element. Built-in tooltips are text only, newlines are supported by using [multi-line template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#multi-line_strings). If you need HTML/CSS in your tooltips, check the [custom tooltips example](/examples/custom-tooltips/).
+- `tooltip` - _optional_ - is taking the newly hovered data element as argument and should return the content of the tooltip to render. It is called once when the pointer starts to hover a data element. Built-in tooltips support string and "HTML as string" values.
+  - For string values, newlines are supported by using [multi-line template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#multi-line_strings).
+  - For HTML values, both HTML and CSS are supported, the value will be sanitized to prevent XSS attacks.
+  - If you need complete control over the tooltip content (e.g. for a React component), check the [custom tooltips example](/examples/custom-tooltips/).
+- `tooltipTemplate` - _optional_ - is a fully featured template string used to generate the tooltip content based on the data for the hovered element.
+  - It is powered by [Handlebars](https://handlebarsjs.com/) and you may refer to the full templating documentation [here](https://handlebarsjs.com/guide/). 
+  - It supports HTML, nested fields access, conditionals, loops, and more.
+  - A custom helper lets you use fallback default values: `{{fallback [my field] 'default value'}}`.
+  - Without this helper, we use `'-'` as a default value for all fields.
+- `tooltipContainerStyle` - _optional_ - lets you override the style of the tooltip container with inline CSS.
 - `onClick` - _optional_ - is taking the data element that was clicked as argument, as well as the Javascript [pointer event](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent) that triggered the click. It is called each time a click or tap event happens.
 - `onHover` - _optional_ - is taking the newly hovered data element as argument, as well as a limited (due to the rendering engine's internals) "pointer event" that triggered the handler. The limited event only includes the coordinates within the viewer of the pointer at the time when the event was triggered. The handler is called once when the pointer starts to hover a data element.
 - `onHoverOut` - _optional_ - is taking the previously hovered data element as argument, as well as the same limited "pointer event" as for `onHover`. The handler is called once when the pointer stops hovering a data element.
