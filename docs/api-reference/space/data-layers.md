@@ -26,7 +26,7 @@ space.addDataLayer({
 - `tooltip` - _optional_ - is taking the newly hovered data element as argument and should return the content of the tooltip to render. It is called once when the pointer starts to hover a data element. Built-in tooltips support string and "HTML as string" values.
   - For string values, newlines are supported by using [multi-line template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#multi-line_strings).
   - For HTML values, both HTML and CSS are supported, the value will be sanitized to prevent XSS attacks.
-  - If you need complete control over the tooltip content (e.g. for a React component), check the [custom tooltips example](/examples/custom-tooltips/).
+  - If you need complete control over the tooltip content (e.g. for a React component), check the [tooltips example](/examples/tooltips/).
 - `tooltipTemplate` - _optional_ - is a fully featured template string used to generate the tooltip content based on the data for the hovered element.
   - It is powered by [Handlebars](https://handlebarsjs.com/) and you may refer to the full templating documentation [here](https://handlebarsjs.com/guide/). 
   - It supports HTML, nested fields access, conditionals, loops, and more.
