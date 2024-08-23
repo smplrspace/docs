@@ -4,11 +4,11 @@ import StackblitzProject from '../../../components/StackblitzProject'
 
 import { FEATURES } from '../_categories'
 
-export const customTooltips = {
-  slug: 'custom-tooltips',
-  title: 'Custom tooltips',
+export const tooltipsOptions = {
+  slug: 'tooltips',
+  title: 'All tooltips options',
   category: FEATURES,
-  description: `Programmatically control HTML elements to overlay data elements. This gives you 100% control over your tooltips. And you can react to camera movements.`,
+  description: `Get an overview of all the ways to use tooltips, from simple text tooltips to fully controlled custom elements. And even through programmatic control.`,
   stackblitzProjects: [
     // {
     //   lang: 'Javascript',
@@ -22,8 +22,8 @@ export const customTooltips = {
     // },
     {
       lang: 'React',
-      id: 'smplr-custom-tooltips',
-      openFile: 'SpaceViewer.tsx',
+      id: 'smplr-tooltips',
+      openFile: 'index.tsx',
       default: true
     }
   ],
@@ -31,5 +31,5 @@ export const customTooltips = {
 }
 
 export default function () {
-  return <StackblitzProject project={customTooltips} />
+  return <StackblitzProject project={tooltipsOptions} />
 }
