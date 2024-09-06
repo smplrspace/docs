@@ -35,6 +35,7 @@ import { seeThroughWalls } from './see-through-walls'
 import { tooltipsOptions } from './tooltips'
 import { airQuality } from './air-quality'
 import { embeddedEditor } from './embedded-editor'
+import { markup } from './markup'
 
 const projects = [
   helloWorld,
@@ -45,6 +46,7 @@ const projects = [
   propertyManagement,
   addDataElements,
   stackingPlan,
+  markup,
   warehouseBins,
   tooltipsOptions,
   controlledCamera,
