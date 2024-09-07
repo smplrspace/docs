@@ -117,6 +117,24 @@ space.setMode(mode: '2d' | '3d') => void
 
 - `mode` - the desired rendering mode.
 
+### Show/hide level picker
+
+This is the programmatic equivalent of setting `hideLevelPicker` in `startViewer`:
+
+```ts
+space.showLevelPicker() => void
+space.hideLevelPicker() => void
+```
+
+### Show/hide the navigation buttons
+
+This is the programmatic equivalent of setting `hideNavigationButtons` in `startViewer`:
+
+```ts
+space.showNavigationButtons() => void
+space.hideNavigationButtons() => void
+```
+
 ### Navigate levels
 
 This is the programmatic equivalent to pressing the level buttons in the bottom-left controls:
