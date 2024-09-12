@@ -29,7 +29,7 @@
     "@mantine/core": "^3.0.5",
     "@mantine/hooks": "^3.0.5",
     "@mdx-js/react": "^1.6.21",
-    "@smplrspace/smplr-loader": "^2.14.2-beta.4",
+    "@smplrspace/smplr-loader": "^2.25.2-beta.0",
     "@stackblitz/sdk": "^1.8.2",
     "@svgr/webpack": "^5.5.0",
     "chance": "^1.1.8",

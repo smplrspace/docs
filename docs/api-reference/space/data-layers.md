@@ -17,10 +17,35 @@ space.addDataLayer({
   tooltipTemplate?: string,
   tooltipContainerStyle?: string,
   persistentTooltip?: boolean,
+  legend?: LegendConfig, // see below
   onClick?: (dataElement: object, event: PointerEvent) => void,
   onHover?: (dataElement: object, event: LimitedPointerEvent) => void,
   onHoverOut?: (dataElement: object, event: LimitedPointerEvent) => void
 }) => DataLayerController
+
+type LegendConfig =
+  | {
+    type: 'numeric'
+    colorScale: (n: number | null | undefined) => string
+    domain?: [number, number]
+    ticks?: Record<number, number | string>
+  }
+  | {
+    type: 'swatches'
+    swatches: {
+      color: string
+      label: string
+      group?: string
+    }[]
+  }
+  | {
+    type: 'icons'
+    icons: {
+      url: string
+      label: string
+      group?: string
+    }[]
+  }
 ```
 
 - `...layerDefinition` - refer to the [overview](./overview#data-layers) page.
@@ -35,6 +60,10 @@ space.addDataLayer({
   - Without this helper, we use `'-'` as a default value for all fields.
 - `tooltipContainerStyle` - _optional_ - lets you override the style of the tooltip container with inline CSS.
 - `persistentTooltip` - _optional_ - set this to `true` to turn tooltips into small cards that are all visible at once instead of on hover. Persistent tooltips are automatically positioned on the center of the data element they're attached to. They disappear when the camera is moving and reappear when it stops. They are only displayed for the top visible level. They only work for data elements with a non null or undefined `id`. _Default value: false_
+- `legend` - _optional_ - lets you configure a legend to be rendered automatically in a collapsible overlay on the viewer. The legend can be positioned using `legendPosition` in [viewer options](/api-reference/space/custom-ux#viewer-options).
+  - For `numeric` legends, refer to options in [the legend section](/api-reference/color/legend#numerical-scale-legends).
+  - For `swatches` legends, refer to options in [the legend section](/api-reference/color/legend#categorical-scale-legends).
+  - For `icons` legends, refer to options in [the legend section](/api-reference/color/legend#icons-legends).
 - `onClick` - _optional_ - is taking the data element that was clicked as argument, as well as the Javascript [pointer event](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent) that triggered the click. It is called each time a click or tap event happens.
 - `onHover` - _optional_ - is taking the newly hovered data element as argument, as well as a limited (due to the rendering engine's internals) "pointer event" that triggered the handler. The limited event only includes the coordinates within the viewer of the pointer at the time when the event was triggered. The handler is called once when the pointer starts to hover a data element.
 - `onHoverOut` - _optional_ - is taking the previously hovered data element as argument, as well as the same limited "pointer event" as for `onHover`. The handler is called once when the pointer stops hovering a data element.

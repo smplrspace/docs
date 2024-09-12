@@ -5,7 +5,8 @@ const Legend: FC = () => {
   useEffect(() => {
     loadSmplrJs('umd', 'dev')
       .then((smplr) => {
-        smplr.Color.drawLegend({ containerId: 'legend',
+        smplr.Color.drawLegend({
+          containerId: 'example-legend',
           colorScale: smplr.Color.numericScale({
             name: smplr.Color.NumericScale.RdYlBu,
             domain: [10, 30],
@@ -23,8 +24,8 @@ const Legend: FC = () => {
   }, [])
 
   return (
-    <div style={{ width: 200, marginLeft: '1em', marginTop: '2em', marginBottom: '2em' }}>
-      <div id='legend'>Loading...</div>
+    <div style={{ width: 200, marginTop: '2em', marginBottom: '2em' }}>
+      <div id='example-legend'>Loading...</div>
     </div>
   )
 }
