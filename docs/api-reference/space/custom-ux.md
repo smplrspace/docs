@@ -81,6 +81,7 @@ space.startViewer({
   autoRotate?: boolean,
   hideNavigationButtons?: boolean
   hideLevelPicker?: boolean
+  legendPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
 }) => void
 ```
 
@@ -94,6 +95,7 @@ space.startViewer({
 - `autoRotate` - _optional_ - set this to true to have the viewer spin around the space automatically. You can also start, set the rotation speed, and stop the rotation as described [below](#auto-rotate-the-viewer). _Default value: false_
 - `hideNavigationButtons` - _optional_ - set this to true if you want the user to control the camera but want to remove the navigation buttons. Mouse, touch and keyboard inputs will work while the buttons are hidden. _Default value: false_
 - `hideLevelPicker` - _optional_ - set this to true if you want to remove the level picker from the viewer. Levels can still be controlled programmatically, so you could use your own buttons or logic. _Default value: false_
+- `legendPosition` - _optional_ - lets you choose where the legend (if any is configured in the data layers) would be rendered. _Default value: 'top-left'_
 
 ## Viewer controls
 
@@ -116,6 +118,24 @@ space.setMode(mode: '2d' | '3d') => void
 ```
 
 - `mode` - the desired rendering mode.
+
+### Show/hide level picker
+
+This is the programmatic equivalent of setting `hideLevelPicker` in `startViewer`:
+
+```ts
+space.showLevelPicker() => void
+space.hideLevelPicker() => void
+```
+
+### Show/hide the navigation buttons
+
+This is the programmatic equivalent of setting `hideNavigationButtons` in `startViewer`:
+
+```ts
+space.showNavigationButtons() => void
+space.hideNavigationButtons() => void
+```
 
 ### Navigate levels
 

@@ -66,7 +66,7 @@ Configure a numerical scale using our interactive [colors playground](https://co
 This function lets you quickly map a discrete number of named categories to colors. It comes with fallback color built-in, as well as type safe categories.
 
 ```ts
-smplr.Color.numericScale<C extends string>({
+smplr.Color.categoryScale<C extends string>({
   categories: Record<C, string>
   nodata?: string
 }): ((category: C) => string)
@@ -85,6 +85,28 @@ smplr.Color.categoryScale({
 - `nodata` - _optional_ - is the color used when the value passed to the scale is not a known category. _Default value: #6a6c6c._
 
 Typescript tip: You may disable category typesafety by passing a "loose" type hint to the function: `categoryScale<string>({...})`.
+
+#### Easy swatches for your legend
+
+When using a category scale, you can use the same arguments provided to create the scale to generate the corresponding swatches. This makes it easy to use a [legend for the scale](/api-reference/color/legend#categorical-scale-legends).
+
+```ts
+smplr.Color.categorySwatches<C extends string>({
+  // same as categoryScale
+  categories: Record<C, string>
+  nodata?: string
+  // additional swatches config
+  excludeNoData?: boolean
+  noDataLabel?: string
+}): {
+  color: string
+  label: string
+}[]
+```
+
+- `categories` and `nodata` - refer to `categoryScale` above.
+- `excludeNoData` - _optional_ - lets you opt out of having a swatch for the `nodata` color. _Default value: false._
+- `noDataLabel` - _optional_ - lets you customize the label used for the `nodata` color. _Default value: 'No data'._
 
 ### ragScale
 
@@ -116,3 +138,30 @@ smplr.Color.ragScale({
 - `nodata` - _optional_ - is the color used when the value passed to the scale is not a known category. _Default value: #6a6c6c._
 
 Typescript tip: You may disable category typesafety by passing a "loose" type hint to the function: `ragScale<string>({...})`.
+
+#### Easy swatches for your legend
+
+When using a RAG scale, you can use the same arguments provided to create the scale to generate the corresponding swatches. This makes it easy to use a [legend for the scale](/api-reference/color/legend#categorical-scale-legends).
+
+```ts
+smplr.Color.ragSwatches<C extends string | 'red' | 'amber' | 'green'>({
+  // same as ragScale
+  categories?: Partial<Record<'red' | 'amber' | 'green', C>>
+  colors?: {
+    red?: string
+    amber?: string
+    green?: string
+  }
+  nodata?: string
+  // additional swatches config
+  excludeNoData?: boolean
+  noDataLabel?: string
+}): {
+  color: string
+  label: string
+}[]
+```
+
+- `categories`, `colors` and `nodata` - refer to `ragScale` above.
+- `excludeNoData` - _optional_ - lets you opt out of having a swatch for the `nodata` color. _Default value: false._
+- `noDataLabel` - _optional_ - lets you customize the label used for the `nodata` color. _Default value: 'No data'._

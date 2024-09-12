@@ -1765,10 +1765,10 @@
     url "^0.11.0"
     webpack-sources "^1.4.3"
 
-"@smplrspace/smplr-loader@^2.14.2-beta.4":
-  version "2.14.2-beta.4"
-  resolved "https://registry.yarnpkg.com/@smplrspace/smplr-loader/-/smplr-loader-2.14.2-beta.4.tgz#75aa1e24a4478777c708bb7e0d9e4491a2eca9ad"
-  integrity sha512-xxr8mXUTWNuLdvarqFzesf8IDp6UB8UhsakmeGKWqaHTEIdxEDlWLs22TX1w+Tgh7qL+z6NLXsLquiBcOaXCtg==
+"@smplrspace/smplr-loader@^2.25.2-beta.0":
+  version "2.25.2-beta.0"
+  resolved "https://registry.yarnpkg.com/@smplrspace/smplr-loader/-/smplr-loader-2.25.2-beta.0.tgz#3a7a8ddb463f32220724ba127eb93c20f553e0de"
+  integrity sha512-VqmRVtAHxbLIweAsUOOxscjr06pnX8KdyfKR4wjYS04NvswDzdyobbWfxQrz8iXnxBSefbVEw8mjTXFXwWAgMA==
 
 "@stackblitz/sdk@^1.8.2":
   version "1.8.2"
