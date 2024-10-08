@@ -56,9 +56,7 @@ Learn more in the [embedding spaces guide](/guides/embedding#loading-smplrjs-umd
 
 ```sh
 npm install @smplrspace/smplr-loader
-```
-
-```sh
+# OR
 yarn add @smplrspace/smplr-loader
 ```
 
@@ -85,6 +83,8 @@ loadSmplrJs()
 ```
 
 💡 Try it yourself in our [interactive hello world example](/examples/hello-world), which provides vanilla Javascript, vanilla Typescript and React starting points.
+
+**🤖 Common types:** the library also exposes a number of internal types that are commonly used in userland, like SmplrCoord3d, SpaceViewerOptions, etc. Feel free to explore these in your IDE.
 
 Note: `smplr-loader` is not the library itself, but a tiny package that loads the library from our CDN and applies types to the loaded module. We have plans to publish the `smplr.js` library itself to NPM in the future but our backend is not ready for it. See [below](/#warning-against-self-hosting-smplrjs) for details.
 
