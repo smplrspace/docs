@@ -126,7 +126,7 @@ space.addDataLayer({
 
 The method returns a `DataLayerController` which provides an API to manipulate the layer. See [the data layer controller section](./data-layers#data-layer-controller) for details.
 
-**For more details on the layer types and their specific options and data attributes, refer to the [data layers](./data-layers) page.**
+**For more details on the layer types, their specific options and data attributes, as well as the type-specific variants of `addDataLayer`, refer to the [data layers](./data-layers) page.**
 
 ### Get a layer's controller
 
