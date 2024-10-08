@@ -6,6 +6,8 @@ sidebar_position: 2
 
 The introduction to data layers and how to add, update and remove them is in the [overview](./overview#data-layers) page. Below, we describe the different layer types and their respective options.
 
+**Tip for Typescript users:** Typescript sometimes struggles to infer the type of layer you're using based on the options, you can help it by using a type-specific variant of `addDataLayer` like `addPointDataLayer`. This will makes its job easier, and you're understanding of any potential error less of a "pulls hair" experience 😉.
+
 ## Generic options
 
 Some options correspond to generic behaviours that are shared by all interactive data layers, making it easy to swap between similar layer types (e.g. "point" and "icon").
@@ -78,6 +80,8 @@ A point layer has each data element rendered as a sphere.
 
 ```ts
 space.addDataLayer({
+// OR
+space.addPointDataLayer({
   id: string,
   type: 'point',
   shape: 'sphere' | 'cube',
@@ -139,6 +143,8 @@ An icon layer has each data element rendered as an icon (it's a sprite for reade
 
 ```ts
 space.addDataLayer({
+// OR
+space.addIconDataLayer({
   id: string,
   type: 'icon',
   data: [{
@@ -180,6 +186,8 @@ A polygon layer has each data element rendered as an extruded polygon. It is use
 
 ```ts
 space.addDataLayer({
+// OR
+space.addPolygonDataLayer({
   id: string,
   type: 'polygon',
   data: [{
@@ -229,6 +237,8 @@ A polyline layer has each data element rendered as a line with one or more segme
 
 ```ts
 space.addDataLayer({
+// OR
+space.addPolylineDataLayer({
   id: string,
   type: 'polyline',
   data: [{
@@ -278,6 +288,8 @@ A dotted polyline layer is similar to a polyline layer but has each data element
 
 ```ts
 space.addDataLayer({
+// OR
+space.addDottedPolylineDataLayer({
   id: string,
   type: 'dotted-polyline',
   data: [{
@@ -336,6 +348,8 @@ A furniture layer has each data element mapped to one or more pieces of furnitur
 
 ```ts
 space.addDataLayer({
+// OR
+space.addFurnitureDataLayer({
   id: string,
   type: 'furniture',
   data: [{
@@ -361,6 +375,8 @@ A heat map layer renders a grid of colored "elements" representing the interpola
 
 ```ts
 space.addDataLayer({
+// OR
+space.addHeatmapDataLayer({
   id: string,
   type: 'heatmap',
   style: 'spheres' | 'grid' | 'bar-chart',
