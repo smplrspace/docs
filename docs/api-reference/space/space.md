@@ -176,3 +176,45 @@ Removing all data layers at once is done as follow.
 ```ts
 space.removeAllDataLayers() => void
 ```
+
+## Taking screenshots
+
+You can use the methods below to take screenshots of the Smplrspace viewer.
+
+### Download a screenshot
+
+This method will download the screenshot to the user's file system.
+
+```ts
+space.takeScreenshot({
+  mode: '3d-scene' | 'full-viewer'
+  width?: number
+  height?: number
+  forceRetinaPixelRatio?: boolean
+  forceNonRetinaPixelRatio?: boolean
+}) => Promise<void>
+```
+
+- `mode` lets you choose between 2 options:
+  - `3d-scene` to include only the 3D content in the viewer and ignore the HTML overlays like buttons, tooltips, legends, etc.
+  - `full-viewer` to include everything, including the HTML overlays like buttons, tooltips, legends, etc.
+- `width` - _optional_ - lets you specify the desired width in pixels of the generated image. It defaults to the width of the viewer, and would maintain ratio if `height` is provided but not `width`.
+- `height` - _optional_ - lets you specify the desired height in pixels of the generated image. It defaults to the height of the viewer, and would maintain ratio if `width` is provided but not `height`.
+- `forceRetinaPixelRatio` - _optional_ - can be set to true to force the image resolution to be **2x** the set width/height. _Default value: false_.
+- `forceNonRetinaPixelRatio` - _optional_ - can be set to true to force the image resolution to be **1x** the set width/height. _Default value: false_.
+
+### Get a screenshot as Base64 string
+
+This method will return a string containing the [Base64 encoded image](https://b64encode.com/blog/what-is-a-base64-image-and-how-to-encode-it/) that you can manipulate, upload, or download as per your specific requirements.
+
+```ts
+space.takeScreenshotToString({
+  mode: '3d-scene' | 'full-viewer'
+  width?: number
+  height?: number
+  forceRetinaPixelRatio?: boolean
+  forceNonRetinaPixelRatio?: boolean
+}) => Promise<string>
+```
+
+All arguments are the same as [`takeScreenshot`](#download-a-screenshot)
