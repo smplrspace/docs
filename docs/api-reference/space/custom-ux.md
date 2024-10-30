@@ -67,13 +67,13 @@ space.startViewer({
   topShownLevel?: number,
   includeLevels?: number[],
   cameraPlacement?: {
-    alpha: number,
-    beta: number,
-    radius: number,
-    target: {
-      x: number,
-      y: number,
-      z: number
+    alpha?: number,
+    beta?: number,
+    radius?: number,
+    target?: {
+      x?: number,
+      y?: number,
+      z?: number
     }
   },
   disableCameraControls?: boolean,
