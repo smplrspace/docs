@@ -10,7 +10,37 @@ Smplr.js provides a few options that help you customize the map experience to yo
 
 ### Render options
 
+To customize how the map viewer renders the spaces, you can pass in a number of options to the rendering engine. Below are the options currently exposed. Render options can be updated dynamically as described [further](#update-render-options-dynamically).
+
+```ts
+interface MapSpaceRenderOptions {
+  footprint?: {
+    render?: boolean
+    color?: string
+  }
+  walls?: {
+    render?: boolean
+  }
+  grounds?: {
+    render?: boolean
+  }
+  windows?: {
+    render?: boolean
+  }
+}
+```
+
 ## Viewer controls
+
+### Update render options dynamically
+
+Render options are described in details in [Render options](#render-options). You can update them dynamically with the method below:
+
+```ts
+map.updateRenderOptions(options: MapSpaceRenderOptions) => void
+```
+
+- `options` is an object of the [`MapSpaceRenderOptions`](#render-options) interface, which is deeply merged with the current options used by the viewer. To "unset" an optional value, you can pass `undefined` explicitely.
 
 ### Get the camera placement
 
