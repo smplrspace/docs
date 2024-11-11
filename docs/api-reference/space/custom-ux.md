@@ -10,10 +10,10 @@ Smplr.js provides a few options that help you customize the floor plan experienc
 
 ### Render options
 
-To customize how the viewer renders the space, you can pass in a number of options to the rendering engine. Below are the options currently exposed. Render options should be passed through `startViewer` as described [right below](#viewer-options), or updated dynamically as described [further](#update-render-options-dynamically).
+To customize how the space viewer renders the space, you can pass in a number of options to the rendering engine. Below are the options currently exposed. Render options should be passed through `startViewer` as described [right below](#viewer-options), or updated dynamically as described [further](#update-render-options-dynamically).
 
 ```ts
-interface RenderOptions {
+interface SpaceRenderOptions {
   backgroundColor?: string;
   grounds?: {
     render?: boolean;
@@ -63,7 +63,7 @@ You can set a number of options when starting the viewer. They are listed below 
 ```ts
 space.startViewer({
   // ...basicControls
-  renderOptions?: RenderOptions,
+  renderOptions?: SpaceRenderOptions,
   topShownLevel?: number,
   includeLevels?: number[],
   cameraPlacement?: {
@@ -104,10 +104,10 @@ space.startViewer({
 Render options are described in details in [Render options](#render-options). They can be set when the viewer starts, but if you need to update them dynamically, you should use the method below:
 
 ```ts
-space.updateRenderOptions(options: RenderOptions) => void
+space.updateRenderOptions(options: SpaceRenderOptions) => void
 ```
 
-- `options` is an object of the [`RenderOptions`](#render-options) interface, which is deeply merged with the current options used by the viewer. To "unset" an optional value, you can pass `undefined` explicitely.
+- `options` is an object of the [`SpaceRenderOptions`](#render-options) interface, which is deeply merged with the current options used by the viewer. To "unset" an optional value, you can pass `undefined` explicitely.
 
 ### Switch between 2D and 3D
 
