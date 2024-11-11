@@ -42,6 +42,24 @@ map.updateRenderOptions(options: MapSpaceRenderOptions) => void
 
 - `options` is an object of the [`MapSpaceRenderOptions`](#render-options) interface, which is deeply merged with the current options used by the viewer. To "unset" an optional value, you can pass `undefined` explicitely.
 
+### Navigate levels
+
+To programmatically choose which levels are visible on the map, you may use the following functions:
+
+```ts
+map.showUpToLevel(levelIndex: number) => void
+```
+
+- `levelIndex` - zero-based index of the top level you want to see. For example, setting `levelIndex` to `2` is equivalent to pressing the `L3` button in the space viewer.
+
+You can also reset the viewer back to showing all the levels with:
+
+```ts
+map.showAllLevels() => void
+```
+
+## Camera controls
+
 ### Get the camera placement
 
 `map.setCameraPlacement` lets you position the camera. You would typically embed the map viewer and have an interface to retrieve one or more placement(s) to be stored in your database. You can then load any placement object from your database to set the initial value. The camera placement can be retrieved with the following function:
