@@ -30,9 +30,9 @@ Smplr.js will not be typed using this method.
 <!-- at the end of the <body> section of your HTML -->
 <script>
   const space = new smplr.Space({
-    spaceId: "fbc5617e-5a27-4138-851e-839446121b2e",
-    clientToken: "pub_eb760fee77634cdab2fe31146fc371c2",
-    containerId: "test",
+    spaceId: "spc_xxx",
+    clientToken: "pub_xxx",
+    containerId: "xxx",
   });
   space.startViewer({
     preview: true,
@@ -57,9 +57,9 @@ Smplr.js will not be typed using this method.
 <script>
   import("https://app.smplrspace.com/lib/smplr.mjs").then((smplr) => {
     const space = new smplr.Space({
-      spaceId: "fbc5617e-5a27-4138-851e-839446121b2e",
-      clientToken: "pub_eb760fee77634cdab2fe31146fc371c2",
-      containerId: "test",
+      spaceId: "spc_xxx",
+      clientToken: "pub_xxx",
+      containerId: "xxx",
     });
     space.startViewer({
       preview: true,

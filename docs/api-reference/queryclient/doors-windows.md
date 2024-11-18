@@ -39,10 +39,10 @@ interface Opening {
 To list all doors from a space, you can call the following query.
 
 ```ts
-smplrClient.getAllDoorsInSpace(id: string): Promise<Opening[]>
+smplrClient.getAllDoorsInSpace(spaceId: string): Promise<Opening[]>
 ```
 
-- `id` - unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx".
 - `Opening` - this main interface is described [here](#opening-interface).
 
 ## getAllDoorsInSpaceFromCache
@@ -50,10 +50,10 @@ smplrClient.getAllDoorsInSpace(id: string): Promise<Opening[]>
 This is the synchronous equivalent of the query right above.
 
 ```ts
-smplrClient.getAllDoorsInSpaceFromCache(id: string): Opening[]
+smplrClient.getAllDoorsInSpaceFromCache(spaceId: string): Opening[]
 ```
 
-where `id` and `Opening` are as defined in `getAllDoorsInSpace`.
+where `spaceId` and `Opening` are as defined in `getAllDoorsInSpace`.
 
 ## getDoorsOnLevel
 
@@ -66,7 +66,7 @@ smplrClient.getDoorsOnLevel({
 }): Promise<Opening[]>
 ```
 
-- `spaceId` - unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx".
 - `levelIndex` - zero-based index of the level. Refer to the [Opening interface](#opening-interface) to learn more.
 - `Opening` - this main interface is described [here](#opening-interface).
 
@@ -88,10 +88,10 @@ where `spaceId`, `levelIndex`, and `Opening` are as defined in `getDoorsOnLevel`
 To list all windows from a space, you can call the following query.
 
 ```ts
-smplrClient.getAllWindowsInSpace(id: string): Promise<Opening[]>
+smplrClient.getAllWindowsInSpace(spaceId: string): Promise<Opening[]>
 ```
 
-- `id` - unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx".
 - `Opening` - this main interface is described [here](#opening-interface).
 
 ## getAllWindowsInSpaceFromCache
@@ -99,10 +99,10 @@ smplrClient.getAllWindowsInSpace(id: string): Promise<Opening[]>
 This is the synchronous equivalent of the query right above.
 
 ```ts
-smplrClient.getAllWindowsInSpaceFromCache(id: string): Opening[]
+smplrClient.getAllWindowsInSpaceFromCache(spaceId: string): Opening[]
 ```
 
-where `id` and `Opening` are as defined in `getAllWindowsInSpace`.
+where `spaceId` and `Opening` are as defined in `getAllWindowsInSpace`.
 
 ## getWindowsOnLevel
 
@@ -115,7 +115,7 @@ smplrClient.getWindowsOnLevel({
 }): Promise<Opening[]>
 ```
 
-- `spaceId` - unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx".
 - `levelIndex` - zero-based index of the level. Refer to the [Opening interface](#opening-interface) to learn more.
 - `Opening` - this main interface is described [here](#opening-interface).
 

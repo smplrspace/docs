@@ -41,12 +41,12 @@ We also provide a synchronous version for most asynchronous queries, relying on 
 
 ```js
 const smplrClient = new smplr.QueryClient({
-  organizationId: "...",
-  clientToken: "pub_...",
+  organizationId: "xxx",
+  clientToken: "pub_xxx",
 });
 
 try {
-  const space = await smplrClient.getSpace("your_space_id");
+  const space = await smplrClient.getSpace("spc_xxx");
   // do something with the data
 } catch (error) {
   // handle the error
@@ -57,12 +57,12 @@ try {
 
 ```js
 const smplrClient = new smplr.QueryClient({
-  organizationId: "...",
-  clientToken: "pub_...",
+  organizationId: "xxx",
+  clientToken: "pub_xxx",
 });
 
 smplrClient
-  .getSpace("your_space_id")
+  .getSpace("spc_xxx")
   .then((space) => {
     // do something with the data
   })

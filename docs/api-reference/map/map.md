@@ -44,12 +44,12 @@ map.startViewer({
 }) => Promise<void>
 ```
 
-- `spaceIds` - _optional_ - lets you specify the Smplrspace ID of the spaces to render on the map when initializing the viewer. You can also do that dynamically as described on the [Building page](/api-reference/map/buildings).
+- `spaceIds` - _optional_ - lets you specify the Smplrspace ID ("spc_xxx") of the spaces to render on the map when initializing the viewer. You can also do that dynamically as described on the [Building page](/api-reference/map/buildings).
 - `osmBuildings` - _optional_ - lets you choose whether to render or not cities in 3D. City buildings data comes from OpenStreetMap and is automatically rendered in 3D. You can also do that dynamically as described in [3D cities](/api-reference/map/buildings#3d-cities). _Default value: true_.
 - `hash` - _optional_ - lets you choose whether to automatically sync the map location to the hash fragment of the page's URL. This makes it for easy to share links to specific map locations. It relies on Mapbox's corresponding [parameter](https://docs.mapbox.com/mapbox-gl-js/api/map/#map-parameters). _Default value: false_.
-- `fitNewSpacesInScreen` - _optional_ - lets you choose whether to automatically recenter the map to fit all the spaces when the spaces rendered on the map change. You can also center the map using [`fitAllSpacesInScreen`](#fit-all-spaces-in-screen). \_Default value: true.
+- `fitNewSpacesInScreen` - _optional_ - lets you choose whether to automatically recenter the map to fit all the spaces when the spaces rendered on the map change. You can also center the map using [`fitAllSpacesInScreen`](#fit-all-spaces-in-screen). _Default value: true._
 - `loadingMessage` - _optional_ - lets you override the text displayed while the space is loading. This can be change dynamically as well, see [UI controls](#ui-controls). _Default value: "Loading map"_.
-- `forceLoader` - _optional_ - provides programmatic control to whether the loader should be displayed or not. By default we display it while loading the map and initial spaces provided by `spaceIds`, but you can control this if you load your own data as well. This can be change dynamically as well, see [UI controls](#ui-controls). \_Default value: false.
+- `forceLoader` - _optional_ - provides programmatic control to whether the loader should be displayed or not. By default we display it while loading the map and initial spaces provided by `spaceIds`, but you can control this if you load your own data as well. This can be change dynamically as well, see [UI controls](#ui-controls). _Default value: false._
 - `onReady` - _optional_ - is called once the viewer's initial render is done. You may alternatively use the promise returned by startViewer, which resolves when the viewer is ready.
 - `onError` - _optional_ - is called if an error occur while starting the viewer. You may alternatively use the promise returned by startViewer to catch errors.
 - `onSpaceClick` - _optional_ - is called when the user clicks a 3D space, and provide data about which space and which level where clicked.
@@ -78,7 +78,7 @@ You can change automatically "fly" the map to a specific space, by providing the
 map.flyToSpace(spaceId: string) => void
 ```
 
-- `spaceId` - unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx".
 
 ### Fit all spaces in screen
 

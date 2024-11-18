@@ -27,7 +27,7 @@ const editor = new smplr.Editor({
 }) => Editor
 ```
 
-- `spaceId` is the unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
+- `spaceId` is the unique identifier of the space in Smplrspace, something like "spc_xxx". Refer to the [page on SIDs](/guides/sid) to learn more.
 - `user` is an object used to identify who is making the changes on the space.
   - `id` is a required unique identifier for the user. It does not represent anything on the Smplrspace side, it should most likely be your own internal `id`. It is used to track who made the changes.
   - `name` is an optional user-readable name for the user. The value is used in the Smplrspace app to indicate who made the changes. If you decide not to indicate the name, the app will indicate that "Someone" made the changes. This is purely an optional to improve your team's user experience of the Smplrspace app.
