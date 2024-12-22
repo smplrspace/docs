@@ -28,7 +28,7 @@ interface Opening {
 ```
 
 - `id` - unique identifier of this particular opening.
-- `name` - name given to the furniture in the editor. It could be an empty string.
+- `name` - name given to the opening in the editor. It could be an empty string.
 - `dimensions.width` - horizontal width of the opening in centimeters.
 - `dimensions.baseHeight` - distance between the ground and the bottom of the opening. It is usually 0 for doors and positive for windows.
 - `dimensions.height` - distance between the bottom and the top of the opening.

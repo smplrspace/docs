@@ -93,7 +93,7 @@ space.enablePickingMode({
 }) => void
 ```
 
-- `onPick` is called each time a click/tap event fires. The `coordinates` object provides the location that was picked in 3D. The `furnitureId` value is set when the user picked a furniture and contains its unique identifier. These pieces of information should be stored in your database and reused anytime you need to display data at this location.
+- `onPick` is called each time a click/tap event fires. The `coordinates` object provides the location that was picked in 3D. The `furnitureId` value is set when the user picked a furniture (now called equipment in the app) and contains its unique identifier. These pieces of information should be stored in your database and reused anytime you need to display data at this location.
 
 Disabling picking mode is done as follow. You could call `disablePickingMode` inside the `onPick` handler to limit the number of times a pick event should be processed.
 

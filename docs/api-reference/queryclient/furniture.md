@@ -4,6 +4,10 @@ sidebar_position: 6
 
 # Furniture
 
+:::info
+"Furniture" is gradually being renamed to "Equipment". You'll read equipment is the app and furniture here, until the change is complete. They are one and the same concept.
+:::
+
 ## Furniture interface
 
 Multiple queries in this page return objects of the type `Furniture` described below:

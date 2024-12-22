@@ -53,9 +53,13 @@ smplrClient.getSpaceFromCache(spaceId: string): Space
 
 where `spaceId` and `Space` are as defined in `getSpace`, without the `Promise`.
 
-## getSpaceAssetmap
+## getSpaceAssetmap (entities)
 
-To get the full assetmap of a space, as saved in the mapper UI, you can call the following query.
+:::info
+"Assets" are gradually being renamed to "Entities". You'll read entity/ies is the app and asset(s) here, until the change is complete. They are one and the same concept. Except this API to be deprecated soon, and a much wider API surface to be introduced as the entity manager enters general availability.
+:::
+
+To get the full assetmap (list of entities) of a space, as saved in the entity manager (previously mapper) in the app, you can call the following query.
 
 ```ts
 smplrClient.getSpaceAssetmap(spaceId: string): Promise<unknown>
@@ -63,7 +67,7 @@ smplrClient.getSpaceAssetmap(spaceId: string): Promise<unknown>
 
 - `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx".
 
-Note that this query is currently not typed as the mapper is still in private beta. You should expect an array of "asset groups", each "asset group" being an object. The return value corresponds to the JSON export from the mapper UI.
+Note that this query is currently not typed as the entity manager (previously mapper) is still in private beta. You should expect an array of "entity groups" (previously asset groups), each "entity group" being an object. The return value corresponds to the JSON export from the entity manager (previously mapper) in the app.
 
 ## getSpaceAssetmapFromCache
 

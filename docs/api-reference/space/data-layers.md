@@ -344,7 +344,7 @@ Live code example coming soon.
 
 ### Furniture layer
 
-A furniture layer has each data element mapped to one or more pieces of furniture from the floor plan. Furniture are only available in 3D mode at the moment. 2D mode support is on the roadmap.
+A furniture layer has each data element mapped to one or more pieces of furniture (now called equipment in the app) from the floor plan. Furniture are only available in 3D mode at the moment. 2D mode support is on the roadmap.
 
 ```ts
 space.addDataLayer({
