@@ -26,6 +26,8 @@ _TL;DR: better DX and better UX._
 
 ```
 spc_    spaces
+rpt_    reports
+rpg_    report pages
 ```
 
 That's it, pretty short list ;). More will come soon.
