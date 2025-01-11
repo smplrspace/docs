@@ -25,9 +25,9 @@ _TL;DR: better DX and better UX._
 ## Prefixes in use
 
 ```
-spc_    spaces
-rpt_    reports
-rpg_    report pages
+spc_    space
+rpt_    report
+rpg_    report page
 ```
 
 That's it, pretty short list ;). More will come soon.
