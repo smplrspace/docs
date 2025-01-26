@@ -14,14 +14,16 @@ To create a Map instance, initialise it as follow.
 
 ```ts
 const map = new smplr.Map({
-  clientToken: string,
-  containerId: string,
-  disableErrorReporting?: boolean,
+  clientToken: string
+  containerId?: string
+  container?: HTMLElement
+  disableErrorReporting?: boolean
 }) => Map
 ```
 
 - `clientToken` is an API token that is used to authenticate client-side requests. It is safe to have it exposed in your client code. You can manage your organisation's tokens in the Smplrspace app, by heading to the Developers page from the main menu. [More info](/guides/embedding#client-tokens).
 - `containerId` is the "id" of the html "div" container where smplr.js should render the viewer, something like "smplr-container" that can be found in your html. Only ids are supported, not classes.
+- `container` is an alternative to `containerId` that lets you provide the HTML element directly instead of an id.
 - `disableErrorReporting` - _optional_ - can be set to "true" to disable the automated reporting of errors to our 3rd party error tracking tool, [Sentry](https://sentry.io/). We have discovered that Sentry's instrumentation could make it seem as if all network requests originated from smplr.js. Unfortunately, there is nothing simple we can do on our side to avoid that. If this is an issue for you, you can disable Sentry altogether. The tradeoff is that we will not automatically detect errors hapenning in your integration, and you may need to be more proactive to report them for us to roll out fixes.
 
 ## Interactive map viewer session
