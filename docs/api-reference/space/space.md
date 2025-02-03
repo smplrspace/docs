@@ -48,6 +48,7 @@ space.startViewer({
   onError?: (errorMessage: string) => void,
   onResize?: (containerRect: DOMRect) => void,
   onVisibleLevelsChanged?: (visibleLevels: number[]) => void
+  onObjectsUpdated?: () => void
   ...customUX: object
 }) => Promise<void>
 ```
@@ -62,6 +63,7 @@ space.startViewer({
 - `onError` - _optional_ - is called if an error occur while starting the viewer. You may alternatively use the promise returned by startViewer to catch errors.
 - `onResize` - _optional_ - is called whenever the viewer is resized, including after the initial render, when the window is resized, or on mobile when the device is rotated between vertical to horizontal positions. This can be used to reposition custom tooltips (e.g.).
 - `onVisibleLevelsChanged` - _optional_ - is called whenever there is a change in the visible levels. This could be through the user clicking the level picker, or through an API call of [`showUpToLevel`](/api-reference/space/custom-ux#navigate-levels). It is also called when the space first renders. The handler take a single argument `visibleLevels`, which is the ordered list of zero-based level indices currently visible in the viewer. The last element in that list is always the highest visible level.
+- `onObjectsUpdated` - _optional_ - is called each time new objects (equipment / furniture) are rendered. It is also called when the space first renders.
 - `...customUX` represents additional options that let you customise the user experience as documented in the [custom UX](./custom-ux#viewer-options) page.
 
 Calling `startViewer` returns a `Promise` ([MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)) which resolves when the viewer is ready. This lets you use `Promise.then().catch()` or `async/await` with a `try/catch` block to react when the viewer is ready, or to handle errors that may occur. It is an alternative to providing `onReady` and `onError` callback methods. You may choose the option that suits the most your environment or coding style.
