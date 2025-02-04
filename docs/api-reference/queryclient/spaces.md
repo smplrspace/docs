@@ -4,6 +4,25 @@ sidebar_position: 3
 
 # Spaces
 
+## createSpace
+
+To create a space programmatically, you can call the following query.
+
+```ts
+smplrClient.createSpace({ 
+  name: string
+  notes?: string 
+}): Promise<{
+  sid: string
+}>
+```
+
+With `sid` the [Smplrspace ID](/guides/sid) of the space.
+
+- `name` is the name of the space to create.
+- `notes` - _optional_ - are internal team notes attached to the space.
+
+
 ## listSpaces
 
 To list all the spaces on your organization account, you can call the following query.
