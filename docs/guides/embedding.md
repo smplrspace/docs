@@ -30,9 +30,9 @@ Smplr.js will not be typed using this method.
 <!-- at the end of the <body> section of your HTML -->
 <script>
   const space = new smplr.Space({
-    spaceId: "fbc5617e-5a27-4138-851e-839446121b2e",
-    clientToken: "pub_eb760fee77634cdab2fe31146fc371c2",
-    containerId: "test",
+    spaceId: "spc_xxx",
+    clientToken: "pub_xxx",
+    containerId: "xxx",
   });
   space.startViewer({
     preview: true,
@@ -57,9 +57,9 @@ Smplr.js will not be typed using this method.
 <script>
   import("https://app.smplrspace.com/lib/smplr.mjs").then((smplr) => {
     const space = new smplr.Space({
-      spaceId: "fbc5617e-5a27-4138-851e-839446121b2e",
-      clientToken: "pub_eb760fee77634cdab2fe31146fc371c2",
-      containerId: "test",
+      spaceId: "spc_xxx",
+      clientToken: "pub_xxx",
+      containerId: "xxx",
     });
     space.startViewer({
       preview: true,
@@ -101,6 +101,6 @@ Here is a breakdown of the directive:
 - `unsafe-inline` for scripts and styles is commonly used for React app, our viewer is React based.
 - `img-src * data:` and `media-src * data:` are needed to load assets from storage locations.
 - `connect-src *` is needed to load other assets and supports error reporting.
-- `wasm-unsafe-eval` allows the usage of the draco decoder [over WASM](https://github.com/WebAssembly/content-security-policy/issues/7). _It can be omitted if your floor plans do not use non-parametric 3D furniture models_.
-- `unsafe-eval` allows the usage of the draco decoder [over WASM in iOS Safari](https://bugs.webkit.org/show_bug.cgi?id=235408). _It can be omitted if your floor plans do not use non-parametric 3D furniture models or do not target iOS Safari as a browser_.
-- `worker-src 'self' blob:` is required by the draco decoder as well. _It can be omitted if your floor plans do not use non-parametric 3D furniture models_.
+- `wasm-unsafe-eval` allows the usage of the draco decoder [over WASM](https://github.com/WebAssembly/content-security-policy/issues/7). _It can be omitted if your floor plans do not use non-parametric 3D equipment models_.
+- `unsafe-eval` allows the usage of the draco decoder [over WASM in iOS Safari](https://bugs.webkit.org/show_bug.cgi?id=235408). _It can be omitted if your floor plans do not use non-parametric 3D equipment models or do not target iOS Safari as a browser_.
+- `worker-src 'self' blob:` is required by the draco decoder as well. _It can be omitted if your floor plans do not use non-parametric 3D equipment models_.

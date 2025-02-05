@@ -14,17 +14,19 @@ To create a Space instance, initialise it as follow.
 
 ```ts
 const space = new smplr.Space({
-  spaceId: string,
-  clientToken: string,
-  containerId: string,
-  disableErrorReporting?: boolean,
-  whiteLabel?: boolean,
+  spaceId: string
+  clientToken: string
+  containerId?: string
+  container?: HTMLElement
+  disableErrorReporting?: boolean
+  whiteLabel?: boolean
 }) => Space
 ```
 
-- `spaceId` is the unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
+- `spaceId` is the unique identifier of the space in Smplrspace, something like "spc_xxx". Refer to the [page on SIDs](/guides/sid) to learn more.
 - `clientToken` is an API token that is used to authenticate client-side requests. It is safe to have it exposed in your client code. You can manage your organisation's tokens in the Smplrspace app, by heading to the Developers page from the main menu. [More info](/guides/embedding#client-tokens).
 - `containerId` is the "id" of the html "div" container where smplr.js should render the viewer, something like "smplr-container" that can be found in your html. Only ids are supported, not classes.
+- `container` is an alternative to `containerId` that lets you provide the HTML element directly instead of an id.
 - `disableErrorReporting` - _optional_ - can be set to "true" to disable the automated reporting of errors to our 3rd party error tracking tool, [Sentry](https://sentry.io/). We have discovered that Sentry's instrumentation could make it seem as if all network requests originated from smplr.js. Unfortunately, there is nothing simple we can do on our side to avoid that. If this is an issue for you, you can disable Sentry altogether. The tradeoff is that we will not automatically detect errors hapenning in your integration, and you may need to be more proactive to report them for us to roll out fixes.
 - `whiteLabel` - _optional_ - can be set to "true" to remove the "Powered by Smplrspace" attribution from the viewer. This is a paid add-on. You can check if it is enabled from the Organization settings page. [Get in touch](mailto:hello@smplrspace.com) to learn more.
 
@@ -46,6 +48,7 @@ space.startViewer({
   onError?: (errorMessage: string) => void,
   onResize?: (containerRect: DOMRect) => void,
   onVisibleLevelsChanged?: (visibleLevels: number[]) => void
+  onObjectsUpdated?: () => void
   ...customUX: object
 }) => Promise<void>
 ```
@@ -60,6 +63,7 @@ space.startViewer({
 - `onError` - _optional_ - is called if an error occur while starting the viewer. You may alternatively use the promise returned by startViewer to catch errors.
 - `onResize` - _optional_ - is called whenever the viewer is resized, including after the initial render, when the window is resized, or on mobile when the device is rotated between vertical to horizontal positions. This can be used to reposition custom tooltips (e.g.).
 - `onVisibleLevelsChanged` - _optional_ - is called whenever there is a change in the visible levels. This could be through the user clicking the level picker, or through an API call of [`showUpToLevel`](/api-reference/space/custom-ux#navigate-levels). It is also called when the space first renders. The handler take a single argument `visibleLevels`, which is the ordered list of zero-based level indices currently visible in the viewer. The last element in that list is always the highest visible level.
+- `onObjectsUpdated` - _optional_ - is called each time new objects (equipment / furniture) are rendered. It is also called when the space first renders.
 - `...customUX` represents additional options that let you customise the user experience as documented in the [custom UX](./custom-ux#viewer-options) page.
 
 Calling `startViewer` returns a `Promise` ([MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)) which resolves when the viewer is ready. This lets you use `Promise.then().catch()` or `async/await` with a `try/catch` block to react when the viewer is ready, or to handle errors that may occur. It is an alternative to providing `onReady` and `onError` callback methods. You may choose the option that suits the most your environment or coding style.
@@ -93,7 +97,7 @@ space.enablePickingMode({
 }) => void
 ```
 
-- `onPick` is called each time a click/tap event fires. The `coordinates` object provides the location that was picked in 3D. The `furnitureId` value is set when the user picked a furniture and contains its unique identifier. These pieces of information should be stored in your database and reused anytime you need to display data at this location.
+- `onPick` is called each time a click/tap event fires. The `coordinates` object provides the location that was picked in 3D. The `furnitureId` value is set when the user picked a furniture (now called equipment in the app) and contains its unique identifier. These pieces of information should be stored in your database and reused anytime you need to display data at this location.
 
 Disabling picking mode is done as follow. You could call `disablePickingMode` inside the `onPick` handler to limit the number of times a pick event should be processed.
 

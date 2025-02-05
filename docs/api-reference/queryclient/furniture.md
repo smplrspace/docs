@@ -4,6 +4,10 @@ sidebar_position: 6
 
 # Furniture
 
+:::info
+"Furniture" is gradually being renamed to "Equipment". You'll read equipment is the app and furniture here, until the change is complete. They are one and the same concept.
+:::
+
 ## Furniture interface
 
 Multiple queries in this page return objects of the type `Furniture` described below:
@@ -47,10 +51,10 @@ interface Furniture {
 To list all furniture from a space, you can call the following query.
 
 ```ts
-smplrClient.getAllFurnitureInSpace(id: string): Promise<Furniture[]>
+smplrClient.getAllFurnitureInSpace(spaceId: string): Promise<Furniture[]>
 ```
 
-- `id` - unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx".
 - `Furniture` - this main interface is described [here](#furniture-interface).
 
 ## getAllFurnitureInSpaceFromCache
@@ -58,10 +62,10 @@ smplrClient.getAllFurnitureInSpace(id: string): Promise<Furniture[]>
 This is the synchronous equivalent of the query right above.
 
 ```ts
-smplrClient.getAllFurnitureInSpaceFromCache(id: string): Furniture[]
+smplrClient.getAllFurnitureInSpaceFromCache(spaceId: string): Furniture[]
 ```
 
-where `id` and `Furniture` are as defined in `getAllFurnitureInSpace`.
+where `spaceId` and `Furniture` are as defined in `getAllFurnitureInSpace`.
 
 ## getFurnitureOnLevel
 
@@ -74,7 +78,7 @@ smplrClient.getFurnitureOnLevel({
 }): Promise<Furniture[]>
 ```
 
-- `spaceId` - unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx".
 - `levelIndex` - zero-based index of the level. Refer to the [Furniture interface](#furniture-interface) to learn more.
 - `Furniture` - this main interface is described [here](#furniture-interface).
 
@@ -106,7 +110,7 @@ smplrClient.getFurnitureInPolygon({
 }): Promise<Furniture[]>
 ```
 
-- `spaceId` - unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx".
 - `polygon` - the definition of the area used as a mask to extract furniture. It has the same schema as the coordinates from the [polygon data layers](/api-reference/space/data-layers#polygon-layer). It is assumed here that all coordinates have the same `levelIndex` value.
 - `Furniture` - this main interface is described [here](#furniture-interface).
 
@@ -138,8 +142,8 @@ smplrClient.getFurnitureById({
 }): Promise<Furniture | null>
 ```
 
-- `spaceId` - unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
-- `furnitureId` - unique identifier of the furniture in the space, has a similar format to `spaceId`.
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx".
+- `furnitureId` - unique identifier of the furniture in the space, something like "fbc5617e-5a27-4138-851e-839446121b2e".
 - `Furniture` - this main interface is described [here](#furniture-interface).
 
 Returns `null` if the furniture is not found in the space.
@@ -173,8 +177,8 @@ smplrClient.getFurnitureGroundFootprintById({
 }[] | null>
 ```
 
-- `spaceId` - unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
-- `furnitureId` - unique identifier of the furniture in the space, has a similar format to `spaceId`.
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx".
+- `furnitureId` - unique identifier of the furniture in the space, something like "fbc5617e-5a27-4138-851e-839446121b2e".
 - `closed` - _optional_ - indicates whether the returned array should be "closed", i.e. the last element repeats the first element. _Default value: false._
 
 Returns `null` if the furniture is not found in the space.
@@ -213,8 +217,8 @@ smplrClient.isFurnitureInPolygon({
 }): Promise<boolean | null>
 ```
 
-- `spaceId` - unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
-- `furnitureId` - unique identifier of the furniture in the space, has a similar format to `spaceId`.
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx".
+- `furnitureId` - unique identifier of the furniture in the space, something like "fbc5617e-5a27-4138-851e-839446121b2e".
 - `polygon` - the definition of the area used as a mask to extract furniture. It has the same schema as the coordinates from the [polygon data layers](/api-reference/space/data-layers#polygon-layer). It is assumed here that all coordinates have the same `levelIndex` value.
 
 Returns `null` if the furniture is not found in the space, `false` if it is found but not in the polygon, `true` if it is found in the polygon.

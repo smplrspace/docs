@@ -4,13 +4,48 @@ sidebar_position: 3
 
 # Spaces
 
+## createSpace
+
+To create a space programmatically, you can call the following query.
+
+```ts
+smplrClient.createSpace({ 
+  name: string
+  notes?: string 
+}): Promise<{
+  sid: string
+}>
+```
+
+With `sid` the [Smplrspace ID](/guides/sid) of the space.
+
+- `name` is the name of the space to create.
+- `notes` - _optional_ - are internal team notes attached to the space.
+
+
+## listSpaces
+
+To list all the spaces on your organization account, you can call the following query.
+
+```ts
+smplrClient.listSpaces(): Promise<{
+  sid: string;
+  deprecated_id: string;
+  name: string;
+  created_at: string;
+  status: string;
+}[]>
+```
+
+You can learn more about `sid` and `deprecated_id` in the dedicated [page on SIDs](/guides/sid).
+
 ## getSpace
 
 To get all details about a space, you can call the following query.
 
 ```ts
-smplrClient.getSpace(id: string, options?: { useCache?: boolean }): Promise<{
-  id: string
+smplrClient.getSpace(spaceId: string, options?: { useCache?: boolean }): Promise<{
+  sid: string // spaceId
   created_at: string
   modified_at: string
   name: string
@@ -23,7 +58,7 @@ smplrClient.getSpace(id: string, options?: { useCache?: boolean }): Promise<{
 }>
 ```
 
-- `id` - unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx". Refer to the [page on SIDs](/guides/sid) to learn more.
 - `options` - _optional_ - as described below.
 - `options.useCache` - _optional_ - set this to control whether the request should use the client's local cache. _Default value: false_
 
@@ -32,32 +67,36 @@ smplrClient.getSpace(id: string, options?: { useCache?: boolean }): Promise<{
 This is the synchronous equivalent of the query right above.
 
 ```ts
-smplrClient.getSpaceFromCache(id: string): Space
+smplrClient.getSpaceFromCache(spaceId: string): Space
 ```
 
-where `id` and `Space` are as defined in `getSpace`, without the `Promise`.
+where `spaceId` and `Space` are as defined in `getSpace`, without the `Promise`.
 
-## getSpaceAssetmap
+## getSpaceAssetmap (entities)
 
-To get the full assetmap of a space, as saved in the mapper UI, you can call the following query.
+:::info
+"Assets" are gradually being renamed to "Entities". You'll read entity/ies is the app and asset(s) here, until the change is complete. They are one and the same concept. Except this API to be deprecated soon, and a much wider API surface to be introduced as the entity manager enters general availability.
+:::
+
+To get the full assetmap (list of entities) of a space, as saved in the entity manager (previously mapper) in the app, you can call the following query.
 
 ```ts
-smplrClient.getSpaceAssetmap(id: string): Promise<unknown>
+smplrClient.getSpaceAssetmap(spaceId: string): Promise<unknown>
 ```
 
-- `id` - unique identifier of the space in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx".
 
-Note that this query is currently not typed as the mapper is still in private beta. You should expect an array of "asset groups", each "asset group" being an object. The return value corresponds to the JSON export from the mapper UI.
+Note that this query is currently not typed as the entity manager (previously mapper) is still in private beta. You should expect an array of "entity groups" (previously asset groups), each "entity group" being an object. The return value corresponds to the JSON export from the entity manager (previously mapper) in the app.
 
 ## getSpaceAssetmapFromCache
 
 This is the synchronous equivalent of the query right above.
 
 ```ts
-smplrClient.getSpaceAssetmapFromCache(id: string): unknown
+smplrClient.getSpaceAssetmapFromCache(spaceId: string): unknown
 ```
 
-where `id` and the return value are as defined in `getSpaceAssetmap`.
+where `spaceId` and the return value are as defined in `getSpaceAssetmap`.
 
 ## Need any other data?
 

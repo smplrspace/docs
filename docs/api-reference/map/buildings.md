@@ -17,7 +17,7 @@ To fetch spaces from your Smplrspace account and render them on the map, call th
 map.addSpacesById(spaceIds: string[]) => void
 ```
 
-- `spaceIds` - unique identifiers of the spaces in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
+- `spaceIds` - unique identifiers of the spaces in Smplrspace, something like "spc_xxx".
 
 ### Remove spaces by ID
 
@@ -27,7 +27,7 @@ To remove specific spaces from the map, call this function:
 map.removeSpacesById(spaceIds: string[]) => void
 ```
 
-- `spaceIds` - unique identifiers of the spaces in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e".
+- `spaceIds` - unique identifiers of the spaces in Smplrspace, something like "spc_xxx".
 
 ### Remove all spaces
 

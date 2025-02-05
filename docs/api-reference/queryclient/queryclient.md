@@ -9,7 +9,7 @@ slug: overview
 Smplr.js provides a `smplr` object. One of the classes provided under this object is `QueryClient`, which exposes capabilities generally related to the extraction of information out of your floor plans and spatial data. Here are a few examples:
 
 - call selected backend API endpoints allowing programmatic queries to retrieve or mutate your Smplrspace hosted data,
-- extract furniture listings or information from the floor plans,
+- extract furniture (equipment) listings or information from the floor plans,
 - compute distances, areas, and the like from mapped data,
 - compute centers, bounding boxes, concave hulls,
 - ask if a point or a piece of furniture is located within a given boundary,
@@ -41,12 +41,12 @@ We also provide a synchronous version for most asynchronous queries, relying on 
 
 ```js
 const smplrClient = new smplr.QueryClient({
-  organizationId: "...",
-  clientToken: "pub_...",
+  organizationId: "xxx",
+  clientToken: "pub_xxx",
 });
 
 try {
-  const space = await smplrClient.getSpace("your_space_id");
+  const space = await smplrClient.getSpace("spc_xxx");
   // do something with the data
 } catch (error) {
   // handle the error
@@ -57,12 +57,12 @@ try {
 
 ```js
 const smplrClient = new smplr.QueryClient({
-  organizationId: "...",
-  clientToken: "pub_...",
+  organizationId: "xxx",
+  clientToken: "pub_xxx",
 });
 
 smplrClient
-  .getSpace("your_space_id")
+  .getSpace("spc_xxx")
   .then((space) => {
     // do something with the data
   })
@@ -77,7 +77,7 @@ The query client is pretty recent and will fast evolving based on user requests.
 
 - [Utility queries](./utils): check the connection and version of the API.
 - [Spaces queries](./spaces): retrieve details about your spaces.
-- [Furniture queries](./furniture): extract furniture from your spaces.
+- [Furniture (equipment) queries](./furniture): extract furniture from your spaces.
 - [Geometry queries](./geometry): compute dimensions and perform geometrical simplifications of your data.
 
 [Get in touch](mailto:support@smplrspace.com) with any use-case that would require new queries to be exposed.

@@ -155,7 +155,7 @@ smplrClient.isPointInPolygon({
 ```
 
 - `point` - the point coordinates in 2D, with the same schema as `polygon` below.
-- `polygon` - the definition of the area used as a mask to extract furniture. It has the same schema as the coordinates from the [polygon data layers](/api-reference/space/data-layers#polygon-layer). It is assumed here that all coordinates have the same `levelIndex` value.
+- `polygon` - the polygon in which the point should be located or not. It has the same schema as the coordinates from the [polygon data layers](/api-reference/space/data-layers#polygon-layer). It is assumed here that all coordinates have the same `levelIndex` value.
 
 A similar query is available for furniture pieces, see [isFurnitureInPolygon](/api-reference/queryclient/furniture#isfurnitureinpolygon).
 

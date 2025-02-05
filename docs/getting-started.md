@@ -69,9 +69,9 @@ loadSmplrJs()
   .then((smplr) => {
     /* enjoy a fully typed API and auto-completion */
     const space = new smplr.Space({
-      spaceId: "...",
-      clientToken: "pub_...",
-      containerId: "...",
+      spaceId: "spc_xxx",
+      clientToken: "pub_xxx",
+      containerId: "xxx",
     });
     space.startViewer({
       preview: true,
