@@ -129,3 +129,9 @@ map.setStyle(style: string) => void
 ```
 
 - `style` is a mapbox style url like "mapbox://styles/mapbox/satellite-streets-v12"
+
+and you can use the below to revert to the default Smplrspace style:
+
+```ts
+map.setDefaultStyle() => void
+```
