@@ -47,7 +47,7 @@ map.startViewer({
 ```
 
 - `spaceIds` - _optional_ - lets you specify the Smplrspace ID ("spc_xxx") of the spaces to render on the map when initializing the viewer. You can also do that dynamically as described on the [Building page](/api-reference/map/buildings).
-- `osmBuildings` - _optional_ - lets you choose whether to render or not cities in 3D. City buildings data comes from OpenStreetMap and is automatically rendered in 3D. You can also do that dynamically as described in [3D cities](/api-reference/map/buildings#3d-cities). _Default value: true_.
+- `osmBuildings` - _optional_ - lets you choose whether to render or not cities in 3D. City buildings data comes from OpenStreetMap and is automatically rendered in 3D. You can also do that dynamically as described in [3D cities](/api-reference/map/buildings#city-building-data). _Default value: true_.
 - `hash` - _optional_ - lets you choose whether to automatically sync the map location to the hash fragment of the page's URL. This makes it for easy to share links to specific map locations. It relies on Mapbox's corresponding [parameter](https://docs.mapbox.com/mapbox-gl-js/api/map/#map-parameters). _Default value: false_.
 - `fitNewSpacesInScreen` - _optional_ - lets you choose whether to automatically recenter the map to fit all the spaces when the spaces rendered on the map change. You can also center the map using [`fitAllSpacesInScreen`](#fit-all-spaces-in-screen). _Default value: true._
 - `loadingMessage` - _optional_ - lets you override the text displayed while the space is loading. This can be change dynamically as well, see [UI controls](#ui-controls). _Default value: "Loading map"_.
@@ -77,10 +77,11 @@ See the dedicated functions you can call to render buildings [on this page](/api
 You can change automatically "fly" the map to a specific space, by providing the space's identifier as follow:
 
 ```ts
-map.flyToSpace(spaceId: string) => void
+map.flyToSpace(spaceId: string, options?: EasingOptions) => void
 ```
 
 - `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx".
+- `options` - are camera animation options as per [Mapbox's documentation](https://docs.mapbox.com/mapbox-gl-js/api/map/#map%23flyto). Search `flyTo` on that page in case it doesn't navigate to it automatically.
 
 ### Fit all spaces in screen
 
@@ -116,3 +117,15 @@ The Smplrspace map viewer is built on top of [Mapbox GL JS](https://docs.mapbox.
 ```ts
 map.mapbox() => mapboxgl.Map | undefined
 ```
+
+The methods below are Smplrspace improved alternatives to the Mapbox ones.
+
+### Changing the map style
+
+Mapbox provides a `setStyle` method which works, but we recommend using ours instead so the Smplrspace managed elements automatically adapt to the new style. You should call it as below:
+
+```ts
+map.setStyle(style: string) => void
+```
+
+- `style` is a mapbox style url like "mapbox://styles/mapbox/satellite-streets-v12"
