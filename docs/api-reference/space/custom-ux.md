@@ -101,13 +101,17 @@ space.startViewer({
 
 ### Update render options dynamically
 
-Render options are described in details in [Render options](#render-options). They can be set when the viewer starts, but if you need to update them dynamically, you should use the method below:
+Render options are described in details in [Render options](#render-options). They can be set when the viewer starts, but if you need to update them dynamically, you should use the methods below:
 
 ```ts
 space.updateRenderOptions(options: SpaceRenderOptions) => void
+space.resetRenderOptionsToDefault() => void
+space.resetRenderOptionsToInitial() => void
 ```
-
-- `options` is an object of the [`SpaceRenderOptions`](#render-options) interface, which is deeply merged with the current options used by the viewer. To "unset" an optional value, you can pass `undefined` explicitely.
+- `updateRenderOptions` is used to update specific values, while keeping the others unchanged.
+  - `options` is an object of the [`SpaceRenderOptions`](#render-options) interface, which is deeply merged with the current options used by the viewer. To "unset" an optional value, you can pass `undefined` explicitely.
+- `resetRenderOptionsToDefault` reverts all values to the Smplrspace defaults.
+- `resetRenderOptionsToInitial` reverts all values to the ones applied when calling `startViewer`.
 
 ### Switch between 2D and 3D
 
