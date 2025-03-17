@@ -43,6 +43,7 @@ map.startViewer({
   onReady?: () => void
   onError?: (errorMessage: string) => void
   onSpaceClick?: ({ space, levelIndex }: { space: object | undefined; levelIndex: number }) => void
+  legendPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
 }) => Promise<void>
 ```
 
@@ -55,6 +56,7 @@ map.startViewer({
 - `onReady` - _optional_ - is called once the viewer's initial render is done. You may alternatively use the promise returned by startViewer, which resolves when the viewer is ready.
 - `onError` - _optional_ - is called if an error occur while starting the viewer. You may alternatively use the promise returned by startViewer to catch errors.
 - `onSpaceClick` - _optional_ - is called when the user clicks a 3D space, and provide data about which space and which level where clicked.
+- `legendPosition` - _optional_ - lets you choose where the legend (if any is configured in the data layers) would be rendered. _Default value: 'top-left'_
 
 Calling `startViewer` returns a `Promise` ([MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)) which resolves when the viewer is ready. This lets you use `Promise.then().catch()` or `async/await` with a `try/catch` block to react when the viewer is ready, or to handle errors that may occur. It is an alternative to providing `onReady` and `onError` callback methods. You may choose the option that suits the most your environment or coding style.
 
@@ -69,6 +71,10 @@ space.remove() => void
 ## Render buildings
 
 See the dedicated functions you can call to render buildings [on this page](/api-reference/map/buildings).
+
+## Data layers
+
+The map viewer includes a full SDK to render data layers. Learn more [on this page](/api-reference/map/data-layers).
 
 ## Control the map location
 
