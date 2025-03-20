@@ -34,13 +34,16 @@ interface MapSpaceRenderOptions {
 
 ### Update render options dynamically
 
-Render options are described in details in [Render options](#render-options). You can update them dynamically with the method below:
+Render options are described in details in [Render options](#render-options). You can update them dynamically with the methods below:
 
 ```ts
 map.updateRenderOptions(options: MapSpaceRenderOptions) => void
+map.resetRenderOptionsToDefault() => void
 ```
 
-- `options` is an object of the [`MapSpaceRenderOptions`](#render-options) interface, which is deeply merged with the current options used by the viewer. To "unset" an optional value, you can pass `undefined` explicitely.
+- `updateRenderOptions` is used to update specific values, while keeping the others unchanged.
+  - `options` is an object of the [`MapSpaceRenderOptions`](#render-options) interface, which is deeply merged with the current options used by the viewer. To "unset" an optional value, you can pass `undefined` explicitely.
+- `resetRenderOptionsToDefault` reverts all values to the Smplrspace defaults.
 
 ### Navigate levels
 

@@ -68,6 +68,14 @@ To stop the viewer, dispose of resources it allocated, and clear the container i
 space.remove() => void
 ```
 
+### Check if the viewer is ready
+
+To check if the viewer has finished initializing and is ready for API methods to be called, you can do:
+
+```ts
+space.isViewerStarted() => boolean
+```
+
 ## Render buildings
 
 See the dedicated functions you can call to render buildings [on this page](/api-reference/map/buildings).
@@ -96,6 +104,8 @@ You can change automatically "fly" the map to an overview point, showing all ren
 ```ts
 map.fitAllSpacesInScreen() => void
 ```
+
+In case their is a single space rendered, this method will be equivalent to calling [`flyToSpace`](#focus-on-a-specific-space) on that space.
 
 ## UI controls
 

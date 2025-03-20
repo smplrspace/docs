@@ -9,6 +9,14 @@ One of the main added "layer" the Smplrspace map viewer provides, as compared to
 
 ## Spaces from Smplrspace
 
+### List spaces by ID
+
+To list the spaces that are currently rendered in the viewer by their IDs (something like "spc_xxx"), call:
+
+```ts
+map.getCurrentSpaceIds() => string[]
+```
+
 ### Add spaces by ID
 
 To fetch spaces from your Smplrspace account and render them on the map, call the following method. Note that the spaces need to be georeferenced within the platform.

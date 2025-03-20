@@ -78,6 +78,14 @@ To stop the viewer, dispose of resources it allocated, and clear the container i
 space.remove() => void
 ```
 
+### Check if the viewer is ready
+
+To check if the viewer has finished initializing and is ready for API methods to be called, you can do:
+
+```ts
+space.isViewerStarted() => boolean
+```
+
 ## Picking mode
 
 In order to know where a user clicks or taps in the floor plan, you can enable picking mode. For example, this is useful if you have an admin interface to configure floor plans and position sensors on it, or if you want to let users point to the location of an issue they are reporting. Enabling picking mode is done as follows.
