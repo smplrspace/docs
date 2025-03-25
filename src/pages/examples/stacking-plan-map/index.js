@@ -5,16 +5,16 @@ import StackblitzProject from '../../../components/StackblitzProject'
 
 import { USE_CASES } from '../_categories'
 
-export const stackingPlan = {
-  slug: 'stacking-plan',
-  title: 'Stacking plan',
+export const stackingPlanMap = {
+  slug: 'stacking-plan-map',
+  title: 'Stacking plan on map',
   category: USE_CASES,
   description: `Visualise floor plate level data through entire buildings via stacking plans. Provide users with storey-wide information at a glance.`,
-  published: true,
+  published: false,
   stackblitzProjects: [
     {
       lang: 'Typescript',
-      id: 'smplr-stacking-plan-ts',
+      id: 'smplr-stacking-plan-map-ts',
       openFile: 'index.ts',
       default: true
     }
@@ -22,5 +22,5 @@ export const stackingPlan = {
 }
 
 export default function () {
-  return <StackblitzProject project={stackingPlan} />
+  return <StackblitzProject project={stackingPlanMap} />
 }

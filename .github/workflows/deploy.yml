@@ -5,33 +5,53 @@ on:
       - main
 
 jobs:
+  clickup-headsup:
+    name: ClickUp heads-up
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call ClickUp api
+        uses: smplrspace/clickup-chat-action@v1
+        with:
+          workspace-id: 3887534
+          channel-id: 3pmde-14775 # dev
+          message: |
+            🟣 Started: ${{ github.workflow}}
+        env:
+          CLICKUP_TOKEN: ${{ secrets.CLICKUP_BEEBOP_API_KEY }}
+
   deploy:
+    name: Deploy docs
     runs-on: ubuntu-latest
     permissions:
       contents: read
       deployments: write
     steps:
-      - uses: actions/checkout@v2
-      - uses: sarisia/actions-status-discord@v1
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK_DEV }}
-          notimestamp: true
-          nodetail: true
-          title: "Started: ${{ github.workflow}} - ${{ github.ref_name }}"
-          description: Triggered by ${{ github.actor }}
-          color: 0x50545b
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Wait for Cloudflare Pages build
         uses: WalshyDev/cf-pages-await@v1
         with:
           apiToken: ${{ secrets.CF_API_TOKEN_PAGES  }}
           accountId: "4955c8c28610ecabc384d84a20458a53"
           project: "docs"
-          # write deplpyment status to github
+          # write deployment status to github
           githubToken: ${{ secrets.PRIVATE_ACCESS_TOKEN_DEPLOYMENTS }}
-      - name: Send Discord notification
-        uses: sarisia/actions-status-discord@v1
-        if: always()
+
+  clickup-notification:
+    name: ClickUp notification
+    if: always()
+    needs:
+      - deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: martialonline/workflow-status@v3
+        id: check
+      - name: Call ClickUp api
+        uses: smplrspace/clickup-chat-action@v1
         with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK_DEV }}
-          title: ${{ github.workflow}} - ${{ github.ref_name }}
-          notimestamp: true
+          workspace-id: 3887534
+          channel-id: 3pmde-14775 # dev
+          status-update: true
+          status: ${{ steps.check.outputs.status }}
+        env:
+          CLICKUP_TOKEN: ${{ secrets.CLICKUP_BEEBOP_API_KEY }}

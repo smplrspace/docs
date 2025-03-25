@@ -25,6 +25,7 @@ import { categoriesOrder } from './_categories'
 import { helloWorld } from './hello-world'
 import { addDataElements } from './add-data-elements'
 import { stackingPlan } from './stacking-plan'
+import { stackingPlanMap } from './stacking-plan-map'
 import { warehouseBins } from './warehouse'
 import { spaceBooking } from './space-booking'
 import { leasingTenancy } from './leasing-tenancy'
@@ -46,6 +47,7 @@ const projects = [
   propertyManagement,
   addDataElements,
   stackingPlan,
+  stackingPlanMap,
   markup,
   warehouseBins,
   tooltipsOptions,
