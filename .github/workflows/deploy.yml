@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Call ClickUp api
-        uses: smplrspace/clickup-chat-action@v1
+        uses: smplrspace/clickup-chat-action@v1.0.2
         with:
           workspace-id: 3887534
           channel-id: 3pmde-14775 # dev
@@ -47,7 +47,7 @@ jobs:
       - uses: martialonline/workflow-status@v3
         id: check
       - name: Call ClickUp api
-        uses: smplrspace/clickup-chat-action@v1
+        uses: smplrspace/clickup-chat-action@v1.0.2
         with:
           workspace-id: 3887534
           channel-id: 3pmde-14775 # dev
