@@ -86,6 +86,14 @@ To check if the viewer has finished initializing and is ready for API methods to
 space.isViewerStarted() => boolean
 ```
 
+### Zero-latency space definition query
+
+To get the space definition, we typically advise to use the [QueryClient](/api-reference/queryclient/spaces#getspace), but you can also get the currently loaded definition with zero latency using the method below:
+
+```ts
+space.getDefinition() => object
+```
+
 ## Picking mode
 
 In order to know where a user clicks or taps in the floor plan, you can enable picking mode. For example, this is useful if you have an admin interface to configure floor plans and position sensors on it, or if you want to let users point to the location of an issue they are reporting. Enabling picking mode is done as follows.
