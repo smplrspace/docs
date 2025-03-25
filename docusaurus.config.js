@@ -103,7 +103,7 @@ const config = {
     },
     process.env.NODE_ENV === 'production'
       ? {
-        src: 'https://deep-positive.smplrspace.com/script.js',
+        src: 'https://cdn.usefathom.com/script.js',
         'data-site': 'EYOYVBOL',
         defer: true
       }
