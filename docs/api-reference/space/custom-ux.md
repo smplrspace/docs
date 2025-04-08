@@ -80,7 +80,7 @@ space.startViewer({
   hideNavigationButtons?: boolean
   hideLevelPicker?: boolean
   hideControls?: boolean
-  controlsPlacement?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center-left' | 'center-right'
+  controlsPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center-left' | 'center-right'
   legendPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
 }) => void
 ```
@@ -96,7 +96,7 @@ space.startViewer({
 - `hideNavigationButtons` - _optional_ - set this to true if you want the user to control the camera but want to remove the navigation buttons. Mouse, touch and keyboard inputs will work while the buttons are hidden. _Default value: false_
 - `hideLevelPicker` - _optional_ - set this to true if you want to remove the level picker from the viewer. Levels can still be controlled programmatically, so you could use your own buttons or logic. _Default value: false_
 - `hideControls` - _optional_ - set this to true if you want to remove *all* control buttons from the viewer. _Default value: false_
-- `controlsPlacement` - _optional_ - lets you choose where the control buttons are rendered. _Default value: 'bottom-left'_
+- `controlsPosition` - _optional_ - lets you choose where the control buttons are rendered. _Default value: 'bottom-left'_
 - `legendPosition` - _optional_ - lets you choose where the legend (if any is configured in the data layers) is rendered. _Default value: 'top-left'_
 
 ## Viewer controls
