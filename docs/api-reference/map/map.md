@@ -43,6 +43,10 @@ map.startViewer({
   onReady?: () => void
   onError?: (errorMessage: string) => void
   onSpaceClick?: ({ space, levelIndex }: { space: object | undefined; levelIndex: number }) => void
+  hideNavigationButtons?: boolean
+  hideLevelPicker?: boolean
+  hideControls?: boolean
+  controlsPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center-left' | 'center-right'
   legendPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
 }) => Promise<void>
 ```
@@ -56,6 +60,10 @@ map.startViewer({
 - `onReady` - _optional_ - is called once the viewer's initial render is done. You may alternatively use the promise returned by startViewer, which resolves when the viewer is ready.
 - `onError` - _optional_ - is called if an error occur while starting the viewer. You may alternatively use the promise returned by startViewer to catch errors.
 - `onSpaceClick` - _optional_ - is called when the user clicks a 3D space, and provide data about which space and which level where clicked.
+- `hideNavigationButtons` - _optional_ - set this to true if you want the user to control the camera but want to remove the navigation buttons. Mouse, touch and keyboard inputs will work while the buttons are hidden. _Default value: false_
+- `hideLevelPicker` - _optional_ - set this to true if you want to remove the level picker from the viewer. Levels can still be controlled programmatically, so you could use your own buttons or logic. _Default value: false_
+- `hideControls` - _optional_ - set this to true if you want to remove *all* control buttons from the viewer. _Default value: false_
+- `controlsPosition` - _optional_ - lets you choose where the control buttons are rendered. _Default value: 'center-right'_
 - `legendPosition` - _optional_ - lets you choose where the legend (if any is configured in the data layers) would be rendered. _Default value: 'top-left'_
 
 Calling `startViewer` returns a `Promise` ([MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)) which resolves when the viewer is ready. This lets you use `Promise.then().catch()` or `async/await` with a `try/catch` block to react when the viewer is ready, or to handle errors that may occur. It is an alternative to providing `onReady` and `onError` callback methods. You may choose the option that suits the most your environment or coding style.

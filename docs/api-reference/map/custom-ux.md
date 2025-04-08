@@ -107,3 +107,12 @@ map.setCameraPlacement({
 - placement parameters (see description above) are the new desired value. All parameters are _optional_ and the ones that are not provided will keep their current value.
 - `animate` - _optional_ - should be set to false to jump to the new placement and true to animate the camera to the new placement. _Default value: false_
 - `speed` - _optional_ - defines the speed of the camera animation and should be used with animate set to true. _Default value: 1.2_
+
+### Zoom in/out
+
+This is the programmatic equivalent to pressing the zoom buttons:
+
+```ts
+map.zoomIn() => void
+map.zoomOut() => void
+```

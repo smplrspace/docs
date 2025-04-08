@@ -236,7 +236,7 @@ space.centerCamera() => void
 
 ### Zoom in/out
 
-This is the programmatic equivalent to pressing the zoom buttons in the bottom-left controls:
+This is the programmatic equivalent to pressing the zoom buttons:
 
 ```ts
 space.zoomIn() => void
