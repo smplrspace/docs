@@ -70,6 +70,19 @@ Smplr.js will not be typed using this method.
 </script>
 ```
 
+### Embed in a Next.js app
+
+We're not Next.js developers ourselves, but from what we understand from users building on Next.js, the `smplr-loader` package may not work due to its use of dynamic imports.
+
+Here is how they've approached it.
+
+- Use the [`Script` component](https://nextjs.org/docs/pages/api-reference/components/script) to load the library.
+- Optionally use `smplr-loader` to get the types, but do not load the library with it.
+
+You can refer to [this gist](https://gist.github.com/sean-ocallahan/48bed44902c0bc7eda6de42af14d9d25) shared by the amazing Sean at Strella!
+
+Another thing to note is that you may need to disable TurboPack in recent versions of Next.js as it seems to be incompatible with on-the-fly loading of libraries.
+
 ## Securing your data
 
 We take the security and privacy of your data with great importance. Smplrspace was built from the get go with the mindset that you should own your data and it should not transit through our servers when not necessary. This is why the data layers are built around frontend APIs that let you "stitch" data that you pull yourself from your own storage. That data never transits through our servers, neither do we have visibility over it even existing.
