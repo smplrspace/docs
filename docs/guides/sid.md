@@ -28,6 +28,7 @@ _TL;DR: better DX and better UX._
 spc_    space
 rpt_    report
 rpg_    report page
+prj_    project
 ```
 
 That's it, pretty short list ;). More will come soon.
