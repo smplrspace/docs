@@ -55,11 +55,7 @@ type LegendConfig =
   - For string values, newlines are supported by using [multi-line template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#multi-line_strings).
   - For HTML values, both HTML and CSS are supported, the value will be sanitized to prevent XSS attacks.
   - If you need complete control over the tooltip content (e.g. for a React component), check the [tooltips example](/examples/tooltips/).
-- `tooltipTemplate` - _optional_ - is a fully featured template string used to generate the tooltip content based on the data for the hovered element.
-  - It is powered by [Handlebars](https://handlebarsjs.com/) and you may refer to the full templating documentation [here](https://handlebarsjs.com/guide/). 
-  - It supports HTML, nested fields access, conditionals, loops, and more.
-  - A custom helper lets you use fallback default values: `{{fallback [my field] 'default value'}}`.
-  - Without this helper, we use `'-'` as a default value for all fields.
+- `tooltipTemplate` - _optional_ - is a fully featured template string used to generate the tooltip content based on the data for the hovered element. It is powered by Handlebars with some custom helpers. Read more [below](#handlebars-helpers).
 - `tooltipContainerStyle` - _optional_ - lets you override the style of the tooltip container with inline CSS.
 - `persistentTooltip` - _optional_ - set this to `true` to turn tooltips into small cards that are all visible at once instead of on hover. Persistent tooltips are automatically positioned on the center of the data element they're attached to. They disappear when the camera is moving and reappear when it stops. They are only displayed for the top visible level. They only work for data elements with a non null or undefined `id`. _Default value: false_
 - `legend` - _optional_ - lets you configure a legend to be rendered automatically in a collapsible overlay on the viewer. The legend can be positioned using `legendPosition` in [viewer options](/api-reference/space/custom-ux#viewer-options).
@@ -71,6 +67,14 @@ type LegendConfig =
 - `onHoverOut` - _optional_ - is taking the previously hovered data element as argument, as well as the same limited "pointer event" as for `onHover`. The handler is called once when the pointer stops hovering a data element.
 
 You may use the `onClick`, `onHover` and `onHoverOut` handlers to build custom behaviours in your app that respond to interactions happening in the floor plan.
+
+### Handlebars helpers
+
+As detailed above, the `tooltipTemplate` option is powered by [Handlebars](https://handlebarsjs.com/) and you may refer to the full templating documentation [here](https://handlebarsjs.com/guide/). It supports HTML, nested fields access, conditionals, loops, and more. We also setup custom helpers as documented below:
+
+- `fallback` - lets you use fallback default values as `{{fallback [my field] 'default value'}}`. We use `'-'` as a default value for all fields.
+- `formatDate` - lets you format dates using [Moment.js](https://momentjs.com/docs/#/displaying/format/) as `{{formatDate [my field] 'DMMMYY'}}`.
+- `formatNumber` - lets you format numbers using [Numeral.js](https://numeraljs.com/#format) as `{{formatNumber [my field] '0,0.00'}}`.
 
 ## Types of layers
 

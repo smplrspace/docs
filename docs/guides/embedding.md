@@ -70,6 +70,19 @@ Smplr.js will not be typed using this method.
 </script>
 ```
 
+### Embed in a Next.js app
+
+We're not Next.js developers ourselves, but from what we understand from users building on Next.js, the `smplr-loader` package may not work due to its use of dynamic imports.
+
+Here is how they've approached it.
+
+- Use the [`Script` component](https://nextjs.org/docs/pages/api-reference/components/script) to load the library.
+- Optionally use `smplr-loader` to get the types, but do not load the library with it.
+
+You can refer to [this gist](https://gist.github.com/sean-ocallahan/48bed44902c0bc7eda6de42af14d9d25) shared by the amazing Sean at Strella!
+
+Another thing to note is that you may need to disable TurboPack in recent versions of Next.js as it seems to be incompatible with on-the-fly loading of libraries.
+
 ## Securing your data
 
 We take the security and privacy of your data with great importance. Smplrspace was built from the get go with the mindset that you should own your data and it should not transit through our servers when not necessary. This is why the data layers are built around frontend APIs that let you "stitch" data that you pull yourself from your own storage. That data never transits through our servers, neither do we have visibility over it even existing.
@@ -91,7 +104,7 @@ Adding a CSP directive to your app is an added layer of security that helps to d
 ```html
 <meta
   http-equiv="Content-Security-Policy"
-  content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' 'unsafe-eval' *.smplrspace.com; style-src 'self' 'unsafe-inline'; font-src 'self' *.smplrspace.com; img-src * data: blob:; media-src * data:; connect-src *; worker-src 'self' blob:;"
+  content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' 'unsafe-eval' *.smplrspace.com; style-src 'self' 'unsafe-inline'; font-src 'self' *.smplrspace.com; img-src * data: blob:; media-src * data:; connect-src * data:; worker-src 'self' blob:;"
 />
 ```
 
@@ -100,7 +113,7 @@ Here is a breakdown of the directive:
 - `*.smplrspace.com` is added as a domain to load the library and the fonts used in the viewer.
 - `unsafe-inline` for scripts and styles is commonly used for React app, our viewer is React based.
 - `img-src * data:` and `media-src * data:` are needed to load assets from storage locations.
-- `connect-src *` is needed to load other assets and supports error reporting.
+- `connect-src * data:` is needed to load icons, fonts, other assets and supports error reporting.
 - `wasm-unsafe-eval` allows the usage of the draco decoder [over WASM](https://github.com/WebAssembly/content-security-policy/issues/7). _It can be omitted if your floor plans do not use non-parametric 3D equipment models_.
 - `unsafe-eval` allows the usage of the draco decoder [over WASM in iOS Safari](https://bugs.webkit.org/show_bug.cgi?id=235408). _It can be omitted if your floor plans do not use non-parametric 3D equipment models or do not target iOS Safari as a browser_.
 - `worker-src 'self' blob:` is required by the draco decoder as well. _It can be omitted if your floor plans do not use non-parametric 3D equipment models_.
