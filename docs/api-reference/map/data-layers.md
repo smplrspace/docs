@@ -59,7 +59,33 @@ Geospatial data layers are layers rendering data with GPS-based coordinates. The
 
 ### GeoPoint layer
 
-Coming soon — some methods are already present in the API but should not be used.
+A geopoint layer has each data element rendered as a point or marker on the map. It is useful to highlight various points of interest.
+
+```ts
+interface GeoPointMapDataLayerDefinition {
+  id: string,
+  data: [{
+    id: string,
+    position: {
+      lng: number
+      lat: number
+    },
+    ...customData: object
+  }]
+  color?: string | ((dataElement: object) => string)
+  alpha?: number | ((dataElement: object) => number)
+  // + fields from SharedDefinitionOptions defined further down
+}
+
+map.addGeoPointDataLayer(definition: PointMapDataLayerDefinition) => void
+map.updateGeoPointDataLayer(definitionUpdates: Partial<PointMapDataLayerDefinition>) => void
+```
+
+- `id` is a unique identifier for this layer which is used for updates.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `position`. Elements can also contain any additional custom data used for rendering options.
+- `color` - _optional_ - defines the color of the element to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
+- `alpha` - _optional_ - defines the transparency of the element to render. The value should be between 0 (invisible) and 1 (opaque). It can be defined as a fix value for all elements or per element with a function that takes each element as argument and returns the alpha value for that element. _Default value: 1_
+- `SharedDefinitionOptions` are defined [here](#shared-definition-options).
 
 ### GeoPolygon layer
 
@@ -68,6 +94,7 @@ A geopolygon layer has each data element rendered as a polygon on the map. It is
 ```ts
 interface GeoPolygonMapDataLayerDefinition {
   id: string,
+  // data of type GeoPolygonData[]
   data: [{
     id: string,
     coordinates: [[{
@@ -76,8 +103,8 @@ interface GeoPolygonMapDataLayerDefinition {
     }]],
     ...customData: object
   }]
-  color?: string | ((dataElement: GeoPolygonData & D) => string)
-  alpha?: number | ((dataElement: GeoPolygonData & D) => number)
+  color?: string | ((dataElement: object) => string)
+  alpha?: number | ((dataElement: object) => number)
   // + fields from SharedDefinitionOptions defined further down
 }
 
@@ -91,7 +118,6 @@ map.updateGeoPolygonDataLayer(definitionUpdates: Partial<PolygonMapDataLayerDefi
   - `customData` - _optional_ - elements can also contain any additional custom data used for rendering options.
 - `color` - _optional_ - defines the color of the element to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
 - `alpha` - _optional_ - defines the transparency of the element to render. The value should be between 0 (invisible) and 1 (opaque). It can be defined as a fix value for all elements or per element with a function that takes each element as argument and returns the alpha value for that element. _Default value: 1_
-
 - `SharedDefinitionOptions` are defined [here](#shared-definition-options).
 
 ## Shared definition options
