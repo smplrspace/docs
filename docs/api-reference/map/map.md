@@ -73,7 +73,7 @@ Calling `startViewer` returns a `Promise` ([MDN docs](https://developer.mozilla.
 To stop the viewer, dispose of resources it allocated, and clear the container in which it is rendered back to its original state, call the following function.
 
 ```ts
-space.remove() => void
+map.remove() => void
 ```
 
 ### Check if the viewer is ready
@@ -81,8 +81,37 @@ space.remove() => void
 To check if the viewer has finished initializing and is ready for API methods to be called, you can do:
 
 ```ts
-space.isViewerStarted() => boolean
+map.isViewerStarted() => boolean
 ```
+
+## Picking mode
+
+In order to know where a user clicks or taps on the map, you can enable picking mode. For example, this is useful if you have an admin interface to position items or draw on the map. Enabling picking mode is done as follows.
+
+```ts
+// call this after `onReady` has fired
+map.enablePickingMode({
+  onPick: ({ 
+    coordinates: {
+      lng: number
+      lat: number
+    }
+    event: MapMouseEvent
+  }) => void
+}) => void
+```
+
+- `onPick` is called each time a click/tap event fires:
+  - The `coordinates` object provides the location that was picked. It should be stored in your database and reused anytime you need to display data at this location.
+  - The `event` value is the event object fired by Mapbox and is documented [here](https://docs.mapbox.com/mapbox-gl-js/api/events/#mapmouseevent).
+
+Disabling picking mode is done as follow. For example, you would call `disablePickingMode` inside the `onPick` handler if you want to process a single pick event.
+
+```ts
+map.disablePickingMode() => void
+```
+
+You may refer to the [Add data elements](/examples/add-data-elements) example to see picking mode in action and understand the API. The example uses the space viewer, but the concepts are the same.
 
 ## Render buildings
 
