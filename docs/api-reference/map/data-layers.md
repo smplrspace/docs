@@ -4,9 +4,11 @@ sidebar_position: 3
 
 # Data layers
 
-To add or update data layers, you should use the type-specific methods detiled in [the next section](#types-of-layers), while other methods are shared between the layer types and documented [further down](#shared-methods).
+To add or update data layers, you should use the type-specific methods documented in the next sections, while other methods are shared between the layer types and documented [further down](#shared-methods).
 
-## Types of layers
+## Space data layers
+
+Space data layers are layers rendering data with coordinates coming from a Smplrspace space. They're mostly compatible with the [space viewer data layers](/api-reference/space/data-layers).
 
 ### Point layer
 
@@ -43,11 +45,53 @@ map.updatePolygonDataLayer(definitionUpdates: Partial<PolygonMapDataLayerDefinit
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
-- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `coordinates` array. Elements can also contain any additional custom data used for rendering options.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `coordinates` array.
   - `coordinates` in its simple form is an array of points in the 2D horizontal space, it can also be an array of "rings" where the first ring is the external perimeter of the polygon, and the others are "holes" cut into the external perimeter.
+  - `customData` - _optional_ - elements can also contain any additional custom data used for rendering options.
 - `baseHeight` - _optional_ - defines the elevation from the ground at the base of the polygon in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the base height for that element. _Default value: 0m._
 - `height` - _optional_ - defines the height of the polygon in meters from its base to its top. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the height for that element. _Default value: 3m._
 - `color` - _optional_ - defines the color of the element to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
+- `SharedDefinitionOptions` are defined [here](#shared-definition-options).
+
+## Geospatial data layers
+
+Geospatial data layers are layers rendering data with GPS-based coordinates. The data could be created using our entity manager, or any other map provider or geospatial tool.
+
+### GeoPoint layer
+
+Coming soon — some methods are already present in the API but should not be used.
+
+### GeoPolygon layer
+
+A geopolygon layer has each data element rendered as a polygon on the map. It is useful to highlight project boundaries, micromarkets, areas under development, etc.
+
+```ts
+interface GeoPolygonMapDataLayerDefinition {
+  id: string,
+  data: [{
+    id: string,
+    coordinates: [[{
+      lng: number
+      lat: number
+    }]],
+    ...customData: object
+  }]
+  color?: string | ((dataElement: GeoPolygonData & D) => string)
+  alpha?: number | ((dataElement: GeoPolygonData & D) => number)
+  // + fields from SharedDefinitionOptions defined further down
+}
+
+map.addGeoPolygonDataLayer(definition: PolygonMapDataLayerDefinition) => void
+map.updateGeoPolygonDataLayer(definitionUpdates: Partial<PolygonMapDataLayerDefinition>) => void
+```
+
+- `id` is a unique identifier for this layer which is used for updates.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `coordinates` array.
+  - `coordinates` is an array of "rings" where the first ring is the external perimeter of the polygon, and the others (optional) rings are "holes" cut into the external perimeter. Ring are made of GPS points.
+  - `customData` - _optional_ - elements can also contain any additional custom data used for rendering options.
+- `color` - _optional_ - defines the color of the element to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
+- `alpha` - _optional_ - defines the transparency of the element to render. The value should be between 0 (invisible) and 1 (opaque). It can be defined as a fix value for all elements or per element with a function that takes each element as argument and returns the alpha value for that element. _Default value: 1_
+
 - `SharedDefinitionOptions` are defined [here](#shared-definition-options).
 
 ## Shared definition options
