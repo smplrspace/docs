@@ -212,7 +212,7 @@ space.addPolygonDataLayer({
   color?: string | (dataElement: object) => string,
   alpha?: number,
   onDrag?: ({ data: object }) => void,
-  onDrop?: ({ data: object, coordinates: object[] }) => void,
+  onDrop?: ({ data: object, coordinates: object[] | object[][] }) => void,
   disableElevationCorrection?: boolean,
   disableReshape?: boolean,
   reshapeBoxColor?: string
