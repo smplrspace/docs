@@ -148,6 +148,8 @@ map.updateOsmBuildingDataLayer(definitionUpdates: Partial<OsmBuildingMapDataLaye
 - `color` - _optional_ - defines the color of the element to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
 - `SharedDefinitionOptions` are defined [here](#shared-definition-options).
 
+Note: this layer requires the [OSM buildings](/api-reference/map/buildings#city-building-data#control-3d-cities) to be shown in the first place.
+
 ## Shared definition options
 
 Some options correspond to generic behaviours that are shared by all data layers, making it easy to swap between similar layer types (e.g. "point" and "polygon").
