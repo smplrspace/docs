@@ -120,6 +120,34 @@ map.updateGeoPolygonDataLayer(definitionUpdates: Partial<PolygonMapDataLayerDefi
 - `alpha` - _optional_ - defines the transparency of the element to render. The value should be between 0 (invisible) and 1 (opaque). It can be defined as a fix value for all elements or per element with a function that takes each element as argument and returns the alpha value for that element. _Default value: 1_
 - `SharedDefinitionOptions` are defined [here](#shared-definition-options).
 
+### OpenStreetMap building layer
+
+An OpenStreetMap (OSM) building layer renders data elements as 3D buildings on the map, relying on footprint and height information made available in open access by the [OpenStreetMap Foundation](https://osmfoundation.org/). [OpenStreetMap](https://www.openstreetmap.org/about) is a free, open map database updated and maintained by a community of volunteers via open collaboration.
+
+```ts
+interface OsmBuildingMapDataLayerDefinition {
+  id: string,
+  // data of type OsmBuildingData[]
+  data: [{
+    id: string,
+    osmIds: number[]
+    ...customData: object
+  }]
+  color?: string | ((dataElement: object) => string)
+  // + fields from SharedDefinitionOptions defined further down
+}
+
+map.addOsmBuildingDataLayer(definition: OsmBuildingMapDataLayerDefinition) => void
+map.updateOsmBuildingDataLayer(definitionUpdates: Partial<OsmBuildingMapDataLayerDefinition>) => void
+```
+
+- `id` is a unique identifier for this layer which is used for updates.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `osmIds` array.
+  - `osmIds` is an array of numbers, each number corresponds to a feature `id` in the OSM buildings layer (source: "composite" and source-layer: "building" in Mapbox).
+  - `customData` - _optional_ - elements can also contain any additional custom data used for rendering options.
+- `color` - _optional_ - defines the color of the element to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
+- `SharedDefinitionOptions` are defined [here](#shared-definition-options).
+
 ## Shared definition options
 
 Some options correspond to generic behaviours that are shared by all data layers, making it easy to swap between similar layer types (e.g. "point" and "polygon").
