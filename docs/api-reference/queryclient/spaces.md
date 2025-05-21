@@ -29,11 +29,11 @@ To list all the spaces on your organization account, you can call the following 
 
 ```ts
 smplrClient.listSpaces(): Promise<{
-  sid: string;
-  deprecated_id: string;
-  name: string;
-  created_at: string;
-  status: string;
+  sid: string
+  deprecated_id: string
+  name: string
+  created_at: string
+  status: string
 }[]>
 ```
 
