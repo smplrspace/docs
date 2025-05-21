@@ -20,23 +20,23 @@ A polygon layer has each data element rendered as an extruded polygon. It is use
 
 ```ts
 interface PolygonMapDataLayerDefinition {
-  id: string,
+  id: string
   data: [{
-    id: string,
+    id: string
     coordinates: [{
-      levelIndex: number,
-      x: number,
+      levelIndex: number
+      x: number
       z: number
     }] | [[{
-      levelIndex: number,
-      x: number,
+      levelIndex: number
+      x: number
       z: number
-    }]],
+    }]]
     ...customData: object
-  }],
-  baseHeight?: number | (dataElement: object) => number,
-  height?: number | (dataElement: object) => number,
-  color?: string | (dataElement: object) => string,
+  }]
+  baseHeight?: number | (dataElement: object) => number
+  height?: number | (dataElement: object) => number
+  color?: string | (dataElement: object) => string
   // + fields from SharedDefinitionOptions defined further down
 }
 
@@ -53,6 +53,34 @@ map.updatePolygonDataLayer(definitionUpdates: Partial<PolygonMapDataLayerDefinit
 - `color` - _optional_ - defines the color of the element to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
 - `SharedDefinitionOptions` are defined [here](#shared-definition-options).
 
+### Space shell layer
+
+A space shell layer renders a space from your account as a colored interactive shell on the map. It's the quickest way to rely on your digitized spaces to create multi-building data visualizations where each building is one data element.
+
+```ts
+interface SpaceShellMapDataLayerDefinition {
+  id: string
+  // data of type SpaceShellData[]
+  data: [{
+    id: string
+    spaceId: string
+    ...customData: object
+  }]
+  color?: string | ((dataElement: object) => string)
+  // + fields from SharedDefinitionOptions defined further down
+}
+
+map.addSpaceShellDataLayer(definition: SpaceShellMapDataLayerDefinition) => void
+map.updateSpaceShellDataLayer(definitionUpdates: Partial<SpaceShellMapDataLayerDefinition>) => void
+```
+
+- `id` is a unique identifier for this layer which is used for updates.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `spaceId`.
+  - `spaceId` is the unique identifier of the space in Smplrspace, something like "spc_xxx".
+  - `customData` - _optional_ - elements can also contain any additional custom data used for rendering options.
+- `color` - _optional_ - defines the color of the element to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
+- `SharedDefinitionOptions` are defined [here](#shared-definition-options).
+
 ## Geospatial data layers
 
 Geospatial data layers are layers rendering data with GPS-based coordinates. The data could be created using our entity manager, or any other map provider or geospatial tool.
@@ -63,13 +91,13 @@ A geopoint layer has each data element rendered as a point or marker on the map.
 
 ```ts
 interface GeoPointMapDataLayerDefinition {
-  id: string,
+  id: string
   data: [{
-    id: string,
+    id: string
     position: {
       lng: number
       lat: number
-    },
+    }
     ...customData: object
   }]
   color?: string | ((dataElement: object) => string)
@@ -93,14 +121,14 @@ A geopolygon layer has each data element rendered as a polygon on the map. It is
 
 ```ts
 interface GeoPolygonMapDataLayerDefinition {
-  id: string,
+  id: string
   // data of type GeoPolygonData[]
   data: [{
-    id: string,
+    id: string
     coordinates: [[{
       lng: number
       lat: number
-    }]],
+    }]]
     ...customData: object
   }]
   color?: string | ((dataElement: object) => string)
@@ -126,10 +154,10 @@ An OpenStreetMap (OSM) building layer renders data elements as 3D buildings on t
 
 ```ts
 interface OsmBuildingMapDataLayerDefinition {
-  id: string,
+  id: string
   // data of type OsmBuildingData[]
   data: [{
-    id: string,
+    id: string
     osmIds: number[]
     ...customData: object
   }]
@@ -157,13 +185,13 @@ Some options correspond to generic behaviours that are shared by all data layers
 ```ts
 // not an actual interface, this is simplified for documentation
 interface SharedDefinitionOptions {
-  tooltip?: (dataElement: object) => string | HTMLString,
-  tooltipTemplate?: string,
-  tooltipContainerStyle?: string,
-  persistentTooltip?: boolean,
-  legend?: LegendConfig, // see below
-  onClick?: (dataElement: object, event: MapMouseEvent) => void,
-  onHover?: (dataElement: object, event: MapMouseEvent) => void,
+  tooltip?: (dataElement: object) => string | HTMLString
+  tooltipTemplate?: string
+  tooltipContainerStyle?: string
+  persistentTooltip?: boolean
+  legend?: LegendConfig // see below
+  onClick?: (dataElement: object, event: MapMouseEvent) => void
+  onHover?: (dataElement: object, event: MapMouseEvent) => void
   onHoverOut?: (dataElement: object, event: MapMouseEvent) => void
 }
 
