@@ -102,6 +102,7 @@ interface GeoPointMapDataLayerDefinition {
   }]
   color?: string | ((dataElement: object) => string)
   alpha?: number | ((dataElement: object) => number)
+  label?: (dataElement: object) => string
   // + fields from SharedDefinitionOptions defined further down
 }
 
@@ -111,8 +112,9 @@ map.updateGeoPointDataLayer(definitionUpdates: Partial<PointMapDataLayerDefiniti
 
 - `id` is a unique identifier for this layer which is used for updates.
 - `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `position`. Elements can also contain any additional custom data used for rendering options.
-- `color` - _optional_ - defines the color of the element to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
-- `alpha` - _optional_ - defines the transparency of the element to render. The value should be between 0 (invisible) and 1 (opaque). It can be defined as a fix value for all elements or per element with a function that takes each element as argument and returns the alpha value for that element. _Default value: 1_
+- `color` - _optional_ - defines the color of the element to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_.
+- `alpha` - _optional_ - defines the transparency of the element to render. The value should be between 0 (invisible) and 1 (opaque). It can be defined as a fix value for all elements or per element with a function that takes each element as argument and returns the alpha value for that element. _Default value: 1_.
+- `label` - _optional_ - allows users to define a text displayed permanently on top of the point rendered on the map. It is a function taking the element as argument and returning the string content to display.
 - `SharedDefinitionOptions` are defined [here](#shared-definition-options).
 
 ### GeoPolygon layer
