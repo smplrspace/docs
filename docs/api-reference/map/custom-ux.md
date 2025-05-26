@@ -92,14 +92,14 @@ You can move the camera to a specific position and have it target a specific poi
 
 ```ts
 map.setCameraPlacement({
-  pitch?: number,
-  bearing?: number,
-  zoom?: number,
+  pitch?: number
+  bearing?: number
+  zoom?: number
   center?: {
     lng: number
     lat: number
-  },
-  animate?: boolean,
+  }
+  animate?: boolean
   speed?: number
 }) => void
 ```

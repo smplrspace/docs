@@ -11,11 +11,11 @@ To measure the length of a line or polyline, you can call the following query.
 ```ts
 smplrClient.getPolylineLength({
   line: {
-    levelIndex: number,
-    x: number,
-    z: number,
+    levelIndex: number
+    x: number
+    z: number
     elevation: number
-  }[],
+  }[]
   unit?: 'ft' | 'm' | 'cm' | 'mm'
 }): number
 ```
@@ -30,10 +30,10 @@ To measure the area of a polygon, you can call the following query.
 ```ts
 smplrClient.getPolygonArea({
   polygon: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
-  }[],
+  }[]
   unit?: 'sqft' | 'sqm'
 }): number
 ```
@@ -48,13 +48,13 @@ To get the center point of a polygon, you can call the following query.
 ```ts
 smplrClient.getPolygonCenter({
   polygon: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
   }[]
 }): {
-  levelIndex: number,
-  x: number,
+  levelIndex: number
+  x: number
   z: number
 }
 ```
@@ -68,14 +68,14 @@ To get the bounding box of a set of points, you can call the following query. Th
 ```ts
 smplrClient.getPointsBoundingBox({
   points: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
-  }[],
+  }[]
   padding?: number
 }): {
-  levelIndex: number,
-  x: number,
+  levelIndex: number
+  x: number
   z: number
 }[]
 ```
@@ -94,15 +94,15 @@ Similarly, walls (or any data represented by lines or polygons) are typically no
 ```ts
 smplrClient.getPointsConcaveHull({
   points: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
-  }[],
-  simplify?: boolean,
+  }[]
+  simplify?: boolean
   simplifyTolerance?: number
 }): {
-  levelIndex: number,
-  x: number,
+  levelIndex: number
+  x: number
   z: number
 }[]
 ```
@@ -118,15 +118,15 @@ The concave hull of a set of lines is the smallest polygon that contains all the
 ```ts
 smplrClient.getLinesConcaveHull({
   lines: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
-  }[][],
-  simplify?: boolean,
+  }[][]
+  simplify?: boolean
   simplifyTolerance?: number
 }): {
-  levelIndex: number,
-  x: number,
+  levelIndex: number
+  x: number
   z: number
 }[]
 ```
@@ -142,13 +142,13 @@ To know whether a point is contained within an area defined by a polygon, you ca
 ```ts
 smplrClient.isPointInPolygon({
   point: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
-  },
+  }
   polygon: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
   }[]
 }): boolean

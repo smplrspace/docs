@@ -10,20 +10,20 @@ Doors and windows are the same thing under the hood in Smplrspace, we call them 
 
 ```ts
 interface Opening {
-  id: string;
-  name: string;
+  id: string
+  name: string
   dimensions: {
-    width: number;
-    height: number;
-    baseHeight: number;
-  };
-  options: object;
+    width: number
+    height: number
+    baseHeight: number
+  }
+  options: object
   coordinates: {
-    levelIndex: number;
-    x: number;
-    z: number;
-    elevation: number;
-  }[];
+    levelIndex: number
+    x: number
+    z: number
+    elevation: number
+  }[]
 }
 ```
 
@@ -61,7 +61,7 @@ To list all doors from a single level in a space, you can call the following que
 
 ```ts
 smplrClient.getDoorsOnLevel({
-  spaceId: string,
+  spaceId: string
   levelIndex: number
 }): Promise<Opening[]>
 ```
@@ -76,7 +76,7 @@ This is the synchronous equivalent of the query right above.
 
 ```ts
 smplrClient.getDoorsOnLevelFromCache({
-  spaceId: string,
+  spaceId: string
   levelIndex: number
 }): Opening[]
 ```
@@ -110,7 +110,7 @@ To list all windows from a single level in a space, you can call the following q
 
 ```ts
 smplrClient.getWindowsOnLevel({
-  spaceId: string,
+  spaceId: string
   levelIndex: number
 }): Promise<Opening[]>
 ```
@@ -125,7 +125,7 @@ This is the synchronous equivalent of the query right above.
 
 ```ts
 smplrClient.getWindowsOnLevelFromCache({
-  spaceId: string,
+  spaceId: string
   levelIndex: number
 }): Opening[]
 ```

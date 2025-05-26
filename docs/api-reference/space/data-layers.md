@@ -14,14 +14,14 @@ Some options correspond to generic behaviours that are shared by all interactive
 
 ```ts
 space.addDataLayer({
-  // ...layerDefinition,
-  tooltip?: (dataElement: object) => string | HTMLString,
-  tooltipTemplate?: string,
-  tooltipContainerStyle?: string,
-  persistentTooltip?: boolean,
-  legend?: LegendConfig, // see below
-  onClick?: (dataElement: object, event: PointerEvent) => void,
-  onHover?: (dataElement: object, event: LimitedPointerEvent) => void,
+  // ...layerDefinition
+  tooltip?: (dataElement: object) => string | HTMLString
+  tooltipTemplate?: string
+  tooltipContainerStyle?: string
+  persistentTooltip?: boolean
+  legend?: LegendConfig // see below
+  onClick?: (dataElement: object, event: PointerEvent) => void
+  onHover?: (dataElement: object, event: LimitedPointerEvent) => void
   onHoverOut?: (dataElement: object, event: LimitedPointerEvent) => void
 }) => DataLayerController
 
@@ -86,33 +86,33 @@ A point layer has each data element rendered as a sphere.
 space.addDataLayer({
 // OR
 space.addPointDataLayer({
-  id: string,
-  type: 'point',
-  shape: 'sphere' | 'cube',
+  id: string
+  type: 'point'
+  shape: 'sphere' | 'cube'
   data: [{
-    id: string | number,
+    id: string | number
     position: {
-      levelIndex: number,
-      x: number,
-      z: number,
+      levelIndex: number
+      x: number
+      z: number
       elevation: number
-    },
+    }
     ...customData: object
-  }],
-  color?: string | (dataElement: object) => string,
-  anchor?: 'bottom' | 'center' | 'top',
-  alpha?: number,
-  onDrag?: ({ data: object }) => void,
-  onDrop?: ({ data: object, position: object }) => void
-  disableElevationCorrection?: boolean,
+  }]
+  color?: string | (dataElement: object) => string
+  anchor?: 'bottom' | 'center' | 'top'
+  alpha?: number
+  onDrag?: ({ data: object }) => void
+  onDrop?: ({ data: object; position: object }) => void
+  disableElevationCorrection?: boolean
   // sphere shape options
-  diameter?: number | (dataElement: object) => number | { x: number; y: number; z: number },
+  diameter?: number | (dataElement: object) => number | { x: number; y: number; z: number }
   // cube shape options
   size?: number
   width?: number
   height?: number
   depth?: number
-  scale?: (dataElement: object) => number | { x: number; y: number; z: number },
+  scale?: (dataElement: object) => number | { x: number; y: number; z: number }
 }) => DataLayerController
 ```
 
@@ -149,27 +149,27 @@ An icon layer has each data element rendered as an icon (it's a sprite for reade
 space.addDataLayer({
 // OR
 space.addIconDataLayer({
-  id: string,
-  type: 'icon',
+  id: string
+  type: 'icon'
   data: [{
-    id: string | number,
+    id: string | number
     position: {
-      levelIndex: number,
-      x: number,
-      z: number,
+      levelIndex: number
+      x: number
+      z: number
       elevation: number
-    },
+    }
     ...customData: object
-  }],
+  }]
   icon: {
-    url: string,
-    width: number,
+    url: string
+    width: number
     height: number
-  },
-  width?: number | (dataElement: object) => number,
-  onDrag?: ({ data: object }) => void,
-  onDrop?: ({ data: object, position: object }) => void
-  disableElevationCorrection?: boolean,
+  }
+  width?: number | (dataElement: object) => number
+  onDrag?: ({ data: object }) => void
+  onDrop?: ({ data: object; position: object }) => void
+  disableElevationCorrection?: boolean
 }) => DataLayerController
 ```
 
@@ -192,29 +192,29 @@ A polygon layer has each data element rendered as an extruded polygon. It is use
 space.addDataLayer({
 // OR
 space.addPolygonDataLayer({
-  id: string,
-  type: 'polygon',
+  id: string
+  type: 'polygon'
   data: [{
-    id: string | number,
+    id: string | number
     coordinates: [{
-      levelIndex: number,
-      x: number,
+      levelIndex: number
+      x: number
       z: number
     }] | [[{
-      levelIndex: number,
-      x: number,
+      levelIndex: number
+      x: number
       z: number
-    }]],
+    }]]
     ...customData: object
-  }],
-  baseHeight?: number | (dataElement: object) => number,
-  height?: number | (dataElement: object) => number,
-  color?: string | (dataElement: object) => string,
-  alpha?: number,
-  onDrag?: ({ data: object }) => void,
-  onDrop?: ({ data: object, coordinates: object[] | object[][] }) => void,
-  disableElevationCorrection?: boolean,
-  disableReshape?: boolean,
+  }]
+  baseHeight?: number | (dataElement: object) => number
+  height?: number | (dataElement: object) => number
+  color?: string | (dataElement: object) => string
+  alpha?: number
+  onDrag?: ({ data: object }) => void
+  onDrop?: ({ data: object; coordinates: object[] | object[][] }) => void
+  disableElevationCorrection?: boolean
+  disableReshape?: boolean
   reshapeBoxColor?: string
 }) => DataLayerController
 ```
@@ -244,28 +244,28 @@ A polyline layer has each data element rendered as a line with one or more segme
 space.addDataLayer({
 // OR
 space.addPolylineDataLayer({
-  id: string,
-  type: 'polyline',
+  id: string
+  type: 'polyline'
   data: [{
-    id: string | number,
+    id: string | number
     coordinates: [{
-      levelIndex: number,
-      x: number,
-      z: number,
+      levelIndex: number
+      x: number
+      z: number
       elevation: number
-    }],
+    }]
     ...customData: object
-  }],
-  shape?: 'circle' | 'triangle' | 'square' | 'pentagon' | 'hexagon' | [number, number][],
-  cap?: boolean,
-  scale?: number | ({ data: object, stepIndex: number, distance: number }) => number,
-  stepSize?: number,
-  color?: string | (dataElement: object) => string,
-  alpha?: number,
-  onDrag?: ({ data: object }) => void,
-  onDrop?: ({ data: object, coordinates: object[] }) => void,
-  disableElevationCorrection?: boolean,
-  disableReshape?: boolean,
+  }]
+  shape?: 'circle' | 'triangle' | 'square' | 'pentagon' | 'hexagon' | [number, number][]
+  cap?: boolean
+  scale?: number | ({ data: object; stepIndex: number; distance: number }) => number
+  stepSize?: number
+  color?: string | (dataElement: object) => string
+  alpha?: number
+  onDrag?: ({ data: object }) => void
+  onDrop?: ({ data: object; coordinates: object[] }) => void
+  disableElevationCorrection?: boolean
+  disableReshape?: boolean
   reshapeBoxColor?: string
 }) => DataLayerController
 ```
@@ -295,31 +295,31 @@ A dotted polyline layer is similar to a polyline layer but has each data element
 space.addDataLayer({
 // OR
 space.addDottedPolylineDataLayer({
-  id: string,
-  type: 'dotted-polyline',
+  id: string
+  type: 'dotted-polyline'
   data: [{
-    id: string | number,
+    id: string | number
     coordinates: [{
-      levelIndex: number,
-      x: number,
-      z: number,
+      levelIndex: number
+      x: number
+      z: number
       elevation: number
-    }],
+    }]
     ...customData: object
-  }],
-  diameter?: number | (dataElement: object) => number,
-  gap?: number,
-  anchor?: 'bottom' | 'center' | 'top',
-  color?: string | (dataElement: object) => string,
-  alpha?: number,
-  disableElevationCorrection?: boolean,
-  animation?: false | 'waves' | 'railway',
+  }]
+  diameter?: number | (dataElement: object) => number
+  gap?: number
+  anchor?: 'bottom' | 'center' | 'top'
+  color?: string | (dataElement: object) => string
+  alpha?: number
+  disableElevationCorrection?: boolean
+  animation?: false | 'waves' | 'railway'
   // waves animation options
-  speed?: number,
-  amplitude?: number,
-  waves?: number,
+  speed?: number
+  amplitude?: number
+  waves?: number
   // railway animation options
-  speed?: number,
+  speed?: number
 }) => DataLayerController
 ```
 
@@ -355,13 +355,13 @@ A furniture layer has each data element mapped to one or more pieces of furnitur
 space.addDataLayer({
 // OR
 space.addFurnitureDataLayer({
-  id: string,
-  type: 'furniture',
+  id: string
+  type: 'furniture'
   data: [{
-    id: string | number,
-    furnitureId: string | [string],
+    id: string | number
+    furnitureId: string | [string]
     ...customData: object
-  }],
+  }]
   color?: string | (dataElement: object) => string
 }) => DataLayerController
 ```
@@ -382,40 +382,40 @@ A heat map layer renders a grid of colored "elements" representing the interpola
 space.addDataLayer({
 // OR
 space.addHeatmapDataLayer({
-  id: string,
-  type: 'heatmap',
-  style: 'spheres' | 'grid' | 'bar-chart',
+  id: string
+  type: 'heatmap'
+  style: 'spheres' | 'grid' | 'bar-chart'
   data: [{
-    id: string | number,
+    id: string | number
     position: {
-      levelIndex: number,
-      x: number,
-      z: number,
-    },
+      levelIndex: number
+      x: number
+      z: number
+    }
     ...customData: object
-  }],
-  value: (dataElement: object) => number,
-  color: (interpolatedValue: number) => string,
-  gridSize?: number,
-  gridFill?: number,
-  alpha?: number,
+  }]
+  value: (dataElement: object) => number
+  color: (interpolatedValue: number) => string
+  gridSize?: number
+  gridFill?: number
+  alpha?: number
   mask?: [{
-    levelIndex: number,
-    x: number,
-    z: number,
+    levelIndex: number
+    x: number
+    z: number
   }] | Record<number, [{
-    levelIndex: number,
-    x: number,
-    z: number,
-  }]>,
-  confidenceRadius?: number,
-  disableElevationCorrection?: boolean,
+    levelIndex: number
+    x: number
+    z: number
+  }]>
+  confidenceRadius?: number
+  disableElevationCorrection?: boolean
   // spheres style options
-  elevation?: number,
-  squishFactor?: number,
+  elevation?: number
+  squishFactor?: number
   // grid style options
-  elevation?: number,
-  thickness?: number,
+  elevation?: number
+  thickness?: number
   // bar-chart style options
   height: (interpolatedValue: number) => number
 }) => DataLayerController
@@ -463,7 +463,7 @@ To update a layer with new data or options, you can use the controller of the la
 
 ```ts
 layerController.update({
-  data: object[],
+  data: object[]
   ...rest: object
 }) => void
 ```

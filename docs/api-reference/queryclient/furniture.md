@@ -14,26 +14,26 @@ Multiple queries in this page return objects of the type `Furniture` described b
 
 ```ts
 interface Furniture {
-  catalogId: string;
-  id: string;
-  name: string;
-  levelIndex: number;
+  catalogId: string
+  id: string
+  name: string
+  levelIndex: number
   position: {
-    x: number;
-    z: number;
-    elevation: number;
-  };
+    x: number
+    z: number
+    elevation: number
+  }
   rotation: Partial<{
-    pitch: number;
-    yaw: number;
-    roll: number;
-  }>;
+    pitch: number
+    yaw: number
+    roll: number
+  }>
   dimensions: Partial<{
-    length: number;
-    height: number;
-    width: number;
-  }>;
-  configuration?: object;
+    length: number
+    height: number
+    width: number
+  }>
+  configuration?: object
 }
 ```
 
@@ -73,7 +73,7 @@ To list all furniture from a single level in a space, you can call the following
 
 ```ts
 smplrClient.getFurnitureOnLevel({
-  spaceId: string,
+  spaceId: string
   levelIndex: number
 }): Promise<Furniture[]>
 ```
@@ -88,7 +88,7 @@ This is the synchronous equivalent of the query right above.
 
 ```ts
 smplrClient.getFurnitureOnLevelFromCache({
-  spaceId: string,
+  spaceId: string
   levelIndex: number
 }): Furniture[]
 ```
@@ -101,10 +101,10 @@ To list all furniture contained within an area defined by a polygon, you can cal
 
 ```ts
 smplrClient.getFurnitureInPolygon({
-  spaceId: string,
+  spaceId: string
   polygon: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
   }[]
 }): Promise<Furniture[]>
@@ -120,10 +120,10 @@ This is the synchronous equivalent of the query right above.
 
 ```ts
 smplrClient.getFurnitureInPolygonFromCache({
-  spaceId: string,
+  spaceId: string
   polygon: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
   }[]
 }): Furniture[]
@@ -137,7 +137,7 @@ To extract a single piece of furniture from a space, identified by its unique id
 
 ```ts
 smplrClient.getFurnitureById({
-  spaceId: string,
+  spaceId: string
   furnitureId: string
 }): Promise<Furniture | null>
 ```
@@ -154,7 +154,7 @@ This is the synchronous equivalent of the query right above.
 
 ```ts
 smplrClient.getFurnitureByIdFromCache({
-  spaceId: string,
+  spaceId: string
   furnitureId: string
 }): Furniture | null
 ```
@@ -167,7 +167,7 @@ To get the ground footprint (as a polygon) of a single piece of furniture, ident
 
 ```ts
 smplrClient.getFurnitureGroundFootprintById({
-  spaceId: string,
+  spaceId: string
   furnitureId: string
   closed?: boolean
 }): Promise<{
@@ -189,7 +189,7 @@ This is the synchronous equivalent of the query right above.
 
 ```ts
 smplrClient.getFurnitureGroundFootprintByIdFromCache({
-  spaceId: string,
+  spaceId: string
   furnitureId: string
   closed?: boolean
 }): {
@@ -207,11 +207,11 @@ To know whether a piece of furniture is contained within an area defined by a po
 
 ```ts
 smplrClient.isFurnitureInPolygon({
-  spaceId: string,
-  furnitureId: string,
+  spaceId: string
+  furnitureId: string
   polygon: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
   }[]
 }): Promise<boolean | null>
@@ -231,11 +231,11 @@ This is the synchronous equivalent of the query right above.
 
 ```ts
 smplrClient.isFurnitureInPolygonFromCache({
-  spaceId: string,
-  furnitureId: string,
+  spaceId: string
+  furnitureId: string
   polygon: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
   }[]
 }): boolean | null

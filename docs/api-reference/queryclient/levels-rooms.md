@@ -10,12 +10,12 @@ To get the bounding box of the entire floor plate of a space, you can call the f
 
 ```ts
 smplrClient.getLevelBoundingBox({
-  spaceId: string,
-  levelIndex: number,
+  spaceId: string
+  levelIndex: number
   padding?: number
 }): Promise<{
-  levelIndex: number,
-  x: number,
+  levelIndex: number
+  x: number
   z: number
 }[]>
 ```
@@ -30,12 +30,12 @@ This is the synchronous equivalent of the query right above.
 
 ```ts
 smplrClient.getLevelBoundingBoxFromCache({
-  spaceId: string,
-  levelIndex: number,
+  spaceId: string
+  levelIndex: number
   padding?: number
 }): {
-  levelIndex: number,
-  x: number,
+  levelIndex: number
+  x: number
   z: number
 }[]
 ```
@@ -48,11 +48,11 @@ To get the automatic ground of the entire floor plate of a space, you can call t
 
 ```ts
 smplrClient.getLevelAutomaticGround({
-  spaceId: string,
-  levelIndex: number,
+  spaceId: string
+  levelIndex: number
 }): Promise<{
-  levelIndex: number,
-  x: number,
+  levelIndex: number
+  x: number
   z: number
 }[] | null>
 ```
@@ -66,11 +66,11 @@ This is the synchronous equivalent of the query right above.
 
 ```ts
 smplrClient.getLevelAutomaticGroundFromCache({
-  spaceId: string,
-  levelIndex: number,
+  spaceId: string
+  levelIndex: number
 }): {
-  levelIndex: number,
-  x: number,
+  levelIndex: number
+  x: number
   z: number
 }[] | null
 ```
@@ -83,23 +83,23 @@ Rooms are automatically extracted closed polygons formed by the walls of a floor
 
 ```ts
 smplrClient.getRoomsOnLevel({
-  spaceId: string,
-  levelIndex: number,
+  spaceId: string
+  levelIndex: number
   useCache?: boolean
 }): Promise<{
   room: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
   }[]
   holes: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
   }[][]
   coordinates: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
   }[][]
 }[] | null>
@@ -115,11 +115,11 @@ This is the synchronous equivalent of the query right above.
 
 ```ts
 smplrClient.getRoomsOnLevelFromCache({
-  spaceId: string,
-  levelIndex: number,
+  spaceId: string
+  levelIndex: number
 }): {
-  levelIndex: number,
-  x: number,
+  levelIndex: number
+  x: number
   z: number
 }[] | null
 ```
@@ -132,26 +132,26 @@ Building on the automatic rooms described in `getRoomsOnLevel`, you can also req
 
 ```ts
 smplrClient.getRoomAtPoint({
-  spaceId: string,
+  spaceId: string
   point: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
-  },
+  }
 }): Promise<{
   room: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
   }[]
   holes: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
   }[][]
   coordinates: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
   }[][]
 }[] | null>
@@ -166,26 +166,26 @@ This is the synchronous equivalent of the query right above.
 
 ```ts
 smplrClient.getRoomAtPointFromCache({
-  spaceId: string,
+  spaceId: string
   point: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
-  },
+  }
 }): {
   room: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
   }[]
   holes: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
   }[][]
   coordinates: {
-    levelIndex: number,
-    x: number,
+    levelIndex: number
+    x: number
     z: number
   }[][]
 }[] | null

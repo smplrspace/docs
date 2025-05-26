@@ -14,26 +14,26 @@ To customize how the space viewer renders the space, you can pass in a number of
 
 ```ts
 interface SpaceRenderOptions {
-  backgroundColor?: string;
+  backgroundColor?: string
   grounds?: {
-    render?: boolean;
-  };
+    render?: boolean
+  }
   walls?: {
-    render?: boolean;
-    alpha?: number;
-    maxHeightCm?: number;
-    showStructuralWalls?: boolean;
-  };
-  doors?: boolean;
-  windows?: boolean;
-  objects?: boolean;
-  annotations?: boolean;
-  compass?: boolean;
+    render?: boolean
+    alpha?: number
+    maxHeightCm?: number
+    showStructuralWalls?: boolean
+  }
+  doors?: boolean
+  windows?: boolean
+  objects?: boolean
+  annotations?: boolean
+  compass?: boolean
   floorplan?: {
-    render?: boolean;
-    alpha?: number;
-    elevationInCm?: number;
-  };
+    render?: boolean
+    alpha?: number
+    elevationInCm?: number
+  }
 }
 ```
 
@@ -61,16 +61,16 @@ You can set a number of options when starting the viewer. They are listed below 
 ```ts
 space.startViewer({
   // ...basicControls
-  renderOptions?: SpaceRenderOptions,
-  topShownLevel?: number,
-  includeLevels?: number[],
+  renderOptions?: SpaceRenderOptions
+  topShownLevel?: number
+  includeLevels?: number[]
   cameraPlacement?: {
-    alpha?: number,
-    beta?: number,
-    radius?: number,
+    alpha?: number
+    beta?: number
+    radius?: number
     target?: {
-      x?: number,
-      y?: number,
+      x?: number
+      y?: number
       z?: number
     }
   },
@@ -183,12 +183,12 @@ space.includeAllLevels() => void
 
 ```ts
 space.getCameraPlacement() => ({
-  alpha: number,
-  beta: number,
-  radius: number,
+  alpha: number
+  beta: number
+  radius: number
   target: {
-    x: number,
-    y: number,
+    x: number
+    y: number
     z: number
   }
 })
@@ -207,15 +207,15 @@ You can move the camera to a specific position and have it target a specific poi
 
 ```ts
 space.setCameraPlacement({
-  alpha?: number | (currentValue: number) => number,
-  beta?: number | (currentValue: number) => number,
-  radius?: number | (currentValue: number) => number,
+  alpha?: number | (currentValue: number) => number
+  beta?: number | (currentValue: number) => number
+  radius?: number | (currentValue: number) => number
   target?: {
-    x?: number | (currentValue: number) => number,
-    y?: number | (currentValue: number) => number,
+    x?: number | (currentValue: number) => number
+    y?: number | (currentValue: number) => number
     z?: number | (currentValue: number) => number
-  },
-  animate?: boolean,
+  }
+  animate?: boolean
   animationDuration?: number
 }) => void
 ```

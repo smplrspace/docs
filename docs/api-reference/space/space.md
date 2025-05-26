@@ -38,15 +38,15 @@ To initiate an interactive viewer session, use the following code.
 
 ```ts
 space.startViewer({
-  preview?: boolean,
-  loadingMessage?: string,
-  renderingMessage?: string,
-  mode?: '2d' | '3d',
-  allowModeChange?: boolean,
-  onModeChange?: (mode: '2d' | '3d') => void,
-  onReady?: () => void,
-  onError?: (errorMessage: string) => void,
-  onResize?: (containerRect: DOMRect) => void,
+  preview?: boolean
+  loadingMessage?: string
+  renderingMessage?: string
+  mode?: '2d' | '3d'
+  allowModeChange?: boolean
+  onModeChange?: (mode: '2d' | '3d') => void
+  onReady?: () => void
+  onError?: (errorMessage: string) => void
+  onResize?: (containerRect: DOMRect) => void
   onVisibleLevelsChanged?: (visibleLevels: number[]) => void
   onObjectsUpdated?: () => void
   ...customUX: object
@@ -103,11 +103,11 @@ In order to know where a user clicks or taps in the floor plan, you can enable p
 space.enablePickingMode({
   onPick: ({
     coordinates: {
-      levelIndex: number,
-      x: number,
-      z: number,
+      levelIndex: number
+      x: number
+      z: number
       elevation: number
-    },
+    }
     furnitureId?: string
   }) => void
 }) => void
@@ -132,9 +132,9 @@ The viewer lets you add data layers that are rendered on the floor plan. Each la
 ```ts
 // call this after `onReady` has fired
 space.addDataLayer({
-  id: string,
-  type: 'point' | 'icon' | 'polygon' | 'polyline' | 'dotted-polyline' | 'heatmap' | 'furniture',
-  data: object[],
+  id: string
+  type: 'point' | 'icon' | 'polygon' | 'polyline' | 'dotted-polyline' | 'heatmap' | 'furniture'
+  data: object[]
   ...rest: object
 }) => DataLayerController
 ```
@@ -166,8 +166,8 @@ To update a layer with new data or options, proceed as follow.
 
 ```ts
 space.updateDataLayer({
-  id: string,
-  data: object[],
+  id: string
+  data: object[]
   ...rest: object
 }) => void
 ```

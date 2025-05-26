@@ -23,8 +23,8 @@ To create a QueryClient instance, initialise it as follow.
 
 ```ts
 const smplrClient = new smplr.QueryClient({
-  organizationId: string,
-  clientToken: string,
+  organizationId: string
+  clientToken: string
 });
 ```
 
