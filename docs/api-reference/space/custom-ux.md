@@ -17,17 +17,42 @@ interface SpaceRenderOptions {
   backgroundColor?: string
   grounds?: {
     render?: boolean
+    includeLayers?: string[]
+    omitLayers?: string[]
   }
   walls?: {
     render?: boolean
     alpha?: number
     maxHeightCm?: number
     showStructuralWalls?: boolean
+    includeLayers?: string[]
+    omitLayers?: string[]
   }
-  doors?: boolean
-  windows?: boolean
-  objects?: boolean
-  annotations?: boolean
+  doors?: {
+    render?: boolean
+    includeLayers?: string[]
+    omitLayers?: string[]
+  }
+  windows?: {
+    render?: boolean
+    includeLayers?: string[]
+    omitLayers?: string[]
+  }
+  objects?: {
+    render?: boolean
+    includeLayers?: string[]
+    omitLayers?: string[]
+  }
+  annotations?: {
+    render?: boolean
+    includeLayers?: string[]
+    omitLayers?: string[]
+  }
+  stairs?: {
+    render?: boolean
+    includeLayers?: string[]
+    omitLayers?: string[]
+  }
   compass?: boolean
   floorplan?: {
     render?: boolean
@@ -38,15 +63,31 @@ interface SpaceRenderOptions {
 ```
 
 - `backgroundColor` - _optional_ - lets you change the background color used by the viewer. You can pass any valid CSS color string, such as 'pink' or '#81b1b3'. We advise to set the same background color on the container element to keep the load screen consistent. As for the preview image, you can change its background color to match in the editor: go to the 'Services' tab and click 'Create preview image'.
-- `grounds.render` - _optional_ - set this value to control whether the grounds are rendered or not. _Default value: true_
-- `walls.render` - _optional_ - set this value to control whether the walls are rendered or not. Note that with `render: false`, doors and windows will not be rendered either. You can use `alpha: 0` instead if you want to render doors and windows but not walls. _Default value: true_
-- `walls.alpha` - _optional_ - is a number between 0 and 1 setting the opacity of the walls, 0 being transparent and 1 opaque. _Default value: 1_
-- `walls.maxHeightCm` - _optional_ - will cap the rendering of walls to the height provided in centimeter, ignoring the actual height of walls.
-- `walls.showStructuralWalls` - _optional_ - set this value to control whether the structural walls (if any) are rendered or not. This also removes the controls from the viewer. _Default value: unset (use button control)_
-- `doors` - _optional_ - set this value to control whether the doors are rendered or not. _Default value: true_
-- `windows` - _optional_ - set this value to control whether the windows are rendered or not. _Default value: true_
-- `objects` - _optional_ - set this value to control whether the equipment (furniture, machinery, etc., if any) are rendered or not. _Default value: true_
-- `annotations` - _optional_ - set this value to control whether the annotations (if any) are rendered or not. This also removes the show/hide annotations button from the viewer. _Default value: unset (use button control)_
+- `grounds` - _optional_
+  - `render` - _optional_ - set this value to control whether the grounds are rendered or not. _Default value: true_
+  - `includeLayers` - _optional_ - set this value to chose which layers are to be rendered. Layers are string tags that you can set on each feature in the editor.
+  - `omitLayers` - _optional_ - set this value to chose which layers are to **not** be rendered.
+- `walls` - _optional_
+  - `render` - _optional_ - set this value to control whether the walls are rendered or not. Note that with `render: false`, doors and windows will not be rendered either. You can use `alpha: 0` instead if you want to render doors and windows but not walls. _Default value: true_
+  - `includeLayers, omitLayers` - _optional_ - same as `grounds` above
+  - `alpha` - _optional_ - is a number between 0 and 1 setting the opacity of the walls, 0 being transparent and 1 opaque. _Default value: 1_
+  - `maxHeightCm` - _optional_ - will cap the rendering of walls to the height provided in centimeter, ignoring the actual height of walls.
+  - `showStructuralWalls` - _optional_ - set this value to control whether the structural walls (if any) are rendered or not. This also removes the controls from the viewer. _Default value: unset (use button control)_
+- `doors` - _optional_
+  - `render` - _optional_ - set this value to control whether the doors are rendered or not. _Default value: true_
+  - `includeLayers, omitLayers` - _optional_ - same as `grounds` above
+- `windows` - _optional_
+  - `render` - _optional_ - set this value to control whether the windows are rendered or not. _Default value: true_
+  - `includeLayers, omitLayers` - _optional_ - same as `grounds` above
+- `stairs` - _optional_
+  - `render` - _optional_ - set this value to control whether the stairs are rendered or not. _Default value: true_
+  - `includeLayers, omitLayers` - _optional_ - same as `grounds` above
+- `objects` - _optional_
+  - `render` - _optional_ - set this value to control whether the equipment (furniture, machinery, etc., if any) are rendered or not. _Default value: true_
+  - `includeLayers, omitLayers` - _optional_ - same as `grounds` above
+- `annotations` - _optional_
+  - `render` - _optional_ - set this value to control whether the annotations (if any) are rendered or not. This also removes the show/hide annotations button from the viewer. _Default value: unset (use button control)_
+  - `includeLayers, omitLayers` - _optional_ - same as `grounds` above
 - `compass` - _optional_ - set this value to control whether the compass (if any) is rendered or not. This also removes the show/hide compass button from the viewer. _Default value: unset (use button control)_
 - `floorplan.render` - _optional_ - set this value to control whether the floor plan image (if any) is rendered or not. Note that for multi-storey spaces, all levels will have their floor plan image rendered. _Default value: false_
 - `floorplan.alpha` - _optional_ - is a number between 0 and 1 setting the opacity of the floor plan image, 0 being transparent and 1 opaque. _Default value: 0.5_
