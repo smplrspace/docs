@@ -30,6 +30,7 @@ prj_    project
 rpt_    report
 rpg_    report page
 ds_     data source
+eqmt_   equipment
 ```
 
 That's it, pretty short list ;). More will come soon.
