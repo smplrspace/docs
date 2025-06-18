@@ -223,6 +223,22 @@ space.takeScreenshot({
 - `forceRetinaPixelRatio` - _optional_ - can be set to true to force the image resolution to be **2x** the set width/height. _Default value: false_.
 - `forceNonRetinaPixelRatio` - _optional_ - can be set to true to force the image resolution to be **1x** the set width/height. _Default value: false_.
 
+### Get a screenshot as a JS File
+
+This method will return the screenshot as a [Javascript `File` object](https://developer.mozilla.org/en-US/docs/Web/API/File). It can be used to upload the file as [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) to your own backend, or to perform other programmatic manipulations.
+
+```ts
+space.takeScreenshotToFile({
+  mode: '3d-scene' | 'full-viewer'
+  width?: number
+  height?: number
+  forceRetinaPixelRatio?: boolean
+  forceNonRetinaPixelRatio?: boolean
+}) => Promise<string>
+```
+
+All arguments are the same as [`takeScreenshot`](#download-a-screenshot)
+
 ### Get a screenshot as Base64 string
 
 This method will return a string containing the [Base64 encoded image](https://b64encode.com/blog/what-is-a-base64-image-and-how-to-encode-it/) that you can manipulate, upload, or download as per your specific requirements.
