@@ -161,21 +161,23 @@ space.addIconDataLayer({
     }
     ...customData: object
   }]
-  icon: {
-    url: string
-    width: number
-    height: number
-  }
+  icon: IconSource | (dataElement: object) => IconSource // see IconSource below
   width?: number | (dataElement: object) => number
   onDrag?: ({ data: object }) => void
   onDrop?: ({ data: object; position: object }) => void
   disableElevationCorrection?: boolean
 }) => DataLayerController
+
+interface IconSource {
+  url: string
+  width: number
+  height: number
+}
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
 - `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `position`. Elements can also contain any additional custom data used for rendering options.
-- `icon` provides information about the icon file to use. Icons must be self-hosted, `width` and `height` indicate the dimensions of the icon available at `url`. Only PNG and JPEG files are supported.
+- `icon` provides information about the icon file to use. Icons must be self-hosted, `width` and `height` indicate the dimensions of the icon available at `url`. Only PNG and JPEG files are supported. It can be defined as a "source" for all elements or per element with a function that takes each element as argument and returns the "source" for that element.
 - `width` - _optional_ - defines the width of the icon to render in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the width for that element. _Default value: 1m._
 - `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable. Each handler takes the dragged data element as argument. `onDrop` also receives the new position of the element so it can be updated in your app state and database.
 - `disableElevationCorrection` - _optional_

@@ -12,15 +12,37 @@ To create a space programmatically, you can call the following query.
 smplrClient.createSpace({ 
   name: string
   notes?: string 
-}): Promise<{
-  sid: string
-}>
+}): Promise<{ sid: string }>
 ```
 
 With `sid` the [Smplrspace ID](/guides/sid) of the space.
 
 - `name` is the name of the space to create.
 - `notes` - _optional_ - are internal team notes attached to the space.
+
+## setSpaceStatus
+
+You can call the following query to programmatically publish, set as draft, or archive a space.
+
+```ts
+smplrClient.setSpaceStatus({ 
+  spaceId: string; 
+  status: 'published' | 'draft' | 'archived' 
+}): Promise<{ status: string }>
+```
+
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx". Refer to the [page on SIDs](/guides/sid) to learn more.
+- `status` - one of the possible statuses, with "published" corresponding to "live" in the platform.
+
+## deleteSpace
+
+You can call the following query to programmatically delete a space.
+
+```ts
+smplrClient.deleteSpace(spaceId: string): Promise<void>
+```
+
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx". Refer to the [page on SIDs](/guides/sid) to learn more.
 
 
 ## listSpaces

@@ -26,9 +26,11 @@ _TL;DR: better DX and better UX._
 
 ```
 spc_    space
+prj_    project
 rpt_    report
 rpg_    report page
-prj_    project
+ds_     data source
+eqmt_   equipment
 ```
 
 That's it, pretty short list ;). More will come soon.
