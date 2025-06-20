@@ -69,7 +69,7 @@ interface SpaceRenderOptions {
   - `omitLayers` - _optional_ - set this value to chose which layers are to **not** be rendered.
 - `walls` - _optional_
   - `render` - _optional_ - set this value to control whether the walls are rendered or not. Note that with `render: false`, doors and windows will not be rendered either. You can use `alpha: 0` instead if you want to render doors and windows but not walls. _Default value: true_
-  - `includeLayers, omitLayers` - _optional_ - same as `grounds` above
+  - `includeLayers, omitLayers` - _optional_ - same as `grounds` above, with the addition that walls that constitute the facade of the building are automatically tagged `smplr_facade` as well.
   - `alpha` - _optional_ - is a number between 0 and 1 setting the opacity of the walls, 0 being transparent and 1 opaque. _Default value: 1_
   - `maxHeightCm` - _optional_ - will cap the rendering of walls to the height provided in centimeter, ignoring the actual height of walls.
   - `showStructuralWalls` - _optional_ - set this value to control whether the structural walls (if any) are rendered or not. This also removes the controls from the viewer. _Default value: unset (use button control)_
