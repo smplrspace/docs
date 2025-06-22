@@ -163,28 +163,39 @@ space.addIconDataLayer({
   }]
   icon: IconSource | (dataElement: object) => IconSource // see IconSource below
   width?: number | (dataElement: object) => number
+  colorOverlay?: string | ((dataElement: object) => string)
   onDrag?: ({ data: object }) => void
   onDrop?: ({ data: object; position: object }) => void
   disableElevationCorrection?: boolean
 }) => DataLayerController
 
-interface IconSource {
-  url: string
-  width: number
-  height: number
-}
+type IconSource =
+  | { 
+    url: string 
+    width: number
+    height: number
+  } 
+  | { 
+    blob: Blob; 
+    blobIdOrHash: string 
+    width: number
+    height: number
+  }
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
 - `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `position`. Elements can also contain any additional custom data used for rendering options.
-- `icon` provides information about the icon file to use. Icons must be self-hosted, `width` and `height` indicate the dimensions of the icon available at `url`. Only PNG and JPEG files are supported. It can be defined as a "source" for all elements or per element with a function that takes each element as argument and returns the "source" for that element.
+- `icon` provides information about the icon file to use. It can be defined as a "source" for all elements or per element with a function that takes each element as argument and returns the "source" for that element. There are 2 options available:
+  - Option 1: `url` — Icons must be self-hosted, `width` and `height` indicate the "native" dimensions of the icon available at `url`. Only PNG and JPEG files are supported. 
+  - Option 2: `blob` — Instead of a URL, you can pass in a [Javascript Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) that contains the icon file. This lets you pre-load icons in custom ways. Also, it allows for programmatic image manipulation on your icons, prior to passing them to the data layer, e.g. using an offscreen canvas. When using a blob, you should also provide a `blobIdOrHash` string that must be unique for each file/blob you pass in. This hash is not automatic for performance reason, we could result to complex computations, but you are likely to have a simple heuristic to use when passing in the blob. Just like with the url option, `width` and `height` indicate the "native" dimensions of the icon and must be passed in.
 - `width` - _optional_ - defines the width of the icon to render in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the width for that element. _Default value: 1m._
+- `colorOverlay` - _optional_ - lets you programmatically control the color of your icons. It applies an overlay of the specified color to the icon. It works best on black and white icons. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element.
 - `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable. Each handler takes the dragged data element as argument. `onDrop` also receives the new position of the element so it can be updated in your app state and database.
 - `disableElevationCorrection` - _optional_
   - In 2D mode, the rendered elevation of icons is fully managed and the provided value ignored. Icons will be rendered on top of the floor plans.
   - In 3D mode, icons are rendered at their provided elevation but icons with low elevation will automatically be rendered above the ground to avoid being hidden. You can set `disableElevationCorrection` to true to disable this behavior. The elevation value of each icon will then be used directly.
 
-The [Add data elements](/examples/add-data-elements) example gives a full overview of draggable layers, including an icon layer.
+The [carpark example](/examples/carpark) demonstrate a number of options available on the icon data layers. The [add data elements](/examples/add-data-elements) example gives a full overview of draggable layers.
 
 ### Polygon layer
 
