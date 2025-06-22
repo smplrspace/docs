@@ -37,6 +37,7 @@ import { tooltipsOptions } from './tooltips'
 import { airQuality } from './air-quality'
 import { embeddedEditor } from './embedded-editor'
 import { markup } from './markup'
+import { carpark } from './carpark'
 
 const projects = [
   helloWorld,
@@ -44,6 +45,7 @@ const projects = [
   leasingTenancy,
   airQuality,
   iot,
+  carpark,
   propertyManagement,
   addDataElements,
   stackingPlan,
