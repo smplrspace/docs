@@ -75,6 +75,7 @@ As detailed above, the `tooltipTemplate` option is powered by [Handlebars](https
 - `fallback` - lets you use fallback default values as `{{fallback [my field] 'default value'}}`. We use `'-'` as a default value for all fields.
 - `formatDate` - lets you format dates using [Moment.js](https://momentjs.com/docs/#/displaying/format/) as `{{formatDate [my field] 'DMMMYY'}}`.
 - `formatNumber` - lets you format numbers using [Numeral.js](https://numeraljs.com/#format) as `{{formatNumber [my field] '0,0.00'}}`.
+- `ifEquals` - lets you compare 2 values in an if statement. For example to show some text only when a field equals a certain value: `{{#ifEquals [status] "active"}}Status is active{{else}} Status is not active{{/ifEquals}}`.
 
 ## Types of layers
 
