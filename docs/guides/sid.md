@@ -31,6 +31,9 @@ rpt_    report
 rpg_    report page
 ds_     data source
 eqmt_   equipment
+wlk_    walkthrough
+pic_    picture
+pano_   panorama (360° picture)
 ```
 
 That's it, pretty short list ;). More will come soon.
