@@ -37,7 +37,7 @@ Smplr.js will not be typed using this method.
   space.startViewer({
     preview: true,
     onReady: () => console.log("Viewer is ready"),
-    onError: (error) => console.error("Could not start viewer", error),
+    onError: (error) => console.error("The viewer crashed", error),
   });
 </script>
 ```
@@ -64,7 +64,7 @@ Smplr.js will not be typed using this method.
     space.startViewer({
       preview: true,
       onReady: () => console.log("Viewer is ready"),
-      onError: (error) => console.error("Could not start viewer", error),
+      onError: (error) => console.error("The viewer crashed", error),
     });
   });
 </script>

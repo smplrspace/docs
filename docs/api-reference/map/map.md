@@ -58,7 +58,7 @@ map.startViewer({
 - `loadingMessage` - _optional_ - lets you override the text displayed while the space is loading. This can be change dynamically as well, see [UI controls](#ui-controls). _Default value: "Loading map"_.
 - `forceLoader` - _optional_ - provides programmatic control to whether the loader should be displayed or not. By default we display it while loading the map and initial spaces provided by `spaceIds`, but you can control this if you load your own data as well. This can be change dynamically as well, see [UI controls](#ui-controls). _Default value: false._
 - `onReady` - _optional_ - is called once the viewer's initial render is done. You may alternatively use the promise returned by startViewer, which resolves when the viewer is ready.
-- `onError` - _optional_ - is called if an error occur while starting the viewer. You may alternatively use the promise returned by startViewer to catch errors.
+- `onError` - _optional_ - is called if an error occur that crashes the viewer. You may alternatively use the promise returned by startViewer to catch errors.
 - `onSpaceClick` - _optional_ - is called when the user clicks a 3D space, and provide data about which space and which level where clicked.
 - `hideNavigationButtons` - _optional_ - set this to true if you want the user to control the camera but want to remove the navigation buttons. Mouse, touch and keyboard inputs will work while the buttons are hidden. _Default value: false_
 - `hideLevelPicker` - _optional_ - set this to true if you want to remove the level picker from the viewer. Levels can still be controlled programmatically, so you could use your own buttons or logic. _Default value: false_
