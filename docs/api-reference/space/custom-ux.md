@@ -121,6 +121,8 @@ space.startViewer({
   hideNavigationButtons?: boolean
   hideLevelPicker?: boolean
   hideControls?: boolean
+  smallControls?: boolean
+  darkControls?: boolean
   controlsPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center-left' | 'center-right'
   legendPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
 }) => void
@@ -135,10 +137,24 @@ space.startViewer({
 - `disableCameraRotation` - _optional_ - set this to true to force a top view of the scene. It essentially gets the interactivity to match the 2D mode, but in 3D mode. _Default value: false_
 - `autoRotate` - _optional_ - set this to true to have the viewer spin around the space automatically. You can also start, set the rotation speed, and stop the rotation as described [below](#auto-rotate-the-viewer). _Default value: false_
 - `hideNavigationButtons` - _optional_ - set this to true if you want the user to control the camera but want to remove the navigation buttons. Mouse, touch and keyboard inputs will work while the buttons are hidden. _Default value: false_
-- `hideLevelPicker` - _optional_ - set this to true if you want to remove the level picker from the viewer. Levels can still be controlled programmatically, so you could use your own buttons or logic. _Default value: false_
-- `hideControls` - _optional_ - set this to true if you want to remove *all* control buttons from the viewer. _Default value: false_
+- `hideLevelPicker` - _optional_ - set this to true to remove the level picker from the viewer. Levels can still be controlled programmatically, so you could use your own buttons or logic. _Default value: false_
+- `hideControls` - _optional_ - set this to true to remove *all* control buttons from the viewer. _Default value: false_
+- `smallControls` - _optional_ - set this to true to reduce the size of the control buttons from 32px to 24px. This is useful for smaller viewers. _Default value: false_
+- `darkControls` - _optional_ - set this to true to change the control buttons to their dark style. This is useful when you set a dark background color`. _Default value: false_
 - `controlsPosition` - _optional_ - lets you choose where the control buttons are rendered. _Default value: 'bottom-left'_
 - `legendPosition` - _optional_ - lets you choose where the legend (if any is configured in the data layers) is rendered. _Default value: 'top-left'_
+
+### CSS overrides
+
+For greater alignment of the viewer to your product experience, you can also apply custom CSS styles to our components.
+
+The usual candidates here are the control buttons. The viewer options already let you position them with `controlsPosition`, hide them with `hideControls`, `hideNavigationButtons`, or `hideLevelPicker`, makes them smaller with `smallControls`, make them darker with `darkControls`. We have also applied CSS class names at each level of the controls so you have an easy way to target them for further customization. Try selecting the following classes to apply your styles:
+
+- `smplr_control_button_container`
+- `smplr_control_button_divider`
+- `smplr_control_button`
+
+🚫 Please note that attempting to modify the "Powered by Smplrspace" element is against the Terms of use, and could result in account termination. You can [get in touch with us](mailto:hello@smplrspace.com) to enquire about white label options.
 
 ## Viewer controls
 
