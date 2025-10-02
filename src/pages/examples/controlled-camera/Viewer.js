@@ -9,7 +9,7 @@ const Viewer = memo(({ onReady, cameraPlacement }) => {
 
   function onLoad () {
     const space = new smplr.Space({
-      spaceId: 'f438671f-9979-42c6-8338-05c0015abb2d',
+      spaceId: 'spc_t3q7i82z',
       clientToken: 'pub_eb760fee77634cdab2fe31146fc371c2',
       containerId: 'smplr-container'
     })
