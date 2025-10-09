@@ -57,7 +57,7 @@ editor.startSession({
 
 - `loadingMessage` - _optional_ - lets you override the text displayed while the space is loading. _Default value: "Loading the editor"_.
 - `onReady` - _optional_ - is called once the editor has successfully initialized.
-- `onError` - _optional_ - is called if an error occur while starting the editor.
+- `onError` - _optional_ - is called if an error occur that crashes the editor.
 
 ### End a session
 
