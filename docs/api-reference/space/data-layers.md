@@ -125,7 +125,7 @@ space.addPointDataLayer({
 - `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1_
 - `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable. Each handler takes the dragged data element as argument. `onDrop` also receives the new position of the element so it can be updated in your app state and database.
 - `disableElevationCorrection` - _optional_
-  - In 2D mode, the rendered elevation of points is fully managed and the provided value ignored. Points will be rendered on top of the floor plans.
+  - In 2D mode, the rendered elevation of points is fully managed, and points will be rendered on top of the floor plans. You can override the managed value by setting this to true.
   - In 3D mode, points are rendered at their provided elevation but points with low elevation will automatically be rendered above the ground to avoid being hidden. You can set `disableElevationCorrection` to true to disable this behavior. The elevation value of each point will then be used directly.
 
 ##### Sphere shape options
@@ -193,7 +193,7 @@ type IconSource =
 - `colorOverlay` - _optional_ - lets you programmatically control the color of your icons. It applies an overlay of the specified color to the icon. It works best on black and white icons. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element.
 - `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable. Each handler takes the dragged data element as argument. `onDrop` also receives the new position of the element so it can be updated in your app state and database.
 - `disableElevationCorrection` - _optional_
-  - In 2D mode, the rendered elevation of icons is fully managed and the provided value ignored. Icons will be rendered on top of the floor plans.
+  - In 2D mode, the rendered elevation of icons is fully managed, and icons will be rendered on top of the floor plans. You can override the managed value by setting this to true.
   - In 3D mode, icons are rendered at their provided elevation but icons with low elevation will automatically be rendered above the ground to avoid being hidden. You can set `disableElevationCorrection` to true to disable this behavior. The elevation value of each icon will then be used directly.
 
 The [carpark example](/examples/carpark) demonstrate a number of options available on the icon data layers. The [add data elements](/examples/add-data-elements) example gives a full overview of draggable layers.
@@ -243,7 +243,7 @@ space.addPolygonDataLayer({
 - `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1_
 - `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable & reshapable. Each handler takes the dragged data element as argument. `onDrop` also receives the new coordinates of the element so they can be updated in your app state and database.
 - `disableElevationCorrection` - _optional_
-  - In 2D mode, the rendered height of polygons is fully managed and the provided value ignored. Polygons will be rendered on top of the grounds and below the walls.
+  - In 2D mode, the rendered height of polygons is fully managed, and polygons will be rendered on top of the grounds and below the walls. You can override the managed value by setting this to true.
   - In 3D mode, polygons are rendered at with provided height but polygons with low height will automatically be rendered above between the grounds and the walls, to avoid being hidden. You can set `disableElevationCorrection` to true to disable this behavior. The height value of each polygon will then be used directly.
 - `disableReshape` - _optional_ - set this to false when using onDrag or onDrop if you want the polygons to be draggable but not modifiable in shape. _Default value: true_
 - `reshapeBoxColor` - _optional_ - hexadecimal string defining the color of the boxes used to reshape the polygons. Used in conjunction with onDrag or onDrop. _Default value: "#086bb7"_
@@ -294,7 +294,7 @@ space.addPolylineDataLayer({
 - `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1_
 - `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable & reshapable. Each handler takes the dragged data element as argument. `onDrop` also receives the new coordinates of the element so it can be updated in your app state and database.
 - `disableElevationCorrection` - _optional_
-  - In 2D mode, the rendered elevation of polylines is fully managed and the provided value ignored. Polylines will be rendered on top of the floor plans.
+  - In 2D mode, the rendered elevation of polylines is fully managed, and polylines will be rendered on top of the floor plans. You can override the managed value by setting this to true.
   - In 3D mode, polylines are rendered at their provided elevation but polyline coordinates with low elevation will automatically be rendered above the ground to avoid being hidden. You can set `disableElevationCorrection` to true to disable this behavior. The elevation value of each coordinate will then be used directly.
 - `disableReshape` - _optional_ - set this to false when using onDrag or onDrop if you want the polygons to be draggable but not modifiable in shape. _Default value: true_
 - `reshapeBoxColor` - _optional_ - hexadecimal string defining the color of the boxes used to reshape the polygons. Used in conjunction with onDrag or onDrop. _Default value: "#086bb7"_
@@ -345,7 +345,7 @@ space.addDottedPolylineDataLayer({
 - `color` - _optional_ - defines the color of the element to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"._
 - `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1._
 - `disableElevationCorrection` - _optional_
-  - In 2D mode, the rendered elevation of dotted polylines is fully managed and the provided value ignored. Dots will be rendered on top of the floor plans.
+  - In 2D mode, the rendered elevation of dotted polylines is fully managed, and dots will be rendered on top of the floor plans. You can override the managed value by setting this to true.
   - In 3D mode, dots are rendered at their provided elevation but dots with low elevation will automatically be rendered above the ground to avoid being hidden. You can set `disableElevationCorrection` to true to disable this behavior. The elevation value of each coordinate will then be used directly.
 - `animation` - _optional_ - use `false` to disable animation, `'railway'` to move spheres in a queue like wagons, or `'waves'` to scale spheres like a wave. _Default value: false._
 
@@ -446,7 +446,7 @@ space.addHeatmapDataLayer({
 - `mask` - _optional_ - a 2D polygon coordinates array that lets you define the area where the heat map should be interpolated and rendered. By default, the space's footprint on the active level will be used as mask. You can also pass an object with a mask for each level, with the key being the levelIndex, and for levels with no mask, it will use the level's footprint.
 - `confidenceRadius` - _optional_ - defines the distance in meters from the provided data points where interpolation makes sense. Grid "elements" are rendered at their nominal size (see `gridSize` and `gridFill`) when they are in close proximity to a datapoint. As they get further, their rendered size decreases (linearly to the distance to the nearest data point) as a way to communicate the confidence in the interpolated value. When a grid "element"'s distance to the nearest datapoint reaches the confidenceRadius value, it's rendered size reaches 0. By default, the confidenceRadius value is equal to the median of the distance between each data point and its 2 nearest datapoints.
 - `disableElevationCorrection` - _optional_
-  - In 2D mode, the rendered elevation of heat maps is fully managed and the provided value ignored. Heat maps will be rendered on top of the floor plans.
+  - In 2D mode, the rendered elevation of heat maps is fully managed, and heat maps will be rendered on top of the floor plans. You can override the managed value by setting this to true.
   - In 3D mode, heat maps are rendered at their provided elevation but low elevation values will automatically be rendered above the ground to avoid being hidden. You can set `disableElevationCorrection` to true to disable this behavior. The elevation value will then be used directly.
 
 ##### Spheres style options
