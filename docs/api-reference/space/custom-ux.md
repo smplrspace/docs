@@ -182,6 +182,14 @@ space.setMode(mode: '2d' | '3d') => void
 
 - `mode` - the desired rendering mode.
 
+You can also get the current mode by calling:
+
+```ts
+space.getMode() => '2d' | '3d' | undefined
+```
+
+where `undefined` would be returned if the viewer is not ready.
+
 ### Show/hide level picker
 
 This is the programmatic equivalent of setting `hideLevelPicker` in `startViewer`:

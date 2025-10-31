@@ -45,6 +45,15 @@ map.resetRenderOptionsToDefault() => void
   - `options` is an object of the [`MapSpaceRenderOptions`](#render-options) interface, which is deeply merged with the current options used by the viewer. To "unset" an optional value, you can pass `undefined` explicitely.
 - `resetRenderOptionsToDefault` reverts all values to the Smplrspace defaults.
 
+### Show/hide level picker
+
+This is the programmatic equivalent of setting `hideLevelPicker` in `startViewer`:
+
+```ts
+map.showLevelPicker() => void
+map.hideLevelPicker() => void
+```
+
 ### Navigate levels
 
 To programmatically choose which levels are visible on the map, you may use the following functions:

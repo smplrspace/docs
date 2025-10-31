@@ -36,7 +36,7 @@ To initiate an interactive viewer session, use the following code.
 map.startViewer({
   spaceIds?: string[]
   osmBuildings?: boolean
-  hash?: boolean
+  hash?: boolean | string
   fitNewSpacesInScreen?: boolean
   loadingMessage?: string
   forceLoader?: boolean
@@ -53,7 +53,7 @@ map.startViewer({
 
 - `spaceIds` - _optional_ - lets you specify the Smplrspace ID ("spc_xxx") of the spaces to render on the map when initializing the viewer. You can also do that dynamically as described on the [Building page](/api-reference/map/buildings).
 - `osmBuildings` - _optional_ - lets you choose whether to render or not cities in 3D. City buildings data comes from OpenStreetMap and is automatically rendered in 3D. You can also do that dynamically as described in [3D cities](/api-reference/map/buildings#city-building-data). _Default value: true_.
-- `hash` - _optional_ - lets you choose whether to automatically sync the map location to the hash fragment of the page's URL. This makes it for easy to share links to specific map locations. It relies on Mapbox's corresponding [parameter](https://docs.mapbox.com/mapbox-gl-js/api/map/#map-parameters). _Default value: false_.
+- `hash` - _optional_ - lets you choose whether to automatically sync the map location to the hash fragment of the page's URL. This makes it for easy to share links to specific map locations. It relies on Mapbox's corresponding [parameter](https://docs.mapbox.com/mapbox-gl-js/api/map/#map-parameters) which supports turning it on (the hash would be the whole URL hash), or providing a custom hash key to avoid conflict with other hash parameters. _Default value: false_.
 - `fitNewSpacesInScreen` - _optional_ - lets you choose whether to automatically recenter the map to fit all the spaces when the spaces rendered on the map change. You can also center the map using [`fitAllSpacesInScreen`](#fit-all-spaces-in-screen). _Default value: true._
 - `loadingMessage` - _optional_ - lets you override the text displayed while the space is loading. This can be change dynamically as well, see [UI controls](#ui-controls). _Default value: "Loading map"_.
 - `forceLoader` - _optional_ - provides programmatic control to whether the loader should be displayed or not. By default we display it while loading the map and initial spaces provided by `spaceIds`, but you can control this if you load your own data as well. This can be change dynamically as well, see [UI controls](#ui-controls). _Default value: false._
