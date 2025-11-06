@@ -144,7 +144,7 @@ The [internet of things](/examples/iot) example provides code implementation of 
 
 ### Icon layer
 
-An icon layer has each data element rendered as an icon (it's a sprite for readers familiar with 3D rendering).
+An icon layer has each data element rendered as an image that always faces the screen, no matter the angle of view (it's a sprite for readers familiar with 3D rendering).
 
 ```ts
 space.addDataLayer({
@@ -160,10 +160,13 @@ space.addIconDataLayer({
       z: number
       elevation: number
     }
+    width?: number
+    height?: number
     ...customData: object
   }]
   icon: IconSource | (dataElement: object) => IconSource // see IconSource below
   width?: number | (dataElement: object) => number
+  height?: number | (dataElement: object) => number
   colorOverlay?: string | ((dataElement: object) => string)
   onDrag?: ({ data: object }) => void
   onDrop?: ({ data: object; position: object }) => void
@@ -185,11 +188,21 @@ type IconSource =
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
-- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `position`. Elements can also contain any additional custom data used for rendering options.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `position`. 
+  - `position` is the 3D location of the center of the icon.
+  - `width` & `height` - _optional_ - see below on sizing.
+  - `customData` - _optional_ - elements can also contain any additional custom data used for rendering options.
 - `icon` provides information about the icon file to use. It can be defined as a "source" for all elements or per element with a function that takes each element as argument and returns the "source" for that element. There are 2 options available:
   - Option 1: `url` — Icons must be self-hosted, `width` and `height` indicate the "native" dimensions of the icon available at `url`. Only PNG and JPEG files are supported. 
   - Option 2: `blob` — Instead of a URL, you can pass in a [Javascript Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) that contains the icon file. This lets you pre-load icons in custom ways. Also, it allows for programmatic image manipulation on your icons, prior to passing them to the data layer, e.g. using an offscreen canvas. When using a blob, you should also provide a `blobIdOrHash` string that must be unique for each file/blob you pass in. This hash is not automatic for performance reason, we could result to complex computations, but you are likely to have a simple heuristic to use when passing in the blob. Just like with the url option, `width` and `height` indicate the "native" dimensions of the icon and must be passed in.
-- `width` - _optional_ - defines the width of the icon to render in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the width for that element. _Default value: 1m._
+- `width` & `height` - _optional_ - define the size of the icon to render in meters. It can be defined in many ways:
+  - on each data element separately (this option takes priority),
+  - as a number for all elements on the layer,
+  - per element on the layer with a function that takes each element as argument and returns the width for that element. 
+  - both width and height are optional;
+  - if both values are given, the image could be distorted to match the size;
+  - if one value is given, the other one will be computed to keep the image ratio;
+  - if no value is given, the automated size is 1m on the smallest side of the image.
 - `colorOverlay` - _optional_ - lets you programmatically control the color of your icons. It applies an overlay of the specified color to the icon. It works best on black and white icons. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element.
 - `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable. Each handler takes the dragged data element as argument. `onDrop` also receives the new position of the element so it can be updated in your app state and database.
 - `disableElevationCorrection` - _optional_
@@ -197,6 +210,75 @@ type IconSource =
   - In 3D mode, icons are rendered at their provided elevation but icons with low elevation will automatically be rendered above the ground to avoid being hidden. You can set `disableElevationCorrection` to true to disable this behavior. The elevation value of each icon will then be used directly.
 
 The [carpark example](/examples/carpark) demonstrate a number of options available on the icon data layers. The [add data elements](/examples/add-data-elements) example gives a full overview of draggable layers.
+
+### Poster layer
+
+A poster layer has each data element rendered as an image that is fixed in the space the way a poster, sticker, or panel would look if fixed on the ground, a wall, or in another location. It can also fly in the space. Note that the angle of view could be moved in a way where the image is not really readable.
+
+```ts
+space.addDataLayer({
+// OR
+space.addPosterDataLayer({
+  id: string
+  type: 'poster'
+  data: [{
+    id: string | number
+    position: {
+      levelIndex: number
+      x: number
+      z: number
+      elevation: number
+    }
+    rotation?: {
+      pitch?: number
+      yaw?: number
+      roll?: number
+    }
+    width?: number
+    height?: number
+    ...customData: object
+  }]
+  poster: PosterSource | (dataElement: object) => PosterSource // see PosterSource below
+  width?: number | (dataElement: object) => number
+  height?: number | (dataElement: object) => number
+  alpha?: number
+  colorOverlay?: string | ((dataElement: object) => string)
+  onDrag?: ({ data: object }) => void
+  onDrop?: ({ data: object; position: object }) => void
+  disableElevationCorrection?: boolean
+}) => DataLayerController
+
+type PosterSource =
+  | { url: string } 
+  | { blob: Blob; blobIdOrHash: string }
+```
+
+- `id` is a unique identifier for this layer which is used for updates.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `position`. 
+  - `position` is the 3D location of the center of the poster.
+  - `rotation` is the rotation in 3D of the poster:
+    - `pitch` - _optional_ - defines the direction the poster is facing, given in degrees. _Default value: 0_, corresponds to a poster parallel to the ground, facing up.
+    - `yaw` - _optional_ - defines the rotation around the perpendicular to the poster, given in degrees. _Default value: 0_.
+    - `roll` - _optional_ - defines the rotation around the length of the poster, given in degrees. _Default value: 0_.
+  - `width` & `height` - _optional_ - see below on sizing.
+  - `customData` - _optional_ - elements can also contain any additional custom data used for rendering options.
+- `poster` provides information about the poster file to use. It can be defined as a "source" for all elements or per element with a function that takes each element as argument and returns the "source" for that element. There are 2 options available:
+  - Option 1: `url` — Posters must be self-hosted.
+  - Option 2: `blob` — Instead of a URL, you can pass in a [Javascript Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) that contains the poster file. This lets you pre-load posters in custom ways. Also, it allows for programmatic image manipulation on your posters, prior to passing them to the data layer, e.g. using an offscreen canvas. When using a blob, you should also provide a `blobIdOrHash` string that must be unique for each file/blob you pass in. This hash is not automatic for performance reason, we could result to complex computations, but you are likely to have a simple heuristic to use when passing in the blob.
+- `width` & `height` - _optional_ - define the size of the icon to render in meters. It can be defined in many ways:
+  - on each data element separately (this option takes priority),
+  - as a number for all elements on the layer,
+  - per element on the layer with a function that takes each element as argument and returns the width for that element. 
+  - both width and height are optional;
+  - if both values are given, the image could be distorted to match the size;
+  - if one value is given, the other one will be computed to keep the image ratio;
+  - if no value is given, the automated size is 1m on the smallest side of the image.
+- `alpha` - _optional_ - defines the transparency of the posters for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). The value will be multiplied with the alpha value of the image itself. _Default value: 1_
+- `colorOverlay` - _optional_ - lets you programmatically control the color of your posters. It applies an overlay of the specified color to the poster. It works best on black and white posters. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element.
+- `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable. Each handler takes the dragged data element as argument. `onDrop` also receives the new position of the element so it can be updated in your app state and database.
+- `disableElevationCorrection` - _optional_
+  - In 2D mode, the rendered elevation of posters is fully managed, and posters will be rendered on top of the floor plans. You can override the managed value by setting this to true.
+  - In 3D mode, posters are rendered at their provided elevation but posters with low elevation will automatically be rendered above the ground to avoid being hidden. You can set `disableElevationCorrection` to true to disable this behavior. The elevation value of each poster will then be used directly.
 
 ### Polygon layer
 
