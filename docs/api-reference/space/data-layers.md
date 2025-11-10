@@ -164,7 +164,7 @@ space.addIconDataLayer({
     height?: number
     ...customData: object
   }]
-  icon: IconSource | (dataElement: object) => IconSource // see IconSource below
+  image: ImageSource | (dataElement: object) => ImageSource // see ImageSource below
   width?: number | (dataElement: object) => number
   height?: number | (dataElement: object) => number
   colorOverlay?: string | ((dataElement: object) => string)
@@ -173,18 +173,9 @@ space.addIconDataLayer({
   disableElevationCorrection?: boolean
 }) => DataLayerController
 
-type IconSource =
-  | { 
-    url: string 
-    width: number
-    height: number
-  } 
-  | { 
-    blob: Blob; 
-    blobIdOrHash: string 
-    width: number
-    height: number
-  }
+type ImageSource =
+  | { url: string } 
+  | { blob: Blob; blobIdOrHash: string }
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
@@ -192,9 +183,9 @@ type IconSource =
   - `position` is the 3D location of the center of the icon.
   - `width` & `height` - _optional_ - see below on sizing.
   - `customData` - _optional_ - elements can also contain any additional custom data used for rendering options.
-- `icon` provides information about the icon file to use. It can be defined as a "source" for all elements or per element with a function that takes each element as argument and returns the "source" for that element. There are 2 options available:
-  - Option 1: `url` — Icons must be self-hosted, `width` and `height` indicate the "native" dimensions of the icon available at `url`. Only PNG and JPEG files are supported. 
-  - Option 2: `blob` — Instead of a URL, you can pass in a [Javascript Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) that contains the icon file. This lets you pre-load icons in custom ways. Also, it allows for programmatic image manipulation on your icons, prior to passing them to the data layer, e.g. using an offscreen canvas. When using a blob, you should also provide a `blobIdOrHash` string that must be unique for each file/blob you pass in. This hash is not automatic for performance reason, we could result to complex computations, but you are likely to have a simple heuristic to use when passing in the blob. Just like with the url option, `width` and `height` indicate the "native" dimensions of the icon and must be passed in.
+- `image` provides information about the icon file to use. It can be defined as a "source" for all elements or per element with a function that takes each element as argument and returns the "source" for that element. There are 2 options available:
+  - Option 1: `url` — Icons must be self-hosted, only PNG and JPEG files are supported. 
+  - Option 2: `blob` — Instead of a URL, you can pass in a [Javascript Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) that contains the icon file. This lets you pre-load icons in custom ways. Also, it allows for programmatic image manipulation on your icons, prior to passing them to the data layer, e.g. using an offscreen canvas. When using a blob, you should also provide a `blobIdOrHash` string that must be unique for each file/blob you pass in. This hash is not automatic for performance reason, we could result to complex computations, but you are likely to have a simple heuristic to use when passing in the blob.
 - `width` & `height` - _optional_ - define the size of the icon to render in meters. It can be defined in many ways:
   - on each data element separately (this option takes priority),
   - as a number for all elements on the layer,
@@ -238,7 +229,7 @@ space.addPosterDataLayer({
     height?: number
     ...customData: object
   }]
-  poster: PosterSource | (dataElement: object) => PosterSource // see PosterSource below
+  image: ImageSource | (dataElement: object) => ImageSource // see ImageSource below
   width?: number | (dataElement: object) => number
   height?: number | (dataElement: object) => number
   alpha?: number
@@ -248,7 +239,7 @@ space.addPosterDataLayer({
   disableElevationCorrection?: boolean
 }) => DataLayerController
 
-type PosterSource =
+type ImageSource =
   | { url: string } 
   | { blob: Blob; blobIdOrHash: string }
 ```
@@ -262,10 +253,10 @@ type PosterSource =
     - `roll` - _optional_ - defines the rotation around the length of the poster, given in degrees. _Default value: 0_.
   - `width` & `height` - _optional_ - see below on sizing.
   - `customData` - _optional_ - elements can also contain any additional custom data used for rendering options.
-- `poster` provides information about the poster file to use. It can be defined as a "source" for all elements or per element with a function that takes each element as argument and returns the "source" for that element. There are 2 options available:
+- `image` provides information about the poster file to use. It can be defined as a "source" for all elements or per element with a function that takes each element as argument and returns the "source" for that element. There are 2 options available:
   - Option 1: `url` — Posters must be self-hosted.
   - Option 2: `blob` — Instead of a URL, you can pass in a [Javascript Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) that contains the poster file. This lets you pre-load posters in custom ways. Also, it allows for programmatic image manipulation on your posters, prior to passing them to the data layer, e.g. using an offscreen canvas. When using a blob, you should also provide a `blobIdOrHash` string that must be unique for each file/blob you pass in. This hash is not automatic for performance reason, we could result to complex computations, but you are likely to have a simple heuristic to use when passing in the blob.
-- `width` & `height` - _optional_ - define the size of the icon to render in meters. It can be defined in many ways:
+- `width` & `height` - _optional_ - define the size of the poster to render in meters. It can be defined in many ways:
   - on each data element separately (this option takes priority),
   - as a number for all elements on the layer,
   - per element on the layer with a function that takes each element as argument and returns the width for that element. 
