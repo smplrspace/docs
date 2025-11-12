@@ -34,6 +34,7 @@ eqmt_   equipment
 wlk_    walkthrough
 pic_    picture
 pano_   panorama (360° picture)
+dj_     digitization job
 ```
 
 That's it, pretty short list ;). More will come soon.
