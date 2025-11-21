@@ -12,7 +12,58 @@ Space data layers are layers rendering data with coordinates coming from a Smplr
 
 ### Point layer
 
-Coming soon — some methods are already present in the API but should not be used.
+A point layer has each data element rendered as a 3D shape, sphere or cube at this point.
+
+```ts
+interface PointMapDataLayerDefinition {
+  id: string
+  shape: 'sphere' | 'cube'
+  data: [{
+    id: string
+    spaceId: string
+    position: {
+      levelIndex: number
+      x: number
+      z: number
+      elevation: number
+    }
+    ...customData: object
+  }]
+  color?: string | (dataElement: object) => string
+  anchor?: 'bottom' | 'center' | 'top'
+  // sphere shape options
+  diameter?: number | { x: number; y: number; z: number } | ((dataElement: object) => number | { x: number; y: number; z: number })
+  // cube shape options
+  size?: number
+  width?: number
+  height?: number
+  depth?: number
+  scale?: (dataElement: object) => number | { x: number; y: number; z: number }
+  // + fields from SharedDefinitionOptions defined further down
+}
+
+map.addPointDataLayer(definition: PointMapDataLayerDefinition) => void
+map.updatePointDataLayer(definitionUpdates: Partial<PointMapDataLayerDefinition>) => void
+```
+
+- `id` is a unique identifier for this layer which is used for updates.
+- `shape` is the the 3D shape used to render each data element. Each shape comes with its own options defined below.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array), a `spaceId` to transform the local coordinates to global coordinates, and a `position`. Elements can also contain any additional custom data used for rendering options.
+- `color` - _optional_ - defines the color of the element to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
+- `anchor` - _optional_ - defines if the position provided for each data element corresponds to the bottom, center or top of the sphere. _Default value: center._
+- `SharedDefinitionOptions` are defined [here](#shared-definition-options).
+
+##### Sphere shape options
+
+- `diameter` - _optional_ - defines the diameter of the sphere to render in meters. It can be defined as a value for all elements or per element with a function that takes each element as argument and returns the diameter for that element. The diameter can be a number to render a perfectly round sphere, or an object providing the "diameter" per axis to render ellipsoids. _Default value: 1m._
+
+##### Cube shape options
+
+- `size` - _optional_ - defines the default size of each side of the cube in meters. _Default value: 1m._
+- `width` - _optional_ - defines the width of the cube in meters. _Default value: same as size._
+- `height` - _optional_ - defines the height of the cube in meters. _Default value: same as size._
+- `depth` - _optional_ - defines the depth of the cube in meters. _Default value: same as size._
+- `scale` - _optional_ - defines the per-data-element multiplication factor to the size of the cubes. It is a function that takes each element as argument and returns the scale factor for that element. The scale factor can be a number for uniform scaling in all directions, or an object providing one factor per axis.
 
 ### Polygon layer
 
