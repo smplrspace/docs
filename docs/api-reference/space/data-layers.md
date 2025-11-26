@@ -81,7 +81,7 @@ As detailed above, the `tooltipTemplate` option is powered by [Handlebars](https
 
 ### Point layer
 
-A point layer has each data element rendered as a sphere.
+A point layer has each data element rendered as a 3D shape, sphere or cube at this point.
 
 ```ts
 space.addDataLayer({
@@ -107,7 +107,7 @@ space.addPointDataLayer({
   onDrop?: ({ data: object; position: object }) => void
   disableElevationCorrection?: boolean
   // sphere shape options
-  diameter?: number | (dataElement: object) => number | { x: number; y: number; z: number }
+  diameter?: number | { x: number; y: number; z: number } | ((dataElement: object) => number | { x: number; y: number; z: number })
   // cube shape options
   size?: number
   width?: number
@@ -130,7 +130,7 @@ space.addPointDataLayer({
 
 ##### Sphere shape options
 
-- `diameter` - _optional_ - defines the diameter of the sphere to render in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the diameter for that element. The diameter can be a number to render a perfectly round sphere, or an object providing the "diameter" per axis to render ellipsoids. _Default value: 1m._
+- `diameter` - _optional_ - defines the diameter of the sphere to render in meters. It can be defined as a value for all elements or per element with a function that takes each element as argument and returns the diameter for that element. The diameter can be a number to render a perfectly round sphere, or an object providing the "diameter" per axis to render ellipsoids. _Default value: 1m._
 
 ##### Cube shape options
 
