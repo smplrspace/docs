@@ -6,6 +6,12 @@ sidebar_position: 1
 
 # Embedding the map viewer
 
+:::warning
+
+This is a beta version, the API could change anytime with no backward compatibility, as we are still actively developing the map viewer. If you rely on this in production, please [get in touch](mailto:support@smplrspace.com) so we can take your usage into account and communicate to you any upcoming changes.
+
+:::
+
 Smplr.js makes a `smplr` object available on the global scope. One of the classes provided under this object is the `Map` class. It provides the API necessary to render the Smplrspace map viewer, a custom pre-configured Mapbox-based map which provide all the feature of Mapbox, plus Smplrspace specific features to render your spaces, add 3D cities based on OpenStreetMap data, add data layers, and more.
 
 ## Constructor

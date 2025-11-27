@@ -58,13 +58,3 @@ map.toggleOsmBuildings() => void
 ```
 
 You can also use OSM buildings as a [data layer](/api-reference/map/data-layers#openstreetmap-building-layer), to render them in colors and make them an interactive part of your data visualization.
-
-### Control buildings footprint
-
-We can render flat polygons representing the footprint of city buildings on the map. To control whether to render that layer or not, use the following methods:
-
-```ts
-map.showBuildingsFootprint() => void
-map.hideBuildingsFootprint() => void
-map.toggleBuildingsFootprint() => void
-```
