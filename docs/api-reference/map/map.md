@@ -12,7 +12,7 @@ This is a beta version, the API could change anytime with no backward compatibil
 
 :::
 
-Smplr.js makes a `smplr` object available on the global scope. One of the classes provided under this object is the `Map` class. It provides the API necessary to render the Smplrspace map viewer, a custom pre-configured Mapbox-based map which provide all the feature of Mapbox, plus Smplrspace specific features to render your spaces, add 3D cities based on OpenStreetMap data, add data layers, and more.
+Smplr.js makes a `smplr` object available on the global scope. One of the classes provided under this object is the `Map` class. It provides the API necessary to render the Smplrspace map viewer, a custom pre-configured Mapbox-based map which provide all the feature of Mapbox, including their 3D buildings, plus Smplrspace specific features to render your spaces, add data layers, and more.
 
 ## Constructor
 
@@ -41,7 +41,6 @@ To initiate an interactive viewer session, use the following code.
 ```ts
 map.startViewer({
   spaceIds?: string[]
-  osmBuildings?: boolean
   hash?: boolean | string
   fitNewSpacesInScreen?: boolean
   loadingMessage?: string
@@ -58,7 +57,6 @@ map.startViewer({
 ```
 
 - `spaceIds` - _optional_ - lets you specify the Smplrspace ID ("spc_xxx") of the spaces to render on the map when initializing the viewer. You can also do that dynamically as described on the [Building page](/api-reference/map/buildings).
-- `osmBuildings` - _optional_ - lets you choose whether to render or not cities in 3D. City buildings data comes from OpenStreetMap and is automatically rendered in 3D. You can also do that dynamically as described in [3D cities](/api-reference/map/buildings#city-building-data). _Default value: true_.
 - `hash` - _optional_ - lets you choose whether to automatically sync the map location to the hash fragment of the page's URL. This makes it for easy to share links to specific map locations. It relies on Mapbox's corresponding [parameter](https://docs.mapbox.com/mapbox-gl-js/api/map/#map-parameters) which supports turning it on (the hash would be the whole URL hash), or providing a custom hash key to avoid conflict with other hash parameters. _Default value: false_.
 - `fitNewSpacesInScreen` - _optional_ - lets you choose whether to automatically recenter the map to fit all the spaces when the spaces rendered on the map change. You can also center the map using [`fitAllSpacesInScreen`](#fit-all-spaces-in-screen). _Default value: true._
 - `loadingMessage` - _optional_ - lets you override the text displayed while the space is loading. This can be change dynamically as well, see [UI controls](#ui-controls). _Default value: "Loading map"_.

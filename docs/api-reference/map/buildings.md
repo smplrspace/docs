@@ -5,7 +5,7 @@ sidebar_label: Buildings
 
 # Buildings on the map
 
-One of the main added "layer" the Smplrspace map viewer provides, as compared to just Mapbox is the ability to render 3D spaces from your Smplrspace data, and 3D cities based on OpenStreetMap data in a few lines of code. Here are the functions currently available.
+One of the main added capability the Smplrspace map viewer provides, as compared to just Mapbox is the ability to render 3D spaces from your Smplrspace data. We also setup the map to leverage Mapbox's 3D building out of the box, and we make it easier to interact with them in a few lines of code. Here are the functions currently available.
 
 ## Spaces from Smplrspace
 
@@ -49,7 +49,9 @@ map.removeAllSpaces() => void
 
 ### Control 3D cities
 
-3D cities are rendered using OSM (OpenStreet Map) data, an open dataset that includes the footprint of many buildings globally. To control whether to render the 3D cities based on OpenStreetMap data or not, use the following methods:
+Coming soon! The map currently renders the buildings by default. [Get in touch](https://www.smplrspace.com/support) if you would like to control that behavior.
+
+<!-- 3D cities are rendered using OSM (OpenStreet Map) data, an open dataset that includes the footprint of many buildings globally. To control whether to render the 3D cities based on OpenStreetMap data or not, use the following methods:
 
 ```ts
 map.showOsmBuildings() => void
@@ -57,4 +59,4 @@ map.hideOsmBuildings() => void
 map.toggleOsmBuildings() => void
 ```
 
-You can also use OSM buildings as a [data layer](/api-reference/map/data-layers#openstreetmap-building-layer), to render them in colors and make them an interactive part of your data visualization.
+You can also use OSM buildings as a [data layer](/api-reference/map/data-layers#openstreetmap-building-layer), to render them in colors and make them an interactive part of your data visualization. -->
