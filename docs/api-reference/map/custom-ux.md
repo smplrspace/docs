@@ -124,6 +124,16 @@ type CameraMotion =
   - `fly` to animate the camera along a smooth, curvy, flight-like path, taking an optional `speed` parameter. _Default speed: 1.2_
   - `ease` to animate the camera along a smooth, straight path, taking an optional `duration` parameter.
 
+### Reset the camera
+
+This is the programmatic equivalent to pressing the reset view button in the camera controls:
+
+```ts
+space.resetCamera() => void
+```
+
+If a `cameraPlacement` value was provided when calling [`startViewer`](/api-reference/map/overview#start-the-viewer), it uses that location. Else, it calls [`fitAllSpacesInScreen`](/api-reference/map/overview#fit-all-spaces-in-screen).
+
 ### Zoom in/out
 
 This is the programmatic equivalent to pressing the zoom buttons:

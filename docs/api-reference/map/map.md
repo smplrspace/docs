@@ -53,6 +53,7 @@ map.startViewer({
   hideControls?: boolean
   controlsPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center-left' | 'center-right'
   legendPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
+  cameraPlacement?: PartialMapCameraPlacement
 }) => Promise<void>
 ```
 
@@ -69,6 +70,7 @@ map.startViewer({
 - `hideControls` - _optional_ - set this to true if you want to remove *all* control buttons from the viewer. _Default value: false_
 - `controlsPosition` - _optional_ - lets you choose where the control buttons are rendered. _Default value: 'center-right'_
 - `legendPosition` - _optional_ - lets you choose where the legend (if any is configured in the data layers) would be rendered. _Default value: 'top-left'_
+- `cameraPlacement` - _optional_ - set the initial position and direction of the camera. See [camera controls](/api-reference/map/custom-ux#set-the-camera-placement) for more details.
 
 Calling `startViewer` returns a `Promise` ([MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)) which resolves when the viewer is ready. This lets you use `Promise.then().catch()` or `async/await` with a `try/catch` block to react when the viewer is ready, or to handle errors that may occur. It is an alternative to providing `onReady` and `onError` callback methods. You may choose the option that suits the most your environment or coding style.
 
