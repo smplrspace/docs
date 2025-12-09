@@ -210,7 +210,7 @@ space.hideNavigationButtons() => void
 
 ### Navigate levels
 
-This is the programmatic equivalent to pressing the level buttons in the bottom-left controls:
+This is the programmatic equivalent to pressing the level buttons in the controls:
 
 ```ts
 space.showUpToLevel(levelIndex: number) => void
@@ -293,7 +293,7 @@ See the [controlled camera](/examples/controlled-camera) example to see this use
 
 ### Center the camera on the space
 
-This is the programmatic equivalent to pressing the center camera button in the bottom-left controls:
+This is the programmatic equivalent to pressing the center camera button in the controls:
 
 ```ts
 space.centerCamera() => void

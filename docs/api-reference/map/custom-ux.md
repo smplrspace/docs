@@ -100,7 +100,9 @@ The "placement" is a Javascript object that includes the position and direction 
 You can move the camera to a specific position and have it target a specific point as well by calling the following function:
 
 ```ts
-map.setCameraPlacement({
+map.setCameraPlacement(placement: PartialMapCameraPlacement & CameraMotion) => void
+
+interface PartialMapCameraPlacement {
   pitch?: number
   bearing?: number
   zoom?: number
@@ -108,14 +110,29 @@ map.setCameraPlacement({
     lng: number
     lat: number
   }
-  animate?: boolean
-  speed?: number
-}) => void
+}
+
+type CameraMotion =
+  | { motion: 'jump' }
+  | { motion: 'fly'; speed?: number }
+  | { motion: 'ease'; duration?: number }
 ```
 
 - placement parameters (see description above) are the new desired value. All parameters are _optional_ and the ones that are not provided will keep their current value.
-- `animate` - _optional_ - should be set to false to jump to the new placement and true to animate the camera to the new placement. _Default value: false_
-- `speed` - _optional_ - defines the speed of the camera animation and should be used with animate set to true. _Default value: 1.2_
+- `motion` - defines the movement of the camera between the current placement and the next. Options are:
+  - `jump` to instantly moves the camera without animation.
+  - `fly` to animate the camera along a smooth, curvy, flight-like path, taking an optional `speed` parameter. _Default speed: 1.2_
+  - `ease` to animate the camera along a smooth, straight path, taking an optional `duration` parameter.
+
+### Reset the camera
+
+This is the programmatic equivalent to pressing the reset view button in the camera controls:
+
+```ts
+space.resetCamera() => void
+```
+
+If a `cameraPlacement` value was provided when calling [`startViewer`](/api-reference/map/overview#start-the-viewer), it uses that location. Else, it calls [`fitAllSpacesInScreen`](/api-reference/map/overview#fit-all-spaces-in-screen).
 
 ### Zoom in/out
 

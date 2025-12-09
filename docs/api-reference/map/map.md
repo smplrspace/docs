@@ -6,7 +6,13 @@ sidebar_position: 1
 
 # Embedding the map viewer
 
-Smplr.js makes a `smplr` object available on the global scope. One of the classes provided under this object is the `Map` class. It provides the API necessary to render the Smplrspace map viewer, a custom pre-configured Mapbox-based map which provide all the feature of Mapbox, plus Smplrspace specific features to render your spaces, add 3D cities based on OpenStreetMap data, add data layers, and more.
+:::warning
+
+This is a beta version, the API could change anytime with no backward compatibility, as we are still actively developing the map viewer. If you rely on this in production, please [get in touch](mailto:support@smplrspace.com) so we can take your usage into account and communicate to you any upcoming changes.
+
+:::
+
+Smplr.js makes a `smplr` object available on the global scope. One of the classes provided under this object is the `Map` class. It provides the API necessary to render the Smplrspace map viewer, a custom pre-configured Mapbox-based map which provide all the feature of Mapbox, including their 3D buildings, plus Smplrspace specific features to render your spaces, add data layers, and more.
 
 ## Constructor
 
@@ -35,7 +41,6 @@ To initiate an interactive viewer session, use the following code.
 ```ts
 map.startViewer({
   spaceIds?: string[]
-  osmBuildings?: boolean
   hash?: boolean | string
   fitNewSpacesInScreen?: boolean
   loadingMessage?: string
@@ -48,11 +53,11 @@ map.startViewer({
   hideControls?: boolean
   controlsPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center-left' | 'center-right'
   legendPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
+  cameraPlacement?: PartialMapCameraPlacement
 }) => Promise<void>
 ```
 
 - `spaceIds` - _optional_ - lets you specify the Smplrspace ID ("spc_xxx") of the spaces to render on the map when initializing the viewer. You can also do that dynamically as described on the [Building page](/api-reference/map/buildings).
-- `osmBuildings` - _optional_ - lets you choose whether to render or not cities in 3D. City buildings data comes from OpenStreetMap and is automatically rendered in 3D. You can also do that dynamically as described in [3D cities](/api-reference/map/buildings#city-building-data). _Default value: true_.
 - `hash` - _optional_ - lets you choose whether to automatically sync the map location to the hash fragment of the page's URL. This makes it for easy to share links to specific map locations. It relies on Mapbox's corresponding [parameter](https://docs.mapbox.com/mapbox-gl-js/api/map/#map-parameters) which supports turning it on (the hash would be the whole URL hash), or providing a custom hash key to avoid conflict with other hash parameters. _Default value: false_.
 - `fitNewSpacesInScreen` - _optional_ - lets you choose whether to automatically recenter the map to fit all the spaces when the spaces rendered on the map change. You can also center the map using [`fitAllSpacesInScreen`](#fit-all-spaces-in-screen). _Default value: true._
 - `loadingMessage` - _optional_ - lets you override the text displayed while the space is loading. This can be change dynamically as well, see [UI controls](#ui-controls). _Default value: "Loading map"_.
@@ -65,6 +70,7 @@ map.startViewer({
 - `hideControls` - _optional_ - set this to true if you want to remove *all* control buttons from the viewer. _Default value: false_
 - `controlsPosition` - _optional_ - lets you choose where the control buttons are rendered. _Default value: 'center-right'_
 - `legendPosition` - _optional_ - lets you choose where the legend (if any is configured in the data layers) would be rendered. _Default value: 'top-left'_
+- `cameraPlacement` - _optional_ - set the initial position and direction of the camera. See [camera controls](/api-reference/map/custom-ux#set-the-camera-placement) for more details.
 
 Calling `startViewer` returns a `Promise` ([MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)) which resolves when the viewer is ready. This lets you use `Promise.then().catch()` or `async/await` with a `try/catch` block to react when the viewer is ready, or to handle errors that may occur. It is an alternative to providing `onReady` and `onError` callback methods. You may choose the option that suits the most your environment or coding style.
 
