@@ -76,6 +76,7 @@ As detailed above, the `tooltipTemplate` option is powered by [Handlebars](https
 - `formatDate` - lets you format dates using [Moment.js](https://momentjs.com/docs/#/displaying/format/) as `{{formatDate [my field] 'DMMMYY'}}`.
 - `formatNumber` - lets you format numbers using [Numeral.js](https://numeraljs.com/#format) as `{{formatNumber [my field] '0,0.00'}}`.
 - `ifEquals` - lets you compare 2 values in an if statement. For example to show some text only when a field equals a certain value: `{{#ifEquals [status] "active"}}Status is active{{else}} Status is not active{{/ifEquals}}`.
+- `json` - prints the value in JSON code style. Use like `{{json [field]}}`, or to debug the whole context of the template `{{json this}}`.
 
 ## Types of layers
 
