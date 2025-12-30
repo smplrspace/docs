@@ -54,6 +54,7 @@ map.startViewer({
   controlsPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center-left' | 'center-right'
   legendPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
   cameraPlacement?: PartialMapCameraPlacement
+  search?: boolean
 }) => Promise<void>
 ```
 
@@ -61,7 +62,7 @@ map.startViewer({
 - `hash` - _optional_ - lets you choose whether to automatically sync the map location to the hash fragment of the page's URL. This makes it for easy to share links to specific map locations. It relies on Mapbox's corresponding [parameter](https://docs.mapbox.com/mapbox-gl-js/api/map/#map-parameters) which supports turning it on (the hash would be the whole URL hash), or providing a custom hash key to avoid conflict with other hash parameters. _Default value: false_.
 - `fitNewSpacesInScreen` - _optional_ - lets you choose whether to automatically recenter the map to fit all the spaces when the spaces rendered on the map change. You can also center the map using [`fitAllSpacesInScreen`](#fit-all-spaces-in-screen). _Default value: true._
 - `loadingMessage` - _optional_ - lets you override the text displayed while the space is loading. This can be change dynamically as well, see [UI controls](#ui-controls). _Default value: "Loading map"_.
-- `forceLoader` - _optional_ - provides programmatic control to whether the loader should be displayed or not. By default we display it while loading the map and initial spaces provided by `spaceIds`, but you can control this if you load your own data as well. This can be change dynamically as well, see [UI controls](#ui-controls). _Default value: false._
+- `forceLoader` - _optional_ - provides programmatic control to whether the loader should be displayed or not. By default we display it while loading the map and initial spaces provided by `spaceIds`, but you can control this if you load your own data as well. This option is more of a forced initial state, and then you can be change whether the loader is visible dynamically, see [UI controls](#ui-controls). _Default value: false._
 - `onReady` - _optional_ - is called once the viewer's initial render is done. You may alternatively use the promise returned by startViewer, which resolves when the viewer is ready.
 - `onError` - _optional_ - is called if an error occur that crashes the viewer. You may alternatively use the promise returned by startViewer to catch errors.
 - `onSpaceClick` - _optional_ - is called when the user clicks a 3D space, and provide data about which space and which level where clicked.
@@ -71,6 +72,7 @@ map.startViewer({
 - `controlsPosition` - _optional_ - lets you choose where the control buttons are rendered. _Default value: 'center-right'_
 - `legendPosition` - _optional_ - lets you choose where the legend (if any is configured in the data layers) would be rendered. _Default value: 'top-left'_
 - `cameraPlacement` - _optional_ - set the initial position and direction of the camera. See [camera controls](/api-reference/map/custom-ux#set-the-camera-placement) for more details.
+- `search` - _optional_ - set this to true to add a search button on the top left corner of the map, letting you find places on the map by address, GPS coordinates, and more. This is using a custom Mapbox Geocoder, and clicking a result from the list will move the camera to the place of interest. _Default value: false_.
 
 Calling `startViewer` returns a `Promise` ([MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)) which resolves when the viewer is ready. This lets you use `Promise.then().catch()` or `async/await` with a `try/catch` block to react when the viewer is ready, or to handle errors that may occur. It is an alternative to providing `onReady` and `onError` callback methods. You may choose the option that suits the most your environment or coding style.
 
@@ -160,6 +162,8 @@ You can change the loading message any time as follow. This doesn't impact wheth
 map.updateLoadingMessage(message: string) => void
 ```
 
+There is also the `loadingMessage` option on [`startViewer`](#start-the-viewer) to manage the initial state.
+
 ### Control the loader
 
 You can control whether the loader is displayed or not anytime with the following functions.
@@ -168,6 +172,8 @@ You can control whether the loader is displayed or not anytime with the followin
 map.showLoader() => void
 map.hideLoader() => void
 ```
+
+There is also the `forceLoader` option on [`startViewer`](#start-the-viewer) to manage the initial state.
 
 ## Full Mapbox SDK
 

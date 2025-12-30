@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "BROWSER='Google Chrome Dev' docusaurus start",
+    "start": "BROWSER='Google Chrome Dev' docusaurus start -p 3001",
+    "dev": "yarn start",
     "build": "docusaurus build && yarn check-deadlinks",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
