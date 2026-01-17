@@ -106,7 +106,11 @@ smplrClient.getFurnitureInPolygon({
     levelIndex: number
     x: number
     z: number
-  }[]
+  }[] | {
+    levelIndex: number
+    x: number
+    z: number
+  }[][]
 }): Promise<Furniture[]>
 ```
 
@@ -125,7 +129,11 @@ smplrClient.getFurnitureInPolygonFromCache({
     levelIndex: number
     x: number
     z: number
-  }[]
+  }[] | {
+    levelIndex: number
+    x: number
+    z: number
+  }[][]
 }): Furniture[]
 ```
 
@@ -213,7 +221,11 @@ smplrClient.isFurnitureInPolygon({
     levelIndex: number
     x: number
     z: number
-  }[]
+  }[] | {
+    levelIndex: number
+    x: number
+    z: number
+  }[][]
 }): Promise<boolean | null>
 ```
 
@@ -237,7 +249,11 @@ smplrClient.isFurnitureInPolygonFromCache({
     levelIndex: number
     x: number
     z: number
-  }[]
+  }[] | {
+    levelIndex: number
+    x: number
+    z: number
+  }[][]
 }): boolean | null
 ```
 

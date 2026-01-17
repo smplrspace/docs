@@ -23,9 +23,47 @@ smplrClient.getPolylineLength({
 - `line` - the polyline you want to compute the length for. It has the same schema as the coordinates from the [polyline data layers](/api-reference/space/data-layers#polyline-layer).
 - `unit` - _optional_ - your unit of choice. _Default value: m_
 
+## doSegmentsIntersect
+
+To check whether two line segments intersect, you can call the following query.
+
+```ts
+smplrClient.doSegmentsIntersect({
+  segment1: {
+    start: {
+      levelIndex: number
+      x: number
+      z: number
+    }
+    end: {
+      levelIndex: number
+      x: number
+      z: number
+    }
+  }
+  segment2: {
+    start: {
+      levelIndex: number
+      x: number
+      z: number
+    }
+    end: {
+      levelIndex: number
+      x: number
+      z: number
+    }
+  }
+}): boolean
+```
+
+- `segment1` - the first line segment defined by its start and end points.
+- `segment2` - the second line segment defined by its start and end points.
+
+Returns `true` if the segments intersect, `false` otherwise.
+
 ## getPolygonArea
 
-To measure the area of a polygon, you can call the following query.
+To measure the area of a polygon, you can call the following query. This will respect holes, so holes area is not included in the result.
 
 ```ts
 smplrClient.getPolygonArea({
@@ -33,7 +71,11 @@ smplrClient.getPolygonArea({
     levelIndex: number
     x: number
     z: number
-  }[]
+  }[] | {
+    levelIndex: number
+    x: number
+    z: number
+  }[][]
   unit?: 'sqft' | 'sqm'
 }): number
 ```
@@ -51,7 +93,11 @@ smplrClient.getPolygonCenter({
     levelIndex: number
     x: number
     z: number
-  }[]
+  }[] | {
+    levelIndex: number
+    x: number
+    z: number
+  }[][]
 }): {
   levelIndex: number
   x: number
@@ -137,7 +183,7 @@ smplrClient.getLinesConcaveHull({
 
 ## isPointInPolygon
 
-To know whether a point is contained within an area defined by a polygon, you can call the following query.
+To know whether a point is contained within an area defined by a polygon, you can call the following query. This will respect holes, so if the point is in the hole of the polygon, it will return false.
 
 ```ts
 smplrClient.isPointInPolygon({
@@ -150,7 +196,11 @@ smplrClient.isPointInPolygon({
     levelIndex: number
     x: number
     z: number
-  }[]
+  }[] | {
+    levelIndex: number
+    x: number
+    z: number
+  }[][]
 }): boolean
 ```
 
@@ -158,6 +208,104 @@ smplrClient.isPointInPolygon({
 - `polygon` - the polygon in which the point should be located or not. It has the same schema as the coordinates from the [polygon data layers](/api-reference/space/data-layers#polygon-layer). It is assumed here that all coordinates have the same `levelIndex` value.
 
 A similar query is available for furniture pieces, see [isFurnitureInPolygon](/api-reference/queryclient/furniture#isfurnitureinpolygon).
+
+## isPolygonAInPolygonB
+
+To check whether a polygon is completely contained within another polygon, you can call the following query. This function ignores holes, so it only relies on the outer ring of the polygons.
+
+```ts
+smplrClient.isPolygonAInPolygonB({
+  a: {
+    levelIndex: number
+    x: number
+    z: number
+  }[] | {
+    levelIndex: number
+    x: number
+    z: number
+  }[][]
+  b: {
+    levelIndex: number
+    x: number
+    z: number
+  }[] | {
+    levelIndex: number
+    x: number
+    z: number
+  }[][]
+}): boolean
+```
+
+- `a` - the polygon that should be checked if it's inside polygon B. It has the same schema as the coordinates from the [polygon data layers](/api-reference/space/data-layers#polygon-layer).
+- `b` - the polygon that should contain polygon A. It has the same schema as the coordinates from the [polygon data layers](/api-reference/space/data-layers#polygon-layer).
+
+Returns `true` if polygon A is completely inside polygon B, `false` otherwise.
+
+## fitRectangleInPolygon
+
+To find the optimal position and rotation for a rectangle within a polygon, you can call the following query. This is useful for a number of applications: space planning, furniture placement, or to optimize the size of logos to specific spaces (units) when using the [poster data layer](/api-reference/space/data-layers#poster-layer). This function ignores holes, so it only relies on the outer ring of the polygon.
+
+```ts
+smplrClient.fitRectangleInPolygon({
+  polygon: {
+    levelIndex: number
+    x: number
+    z: number
+  }[] | {
+    levelIndex: number
+    x: number
+    z: number
+  }[][]
+  width: number
+  height: number
+  rotationRange?: number | [number, number]
+  gridSize?: number
+}): {
+  center: {
+    levelIndex: number
+    x: number
+    z: number
+  }
+  width: number
+  height: number
+  rotation: number
+}
+```
+
+- `polygon` - the polygon in which to fit the rectangle. It has the same schema as the coordinates from the [polygon data layers](/api-reference/space/data-layers#polygon-layer).
+- `width` & `height` - the width and height of the rectangle. It is only used to maintain its aspect ratio.
+- `rotationRange` - _optional_ - the range of allowed rotation of the resulting rectangle. Can be a single number (tested range will be `[-value, value]`) or a tuple of `[min, max]`. Values are in degree. _Default value: 0 (no rotation)_
+- `gridSize` - _optional_ - the number of rows and columns in the grid used to search the best location. Bigger values are more precise but slower. _Default value: 50_
+
+Returns an object with the optimal `center` position, `width` and `height` in meters, and `rotation` (in degrees) of the fitted rectangle. Use [getRectangleCorners](#getrectanglecorners) to get the corner coordinates.
+
+## getRectangleCorners
+
+To get the corner coordinates of a rectangle given its center, dimensions, and rotation, you can call the following query. This is particularly useful after calling [fitRectangleInPolygon](#fitrectangleinpolygon).
+
+```ts
+smplrClient.getRectangleCorners({
+  center: {
+    levelIndex: number
+    x: number
+    z: number
+  }
+  width: number
+  height: number
+  rotation: number
+}): {
+  levelIndex: number
+  x: number
+  z: number
+}[]
+```
+
+- `center` - the center point of the rectangle.
+- `width` - the width of the rectangle in meters.
+- `height` - the height of the rectangle in meters.
+- `rotation` - the rotation of the rectangle in degrees.
+
+Returns an array of 4 corner coordinates in counter-clockwise order starting from the bottom-left corner.
 
 ## Need any other data?
 
