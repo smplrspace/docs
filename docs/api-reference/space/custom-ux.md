@@ -141,7 +141,7 @@ space.startViewer({
 - `hideLevelPicker` - _optional_ - set this to true to remove the level picker from the viewer. Levels can still be controlled programmatically, so you could use your own buttons or logic. _Default value: false_
 - `hideControls` - _optional_ - set this to true to remove *all* control buttons from the viewer. _Default value: false_
 - `smallControls` - _optional_ - set this to true to reduce the size of the control buttons from 32px to 24px. This is useful for smaller viewers. _Default value: false_
-- `darkControls` - _optional_ - set this to true to change the control buttons to their dark style. This is useful when you set a dark background color`. _Default value: false_
+- `darkControls` - _optional_ - set this to true to change the control buttons to their dark style. This is useful when you set a dark background color. _Default value: false_
 - `controlsPosition` - _optional_ - lets you choose where the control buttons are rendered. _Default value: 'bottom-left'_
 - `legendPosition` - _optional_ - lets you choose where the legend (if any is configured in the data layers) is rendered. _Default value: 'top-left'_
 - `protectScroll` - _optional_ - lets you force users to use cmd/ctrl + scroll to zoom. This allows you implement cooperative gestures easily in apps where the viewer is part of a scrollable page.
