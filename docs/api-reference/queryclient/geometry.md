@@ -260,6 +260,7 @@ smplrClient.fitRectangleInPolygon({
   height: number
   rotationRange?: number | [number, number]
   gridSize?: number
+  paddingPercent?: number
 }): {
   center: {
     levelIndex: number
@@ -274,8 +275,9 @@ smplrClient.fitRectangleInPolygon({
 
 - `polygon` - the polygon in which to fit the rectangle. It has the same schema as the coordinates from the [polygon data layers](/api-reference/space/data-layers#polygon-layer).
 - `width` & `height` - the width and height of the rectangle. It is only used to maintain its aspect ratio.
-- `rotationRange` - _optional_ - the range of allowed rotation of the resulting rectangle. Can be a single number (tested range will be `[-value, value]`) or a tuple of `[min, max]`. Values are in degree. _Default value: 0 (no rotation)_
+- `rotationRange` - _optional_ - the range of allowed rotation of the resulting rectangle. Can be a single number (tested range will be `[-value, value]`) or a tuple of `[min, max]`. Values are in degree. The algorithm tests rotation angles that are multiples of 15° within the specified range. _Default value: 0 (no rotation)_
 - `gridSize` - _optional_ - the number of rows and columns in the grid used to search the best location. Bigger values are more precise but slower. _Default value: 50_
+- `paddingPercent` - _optional_ - padding to add around the fitted rectangle, expressed as a percentage of the size. For example, 10 means 10% padding on each side. _Default value: 0_
 
 Returns an object with the optimal `center` position, `width` and `height` in meters, and `rotation` (in degrees) of the fitted rectangle. Use [getRectangleCorners](#getrectanglecorners) to get the corner coordinates.
 
