@@ -9,9 +9,10 @@ sidebar_position: 3
 To create a space programmatically, you can call the following query.
 
 ```ts
-smplrClient.createSpace({ 
+smplrClient.createSpace({
   name: string
-  notes?: string 
+  notes?: string
+  tags?: string[]
 }): Promise<{ sid: string }>
 ```
 
@@ -19,6 +20,7 @@ With `sid` the [Smplrspace ID](/guides/sid) of the space.
 
 - `name` is the name of the space to create.
 - `notes` - _optional_ - are internal team notes attached to the space.
+- `tags` - _optional_ - an array of tags to add to the space. If a tag doesn't exist, it will be created automatically.
 
 ## setSpaceStatus
 
@@ -50,7 +52,7 @@ smplrClient.deleteSpace(spaceId: string): Promise<void>
 To list all the spaces on your organization account, you can call the following query.
 
 ```ts
-smplrClient.listSpaces(): Promise<{
+smplrClient.listSpaces(options?: { tagged?: string[] }): Promise<{
   sid: string
   deprecated_id: string
   name: string
@@ -58,6 +60,9 @@ smplrClient.listSpaces(): Promise<{
   status: string
 }[]>
 ```
+
+- `options` - _optional_ - as described below.
+- `options.tagged` - _optional_ - an array of tags to filter spaces. Only spaces that have **all** the specified tags will be returned (AND logic).
 
 You can learn more about `sid` and `deprecated_id` in the dedicated [page on SIDs](/guides/sid).
 

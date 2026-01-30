@@ -213,23 +213,40 @@ space.addDataLayer({
 space.addPosterDataLayer({
   id: string
   type: 'poster'
-  data: [{
-    id: string | number
-    position: {
-      levelIndex: number
-      x: number
-      z: number
-      elevation: number
+  data: [
+    // position-based
+    | {
+      id: string | number
+      position: {
+        levelIndex: number
+        x: number
+        z: number
+        elevation: number
+      }
+      rotation?: {
+        pitch?: number
+        yaw?: number
+        roll?: number
+      }
+      width?: number
+      height?: number
+      ...customData: object
+    } 
+    // coordinates-based with autofit
+    | {
+      id: string | number
+      coordinates: [{
+        levelIndex: number
+        x: number
+        z: number
+      }] | [[{
+        levelIndex: number
+        x: number
+        z: number
+      }]]
+      ...customData: object
     }
-    rotation?: {
-      pitch?: number
-      yaw?: number
-      roll?: number
-    }
-    width?: number
-    height?: number
-    ...customData: object
-  }]
+  ]
   image: ImageSource | (dataElement: object) => ImageSource // see ImageSource below
   width?: number | (dataElement: object) => number
   height?: number | (dataElement: object) => number
@@ -238,6 +255,12 @@ space.addPosterDataLayer({
   onDrag?: ({ data: object }) => void
   onDrop?: ({ data: object; position: object }) => void
   disableElevationCorrection?: boolean
+  autoFit?: {
+    rotationRange?: number | [number, number]
+    gridSize?: number
+    elevation?: number
+    paddingPercent?: number
+  }
 }) => DataLayerController
 
 type ImageSource =
@@ -246,18 +269,22 @@ type ImageSource =
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
-- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `position`. 
-  - `position` is the 3D location of the center of the poster.
-  - `rotation` is the rotation in 3D of the poster:
-    - `pitch` - _optional_ - defines the direction the poster is facing, given in degrees. _Default value: 0_, corresponds to a poster parallel to the ground, facing up.
-    - `yaw` - _optional_ - defines the rotation around the perpendicular to the poster, given in degrees. _Default value: 0_.
-    - `roll` - _optional_ - defines the rotation around the length of the poster, given in degrees. _Default value: 0_.
-  - `width` & `height` - _optional_ - see below on sizing.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and either a `position` or `coordinates`.
+  - **Position-based:** Specify the exact position, rotation, and size of the poster.
+    - `position` is the 3D location of the center of the poster.
+    - `rotation` - _optional_ - is the rotation in 3D of the poster:
+      - `pitch` - _optional_ - defines the direction the poster is facing, given in degrees. _Default value: 0_, corresponds to a poster parallel to the ground, facing up.
+      - `yaw` - _optional_ - defines the rotation around the perpendicular to the poster, given in degrees. _Default value: 0_.
+      - `roll` - _optional_ - defines the rotation around the length of the poster, given in degrees. _Default value: 0_.
+    - `width` & `height` - _optional_ - see below on sizing.
+  - **Coordinate-based with autofit:** Automatically fit the poster within a polygon.
+    - `coordinates` is a 2D polygon defining the area where the poster should be fitted. It has the same schema as the coordinates from the [polygon data layers](#polygon-layer).
+    - The poster will be automatically positioned, sized, and rotated to optimally fit within the polygon. Use the `autoFit` option (see below) to control the automatic fitting behavior.
   - `customData` - _optional_ - elements can also contain any additional custom data used for rendering options.
 - `image` provides information about the poster file to use. It can be defined as a "source" for all elements or per element with a function that takes each element as argument and returns the "source" for that element. There are 2 options available:
   - Option 1: `url` — Posters must be self-hosted.
   - Option 2: `blob` — Instead of a URL, you can pass in a [Javascript Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) that contains the poster file. This lets you pre-load posters in custom ways. Also, it allows for programmatic image manipulation on your posters, prior to passing them to the data layer, e.g. using an offscreen canvas. When using a blob, you should also provide a `blobIdOrHash` string that must be unique for each file/blob you pass in. This hash is not automatic for performance reason, we could result to complex computations, but you are likely to have a simple heuristic to use when passing in the blob.
-- `width` & `height` - _optional_ - define the size of the poster to render in meters. It can be defined in many ways:
+- `width` & `height` - _optional and only used for position-based layers_ - define the size of the poster to render in meters. It can be defined in many ways:
   - on each data element separately (this option takes priority),
   - as a number for all elements on the layer,
   - per element on the layer with a function that takes each element as argument and returns the width for that element. 
@@ -271,6 +298,7 @@ type ImageSource =
 - `disableElevationCorrection` - _optional_
   - In 2D mode, the rendered elevation of posters is fully managed, and posters will be rendered on top of the floor plans. You can override the managed value by setting this to true.
   - In 3D mode, posters are rendered at their provided elevation but posters with low elevation will automatically be rendered above the ground to avoid being hidden. You can set `disableElevationCorrection` to true to disable this behavior. The elevation value of each poster will then be used directly.
+- `autoFit` - _optional and only used for coordinates-based layers_ - controls the automatic fitting behavior for coordinate-based posters. See the documentation of [fitRectangleInPolygon](/api-reference/queryclient/geometry#fitrectangleinpolygon) to understand the parameters. The only difference here is the default `gridSize` is 10, not 50, due to the blocking nature of the just-in-time operation while rendering layers.
 
 ### Polygon layer
 
