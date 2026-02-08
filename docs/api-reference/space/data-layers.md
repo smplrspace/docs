@@ -354,7 +354,7 @@ The [leasing & tenancy](/examples/leasing-tenancy) example provides a simple imp
 
 ### Polyline layer
 
-A polyline layer has each data element rendered as a line with one or more segments. The line is similar to a "pipe" which has a circle section by default but can take any section shape. The scale (you can think of it as the "diameter") of the pipe can be constant, or computed by section to generate patterns.
+A polyline layer has each data element rendered as a line with one or more segments. The line is similar to a "pipe" which has a circle section by default but can take any section shape. The scale (you can think of it as the "diameter") of the pipe can be constant, or computed by section to generate patterns. The rendering can use either scale mode (default) for flexible scaling and interpolation, or miter mode for cleaner geometric lines with sharp corner joins.
 
 ```ts
 space.addDataLayer({
@@ -362,6 +362,7 @@ space.addDataLayer({
 space.addPolylineDataLayer({
   id: string
   type: 'polyline'
+  mode?: 'scale' | 'miter'
   data: [{
     id: string | number
     coordinates: [{
@@ -374,8 +375,6 @@ space.addPolylineDataLayer({
   }]
   shape?: 'circle' | 'triangle' | 'square' | 'pentagon' | 'hexagon' | [number, number][]
   cap?: boolean
-  scale?: number | ({ data: object; stepIndex: number; distance: number }) => number
-  stepSize?: number
   color?: string | (dataElement: object) => string
   alpha?: number
   onDrag?: ({ data: object }) => void
@@ -383,15 +382,19 @@ space.addPolylineDataLayer({
   disableElevationCorrection?: boolean
   disableReshape?: boolean
   reshapeBoxColor?: string
+  // scale mode options
+  scale?: number | ({ data: object; stepIndex: number; distance: number }) => number
+  stepSize?: number
+  // miter mode options
+  scale?: number
 }) => DataLayerController
 ```
 
 - `id` is a unique identifier for this layer which is used for updates.
+- `mode` - _optional_ - defines the rendering technique for the polyline. Each mode comes with its own options defined below. _Default value: 'scale'_
 - `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `coordinates` array. Elements can also contain any additional custom data used for rendering options.
 - `shape` - _optional_ - defines the section that is extruded to render the line. A few options are provided, each of them a regular polygon centered on the line path and with its points on a circle of diameter 1m. You can also provide a custom shape with an array of coordinates in meter taking the line path as origin, the first coordinate on the horizontal axis and the second on the vertical axis (e.g. `[[0, -0.2], [0, 0.2], [0.2, 0], [0, -0.2]]` for a triangle pointing right). Custom shapes are not automatically closed, you should repeat the first coordinate at the end of the array to close the shape. _Default value: circle_
 - `cap` - _optional_ - set value to false if you want the line shape to be hollow. _Default value: true_
-- `scale` - _optional_ - defines the scaling factor applied to the shape during the extrusion. This can be a constant (e.g. circle pipe of diamter 0.5m), or a function of the data element, the step index along the line path, and the distance from the start of the line. A function is useful to create patterns along the line. The scale function is computed at each point defining the line path, you can add "steps" to each segment to compute the scale at regular interval with `stepSize` (see below). _Default value: 1_
-- `stepSize` - _optional_ - you should only use this parameter alongside a scale function. It adds additional steps at regular interval on each segment of the line. The step size will not necessarily be exact as the algorithm will prioritize to get full steps over keeping to the step size.
 - `color` - _optional_ - defines the color of the element to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
 - `alpha` - _optional_ - defines the transparency of the spheres for the whole layer. Element specific alpha value is not supported. The value should be between 0 (invisible) and 1 (opaque). _Default value: 1_
 - `onDrag, onDrop` - _optional_ - providing either or both handlers will make data elements of the layer draggable & reshapable. Each handler takes the dragged data element as argument. `onDrop` also receives the new coordinates of the element so it can be updated in your app state and database.
@@ -400,6 +403,15 @@ space.addPolylineDataLayer({
   - In 3D mode, polylines are rendered at their provided elevation but polyline coordinates with low elevation will automatically be rendered above the ground to avoid being hidden. You can set `disableElevationCorrection` to true to disable this behavior. The elevation value of each coordinate will then be used directly.
 - `disableReshape` - _optional_ - set this to false when using onDrag or onDrop if you want the polygons to be draggable but not modifiable in shape. _Default value: true_
 - `reshapeBoxColor` - _optional_ - hexadecimal string defining the color of the boxes used to reshape the polygons. Used in conjunction with onDrag or onDrop. _Default value: "#086bb7"_
+
+##### Scale mode options
+
+- `scale` - _optional_ - defines the scaling factor applied to the shape during the extrusion. This can be a constant (e.g. circle pipe of diameter 0.5m), or a function of the data element, the step index along the line path, and the distance from the start of the line. A function is useful to create patterns along the line. The scale function is computed at each point defining the line path, you can add "steps" to each segment to compute the scale at regular interval with `stepSize` (see below). _Default value: 1_
+- `stepSize` - _optional_ - you should only use this parameter alongside a scale function. It adds additional steps at regular interval on each segment of the line. The step size will not necessarily be exact as the algorithm will prioritize to get full steps over keeping to the step size.
+
+##### Miter mode options
+
+- `scale` - _optional_ - defines the constant scaling factor applied to the shape. Only numeric values are supported in miter mode (function-based scaling is not available). _Default value: 1_
 
 The [Add data elements](/examples/add-data-elements) example gives a full overview of draggable & reshapable layers, including a polyline layer.
 
