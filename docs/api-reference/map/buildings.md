@@ -47,16 +47,14 @@ map.removeAllSpaces() => void
 
 ## City building data
 
-### Control 3D cities
+### Control 3D buildings
 
-Coming soon! The map currently renders the buildings by default. [Get in touch](https://www.smplrspace.com/support) if you would like to control that behavior.
-
-<!-- 3D cities are rendered using OSM (OpenStreet Map) data, an open dataset that includes the footprint of many buildings globally. To control whether to render the 3D cities based on OpenStreetMap data or not, use the following methods:
+Mapbox provides 3D building rendering based on OpenStreetMap (OSM) data, an open dataset that includes the footprint of many buildings globally. The map viewer renders these 3D buildings by default, but you can control their visibility using the following methods:
 
 ```ts
-map.showOsmBuildings() => void
-map.hideOsmBuildings() => void
-map.toggleOsmBuildings() => void
+map.showMap3dBuildings() => void
+map.hideMap3dBuildings() => void
+map.toggleMap3dBuildings() => void
 ```
 
-You can also use OSM buildings as a [data layer](/api-reference/map/data-layers#openstreetmap-building-layer), to render them in colors and make them an interactive part of your data visualization. -->
+You can also set the initial visibility when starting the viewer using the `map3dBuildings` option in [`startViewer`](/api-reference/map/overview#start-the-viewer).
