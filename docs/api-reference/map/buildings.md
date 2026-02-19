@@ -57,4 +57,4 @@ map.hideMap3dBuildings() => void
 map.toggleMap3dBuildings() => void
 ```
 
-You can also set the initial visibility when starting the viewer using the `map3dBuildings` option in [`startViewer`](/api-reference/map/map#start-the-viewer).
+You can also set the initial visibility when starting the viewer using the `map3dBuildings` option in [`startViewer`](/api-reference/map/overview#start-the-viewer).
