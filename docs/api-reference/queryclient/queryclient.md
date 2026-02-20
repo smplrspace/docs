@@ -23,13 +23,15 @@ To create a QueryClient instance, initialise it as follow.
 
 ```ts
 const smplrClient = new smplr.QueryClient({
-  organizationId: string
   clientToken: string
 });
 ```
 
-- `organizationId` is the unique identifier of your organization in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e". Personal accounts are also treated as "personal organization". To get your organization's ID, head to the Developers page from the main menu.
 - `clientToken` is an API token that is used to authenticate client-side requests. It is safe to have it exposed in your client code. You can manage your organisation's tokens in the Smplrspace app, by heading to the Developers page from the main menu. [More info](/guides/embedding#client-tokens).
+
+:::caution Deprecation notice
+`organizationId` was previously set on the `QueryClient` constructor. This is now deprecated. Pass `organizationId` directly to the query methods that require it, such as [`createSpace`](./spaces#createspace) and [`listSpaces`](./spaces#listspaces).
+:::
 
 ## How to use it
 
@@ -41,7 +43,6 @@ We also provide a synchronous version for most asynchronous queries, relying on 
 
 ```js
 const smplrClient = new smplr.QueryClient({
-  organizationId: "xxx",
   clientToken: "pub_xxx",
 });
 
@@ -57,7 +58,6 @@ try {
 
 ```js
 const smplrClient = new smplr.QueryClient({
-  organizationId: "xxx",
   clientToken: "pub_xxx",
 });
 
