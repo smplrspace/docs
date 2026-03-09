@@ -104,6 +104,39 @@ smplrClient.getSpaceFromCache(spaceId: string): Space
 
 where `spaceId` and `Space` are as defined in `getSpace`, without the `Promise`.
 
+## getSpaceLevels
+
+To get the list of levels in a space, you can call the following query.
+
+```ts
+smplrClient.getSpaceLevels(spaceId: string): Promise<{
+  index: number
+  name: string
+  initials: string
+}[]>
+```
+
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx". Refer to the [page on SIDs](/guides/sid) to learn more.
+
+Each level in the returned array contains:
+- `index` - zero-based position of the level in the space.
+- `name` - display name of the level, e.g. "Ground floor". Defaults to "Level N" if not set.
+- `initials` - short label for the level, e.g. "GF". Defaults to "LN" if not set.
+
+## getSpaceLevelsFromCache
+
+This is the synchronous equivalent of the query right above.
+
+```ts
+smplrClient.getSpaceLevelsFromCache(spaceId: string): {
+  index: number
+  name: string
+  initials: string
+}[]
+```
+
+where `spaceId` and the return value are as defined in `getSpaceLevels`, without the `Promise`.
+
 ## getSpaceAssetmap (entities)
 
 :::info
