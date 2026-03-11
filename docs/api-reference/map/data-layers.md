@@ -169,6 +169,42 @@ map.updateGeoPointDataLayer(definitionUpdates: Partial<PointMapDataLayerDefiniti
 - `label` - _optional_ - allows users to define a text displayed permanently on top of the point rendered on the map. It is a function taking the element as argument and returning the string content to display.
 - `SharedDefinitionOptions` are defined [here](#shared-definition-options).
 
+### GeoPolyline layer
+
+A geopolyline layer has each data element rendered as a line or polyline on the map. It is useful to highlight routes, paths, connections, or any linear geography.
+
+```ts
+interface GeoPolylineMapDataLayerDefinition {
+  id: string
+  // data of type GeoPolylineData[]
+  data: [{
+    id: string
+    coordinates: [{
+      lng: number
+      lat: number
+    }]
+    ...customData: object
+  }]
+  color?: string | ((dataElement: object) => string)
+  alpha?: number | ((dataElement: object) => number)
+  width?: number | ((dataElement: object) => number)
+  label?: (dataElement: object) => string
+  // + fields from SharedDefinitionOptions defined further down
+}
+
+map.addGeoPolylineDataLayer(definition: GeoPolylineMapDataLayerDefinition) => void
+map.updateGeoPolylineDataLayer(definitionUpdates: Partial<GeoPolylineMapDataLayerDefinition>) => void
+```
+
+- `id` is a unique identifier for this layer which is used for updates.
+- `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array) and a `coordinates` array of GPS points forming the polyline.
+  - `customData` - _optional_ - elements can also contain any additional custom data used for rendering options.
+- `color` - _optional_ - defines the color of the line to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
+- `alpha` - _optional_ - defines the transparency of the line to render. The value should be between 0 (invisible) and 1 (opaque). It can be defined as a fix value for all elements or per element with a function that takes each element as argument and returns the alpha value for that element. _Default value: 1_
+- `width` - _optional_ - defines the width of the line in pixels. It can be defined as a fix value for all elements or per element with a function that takes each element as argument and returns the width for that element. _Default value: 2_
+- `label` - _optional_ - allows users to define a text displayed permanently at the midpoint of the polyline, along with a marker. It is a function taking the element as argument and returning the string content to display.
+- `SharedDefinitionOptions` are defined [here](#shared-definition-options).
+
 ### GeoPolygon layer
 
 A geopolygon layer has each data element rendered as a polygon on the map. It is useful to highlight project boundaries, micromarkets, areas under development, etc.
