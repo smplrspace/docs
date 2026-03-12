@@ -23,6 +23,28 @@ smplrClient.getPolylineLength({
 - `line` - the polyline you want to compute the length for. It has the same schema as the coordinates from the [polyline data layers](/api-reference/space/data-layers#polyline-layer).
 - `unit` - _optional_ - your unit of choice. _Default value: m_
 
+## getPolylineMidpoint
+
+To get the midpoint of a line or polyline (the point at the geometric center of the line's length), you can call the following query. This is useful to position labels or anchors at the center of a polyline.
+
+```ts
+smplrClient.getPolylineMidpoint({
+  line: {
+    levelIndex: number
+    x: number
+    z: number
+    elevation: number
+  }[]
+}): {
+  levelIndex: number
+  x: number
+  z: number
+  elevation: number
+}
+```
+
+- `line` - the polyline you want to compute the midpoint for. It has the same schema as the coordinates from the [polyline data layers](/api-reference/space/data-layers#polyline-layer).
+
 ## doSegmentsIntersect
 
 To check whether two line segments intersect, you can call the following query.

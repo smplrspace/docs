@@ -10,6 +10,7 @@ To create a space programmatically, you can call the following query.
 
 ```ts
 smplrClient.createSpace({
+  organizationId: string
   name: string
   notes?: string
   tags?: string[]
@@ -18,6 +19,7 @@ smplrClient.createSpace({
 
 With `sid` the [Smplrspace ID](/guides/sid) of the space.
 
+- `organizationId` is the unique identifier of your organization in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e". Personal accounts are also treated as "personal organization". To get your organization's ID, head to the Developers page from the main menu.
 - `name` is the name of the space to create.
 - `notes` - _optional_ - are internal team notes attached to the space.
 - `tags` - _optional_ - an array of tags to add to the space. If a tag doesn't exist, it will be created automatically.
@@ -52,7 +54,10 @@ smplrClient.deleteSpace(spaceId: string): Promise<void>
 To list all the spaces on your organization account, you can call the following query.
 
 ```ts
-smplrClient.listSpaces(options?: { tagged?: string[] }): Promise<{
+smplrClient.listSpaces({ 
+  organizationId: string; 
+  tagged?: string[] 
+}): Promise<{
   sid: string
   deprecated_id: string
   name: string
@@ -61,8 +66,8 @@ smplrClient.listSpaces(options?: { tagged?: string[] }): Promise<{
 }[]>
 ```
 
-- `options` - _optional_ - as described below.
-- `options.tagged` - _optional_ - an array of tags to filter spaces. Only spaces that have **all** the specified tags will be returned (AND logic).
+- `organizationId` is the unique identifier of your organization in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e". Personal accounts are also treated as "personal organization". To get your organization's ID, head to the Developers page from the main menu.
+- `tagged` - _optional_ - an array of tags to filter spaces. Only spaces that have **all** the specified tags will be returned (AND logic).
 
 You can learn more about `sid` and `deprecated_id` in the dedicated [page on SIDs](/guides/sid).
 
@@ -98,6 +103,39 @@ smplrClient.getSpaceFromCache(spaceId: string): Space
 ```
 
 where `spaceId` and `Space` are as defined in `getSpace`, without the `Promise`.
+
+## getSpaceLevels
+
+To get the list of levels in a space, you can call the following query.
+
+```ts
+smplrClient.getSpaceLevels(spaceId: string): Promise<{
+  index: number
+  name: string
+  initials: string
+}[]>
+```
+
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx". Refer to the [page on SIDs](/guides/sid) to learn more.
+
+Each level in the returned array contains:
+- `index` - zero-based position of the level in the space.
+- `name` - display name of the level, e.g. "Ground floor". Defaults to "Level N" if not set.
+- `initials` - short label for the level, e.g. "GF". Defaults to "LN" if not set.
+
+## getSpaceLevelsFromCache
+
+This is the synchronous equivalent of the query right above.
+
+```ts
+smplrClient.getSpaceLevelsFromCache(spaceId: string): {
+  index: number
+  name: string
+  initials: string
+}[]
+```
+
+where `spaceId` and the return value are as defined in `getSpaceLevels`, without the `Promise`.
 
 ## getSpaceAssetmap (entities)
 
