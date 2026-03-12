@@ -1,6 +1,7 @@
 {
   "name": "smplrspace-docs",
   "version": "0.1.0",
+  "packageManager": "yarn@1.22.19",
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "NODE_OPTIONS=--openssl-legacy-provider BROWSER='Google Chrome Dev' docusaurus start -p 3001",
