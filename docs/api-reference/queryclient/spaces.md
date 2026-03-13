@@ -14,6 +14,7 @@ smplrClient.createSpace({
   name: string
   notes?: string
   tags?: string[]
+  addToProjectId?: string
 }): Promise<{ sid: string }>
 ```
 
@@ -23,6 +24,7 @@ With `sid` the [Smplrspace ID](/guides/sid) of the space.
 - `name` is the name of the space to create.
 - `notes` - _optional_ - are internal team notes attached to the space.
 - `tags` - _optional_ - an array of tags to add to the space. If a tag doesn't exist, it will be created automatically.
+- `addToProjectId` - _optional_ - the unique identifier of a project to add the space to upon creation. This only takes effect when using a project-scoped API token that includes the specified project.
 
 ## setSpaceStatus
 
