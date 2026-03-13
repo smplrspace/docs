@@ -93,6 +93,16 @@ In addition, we do our best to protect the data that we do store (your floor pla
 
 Client tokens are keys required when requesting a floor plan. The request will only be processed if the token provided [in the Space object](/api-reference/space/overview#constructor) matches one of the organisation's token. To manage your tokens, head to the Developers page in the Smplrspace app, which is accessible from the main menu. You can create as many tokens as needed and revoke them anytime. We advise to rotate the tokens on a regular basis for increased protection.
 
+#### Token scopes
+
+Each token can be scoped to control which spaces it can access:
+
+- **Organization** – the token grants access to all spaces in the organization. This is the default scope when creating a new token.
+- **Spaces** – the token is restricted to a specific list of spaces identified by their IDs. Only those spaces will be accessible with this token. This is useful to limit exposure when embedding specific spaces publicly.
+- **Projects** – the token is restricted to spaces that belong to a specific list of projects. Only spaces that are members of the listed projects will be accessible. This is useful for multi-tenants deployments where each integration should only see spaces from its own project.
+
+When using a project-scoped token, QueryClient operations are scoped accordingly. For example, [`listSpaces`](/api-reference/queryclient/spaces#listspaces) will only return spaces in the token's projects, and [`createSpace`](/api-reference/queryclient/spaces#createspace) can automatically add the new space to one of the token's authorized projects via the `addToProjectId` parameter.
+
 ### Authorized domains
 
 Another efficient way to secure access to your floor plans is to restrict which domains are authorized to make requests to access them. To manage the authorized domains, head to the Developers page in the Smplrspace app, which is accessible from the main menu. You can add as many authorized domains or subdomains as you need. You can use wildcards such as `*.smplrspace.com` to allow multiple subdomains. We use glob patterns and match them using [minimatch](https://github.com/isaacs/minimatch). The default value is `*` and allows any domain. An empty value behaves like `*`.
