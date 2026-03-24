@@ -50,7 +50,7 @@ You can choose to save the data on the platform, or keep it out of Smplrspace en
 
 The entity manager supports several formats for moving data in and out:
 
-- **CSV** — import or export entity groups with your own database IDs preserved alongside the spatial data. Smplrspace provides a template to get you started. Note that any extra fields you include in an import may not be visible in the app, but they will be preserved and included in subsequent exports.
+- **CSV** — import or export entity groups with your own database IDs preserved alongside the spatial data. You can download a ready-made CSV template from the **`...`** menu of the entity manager — it includes the expected columns and one example row per entity type to get you started. Note that any extra fields you include in an import may not be visible in the app, but they will be preserved and included in subsequent exports.
 - **Google Sheets sync** — sync entity groups directly with a Google Sheet for collaborative editing without leaving a spreadsheet.
 - **JSON export** — exports the full entity group structure in the same format returned by the [`getAssetmap`](/api-reference/queryclient/spaces#getspaceassetmap-entities) API. Handy for quickly generating fixture data when prototyping an integration.
 
@@ -94,4 +94,4 @@ When reaching out, please include:
 
 - **Floor plans** to digitize, along with a description of the expected level of detail in the output.
 - **A description of the entities to map** — what they are, the use-case, and how they are marked or identified on the floor plans. If you have different groups of entities, please provide the group names.
-- **A CSV of the entities** if available. This is ideal as it lets us include your database IDs in the output, making it straightforward to import the data back into your system.
+- **A CSV of the entities** if available — you can use the CSV template from the [entity manager](#entity-manager) as a starting point. This is ideal as it lets us include your database IDs in the output, making it straightforward to import the data back into your system.
