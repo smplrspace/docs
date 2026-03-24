@@ -93,5 +93,5 @@ If you would rather have Smplrspace handle the mapping, we offer this as a servi
 When reaching out, please include:
 
 - **Floor plans** to digitize, along with a description of the expected level of detail in the output.
-- **A description of the entities to map** — what they are, the use-case, and how they are marked or identified on the floor plans.
+- **A description of the entities to map** — what they are, the use-case, and how they are marked or identified on the floor plans. If you have different groups of entities, please provide the group names.
 - **A CSV of the entities** if available. This is ideal as it lets us include your database IDs in the output, making it straightforward to import the data back into your system.
