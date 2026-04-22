@@ -126,6 +126,7 @@ space.startViewer({
   controlsPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center-left' | 'center-right'
   legendPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right',
   protectScroll?: boolean
+  webGpuOptIn?: boolean
 }) => void
 ```
 
@@ -144,7 +145,8 @@ space.startViewer({
 - `darkControls` - _optional_ - set this to true to change the control buttons to their dark style. This is useful when you set a dark background color. _Default value: false_
 - `controlsPosition` - _optional_ - lets you choose where the control buttons are rendered. _Default value: 'bottom-left'_
 - `legendPosition` - _optional_ - lets you choose where the legend (if any is configured in the data layers) is rendered. _Default value: 'top-left'_
-- `protectScroll` - _optional_ - lets you force users to use cmd/ctrl + scroll to zoom. This allows you implement cooperative gestures easily in apps where the viewer is part of a scrollable page.
+- `protectScroll` - _optional_ - lets you force users to use cmd/ctrl + scroll to zoom on desktop, and two fingers to interact with the viewer on touch screens (leaving one-finger scroll free for the page). This allows you implement cooperative gestures easily in apps where the viewer is part of a scrollable page.
+- `webGpuOptIn` - _optional_ - set this to true to opt into WebGPU rendering. WebGPU offers different performance characteristics compared to WebGL depending on the scene and hardware. The viewer automatically falls back to WebGL when WebGPU is not available in the browser. _Default value: false_
 
 ### CSS overrides
 

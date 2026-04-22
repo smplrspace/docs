@@ -21,6 +21,7 @@ space.addDataLayer({
   persistentTooltip?: boolean
   legend?: LegendConfig // see below
   onClick?: (dataElement: object, event: PointerEvent) => void
+  onRightClick?: (dataElement: object, event: PointerEvent) => void
   onHover?: (dataElement: object, event: LimitedPointerEvent) => void
   onHoverOut?: (dataElement: object, event: LimitedPointerEvent) => void
 }) => DataLayerController
@@ -63,10 +64,11 @@ type LegendConfig =
   - For `swatches` legends, refer to options in [the legend section](/api-reference/color/legend#categorical-scale-legends).
   - For `icons` legends, refer to options in [the legend section](/api-reference/color/legend#icons-legends).
 - `onClick` - _optional_ - is taking the data element that was clicked as argument, as well as the Javascript [pointer event](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent) that triggered the click. It is called each time a click or tap event happens.
+- `onRightClick` - _optional_ - is taking the data element that was right-clicked as argument, as well as the Javascript [pointer event](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent) that triggered it. It is called each time a right-click event happens and suppresses the default browser context menu. It shares the same signature as `onClick`.
 - `onHover` - _optional_ - is taking the newly hovered data element as argument, as well as a limited (due to the rendering engine's internals) "pointer event" that triggered the handler. The limited event only includes the coordinates within the viewer of the pointer at the time when the event was triggered. The handler is called once when the pointer starts to hover a data element.
 - `onHoverOut` - _optional_ - is taking the previously hovered data element as argument, as well as the same limited "pointer event" as for `onHover`. The handler is called once when the pointer stops hovering a data element.
 
-You may use the `onClick`, `onHover` and `onHoverOut` handlers to build custom behaviours in your app that respond to interactions happening in the floor plan.
+You may use the `onClick`, `onRightClick`, `onHover` and `onHoverOut` handlers to build custom behaviours in your app that respond to interactions happening in the floor plan.
 
 ### Handlebars helpers
 

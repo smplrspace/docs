@@ -285,6 +285,7 @@ interface SharedDefinitionOptions {
   persistentTooltip?: boolean
   legend?: LegendConfig // see below
   onClick?: (dataElement: object, event: MapMouseEvent) => void
+  onRightClick?: (dataElement: object, event: MapMouseEvent) => void
   onHover?: (dataElement: object, event: MapMouseEvent) => void
   onHoverOut?: (dataElement: object, event: MapMouseEvent) => void
 }
@@ -326,10 +327,11 @@ type LegendConfig =
   - For `swatches` legends, refer to options in [the legend section](/api-reference/color/legend#categorical-scale-legends).
   - For `icons` legends, refer to options in [the legend section](/api-reference/color/legend#icons-legends).
 - `onClick` - _optional_ - is taking the data element that was clicked as argument, as well as the [Mapbox mouse event](https://docs.mapbox.com/mapbox-gl-js/api/events/#mapmouseevent) that triggered the click. It is called each time a click or tap event happens.
+- `onRightClick` - _optional_ - is taking the data element that was right-clicked as argument, as well as the [Mapbox mouse event](https://docs.mapbox.com/mapbox-gl-js/api/events/#mapmouseevent) that triggered it. It is called each time a right-click event happens and suppresses the default browser context menu. It shares the same signature as `onClick`.
 - `onHover` - _optional_ - is taking the newly hovered data element as argument, as well as the [Mapbox mouse event](https://docs.mapbox.com/mapbox-gl-js/api/events/#mapmouseevent) that triggered the click. The handler is called once when the pointer starts to hover a data element.
 - `onHoverOut` - _optional_ - is taking the previously hovered data element as argument, as well as the [Mapbox mouse event](https://docs.mapbox.com/mapbox-gl-js/api/events/#mapmouseevent) that triggered the click. The handler is called once when the pointer stops hovering a data element.
 
-You may use the `onClick`, `onHover` and `onHoverOut` handlers to build custom behaviours in your app that respond to interactions happening in the floor plan.
+You may use the `onClick`, `onRightClick`, `onHover` and `onHoverOut` handlers to build custom behaviours in your app that respond to interactions happening in the floor plan.
 
 
 ## Shared methods

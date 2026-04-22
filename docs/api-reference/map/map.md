@@ -76,7 +76,7 @@ map.startViewer({
 - `legendPosition` - _optional_ - lets you choose where the legend (if any is configured in the data layers) would be rendered. _Default value: 'top-left'_
 - `cameraPlacement` - _optional_ - set the initial position and direction of the camera. See [camera controls](/api-reference/map/custom-ux#set-the-camera-placement) for more details.
 - `search` - _optional_ - set this to true to add a search button on the top left corner of the map, letting you find places on the map by address, GPS coordinates, and more. This is using a custom Mapbox Geocoder, and clicking a result from the list will move the camera to the place of interest. _Default value: false_.
-- `protectScroll` - _optional_ - lets you force users to use cmd/ctrl + scroll to zoom. This allows you implement cooperative gestures easily in apps where the viewer is part of a scrollable page.
+- `protectScroll` - _optional_ - lets you force users to use cmd/ctrl + scroll to zoom on desktop, and two fingers to interact with the viewer on touch screens (leaving one-finger scroll free for the page). This allows you implement cooperative gestures easily in apps where the viewer is part of a scrollable page.
 - `map3dBuildings` - _optional_ - set this to false to disable Mapbox's 3D buildings rendering when starting the viewer. You can also control this dynamically using the methods described on the [Buildings page](/api-reference/map/buildings#control-3d-buildings). _Default value: true_.
 - `enableSatelliteButton` - _optional_ - set this to true to add a satellite toggle button to the map controls. Clicking it switches between the Smplrspace default map style and satellite view. _Default value: false_.
 
