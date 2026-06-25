@@ -331,6 +331,159 @@ smplrClient.getRectangleCorners({
 
 Returns an array of 4 corner coordinates in counter-clockwise order starting from the bottom-left corner.
 
+## convertSmplrToGPSCoordinates
+
+To convert a point's local coordinates (`x`, `z`) in a space into its geographic coordinates (`lng`, `lat`), you can call the following query. The space must be geolocated (georeferenced) in the editor — otherwise this query throws.
+
+```ts
+smplrClient.convertSmplrToGPSCoordinates({
+  spaceId: string
+  point: {
+    levelIndex: number
+    x: number
+    z: number
+  }
+}): Promise<{
+  lng: number
+  lat: number
+}>
+```
+
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx".
+- `point` - the local coordinates to convert. It has the same schema as the coordinates from the [point data layers](/api-reference/space/data-layers#point-layer).
+
+To convert many points in a single call, pass an array as `points` instead of `point`, and the query returns an array in the same order.
+
+```ts
+smplrClient.convertSmplrToGPSCoordinates({
+  spaceId: string
+  points: {
+    levelIndex: number
+    x: number
+    z: number
+  }[]
+}): Promise<{
+  lng: number
+  lat: number
+}[]>
+```
+
+## convertSmplrToGPSCoordinatesFromCache
+
+This is the synchronous equivalent of the query right above.
+
+```ts
+smplrClient.convertSmplrToGPSCoordinatesFromCache({
+  spaceId: string
+  point: {
+    levelIndex: number
+    x: number
+    z: number
+  }
+}): {
+  lng: number
+  lat: number
+}
+```
+
+As with the asynchronous version, you can pass an array as `points` instead of `point` to convert many points in a single call, and the query returns an array in the same order.
+
+```ts
+smplrClient.convertSmplrToGPSCoordinatesFromCache({
+  spaceId: string
+  points: {
+    levelIndex: number
+    x: number
+    z: number
+  }[]
+}): {
+  lng: number
+  lat: number
+}[]
+```
+
+where `spaceId`, `point`, and `points` are as defined in `convertSmplrToGPSCoordinates`.
+
+## convertGPSToSmplrCoordinates
+
+To convert geographic coordinates (`lng`, `lat`) into local coordinates (`x`, `z`) in a space, you can call the following query. The space must be geolocated (georeferenced) in the editor — otherwise this query throws.
+
+Because a geographic position is the same regardless of the floor, you pass the `levelIndex` you want the resulting local coordinates to be associated with.
+
+```ts
+smplrClient.convertGPSToSmplrCoordinates({
+  spaceId: string
+  levelIndex: number
+  point: {
+    lng: number
+    lat: number
+  }
+}): Promise<{
+  levelIndex: number
+  x: number
+  z: number
+}>
+```
+
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx".
+- `levelIndex` - zero-based index of the level to associate the resulting local coordinates with. Refer to the [Furniture interface](/api-reference/queryclient/furniture#furniture-interface) to learn more.
+- `point` - the geographic coordinates to convert.
+
+To convert many points in a single call, pass an array as `points` instead of `point`, and the query returns an array in the same order.
+
+```ts
+smplrClient.convertGPSToSmplrCoordinates({
+  spaceId: string
+  levelIndex: number
+  points: {
+    lng: number
+    lat: number
+  }[]
+}): Promise<{
+  levelIndex: number
+  x: number
+  z: number
+}[]>
+```
+
+## convertGPSToSmplrCoordinatesFromCache
+
+This is the synchronous equivalent of the query right above.
+
+```ts
+smplrClient.convertGPSToSmplrCoordinatesFromCache({
+  spaceId: string
+  levelIndex: number
+  point: {
+    lng: number
+    lat: number
+  }
+}): {
+  levelIndex: number
+  x: number
+  z: number
+}
+```
+
+As with the asynchronous version, you can pass an array as `points` instead of `point` to convert many points in a single call, and the query returns an array in the same order.
+
+```ts
+smplrClient.convertGPSToSmplrCoordinatesFromCache({
+  spaceId: string
+  levelIndex: number
+  points: {
+    lng: number
+    lat: number
+  }[]
+}): {
+  levelIndex: number
+  x: number
+  z: number
+}[]
+```
+
+where `spaceId`, `levelIndex`, `point`, and `points` are as defined in `convertGPSToSmplrCoordinates`.
+
 ## Need any other data?
 
 [Get in touch](mailto:support@smplrspace.com) with any use-case that would require new queries to be exposed.
