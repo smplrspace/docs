@@ -148,7 +148,11 @@ space.startViewer({
 - `legendPosition` - _optional_ - lets you choose where the legend (if any is configured in the data layers) is rendered. _Default value: 'top-left'_
 - `protectScroll` - _optional_ - lets you force users to use cmd/ctrl + scroll to zoom on desktop, and two fingers to interact with the viewer on touch screens (leaving one-finger scroll free for the page). This allows you implement cooperative gestures easily in apps where the viewer is part of a scrollable page.
 - `webGpuOptIn` - _optional_ - set this to true to opt into WebGPU rendering. WebGPU offers different performance characteristics compared to WebGL depending on the scene and hardware. The viewer automatically falls back to WebGL when WebGPU is not available in the browser. _Default value: false_
-- `disableFacadeMode` - _optional_ - set this to `false` to enable facade-based performance rendering, which delivers faster initial load times and near-instant level switches by only building the interior of the currently visible level. Set to `true` to disable it. This option will become the default in smplr v3. _Default value: undefined (uses space-level setting)_
+- `disableFacadeMode` - _optional_ - controls facade-based performance rendering, which delivers faster initial load times and near-instant level switches by only building the interior of the currently visible level. Set to `false` to enable it, `true` to disable it. _Default value: undefined (uses space-level setting)_
+
+:::warning Breaking change in smplr v3
+Facade-based performance rendering will be **on by default** in smplr v3. To prepare, pass `disableFacadeMode: false` explicitly to opt in now, or pass `disableFacadeMode: true` to keep the current behavior after the upgrade.
+:::
 
 ### CSS overrides
 
