@@ -57,21 +57,44 @@ To list all the spaces on your organization account, you can call the following 
 
 ```ts
 smplrClient.listSpaces({ 
-  organizationId: string; 
-  tagged?: string[] 
+  organizationId: string
+  tagged?: string[]
+  projects?: string[]
+  unit?: 'sqm' | 'sqft'
+  includeLevelBreakdown?: boolean
 }): Promise<{
   sid: string
   deprecated_id: string
   name: string
   created_at: string
   status: string
+  area: number
+  projects: {
+    project_sid: string
+    name: string
+  }[]
+  levels?: {
+    name: string
+    area: number
+  }[]
 }[]>
 ```
 
 - `organizationId` is the unique identifier of your organization in Smplrspace, something like "fbc5617e-5a27-4138-851e-839446121b2e". Personal accounts are also treated as "personal organization". To get your organization's ID, head to the Developers page from the main menu.
 - `tagged` - _optional_ - an array of tags to filter spaces. Only spaces that have **all** the specified tags will be returned (AND logic).
+- `projects` - _optional_ - an array of project SIDs to filter spaces. Only spaces belonging to at least one of the specified projects will be returned (OR logic). Note that if you are using a project-scoped client token, the filtering is applied automatically and this parameter is not needed.
+- `unit` - _optional_ - the unit for area values in the response. Defaults to `'sqm'`.
+- `includeLevelBreakdown` - _optional_ - set to `true` to include a `levels` array in the response with per-level area data. Defaults to `false`.
 
-You can learn more about `sid` and `deprecated_id` in the dedicated [page on SIDs](/guides/sid).
+Each space in the returned array contains:
+- `sid` - the [Smplrspace ID](/guides/sid) of the space.
+- `deprecated_id` - the legacy UUID identifier. See the [page on SIDs](/guides/sid) for details.
+- `name` - the display name of the space.
+- `created_at` - the ISO 8601 timestamp when the space was created.
+- `status` - one of `'draft'`, `'published'`, or `'archived'`.
+- `area` - the total floor area of the published space, in the unit specified by the `unit` parameter.
+- `projects` - the list of projects the space belongs to. Each entry includes `project_sid` and `name`.
+- `levels` - _present only when `includeLevelBreakdown` is `true`_ - the list of levels in the published space, each with a `name` and `area` (in the specified unit). Ordered from ground level up.
 
 ## getSpace
 
