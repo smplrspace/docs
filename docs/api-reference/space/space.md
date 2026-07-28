@@ -44,6 +44,7 @@ space.startViewer({
   mode?: '2d' | '3d'
   allowModeChange?: boolean
   onModeChange?: (mode: '2d' | '3d') => void
+  onPartialRenderReady?: () => void
   onReady?: () => void
   onError?: (errorMessage: string) => void
   onResize?: (containerRect: DOMRect) => void
@@ -59,6 +60,7 @@ space.startViewer({
 - `mode` - _optional_ - lets you choose between 2D and 3D rendering. _Default value: 3d_.
 - `allowModeChange` - _optional_ - set this to true to allow users to switch between 2D and 3D. _Default value: false_.
 - `onModeChange` - _optional_ - is called whenever the user changes the mode. Requires allowModeChange to be set to true.
+- `onPartialRenderReady` - _optional_ - is called once the space shell (walls, floors) and object placeholders are in place — the same moment the loading overlay hides. Objects may still be streaming in after this point. Use this to lift your own loading cover earlier than `onReady`, so the progressive reveal of objects is visible to the user.
 - `onReady` - _optional_ - is called once the viewer's initial render is done. You may alternatively use the promise returned by startViewer, which resolves when the viewer is ready.
 - `onError` - _optional_ - is called if an error occur that crashes the viewer. You may alternatively use the promise returned by startViewer to catch errors.
 - `onResize` - _optional_ - is called whenever the viewer is resized, including after the initial render, when the window is resized, or on mobile when the device is rotated between vertical to horizontal positions. This can be used to reposition custom tooltips (e.g.).
