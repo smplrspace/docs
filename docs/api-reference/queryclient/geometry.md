@@ -281,8 +281,11 @@ smplrClient.fitRectangleInPolygon({
   width: number
   height: number
   rotationRange?: number | [number, number]
+  rotationAngles?: number[]
+  angleWeights?: Record<number, number>
   gridSize?: number
   paddingPercent?: number
+  maxAreaSqm?: number
 }): {
   center: {
     levelIndex: number
@@ -297,9 +300,12 @@ smplrClient.fitRectangleInPolygon({
 
 - `polygon` - the polygon in which to fit the rectangle. It has the same schema as the coordinates from the [polygon data layers](/api-reference/space/data-layers#polygon-layer).
 - `width` & `height` - the width and height of the rectangle. It is only used to maintain its aspect ratio.
-- `rotationRange` - _optional_ - the range of allowed rotation of the resulting rectangle. Can be a single number (tested range will be `[-value, value]`) or a tuple of `[min, max]`. Values are in degree. The algorithm tests rotation angles that are multiples of 15° within the specified range. _Default value: 0 (no rotation)_
+- `rotationRange` - _optional_ - the range of allowed rotation of the resulting rectangle, in degrees, counterclockwise. Can be a single number (tested range will be `[-value, value]`) or a tuple of `[min, max]`. The algorithm tests rotation angles that are multiples of 15° within the specified range. Ignored if `rotationAngles` is set. _Default value: 0 (no rotation)_
+- `rotationAngles` - _optional_ - an explicit set of candidate rotation angles to test, in degrees, counterclockwise, instead of every multiple of 15° in `rotationRange` (for example `[0, 45, -45, 90, -90]`). Setting this is what opts into the `angleWeights` preference scoring below; `rotationRange` is ignored when this is set (a warning is logged if both are provided). _Default value: none - falls back to `rotationRange`_
+- `angleWeights` - _optional_ - only used when `rotationAngles` is set. Maps a candidate angle (in degrees) to a preference weight, so the algorithm can favor a visually preferable angle over one that only wins by a small margin on fitted size: `score = fittedScale * angleWeight * centerBonus`. An angle from `rotationAngles` with no matching key uses the weight of its nearest listed angle. _Default value: `{ 0: 1, 45: 0.6, -45: 0.6, 90: 0.7, -90: 0.7 }`_. For a plain rectangular polygon, `90` and `-90` fit equally well (rotating either way just swaps width and height), so if both are offered at equal weight the winner comes down to an arbitrary per-polygon margin rather than anything visually meaningful — a genuine coin flip that can pick a different sign on similar-looking neighboring units. If that inconsistency is undesirable, include only one of `90`/`-90`. This does **not** apply to `45`/`-45`: those correspond to genuinely different diagonal wall orientations (`/` vs `\`), so a polygon usually fits meaningfully better at one than the other — keep both unless you specifically want to forbid one diagonal direction.
 - `gridSize` - _optional_ - the number of rows and columns in the grid used to search the best location. Bigger values are more precise but slower. _Default value: 50_
 - `paddingPercent` - _optional_ - padding to add around the fitted rectangle, expressed as a percentage of the size. For example, 10 means 10% padding on each side. _Default value: 0_
+- `maxAreaSqm` - _optional_ - caps the fitted rectangle's area, in square meters, so that polygons large enough all yield the same-size rectangle and only smaller polygons shrink to fit. Clamped on area (not on the longer edge), so a wide and a tall rectangle carry the same visual weight. The rectangle is re-centered among the candidates that admit the capped size, since the largest-area center is not necessarily the best center once the size is reduced. _Default value: none (no cap)_
 
 Returns an object with the optimal `center` position, `width` and `height` in meters, and `rotation` (in degrees) of the fitted rectangle. Use [getRectangleCorners](#getrectanglecorners) to get the corner coordinates.
 
