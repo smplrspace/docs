@@ -32,6 +32,7 @@ interface SpaceRenderOptions {
     render?: boolean
     includeLayers?: string[]
     omitLayers?: string[]
+    forceState?: 'closed' | 'open'
   }
   windows?: {
     render?: boolean
@@ -76,6 +77,7 @@ interface SpaceRenderOptions {
 - `doors` - _optional_
   - `render` - _optional_ - set this value to control whether the doors are rendered or not. _Default value: true_
   - `includeLayers, omitLayers` - _optional_ - same as `grounds` above
+  - `forceState` - _optional_ - set this to `'closed'` or `'open'` to force all doors to render fully closed or fully open, regardless of their modeled state, without changing the underlying space data. Useful for renders such as exterior signage where a door caught half-open looks wrong. Applies to swing, sliding and roller-shutter doors; revolving and railing doors are unaffected since they have no closed/open pose. _Default value: unset (doors render at their modeled state)_
 - `windows` - _optional_
   - `render` - _optional_ - set this value to control whether the windows are rendered or not. _Default value: true_
   - `includeLayers, omitLayers` - _optional_ - same as `grounds` above

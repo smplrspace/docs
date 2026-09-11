@@ -85,9 +85,26 @@ Another thing to note is that you may need to disable TurboPack in recent versio
 
 ## Securing your data
 
-We take the security and privacy of your data with great importance. Smplrspace was built from the get go with the mindset that you should own your data and it should not transit through our servers when not necessary. This is why the data layers are built around frontend APIs that let you "stitch" data that you pull yourself from your own storage. That data never transits through our servers, neither do we have visibility over it even existing.
+We take the security and privacy of your data with great importance. Smplrspace was built from the get go with the mindset that you should own your data and it should not transit through our servers when not necessary.
 
-In addition, we do our best to protect the data that we do store (your floor plans) from unintended access. Below are the few features that you can rely on to secure their access.
+This section covers the **embedded viewer**, which is how most integrators use Smplrspace. Two categories of data are involved, and they have different storage profiles:
+
+- **Your business data** — sensor readings, room availability, employee assignments, and anything else you visualise — is pulled from your own storage and passed into the viewer's [data layers](/api-reference/space/data-layers) client-side. This data never transits through our servers, neither do we have visibility over it even existing. You can verify this yourself by inspecting the network requests the viewer makes.
+- **The floor plan** is stored on our servers. Its geometry (walls, doors, windows, equipment layout) is required for the viewer to render, and the asset/texture map may optionally be stored too. If you use [entities](/guides/entities) to map locations to your business data, that mapping can be kept with us or entirely in your own systems, your choice.
+
+:::info Scope: embedded viewer only
+Smplrspace also offers enterprise features (Reports, spreadsheets, custom fields, data sources) as a separate product with a different storage profile. Those store substantially more on our servers, including uploaded spreadsheet content, custom-field schemas, and report configurations. If you're evaluating our storage footprint for a security or due-diligence review, confirm which product you're assessing.
+:::
+
+| Data | Embedded viewer | Enterprise features (Reports, data sources) |
+|---|---|---|
+| Your business data (sensor readings, employee data, etc.) | Never transits our servers — passed client-side via data layers | Stored on our servers |
+| Floor plan geometry | Stored on our servers (required) | Stored on our servers (required) |
+| Floor plan asset/texture map | Optionally stored | Optionally stored |
+| Entity mapping (locations ↔ your business data) | Optional — keep with us or entirely in your own systems | Optional — keep with us or entirely in your own systems |
+| Custom field schema / report configuration | N/A | Stored on our servers |
+
+We also do our best to protect the floor plan data we do store from unintended access. Below are the few features that you can rely on to secure their access.
 
 ### Client tokens
 

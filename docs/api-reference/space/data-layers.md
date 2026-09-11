@@ -259,9 +259,12 @@ space.addPosterDataLayer({
   disableElevationCorrection?: boolean
   autoFit?: {
     rotationRange?: number | [number, number]
+    rotationAngles?: number[]
+    angleWeights?: Record<number, number>
     gridSize?: number
     elevation?: number
     paddingPercent?: number
+    maxAreaSqm?: number
   }
 }) => DataLayerController
 
