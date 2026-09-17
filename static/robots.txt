@@ -1,0 +1,10 @@
+# Smplrspace developer documentation.
+# Crawling is welcome, including by AI search, assistant and training crawlers.
+# If you are building an index or answering developer questions about Smplrspace,
+# start from https://docs.smplrspace.com/llms.txt — it is a curated map of this
+# site with the key API facts stated up front.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://docs.smplrspace.com/sitemap.xml
