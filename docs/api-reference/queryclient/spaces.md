@@ -26,6 +26,62 @@ With `sid` the [Smplrspace ID](/guides/sid) of the space.
 - `tags` - _optional_ - an array of tags to add to the space. If a tag doesn't exist, it will be created automatically.
 - `addToProjectId` - _optional_ - the unique identifier of a project to add the space to upon creation. This only takes effect when using a project-scoped API token that includes the specified project.
 
+## setSpaceDefinition (beta)
+
+:::warning
+
+This is a beta version. The definition is not validated against a schema yet, only its floor area is checked, and the definition format could change with no backward compatibility. If you rely on this in production, please [get in touch](mailto:support@smplrspace.com) so we can take your usage into account and communicate to you any upcoming changes.
+
+:::
+
+To set the content of a space programmatically, for example from your own conversion of CAD drawings, you can call the following query. It's typically used right after [`createSpace`](#createspace).
+
+```ts
+smplrClient.setSpaceDefinition({
+  spaceId: string
+  definition: Record<string, unknown>
+  publish?: boolean
+  user: {
+    id: string
+    name?: string
+    picture?: string
+  }
+}): Promise<{ sid: string; published: boolean }>
+```
+
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx". Refer to the [page on SIDs](/guides/sid) to learn more.
+- `definition` - the full definition of the space, following the [space definition format](https://webshare.smplrspace.io/smplrspace-space-definition.html). It replaces the existing definition entirely.
+- `publish` - _optional_ - whether to also publish the definition. By default, the definition is saved as a draft of the space's content, that you can review in the editor and publish from the app or with [`publishSpace`](#publishspace). When set to `true`, the definition is saved and published, and the space status is set to "published" (corresponding to "live" in the platform). _Default value: false_
+- `user` - the user making the change, attributed as the last person who modified the space. `id` is your own identifier for that user, `name` and `picture` (a URL) are used for display in the app.
+
+The query is rejected with an explicit error message when:
+
+- the definition has no `levels` array, or a level has no `grounds` array.
+- the floor area of the space can't be computed from the definition, which usually means the definition doesn't follow the expected format.
+- the space has no billable floor area, i.e. no internal ground on any level.
+- the floor area of any level is above 1,000,000 sqft, which usually means the scale of the definition is wrong.
+- a floor plan image is embedded in the definition as base64 data. Host the image and reference it with `floorplan.url` instead.
+
+## publishSpace
+
+You can call the following query to programmatically publish the latest saved definition of a space, like publishing from the editor.
+
+```ts
+smplrClient.publishSpace({
+  spaceId: string
+  user: {
+    id: string
+    name?: string
+    picture?: string
+  }
+}): Promise<{ sid: string }>
+```
+
+- `spaceId` - unique identifier of the space in Smplrspace, something like "spc_xxx". Refer to the [page on SIDs](/guides/sid) to learn more.
+- `user` - the user publishing the space, attributed as the last person who modified the space. `id` is your own identifier for that user, `name` and `picture` (a URL) are used for display in the app.
+
+Publishing also sets the space status to "published" (corresponding to "live" in the platform). Note that this is different from [`setSpaceStatus`](#setspacestatus), which only changes the status of the space and not its published content.
+
 ## setSpaceStatus
 
 You can call the following query to programmatically publish, set as draft, or archive a space.
