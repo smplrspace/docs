@@ -34,7 +34,7 @@ This is a beta version. The definition is not validated against a schema yet, on
 
 :::
 
-To set the content of a space programmatically, for example from your own conversion of CAD drawings, you can call the following query. It's typically used right after [`createSpace`](#createspace).
+To set the content of a space programmatically, you can call the following query. It's typically used right after [`createSpace`](#createspace).
 
 ```ts
 smplrClient.setSpaceDefinition({
