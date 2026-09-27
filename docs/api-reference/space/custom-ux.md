@@ -54,7 +54,6 @@ interface SpaceRenderOptions {
     includeLayers?: string[]
     omitLayers?: string[]
   }
-  compass?: boolean
   floorplan?: {
     render?: boolean
     alpha?: number
@@ -90,7 +89,6 @@ interface SpaceRenderOptions {
 - `annotations` - _optional_
   - `render` - _optional_ - set this value to control whether the annotations (if any) are rendered or not. This also removes the show/hide annotations button from the viewer. _Default value: unset (use button control)_
   - `includeLayers, omitLayers` - _optional_ - same as `grounds` above
-- `compass` - _optional_ - set this value to control whether the compass (if any) is rendered or not. This also removes the show/hide compass button from the viewer. _Default value: unset (use button control)_
 - `floorplan.render` - _optional_ - set this value to control whether the floor plan image (if any) is rendered or not. Note that for multi-storey spaces, all levels will have their floor plan image rendered. _Default value: false_
 - `floorplan.alpha` - _optional_ - is a number between 0 and 1 setting the opacity of the floor plan image, 0 being transparent and 1 opaque. _Default value: 0.5_
 - `floorplan.elevationInCm` - _optional_ - is a number in centimeter setting the elevation from the ground at which the floor plan image is rendered. _Default value: 2_
