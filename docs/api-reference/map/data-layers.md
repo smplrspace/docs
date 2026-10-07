@@ -30,6 +30,7 @@ interface PointMapDataLayerDefinition {
     ...customData: object
   }]
   color?: string | (dataElement: object) => string
+  alpha?: number
   anchor?: 'bottom' | 'center' | 'top'
   // sphere shape options
   diameter?: number | { x: number; y: number; z: number } | ((dataElement: object) => number | { x: number; y: number; z: number })
@@ -50,6 +51,7 @@ map.updatePointDataLayer(definitionUpdates: Partial<PointMapDataLayerDefinition>
 - `shape` is the the 3D shape used to render each data element. Each shape comes with its own options defined below.
 - `data` is an array of objects (refered to as data elements) to be rendered. Each element **must** have an `id` (unique identifier within the data array), a `spaceId` to transform the local coordinates to global coordinates, and a `position`. Elements can also contain any additional custom data used for rendering options.
 - `color` - _optional_ - defines the color of the element to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
+- `alpha` - _optional_ - defines the transparency of the elements to render. The value should be between 0 (invisible) and 1 (opaque). It applies to the whole layer, it cannot be set per element. _Default value: 1_
 - `anchor` - _optional_ - defines if the position provided for each data element corresponds to the bottom, center or top of the sphere. _Default value: center._
 - `SharedDefinitionOptions` are defined [here](#shared-definition-options).
 
@@ -89,6 +91,7 @@ interface PolygonMapDataLayerDefinition {
   baseHeight?: number | (dataElement: object) => number
   height?: number | (dataElement: object) => number
   color?: string | (dataElement: object) => string
+  alpha?: number
   // + fields from SharedDefinitionOptions defined further down
 }
 
@@ -103,6 +106,7 @@ map.updatePolygonDataLayer(definitionUpdates: Partial<PolygonMapDataLayerDefinit
 - `baseHeight` - _optional_ - defines the elevation from the ground at the base of the polygon in meters. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the base height for that element. _Default value: 0m._
 - `height` - _optional_ - defines the height of the polygon in meters from its base to its top. It can be defined as a number for all elements or per element with a function that takes each element as argument and returns the height for that element. _Default value: 3m._
 - `color` - _optional_ - defines the color of the element to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
+- `alpha` - _optional_ - defines the transparency of the elements to render. The value should be between 0 (invisible) and 1 (opaque). It applies to the whole layer, it cannot be set per element. _Default value: 1_
 - `SharedDefinitionOptions` are defined [here](#shared-definition-options).
 
 ### Space shell layer
@@ -119,6 +123,7 @@ interface SpaceShellMapDataLayerDefinition {
     ...customData: object
   }]
   color?: string | ((dataElement: object) => string)
+  alpha?: number | ((dataElement: object) => number)
   // + fields from SharedDefinitionOptions defined further down
 }
 
@@ -131,6 +136,7 @@ map.updateSpaceShellDataLayer(definitionUpdates: Partial<SpaceShellMapDataLayerD
   - `spaceId` is the unique identifier of the space in Smplrspace, something like "spc_xxx".
   - `customData` - _optional_ - elements can also contain any additional custom data used for rendering options.
 - `color` - _optional_ - defines the color of the element to render. It can be defined as any valid CSS color string like "orange" or "#3a3c3c", and applied for all elements or per element with a function that takes each element as argument and returns the color string for that element. _Default value: "#2393d4"_
+- `alpha` - _optional_ - defines the transparency of the element to render. The value should be between 0 (invisible) and 1 (opaque). It can be defined as a fix value for all elements or per element with a function that takes each element as argument and returns the alpha value for that element. _Default value: 1_
 - `SharedDefinitionOptions` are defined [here](#shared-definition-options).
 
 ## Geospatial data layers

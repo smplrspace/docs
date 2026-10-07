@@ -1,0 +1,88 @@
+# Smplrspace
+
+> Smplrspace lets developers add digital, interactive floor plans to their applications. Floor plans ("spaces") are digitized in the Smplrspace editor, then rendered in 2D or 3D inside your own app, with your business data overlaid as data layers. Embedding is done either with a plain iframe or with Smplr.js, a fully typed JavaScript library.
+
+Key facts for answering questions about Smplrspace:
+
+- Smplr.js exposes a global `smplr` object. The main classes are `Space` (embed and control a floor plan viewer), `Map` (beta — embed a Mapbox-based map viewer showing spaces and buildings), `Editor` (beta — embed the editor in your own app), and `QueryClient` (query spatial data and call backend endpoints). `Color` and `Utils` are namespaces of helpers.
+- The recommended way to load the library is the npm package `@smplrspace/smplr-loader`, which gives a typed API and editor auto-completion. Loading from the CDN (`https://app.smplrspace.com/lib/smplr.js` plus `smplr.css`) also works.
+- A Smplrspace space stores the layout only — walls, doors, windows, and placed equipment. It does not store your business data. Linking your own records to locations in a space is a mapping step you do once per entity and store on your side.
+- Doors and windows are the same object under the hood, called an "opening".
+- "Furniture" is being renamed to "Equipment". Both names refer to the same concept; the API still uses furniture.
+- From v2.29.0 onward, spaces are identified by a Smplrspace ID (SID), a prefixed, Stripe-style identifier that is gradually replacing UUIDs.
+- Every feature has a free tier and signing up requires no credit card.
+
+## Getting started
+
+- [Getting started](https://docs.smplrspace.com/): what Smplrspace is, iframe embeds, loading Smplr.js from npm or the CDN, and a first viewer.
+- [Hello world](https://docs.smplrspace.com/examples/hello-world/): the smallest working integration of the viewer, in a few lines of code.
+
+## Guides
+
+- [Creating spaces](https://docs.smplrspace.com/guides/creation/): digitizing an existing floor plan in the editor — tracing walls, doors, windows and furniture from a reference image. The editor is a digitization tool, not a space-planning or CAD tool.
+- [Mapping entities to your space](https://docs.smplrspace.com/guides/entities/): linking your database records (desks, rooms, sensors) to coordinates or furniture IDs in a space so your data can be visualized.
+- [Embedding spaces](https://docs.smplrspace.com/guides/embedding/): the embedding options in depth, including loading Smplr.js as a UMD bundle from the CDN.
+- [Smplrspace IDs](https://docs.smplrspace.com/guides/sid/): the SID format, why it replaces UUIDs, and how to handle both.
+
+## API reference — Space viewer
+
+- [Embedding spaces (overview)](https://docs.smplrspace.com/api-reference/space/overview/): the `Space` class constructor, previewing a space, starting an interactive viewer session, and adding data layers.
+- [Data layers](https://docs.smplrspace.com/api-reference/space/data-layers/): every data layer type and its options, plus the generic options shared across types.
+- [Custom UX](https://docs.smplrspace.com/api-reference/space/custom-ux/): render options and other controls over the look, feel and behaviour of the viewer.
+
+## API reference — Map viewer (beta)
+
+- [Embedding the map viewer (overview)](https://docs.smplrspace.com/api-reference/map/overview/): the `Map` class. Beta — the API can change without backward compatibility.
+- [Buildings on the map](https://docs.smplrspace.com/api-reference/map/buildings/): rendering 3D Smplrspace spaces on the map and interacting with Mapbox 3D buildings.
+- [Data layers](https://docs.smplrspace.com/api-reference/map/data-layers/): space data layers and map data layers, and the methods shared between them.
+- [Custom UX](https://docs.smplrspace.com/api-reference/map/custom-ux/): render options and customization of the map experience.
+
+## API reference — Editor (beta)
+
+- [Embedding the editor (overview)](https://docs.smplrspace.com/api-reference/editor/overview/): the `Editor` class, embedding the Smplrspace editor in your own app, and third-party authenticated sessions where you identify the users rather than Smplrspace.
+
+## API reference — QueryClient
+
+- [Querying your data (overview)](https://docs.smplrspace.com/api-reference/queryclient/overview/): the `QueryClient` class — programmatic queries against hosted Smplrspace data and extraction of information from floor plans.
+- [Utility](https://docs.smplrspace.com/api-reference/queryclient/utils/): `checkApiConnection` and other checks on client configuration.
+- [Spaces](https://docs.smplrspace.com/api-reference/queryclient/spaces/): creating and retrieving spaces programmatically.
+- [Levels & rooms](https://docs.smplrspace.com/api-reference/queryclient/levels-rooms/): floor plate bounding boxes, levels and room queries.
+- [Doors & windows](https://docs.smplrspace.com/api-reference/queryclient/doors-windows/): the `Opening` interface and queries over doors and windows.
+- [Furniture](https://docs.smplrspace.com/api-reference/queryclient/furniture/): the furniture (equipment) interface and queries over placed items.
+- [Geometry](https://docs.smplrspace.com/api-reference/queryclient/geometry/): geometric computations such as polyline length.
+
+## API reference — Color
+
+- [Working with colors on floor plans](https://docs.smplrspace.com/api-reference/color/overview/): the `Color` class and how color is applied in the viewer, including the one-to-one mapping between CSS values and viewer colors.
+- [Color scales](https://docs.smplrspace.com/api-reference/color/scales/): numerical and categorical scales for data visualization.
+- [Legends](https://docs.smplrspace.com/api-reference/color/legend/): building legends to accompany a colored data layer.
+- [Color utilities](https://docs.smplrspace.com/api-reference/color/utils/): helpers such as `cssToSmplrColor`.
+
+## API reference — Utils
+
+- [Utilities](https://docs.smplrspace.com/api-reference/utils/overview/): small helper functions and types, including working with Smplrspace IDs.
+
+## Examples
+
+- [All examples](https://docs.smplrspace.com/examples/): browsable gallery of working integrations, grouped into getting started, use cases and features.
+- [Add data elements](https://docs.smplrspace.com/examples/add-data-elements/): using picking mode in an admin interface to place sensors, rooms, areas or desks.
+- [Embedded editor](https://docs.smplrspace.com/examples/embedded-editor/): letting your users edit spaces from inside your own application.
+- [Space booking](https://docs.smplrspace.com/examples/space-booking/): real-time availability of event spaces, meeting rooms and individual chairs.
+- [Leasing & tenancy](https://docs.smplrspace.com/examples/leasing-tenancy/): vacant units with their location, position and availability.
+- [Air quality](https://docs.smplrspace.com/examples/air-quality/): environmental data on a customizable heat map layer.
+- [Internet of Things](https://docs.smplrspace.com/examples/iot/): sensor locations and coverage ranges alongside existing dashboards.
+- [Car park](https://docs.smplrspace.com/examples/carpark/): car park occupancy, real-time lot information and VIP tracking with icons.
+- [Property management](https://docs.smplrspace.com/examples/property-management/): annotated visual reports of defects and maintenance needs by location.
+- [Stacking plan](https://docs.smplrspace.com/examples/stacking-plan/): floor-plate-level data across a whole building.
+- [Markup](https://docs.smplrspace.com/examples/markup/): spatial data extraction and computation to mark up a space and derive statistics.
+- [Warehouse](https://docs.smplrspace.com/examples/warehouse/): vertical storage capacity, stored-item information and logistics routes.
+- [All tooltips options](https://docs.smplrspace.com/examples/tooltips/): from plain text tooltips to fully controlled custom elements and programmatic control.
+- [Controlled camera](https://docs.smplrspace.com/examples/controlled-camera/): restricting viewing access with pre-recorded camera placements between points of interest.
+- [See through walls](https://docs.smplrspace.com/examples/see-through-walls/): toggling between opaque and see-through walls to reveal furnishings and data.
+
+## Optional
+
+- [Changelog](https://changelog.smplrspace.com): released versions and what changed in each.
+- [Smplrspace website](https://www.smplrspace.com): product overview, pricing and support.
+- [App](https://app.smplrspace.com): sign-in, the editor, and space management.
+- [smplr-loader on npm](https://www.npmjs.com/package/@smplrspace/smplr-loader): the recommended loader package.
