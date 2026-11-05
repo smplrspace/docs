@@ -32,10 +32,8 @@ Everything the viewer renders that is not transparent blocks it: walls, the floo
 
 These do not block it:
 
-- glass, meaning window panes, glass doors, and furniture whose materials are all transparent
-- overlays, meaning data layers, annotations and the floor plan image
-
-Wall transparency set with the [`walls.alpha`](./custom-ux#render-options) render option does not count as glass. Those walls still block.
+- anything drawn see-through, meaning window panes, glass doors, furniture whose materials are all transparent, and walls drawn transparent with the [`walls.alpha`](./custom-ux#render-options) render option
+- overlays, meaning data layers, annotations and the floor plan image, even when they are drawn opaque
 
 A target placed on a surface, for example a point on a shopfront wall, is not blocked by that surface: rays stop 5 cm short of the target.
 
@@ -127,7 +125,7 @@ This renders what a check over these inputs needs. It finds the levels spanned v
 
 - includes them and shows them in 3D
 - renders their interior walls and furniture
-- renders walls at full height
+- renders walls at full height and fully opaque
 - turns the facade model off, so that real walls and windows are used
 
 Levels below that span are left as they are, and levels above it are hidden: a straight line between your inputs cannot reach either.
