@@ -57,12 +57,8 @@ The viewer ignores user input (camera, controls) and shows a "Checking visibilit
 ## Check points
 
 ```ts
-interface VisibilityViewpoint {
-  id: string
-  position: SmplrCoord3d
-}
-
-interface VisibilityTarget {
+// a viewpoint or a target
+interface VisibilityPoint {
   id: string
   position: SmplrCoord3d
 }
@@ -73,8 +69,8 @@ interface TargetVisibility {
 }
 
 space.checkVisibility({
-  viewpoints: VisibilityViewpoint[]
-  targets: VisibilityTarget[]
+  viewpoints: VisibilityPoint[]
+  targets: VisibilityPoint[]
   maxDistance?: number
 }) => Promise<TargetVisibility[]>
 ```
@@ -103,7 +99,7 @@ interface PanelVisibility {
 }
 
 space.checkPanelVisibility({
-  viewpoints: VisibilityViewpoint[]
+  viewpoints: VisibilityPoint[]
   panels: VisibilityPanel[]
   samplesPerMeter?: number
   maxDistance?: number
@@ -121,8 +117,8 @@ The returned promise resolves with one entry per panel, in the same order as the
 
 ```ts
 space.renderForVisibility({
-  viewpoints: VisibilityViewpoint[]
-  targets?: VisibilityTarget[]
+  viewpoints: VisibilityPoint[]
+  targets?: VisibilityPoint[]
   panels?: VisibilityPanel[]
 }) => Promise<{ restore: () => Promise<void> }>
 ```
