@@ -45,7 +45,7 @@ Both checks wait for the viewer to finish rendering before they start. You can t
 
 ```ts
 space.updateRenderOptions({ objects: { render: false } })
-const results = await space.getVisibility({ viewpoints, targets })
+const results = await space.checkVisibility({ viewpoints, targets })
 ```
 
 The viewer does not always render everything. For performance it can render the interior and furniture of the top visible level only, levels can be hidden or excluded, and walls can be cut at a height. A check only sees what is rendered, so use [`renderForVisibility`](#render-for-a-check) to render what your inputs need. When a check crosses a level that is not fully rendered, it logs a console warning pointing you to it.
@@ -72,7 +72,7 @@ interface TargetVisibility {
   visibleFrom: string[]
 }
 
-space.getVisibility({
+space.checkVisibility({
   viewpoints: VisibilityViewpoint[]
   targets: VisibilityTarget[]
   maxDistance?: number
@@ -102,7 +102,7 @@ interface PanelVisibility {
   visibleFrom: { viewpointId: string; fraction: number }[]
 }
 
-space.getPanelVisibility({
+space.checkPanelVisibility({
   viewpoints: VisibilityViewpoint[]
   panels: VisibilityPanel[]
   samplesPerMeter?: number
@@ -158,7 +158,7 @@ const panels = [
 // render everything the check needs, whatever the viewer was showing
 const { restore } = await space.renderForVisibility({ viewpoints, panels })
 
-const results = await space.getPanelVisibility({
+const results = await space.checkPanelVisibility({
   viewpoints,
   panels,
   samplesPerMeter: 4,
