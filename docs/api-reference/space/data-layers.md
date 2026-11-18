@@ -98,7 +98,29 @@ As detailed above, the `tooltipTemplate` option is powered by [Handlebars](https
 
   For example, `YYYY-MM-DD` becomes `yyyy-MM-dd`. The full list is on the [date-fns format page](https://date-fns.org/v4.1.0/docs/format). If you need help converting your formats, [get in touch](mailto:support@smplrspace.com).
   :::
-- `formatNumber` - lets you format numbers using [Numeral.js](https://numeraljs.com/#format) as `{{formatNumber [my field] '0,0.00'}}`.
+- `formatNumber` - lets you format numbers with named arguments that are the options of [Intl.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat), as `{{formatNumber [my field] minimumFractionDigits=2 maximumFractionDigits=2}}`. Every option on that page is supported. Numbers use the `en-US` locale by default. Add `locale='de-DE'` to format one call with another locale, as in `{{formatNumber [my field] locale='de-DE'}}`, which prints `1.234,5` for 1234.5. With no options, numbers show up to three decimals, so 1234.5678 prints `1,234.568`. A missing or non-numeric value prints `0`. Compact numbers use `K`, `M` and `B`, so `{{formatNumber [my field] notation='compact' maximumFractionDigits=1}}` prints `1.2K` for 1234.
+
+  :::warning Deprecation
+  Until now, `formatNumber` read formats written as a Numeral.js pattern string, such as `'0,0.00'`. We moved to [Intl.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) because Numeral.js is no longer maintained, while Intl is built into every browser. Number formats in your templates must be updated to named options.
+
+  To give you time, we keep supporting the pattern string until **March 4, 2027**. During this period, a call such as `{{formatNumber [my field] '0,0.00'}}` still works and the browser console shows a warning with a link to this section.
+
+  After that date, a pattern string no longer works and the number prints with the default format described above, with up to three decimals.
+
+  The default format also changed. Without options, `formatNumber` used to show whole numbers, as `1,235` for 1234.5. If a template relies on that, add `maximumFractionDigits=0`. Compact numbers also print `K`, `M` and `B` in uppercase, where Numeral.js printed them in lowercase.
+
+  To convert a format, replace the pattern with these options. The outputs are for 1234.5 with the `en-US` locale.
+
+  | Previous pattern | Options                                                                      | Call                                                                                            | Output      |
+  | ---------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------- |
+  | `0,0`            | `maximumFractionDigits: 0`                                                   | `{{formatNumber [my field] maximumFractionDigits=0}}`                                           | `1,235`     |
+  | `0,0.00`         | `minimumFractionDigits: 2`, `maximumFractionDigits: 2`                       | `{{formatNumber [my field] minimumFractionDigits=2 maximumFractionDigits=2}}`                   | `1,234.50`  |
+  | `0.0`            | `minimumFractionDigits: 1`, `maximumFractionDigits: 1`, `useGrouping: false` | `{{formatNumber [my field] minimumFractionDigits=1 maximumFractionDigits=1 useGrouping=false}}` | `1234.5`    |
+  | `$0,0.00`        | `style: 'currency'`, `currency: 'USD'`                                       | `{{formatNumber [my field] style='currency' currency='USD'}}`                                   | `$1,234.50` |
+  | `0a`             | `notation: 'compact'`, `maximumFractionDigits: 0`                            | `{{formatNumber [my field] notation='compact' maximumFractionDigits=0}}`                        | `1K`        |
+
+  `maximumFractionDigits` caps the digits after the decimal point and rounds beyond it. `minimumFractionDigits` pads with zeros up to a minimum, which is why `0,0.00` sets both to 2. The full list of options is on the [Intl.NumberFormat page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat). If you need help converting your formats, [get in touch](mailto:support@smplrspace.com).
+  :::
 - `ifEquals` - lets you compare 2 values in an if statement. For example to show some text only when a field equals a certain value: `{{#ifEquals [status] "active"}}Status is active{{else}} Status is not active{{/ifEquals}}`.
 - `json` - prints the value in JSON code style. Use like `{{json [field]}}`, or to debug the whole context of the template `{{json this}}`.
 
