@@ -75,7 +75,29 @@ You may use the `onClick`, `onRightClick`, `onHover` and `onHoverOut` handlers t
 As detailed above, the `tooltipTemplate` option is powered by [Handlebars](https://handlebarsjs.com/) and you may refer to the full templating documentation [here](https://handlebarsjs.com/guide/). It supports HTML, nested fields access, conditionals, loops, and more. We also setup custom helpers as documented below:
 
 - `fallback` - lets you use fallback default values as `{{fallback [my field] 'default value'}}`. We use `'-'` as a default value for all fields.
-- `formatDate` - lets you format dates using [Moment.js](https://momentjs.com/docs/#/displaying/format/) as `{{formatDate [my field] 'DMMMYY'}}`.
+- `formatDate` - lets you format dates using [date-fns format tokens](https://date-fns.org/v4.1.0/docs/format) as `{{formatDate [my field] 'MMM d, yyyy'}}`. A missing value prints `-`. A date that cannot be read prints `Invalid date`.
+
+  :::warning Deprecation
+  Until now, `formatDate` read formats written with the Moment.js token style, such as `YYYY-MM-DD`, `DD/MM`, `Do` or `dddd`. We moved to date-fns because Moment.js is in maintenance mode, while date-fns is actively maintained and lighter. Date formats in your templates must be updated to date-fns tokens.
+
+  To give you time, we keep supporting the previous token style until **March 4, 2027**. During this period, add `tokens='date-fns'` to each call and write its format with date-fns tokens, as in `{{formatDate [my field] 'MMM d, yyyy' tokens='date-fns'}}`. This way your templates are ready when the period ends. When a format would read differently or fail after that date, the browser console shows a warning.
+
+  On **March 4, 2027**, every call reads date-fns tokens and the `tokens` option is ignored. You can then remove it from your templates.
+
+  To convert a format, replace these tokens. The other common ones (`MMMM`, `MMM`, `MM`, `M`, `HH`, `hh`, `mm`, `ss`) are the same in both styles.
+
+  | Previous style | date-fns | Example output |
+  | -------------- | -------- | -------------- |
+  | `YYYY`         | `yyyy`   | 2026           |
+  | `YY`           | `yy`     | 26             |
+  | `D`            | `d`      | 5              |
+  | `DD`           | `dd`     | 05             |
+  | `Do`           | `do`     | 5th            |
+  | `ddd`          | `EEE`    | Thu            |
+  | `dddd`         | `EEEE`   | Thursday       |
+
+  For example, `YYYY-MM-DD` becomes `yyyy-MM-dd`. The full list is on the [date-fns format page](https://date-fns.org/v4.1.0/docs/format). If you need help converting your formats, [get in touch](mailto:support@smplrspace.com).
+  :::
 - `formatNumber` - lets you format numbers using [Numeral.js](https://numeraljs.com/#format) as `{{formatNumber [my field] '0,0.00'}}`.
 - `ifEquals` - lets you compare 2 values in an if statement. For example to show some text only when a field equals a certain value: `{{#ifEquals [status] "active"}}Status is active{{else}} Status is not active{{/ifEquals}}`.
 - `json` - prints the value in JSON code style. Use like `{{json [field]}}`, or to debug the whole context of the template `{{json this}}`.
