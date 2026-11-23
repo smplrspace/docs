@@ -30,7 +30,7 @@ With `sid` the [Smplrspace ID](/guides/sid) of the space.
 
 :::warning
 
-This is a beta version. The definition is validated in smplr.js, with [`validateSpaceDefinition`](/api-reference/utils/overview#validating-a-space-definition), but not yet by the server, and the definition format could change with no backward compatibility. If you rely on this in production, please [get in touch](mailto:support@smplrspace.com) so we can take your usage into account and communicate to you any upcoming changes.
+This is a beta version. The definition is validated in smplr.js, with [`validateSpaceDefinition`](/api-reference/utils/overview#validating-a-space-definition), and the definition format could change with no backward compatibility. If you rely on this in production, please [get in touch](mailto:support@smplrspace.com) so we can take your usage into account and communicate to you any upcoming changes.
 
 :::
 
