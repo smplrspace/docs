@@ -44,6 +44,6 @@ if (!result.valid) {
 What counts as valid:
 
 - A key the format does not define is an error, so a typo is caught. Only `extras` and `configuration` accept any content.
-- Fields that have a default value can be left out. Ids cannot: every feature, wall segment, opening and point needs an `id`, and consecutive segments share their joint by point `id`.
+- Fields that have a default value can be left out. Ids cannot: every feature, wall segment, opening and point needs an `id`, and consecutive segments share their joint by point `id`. Each level also needs a `grounds` array, which can be empty.
 - Floor plan images are referenced with `floorplan.url`. A `floorplan.data` key is an error.
 - Only the current schema version is checked.
