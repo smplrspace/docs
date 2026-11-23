@@ -144,3 +144,7 @@ Here is a breakdown of the directive:
 - `wasm-unsafe-eval` allows the usage of the draco decoder [over WASM](https://github.com/WebAssembly/content-security-policy/issues/7). _It can be omitted if your floor plans do not use non-parametric 3D equipment models_.
 - `unsafe-eval` allows the usage of the draco decoder [over WASM in iOS Safari](https://bugs.webkit.org/show_bug.cgi?id=235408). _It can be omitted if your floor plans do not use non-parametric 3D equipment models or do not target iOS Safari as a browser_.
 - `worker-src 'self' blob:` is required by the draco decoder as well. _It can be omitted if your floor plans do not use non-parametric 3D equipment models_.
+
+## Rate limits
+
+The Smplrspace API limits each source IP address to 300 requests per 10 seconds. Requests over the limit are blocked for 10 seconds. Normal use of the viewer stays far below this. If you plan a load test, or many of your users share one network address, [get in touch](mailto:support@smplrspace.com) first.
