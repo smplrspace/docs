@@ -43,7 +43,14 @@ if (!result.valid) {
 
 What counts as valid:
 
-- A key the format does not define is an error, so a typo is caught. Only `extras` and `configuration` accept any content.
+- A key the format does not define is an error, so a typo is caught. Two keys accept any content, and only in these places:
+  - `extras`, on `grounds`, `walls`, wall `openings`, `roofs`, `stairs`, `annotations` and `objects`. Every value in it must be valid JSON. For example `levels[0].walls[1].segments[0].openings[0].extras`.
+  - `configuration`, on `objects` only, as an object or `null`. For example `levels[0].objects[2].configuration`.
 - Fields that have a default value can be left out. Ids cannot: every feature, wall segment, opening and point needs an `id`, and consecutive segments share their joint by point `id`. Each level also needs a `grounds` array, which can be empty.
 - Floor plan images are referenced with `floorplan.url`. A `floorplan.data` key is an error.
 - Only the current schema version is checked.
+
+What it does not check yet:
+
+- That ids are unique. Reusing an id can make points merge and walls deform, so keep every ground, hole, wall, wall segment, opening, roof, stair, annotation and object id unique in the space. A point id is the only one meant to repeat, where two consecutive segments share a joint. The validator reports none of this today.
+- The geometry: that a ground polygon closes, that the segments of a wall form a continuous chain, or that an opening fits inside its segment.
