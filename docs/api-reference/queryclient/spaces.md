@@ -30,7 +30,7 @@ With `sid` the [Smplrspace ID](/guides/sid) of the space.
 
 :::warning
 
-This is a beta version. The definition is not validated against a schema yet, only its floor area is checked, and the definition format could change with no backward compatibility. If you rely on this in production, please [get in touch](mailto:support@smplrspace.com) so we can take your usage into account and communicate to you any upcoming changes.
+This is a beta version because the definition format could change with no backward compatibility. The definition is validated in smplr.js with [`validateSpaceDefinition`](/api-reference/utils/overview#validating-a-space-definition). If you rely on this in production, please [get in touch](mailto:support@smplrspace.com) so we can take your usage into account and communicate to you any upcoming changes.
 
 :::
 
@@ -56,6 +56,7 @@ smplrClient.setSpaceDefinition({
 
 The query is rejected with an explicit error message when:
 
+- the definition does not follow the space definition format. The message lists the first problems with their path, and [`validateSpaceDefinition`](/api-reference/utils/overview#validating-a-space-definition) returns all of them.
 - the definition has no `levels` array, or a level has no `grounds` array.
 - the floor area of the space can't be computed from the definition, which usually means the definition doesn't follow the expected format.
 - the space has no billable floor area, i.e. no internal ground on any level.
