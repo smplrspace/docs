@@ -56,12 +56,14 @@ smplrClient.setSpaceDefinition({
 
 The query is rejected with an explicit error message when:
 
-- the definition does not follow the space definition format. The message lists the first problems with their path, and [`validateSpaceDefinition`](/api-reference/utils/overview#validating-a-space-definition) returns all of them.
+- the definition does not follow the space definition format, or reuses an id. The message lists the first problems with their path, and [`validateSpaceDefinition`](/api-reference/utils/overview#validating-a-space-definition) returns all of them.
 - the definition has no `levels` array, or a level has no `grounds` array.
 - the floor area of the space can't be computed from the definition, which usually means the definition doesn't follow the expected format.
 - the space has no billable floor area, i.e. no internal ground on any level.
 - the floor area of any level is above 1,000,000 sqft, which usually means the scale of the definition is wrong.
 - a floor plan image is embedded in the definition as base64 data. Host the image and reference it with `floorplan.url` instead.
+
+A definition that `validateSpaceDefinition` reports as valid is not rejected for any of these reasons.
 
 ## publishSpace
 
