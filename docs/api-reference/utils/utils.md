@@ -37,9 +37,16 @@ if (!result.valid) {
   // [
   //   { path: 'levels[0].objects[3].position.elevation', reason: 'Required' },
   //   { path: 'levels[0].objects[3].position.elevaton', reason: 'Unknown key' },
-  //   { path: 'levels[0].grounds[1].segments[3].end', reason: 'The ring is not closed: the id is 4f2a…, expected 9c1b…' },
   // ]
 }
+```
+
+Once the format errors are fixed, the checks on the content run and can report more. For example:
+
+```ts
+// [
+//   { path: 'levels[0].grounds[1].segments[3].end', reason: 'The ring is not closed: the id is 4f2a…, expected 9c1b…' },
+// ]
 ```
 
 What counts as valid:
@@ -68,4 +75,4 @@ What it does not check:
 - The geometry beyond the above: self-intersecting polygons, a partition that ends on the centerline of the wall it meets, acute angles under 30 degrees, a ground that follows the inside of the walls, doubled exterior walls.
 - That `catalogId` is an existing catalog item, and matches `configuration`.
 - Options that only apply to some opening types or styles, a round `cap` on a wall that is not a pillar, `autoFacade`, `partOfFacade` and `contour`.
-- Roofs, which are not a public feature.
+- The shape of roofs, which are not a public feature. Only their ids are checked for uniqueness.

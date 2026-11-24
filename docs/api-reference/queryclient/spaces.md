@@ -56,7 +56,7 @@ smplrClient.setSpaceDefinition({
 
 The query is rejected with an explicit error message when:
 
-- the definition does not follow the space definition format, or reuses an id. The message lists the first problems with their path, and [`validateSpaceDefinition`](/api-reference/utils/overview#validating-a-space-definition) returns all of them.
+- [`validateSpaceDefinition`](/api-reference/utils/overview#validating-a-space-definition) reports an error for the definition: it does not follow the space definition format, reuses an id, has an opening wider than its segment, and so on. The message lists the first problems with their path, and `validateSpaceDefinition` returns all of them.
 - the definition has no `levels` array, or a level has no `grounds` array.
 - the floor area of the space can't be computed from the definition, which usually means the definition doesn't follow the expected format.
 - the space has no billable floor area, i.e. no internal ground on any level.
