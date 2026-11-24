@@ -65,6 +65,8 @@ The query is rejected with an explicit error message when:
 
 A definition that `validateSpaceDefinition` reports as valid is not rejected for any of these reasons.
 
+The automatic grounds of the definition (a ground whose `id` starts with `autoground-`) are recomputed from the walls when it is saved, as the editor does, so you can leave their `segments` empty.
+
 ## publishSpace
 
 You can call the following query to programmatically publish the latest saved definition of a space, like publishing from the editor.
