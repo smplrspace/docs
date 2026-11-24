@@ -69,7 +69,7 @@ Warnings:
 - A point `id` is used apart from a joint, or for different coordinates.
 - A level's `initials` has more than 3 characters.
 - An object's `levelIndex` is not the index of the level that holds it.
-- An opening sticks out past the end of its segment, is measured from the end that is not the closest, or overlaps another opening on the same segment.
+- An opening is wider than its segment, sticks out past one end of it, is measured from the end that is not the closest, or overlaps another opening on the same segment.
 
 What it does not check:
 
