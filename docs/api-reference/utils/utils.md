@@ -64,7 +64,7 @@ What counts as valid:
 
 Warnings:
 
-- The segments of a wall or a roof do not follow each other: each one starts at the end point of the previous one, with the same `id` and coordinates.
+- The segments of a wall do not follow each other: each one starts at the end point of the previous one, with the same `id` and coordinates.
 - A ground or a hole is not closed: its last segment ends where its first one starts.
 - A point `id` is used apart from a joint, or for different coordinates.
 - A level's `initials` has more than 3 characters.
