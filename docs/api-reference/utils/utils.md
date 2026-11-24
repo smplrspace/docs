@@ -58,6 +58,7 @@ What counts as valid:
 - Every `id` is a string, and unique in the space: grounds, holes, walls, wall segments, openings, roofs, roof segments, stairs, annotations and objects. Reusing an id can make points merge and walls deform. A point `id` is the only one meant to repeat, where two consecutive segments share a joint.
 - Ground `options.style` is one of `indoor`, `grass`, `water`, `white` or `darkgrey`. A door's `options.style` is one of `normal`, `sliding`, `revolving`, `roller-shutter`, `railing`, `frame-only` or `nothing`, and a window's one of `normal`, `multi-panels`, `railing` or `open-air`. `options.openFrom` is `left`, `center` or `right`.
 - A stair's `bottomSegment` and `topSegment` each have exactly two points.
+- An opening is not wider than its segment (`dimensions.width`, in centimeters, against the length of the segment in meters), within 5 mm of rounding.
 - Each opening is measured from the end of its segment that is closest to it: `position.from` is `start` when the opening is nearer the start, and `end` when it is nearer the end. The position is the same either way, but the walls are cut around an opening that touches the end of its wall only when it is measured from that end.
 - The floor area can be computed and is not too large. The space needs a ground that is not external, with its `segments` filled in, or an automatic ground. An automatic ground (an `id` starting with `autoground-`) is derived from the walls of its level: leave its `segments` empty, and the validator computes it from the walls, and `setSpaceDefinition` saves it recomputed. A level with no automatic ground has it disabled, and then needs a ground of its own. A level above 1,000,000 sqft is refused, which also catches coordinates given in centimeters instead of meters.
 - Floor plan images are referenced with `floorplan.url`. A `floorplan.data` key is an error.
@@ -70,7 +71,7 @@ Warnings:
 - A point `id` is used apart from a joint, or for different coordinates.
 - A level's `initials` has more than 3 characters.
 - An object's `levelIndex` is not the index of the level that holds it.
-- An opening is wider than its segment, sticks out past one end of it, or overlaps another opening on the same segment.
+- An opening sticks out past one end of its segment, or overlaps another opening on the same segment.
 
 What it does not check:
 
