@@ -33,8 +33,8 @@ opening a PR or merging one. This section holds what differs in this repo.
   `docs/pt-4039/validate-space-definition-checks`). Never commit to `main` or `next`.
 - **PR:** title `[PT-1234] Title`; description the card link, plus what changed when it is not obvious from the diff,
   and the smplr.js PR it ships with when there is one.
-- **Pre-PR:** `yarn build` (runs the Docusaurus build and the dead-link check). Skip for a change that touches no
-  file under `docs/`, `src/` or `static/`.
+- **Pre-PR:** `yarn build` (runs the Docusaurus build and the dead-link check). Skip only for a change that touches
+  nothing but `CLAUDE.md` and `.github/`.
 - **Pre-merge:** none. The Cloudflare Pages check builds the site, and `merge-pr` already stops on a failing one.
 - **Merge:** a person always merges, never Claude on its own: Thibaut. A PR that documents smplr.js behaviour merges
   only once the code PR it describes is released. `/smplr:merge-pr` runs only when Thibaut asks for it in the
