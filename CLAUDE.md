@@ -23,13 +23,17 @@ Work on cards follows the `smplr:how-we-work` skill. Load it before starting car
 opening a PR or merging one. This section holds what differs in this repo.
 
 - **Cards:** tool ClickUp, list Cards (`75390192`), ID prefix `PT-`, card link
-  `https://app.clickup.com/t/3887534/PT-XXXX`.
-- **Statuses:** not started `backlog`, `next up`, `discovery`, `pause`, `hotseat`; started `in progress`; after a PR
-  review, changes requested `needs changes` and approved `approved`. Any other status: ask first.
-- **Card automation:** none. Card status stays where `start-card` left it, a PR review sets the changes-requested or
-  approved status above by hand, and the skills ask before any other move.
-- **Card fields:** none.
-- **Branches:** default branch `next`; naming `docs/<card id>/<kebab-description>` (for example
+  `https://app.clickup.com/t/3887534/PT-XXXX`. A docs PR usually rides on the card of the product work it documents,
+  the same card as the smplr.js PR in `smplrspace/smplrspace`: it is a subpart of that card, not a card of its own.
+  Only pure documentation, which usually has no code, has a card here.
+- **Statuses:** not started `backlog`, `next up`, `discovery`, `pause`, `hotseat`; started `in progress`. Any other
+  status: ask first. A docs PR on a card shared with product work never moves it: the product work owns its status.
+- **Card automation:** none. A docs PR does not affect its card: no status move, no review status set by hand. The
+  skills ask before any move on a docs-only card.
+- **Card fields:** none on a shared card; the product work sets them. A docs-only card has Type of work Docs.
+- **Branches:** default branch `next`; naming `<prefix>/pt-<number>/<kebab-description>`, as in
+  `smplrspace/smplrspace`, with the prefix from the type of work being documented: `feat/` for a feature, `imp/` for
+  an improvement, `fix/` for a fix, `docs/` for pure documentation (for example
   `docs/pt-4039/validate-space-definition-checks`). Never commit to `main` or `next`.
 - **PR:** title `[PT-1234] Title`; description the card link, plus what changed when it is not obvious from the diff,
   and the smplr.js PR it ships with when there is one.
@@ -38,7 +42,7 @@ opening a PR or merging one. This section holds what differs in this repo.
 - **Pre-merge:** none. The Cloudflare Pages check builds the site, and `merge-pr` already stops on a failing one.
 - **Merge:** a person always merges, never Claude on its own: Thibaut. A PR that documents smplr.js behaviour merges
   only once the code PR it describes is released. `/smplr:merge-pr` runs only when Thibaut asks for it in the
-  session. Bypass (`--admin`): Thibaut only, and only after he says yes for that PR.
+  session. Bypass (`--admin`): Thibaut can bypass any PR, without a separate yes for each.
 - **Release note:** none.
 - **After merge:** none.
 - **Backlog:** lists to scan: Cards (`75390192`, open statuses `backlog`, `next up`, `discovery`, `pause`, `hotseat`,
